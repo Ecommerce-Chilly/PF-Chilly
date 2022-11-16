@@ -3,6 +3,7 @@ const morgan = require("morgan");
 const cookieParser = require("cookie-parser");
 const bodyParser = require("body-parser");
 const app = express();
+const routes = require('./routes/index.js');
 
 app.use(morgan("dev"));
 app.use(cookieParser());
