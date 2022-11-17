@@ -12,10 +12,6 @@ module.exports = (sequelize) => {
             type: DataTypes.INTEGER,
             allowNull: false
         },
-        status: {
-            type: DataTypes.ENUM,
-            values:['out of stock','in stock']
-        }
     },{
         timestamps: false
     })
