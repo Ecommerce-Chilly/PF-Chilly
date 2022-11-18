@@ -13,8 +13,9 @@ module.exports = (sequelize) =>{
             allowNull: false
         },
         price: {
-            type: DataTypes.FLOAT(2),
-            allowNull: false
+            type: DataTypes.FLOAT,
+            allowNull: false,
+            defaultValue: 50.00
         },
         details: {
             type: DataTypes.ARRAY(DataTypes.STRING),

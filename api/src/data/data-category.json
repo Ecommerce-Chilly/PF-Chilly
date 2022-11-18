@@ -1,0 +1,46 @@
+[
+    {
+        "name": "cases",
+        "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit"
+    },
+    {
+        "name": "case_fan",
+        "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit"
+    },
+    {
+        "name": "cpu_fan",
+        "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit"
+    },
+    {
+        "name": "gpus",
+        "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit"
+    },
+    {
+        "name": "keyboards",
+        "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit"
+    },
+    {
+        "name": "motherboards",
+        "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit"
+    },
+    {
+        "name": "mouses",
+        "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit"
+    },
+    {
+        "name": "power_supply",
+        "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit"
+    },
+    {
+        "name": "processors",
+        "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit"
+    },
+    {
+        "name": "ram",
+        "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit"
+    },
+    {
+        "name": "storage",
+        "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit"
+    }
+]
