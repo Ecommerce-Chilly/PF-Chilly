@@ -11,6 +11,7 @@ import BuildYourOwn from "../Pages/BuildYourOwn";
 import SpecialOffers from "../Pages/SpecialOffers";
 import Blog from "../Pages/Blog";
 import AboutUS from "../Pages/AboutUS"
+import Footer from "../Footer/Footer";
 
 function MainRoute() {
   return (
@@ -31,6 +32,9 @@ function MainRoute() {
 
 
         <Route exact path="/create/product" component={CreateComponent} />
+      </div>
+      <div>
+        <Footer />
       </div>
     </>
   );
