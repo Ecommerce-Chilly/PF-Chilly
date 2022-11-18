@@ -14,6 +14,7 @@ const postProduct = async ({
     throw Error("Sending incomplete information!");
   } else {
     const invCreate = await postInvetory(quantity);
+    const discountDB = await Discount.findOne({ where: { name: discount } });
     const categoryDB = await Category.findOne({ where: { name: category } });
     const proCreate = await Product.create({
       name,
@@ -21,6 +22,7 @@ const postProduct = async ({
       details,
     });
     await proCreate.setCategory(categoryDB);
+    await proCreate.setDiscount(discountDB);
     await invCreate.setProduct(proCreate);
     await proCreate.setInventory(invCreate);
     return proCreate;
