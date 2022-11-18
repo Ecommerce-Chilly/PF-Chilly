@@ -1,30 +1,30 @@
-import React, { useState } from "react";
-import { useDispatch, useSelector } from "react-redux";
-import { useHistory } from "react-router-dom";
+import React, { useState } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { useHistory } from 'react-router-dom';
 //import * as actions from "../../../redux/actions/actions";
-import "./CreateComponent.css";
+import './CreateComponent.css';
 
 export function validate(newProduct) {
   let errors = {};
   if (!newProduct.name) {
-    errors.name = "Product requires a name";
+    errors.name = 'Product requires a name';
   } else if (!/([A-Z])\w+/.test(newProduct.name)) {
     errors.name =
-      "The first letter must be capital and must have more than one letter";
+      'The first letter must be capital and must have more than one letter';
   }
   if (!newProduct.price) {
-    errors.price = "Product requires a price";
+    errors.price = 'Product requires a price';
   } else if (newProduct.price < 0) {
-    errors.price = "Price must be more than 0";
+    errors.price = 'Price must be more than 0';
   }
   if (Object.entries(newProduct.details).length === 0) {
-    errors.details = "Product requires an detail";
+    errors.details = 'Product requires an detail';
   }
   if (newProduct.inInventary < 0) {
-    errors.inInventary = "Require must be more than 0";
+    errors.inInventary = 'Require must be more than 0';
   }
   if (!newProduct.category) {
-    errors.category = "Requires an category";
+    errors.category = 'Requires an category';
   }
 }
 
@@ -34,11 +34,11 @@ function CreateComponent() {
   const history = useHistory();
   const [errors, setErrors] = useState({});
   const [newProduct, setNewProduct] = useState({
-    name: "",
+    name: '',
     price: 0,
-    image: "",
+    image: '',
     inInventary: 0,
-    category: "",
+    category: '',
     details: [],
     discount: 0,
   });
@@ -74,14 +74,14 @@ function CreateComponent() {
   return (
     <>
       <form
-      onSubmit={(e) => {
+        onSubmit={(e) => {
           e.preventDefault();
           dispatchDataToCreate(newProduct);
-          setTimeout(() => history.push("/home"), 3000);
-        }} 
+          setTimeout(() => history.push('/home'), 3000);
+        }}
       >
         <h1>Create Product</h1>
-        <label>Name of product:</label>
+        <label>Name of productoooo:</label>
         <input
           type="text"
           name="name"
