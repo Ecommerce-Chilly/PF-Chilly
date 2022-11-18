@@ -2,15 +2,10 @@ const sequelize = require("sequelize");
 const { DataTypes } = require("sequelize");
 module.exports = (sequelize) => {
   sequelize.define("discount", {
-    id: {
-      type: DataTypes.INTEGER,
-      autoIncrement: true,
-      primaryKey: true,
-      allowNull: false,
-    },
     name: {
       type: DataTypes.STRING,
       allowNull: false,
+      primaryKey: true,
     },
     description: {
       type: DataTypes.STRING,
