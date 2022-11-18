@@ -5,10 +5,15 @@ const bodyParser = require("body-parser");
 const app = express();
 const routes = require('./routes/index.js');
 
+require('./db.js');
+
 app.use(morgan("dev"));
 app.use(cookieParser());
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true })); //req.body (el objeto contendrá valores de cualquier tipo y no solo cadenas)
+
+
+app.use('/', routes);
 
 //manejador de errores
 app.use((err, req, res, next) => {
