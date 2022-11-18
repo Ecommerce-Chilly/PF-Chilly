@@ -81,7 +81,7 @@ function CreateComponent() {
         }}
       >
         <h1>Create Product</h1>
-        <label>Name of productoooo:</label>
+        <label>Name of producto:</label>
         <input
           type="text"
           name="name"
