@@ -6,8 +6,9 @@ const discountsRoute = require("./discountsRoute");
 const { hardCodeoInfo } = require("../controllers/hardCode");
 const router = Router();
 
-router.use("/Guillo", (req, res, next) => {
-  hardCodeoInfo();
+router.use("/Guillo", async (req, res, next) => {
+  await hardCodeoInfo();
+  console.log("ya termine");
   next();
 });
 // Configurar los routers
