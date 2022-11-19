@@ -1,5 +1,6 @@
 const { Router } = require("express");
 const { postProduct } = require("../controllers/postProduct");
+const { getProducts } = require("../controllers/getProducts");
 const productRoute = Router();
 
 productRoute.post("/", async (req, res) => {
@@ -10,7 +11,12 @@ productRoute.post("/", async (req, res) => {
     res.status(400).send({ error: error.message });
   }
 });
-
+productRoute.get("/", async (req, res) => {
+  try {
+    const product = await getProducts(req.query);
+    res.send(product);
+  } catch (error) {}
+});
 productRoute.get;
 
 module.exports = productRoute;
