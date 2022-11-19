@@ -1,0 +1,1181 @@
+[
+  {
+    "name": "asd",
+    "price": 189.99,
+    "brand": "SilverStone Technology",
+    "model": "asd",
+    "details": [
+      {
+        "speed": "5.0 GHz",
+        "socketType": "LGA 1151"
+      }
+    ],
+    "category": "processor",
+    "discount": "asd",
+    "quantity": "1"
+  },
+  {
+    "name": "Intel Core I9-9900K Desktop Processor 8 Cores Up To 5.0 GHz Turbo Unlocked LGA1151 300 Series 95W",
+    "image": "https://m.media-amazon.com/images/I/51pSm7LQLML._SL75_.jpg",
+    "price": 540,
+    "brand": "Intel",
+    "model": "Core i9-9900K",
+    "details": [
+      {
+        "speed": "5.0 GHz",
+        "socketType": "LGA 1151"
+      }
+    ],
+    "category": "processor",
+    "discount": "asd",
+    "quantity": "1"
+  },
+  {
+    "name": "Intel Core I7-4770S Quad-Core Desktop Processor 3.1 GHZ 8 MB Cache- BX80646I74770S",
+    "image": "https://m.media-amazon.com/images/I/41uDBMBVYWL._SL75_.jpg",
+    "price": 280,
+    "brand": "Intel",
+    "model": "Core i7-4770S",
+    "details": [
+      {
+        "speed": "3.9 GHz",
+        "socketType": "LGA 1150"
+      }
+    ],
+    "category": "processor",
+    "discount": "asd",
+    "quantity": "1"
+  },
+  {
+    "name": "Intel Core I7 I7-4770K 3.5 GHz Processor BXF80646I74770K",
+    "image": "https://m.media-amazon.com/images/I/41MisTuStbL._SL75_.jpg",
+    "price": 329.99,
+    "brand": "Intel",
+    "model": "Core i7-4770K",
+    "details": [
+      {
+        "speed": "3.9 GHz",
+        "socketType": "LGA 1150"
+      }
+    ],
+    "category": "processor",
+    "discount": "asd",
+    "quantity": "1"
+  },
+  {
+    "name": "Intel Core I7 I7-4770T 2.50 GHz Processor - Socket H3 LGA-1150 CM8064601465902",
+    "image": "https://m.media-amazon.com/images/I/51hZGk9fNsL._SL75_.jpg",
+    "price": 0,
+    "brand": "Intel",
+    "model": "Core i7-4770T",
+    "details": [
+      {
+        "speed": "3.7 GHz",
+        "socketType": "LGA 1150"
+      }
+    ],
+    "category": "processor",
+    "discount": "asd",
+    "quantity": "1"
+  },
+  {
+    "name": "Intel Core I7 I7-4765T Quad-core (4 Core) 2 GHz Processor - Socket H3 LGA-1150OEM Pack - 1 MB - 8 MB Cache - Yes - 3 GHz Overclocking Speed - 22 Nm - 3 Number Of Monitors Supported - Intel HD 4600 Gr",
+    "image": "https://m.media-amazon.com/images/I/51M5Z-1S+2L._SL75_.jpg",
+    "price": 498.95,
+    "brand": "Intel",
+    "model": "Core i7-4765T",
+    "details": [
+      {
+        "speed": "3.0 GHz",
+        "socketType": "LGA 1150"
+      }
+    ],
+    "category": "processor",
+    "discount": "asd",
+    "quantity": "1"
+  },
+  {
+    "name": "Intel® Core I7-4790K, 4 Cores & 8 Threads Unlocked Desktop Processor With Intel HD Graphics 4600",
+    "image": "https://m.media-amazon.com/images/I/51O4fyuOiUL._SL75_.jpg",
+    "price": 245,
+    "brand": "Intel",
+    "model": "Core i7-4790K",
+    "details": [
+      {
+        "speed": "4.4 GHz",
+        "socketType": "LGA 1150"
+      }
+    ],
+    "category": "processor",
+    "discount": "asd",
+    "quantity": "1"
+  },
+  {
+    "name": "Intel Core I7-4790S LGA 1150 - BX80646I74790S",
+    "image": "https://m.media-amazon.com/images/I/51k9DlVz1QL._SL75_.jpg",
+    "price": 188.86,
+    "brand": "Intel",
+    "model": "Core i7-4790S",
+    "details": [
+      {
+        "speed": "4.0 GHz",
+        "socketType": "LGA 1150"
+      }
+    ],
+    "category": "processor",
+    "discount": "asd",
+    "quantity": "1"
+  },
+  {
+    "name": "Kingston ValueRAM 1GB 1333MHz DDR3 Non-ECC CL9 DIMM Desktop Memory",
+    "image": "https://m.media-amazon.com/images/I/410DjRQbsZL._SL75_.jpg",
+    "price": 10.51,
+    "brand": "Kingston",
+    "model": "ValueRAM",
+    "details": [
+      {
+        "size": "1 GB",
+        "quantity": "1 x 1 GB",
+        "type": "DDR3"
+      }
+    ],
+    "category": "ram",
+    "discount": "asd",
+    "quantity": "1"
+  },
+  {
+    "name": "Kingston ValueRAM 2GB 1066MHz DDR3 Non-ECC CL7 DIMM Desktop Memory",
+    "image": "https://m.media-amazon.com/images/I/21DkmXPR9mL._SL75_.jpg",
+    "price": 17.99,
+    "brand": "Kingston",
+    "model": "ValueRAM",
+    "details": [
+      {
+        "size": "2 GB",
+        "quantity": "1 x 2 GB",
+        "type": "DDR3"
+      }
+    ],
+    "category": "ram",
+    "discount": "asd",
+    "quantity": "1"
+  },
+  {
+    "name": "Kingston ValueRAM 4 GB Kit (2x2 GB Modules) 1333MHz PC3-1066 DDR3 DIMM Desktop Memory KVR1333D3N9K2/4G",
+    "image": "https://m.media-amazon.com/images/I/41HX9RWOPqL._SL75_.jpg",
+    "price": 31.8,
+    "brand": "Kingston",
+    "model": "KVR1333D3N9/4G",
+    "details": [
+      {
+        "size": "4 GB",
+        "quantity": "2 x 2 GB",
+        "type": "DDR3"
+      }
+    ],
+    "category": "ram",
+    "discount": "asd",
+    "quantity": "1"
+  },
+  {
+    "name": "Patriot PVS34G1333LLK Extreme Performance Viper Series PC3-10666 DDR3 1333MHz 4GB CAS 7-7-7-20 Low Latency Dual Channel Kit (Silver)",
+    "image": "https://m.media-amazon.com/images/I/411i8vLOjyL._SL75_.jpg",
+    "price": 199.99,
+    "brand": "Patriot Memory",
+    "model": "Viper 4",
+    "details": [
+      {
+        "size": "4 GB",
+        "quantity": "2 x 4 GB",
+        "type": "DDR3"
+      }
+    ],
+    "category": "ram",
+    "discount": "asd",
+    "quantity": "1"
+  },
+  {
+    "name": "Crucial 4GB Kit (2GBx2) DDR3 1333 MT/s (PC3-10600) CL9 Unbuffered UDIMM 240-Pin Desktop Memory Modules CT2CP25664BA1339",
+    "image": "https://m.media-amazon.com/images/I/31g+FAj1yUL._SL75_.jpg",
+    "price": 27.99,
+    "brand": "Crucial",
+    "model": "CT2CP25664BA1339",
+    "details": [
+      {
+        "size": "4 GB",
+        "quantity": "2 x 2 GB",
+        "type": "DDR3"
+      }
+    ],
+    "category": "ram",
+    "discount": "asd",
+    "quantity": "1"
+  },
+  {
+    "name": "Kingston PC10600 1333MHz 2GB DDR3 Memory",
+    "image": "https://m.media-amazon.com/images/I/51hfd4IuAbL._SL75_.jpg",
+    "price": 18.5,
+    "brand": "Kingston",
+    "model": "PC10600",
+    "details": [
+      {
+        "size": "2 GB",
+        "quantity": "1 x 2 GB",
+        "type": "DDR3"
+      }
+    ],
+    "category": "ram",
+    "discount": "asd",
+    "quantity": "1"
+  },
+  {
+    "name": "Mushkin Essentials - DDR3 UDIMM - 240-pin Desktop Ram - Non-ECC - (99) (4GB (2x2GB), DDR3-1333MHz (PC3 10666), Green)",
+    "image": "https://m.media-amazon.com/images/I/31X2O7NYFQS._SL75_.jpg",
+    "price": 18.25,
+    "brand": "Mushkin",
+    "model": "Essentials",
+    "details": [
+      {
+        "size": "4 GB",
+        "quantity": "2 x 2 GB",
+        "type": "DDR3"
+      }
+    ],
+    "category": "ram",
+    "discount": "asd",
+    "quantity": "1"
+  },
+  {
+    "name": "Kingston ValueRAM 4GB 1333MHz DDR3 Non-ECC CL9 DIMM Desktop Memory P/n: KVR1333D3N9/4G",
+    "image": "https://m.media-amazon.com/images/I/41I2G3qncqL._SL75_.jpg",
+    "price": 19.99,
+    "brand": "Kingston",
+    "model": "KVR1333D3N9/4G",
+    "details": [
+      {
+        "size": "4 GB",
+        "quantity": "1 x 4 GB",
+        "type": "DDR3"
+      }
+    ],
+    "category": "ram",
+    "discount": "asd",
+    "quantity": "1"
+  },
+  {
+    "name": "Kingston ValueRAM 8 GB Kit (2x4 GB Modules) 1333MHz DDR3 Non-ECC CL9 DIMM Desktop Memory KVR1333D3N9K2/8G",
+    "image": "https://m.media-amazon.com/images/I/41RS6bm3zPL._SL75_.jpg",
+    "price": 49.93,
+    "brand": "Kingston",
+    "model": "ValueRAM",
+    "details": [
+      {
+        "size": "8 GB",
+        "quantity": "2 x 4 GB",
+        "type": "DDR3"
+      }
+    ],
+    "category": "ram",
+    "discount": "asd",
+    "quantity": "1"
+  },
+  {
+    "image": "https://m.media-amazon.com/images/I/51+SaKHQvyL._SL75_.jpg",
+    "price": 249.99,
+    "brand": "Biostar",
+    "model": "A880GU3",
+    "details": [
+      {
+        "formFactor": "Micro ATX",
+        "chipset": "AMD 880G",
+        "memorySlots": "2",
+        "socketType": "AM3"
+      }
+    ],
+    "category": "motherboard",
+    "discount": "asd",
+    "quantity": "1"
+  },
+  {
+    "name": "Biostar Motherboard AMD 760G Micro ATX DDR3 1600 AM3 Motherboards A780L3B",
+    "image": "https://m.media-amazon.com/images/I/51ELe4Yea1L._SL75_.jpg",
+    "price": 199.99,
+    "brand": "Biostar",
+    "model": "A780L3B",
+    "details": [
+      {
+        "formFactor": "Micro ATX",
+        "chipset": "AMD 760G",
+        "memorySlots": "2",
+        "socketType": "AM3"
+      }
+    ],
+    "category": "motherboard",
+    "discount": "asd",
+    "quantity": "1"
+  },
+  {
+    "name": "ECS Elitegroup AM3 AMD 760G Micro ATX AMD DDR3 1800 Motherboard A780LM-M2",
+    "image": "https://m.media-amazon.com/images/I/51-SEMSjS3L._SL75_.jpg",
+    "price": 128.68,
+    "brand": "ECS Elitegroup",
+    "model": "A780LM-M2",
+    "details": [
+      {
+        "formFactor": "Micro ATX",
+        "chipset": "AMD 760G",
+        "memorySlots": "2",
+        "socketType": "AM3"
+      }
+    ],
+    "category": "motherboard",
+    "discount": "asd",
+    "quantity": "1"
+  },
+  {
+    "name": "Gigabyte AM3+ AMD DDR3 1333 760G HDMI USB 3.0 Micro ATX Motherboard GA-78LMT-USB3",
+    "image": "https://m.media-amazon.com/images/I/51GwsRr+-BL._SL75_.jpg",
+    "price": 137,
+    "brand": "Gigabyte",
+    "model": "GA-78LMT-USB3",
+    "details": [
+      {
+        "formFactor": "Micro ATX",
+        "chipset": "AMD 760G",
+        "memorySlots": "4",
+        "socketType": "AM3+"
+      }
+    ],
+    "category": "motherboard",
+    "discount": "asd",
+    "quantity": "1"
+  },
+  {
+    "name": "ASRock ATX 64GB DDR3 2100 AM3+ AMD Motherboard (970 EXTREME3 R2.0 )",
+    "image": "https://m.media-amazon.com/images/I/61kdLr5tuFL._SL75_.jpg",
+    "price": 218,
+    "brand": "ASRock",
+    "model": "970 EXTREME3 R2.0",
+    "details": [
+      {
+        "formFactor": "ATX",
+        "chipset": "AMD 970",
+        "memorySlots": "4",
+        "socketType": "AM3+"
+      }
+    ],
+    "category": "motherboard",
+    "discount": "asd",
+    "quantity": "1"
+  },
+  {
+    "name": "ASRock Motherboard ATX DDR3 1600 AMD AM3+ Motherboard 970 PRO3 R2.0",
+    "image": "https://m.media-amazon.com/images/I/51u9zfMAlaL._SL75_.jpg",
+    "price": 168.04,
+    "brand": "ASRock",
+    "model": "970 PRO3 R2.0",
+    "details": [
+      {
+        "formFactor": "ATX",
+        "chipset": "AMD 970",
+        "memorySlots": "4",
+        "socketType": "AM3+"
+      }
+    ],
+    "category": "motherboard",
+    "discount": "asd",
+    "quantity": "1"
+  },
+  {
+    "name": "ASUS Micro ATX DDR3 1600 LGA 1150 Motherboard B85M-G",
+    "image": "https://m.media-amazon.com/images/I/51hK49i7skL._SL75_.jpg",
+    "price": 64.99,
+    "brand": "ASUS",
+    "model": "B85M-G",
+    "details": [
+      {
+        "formFactor": "Micro ATX",
+        "chipset": "Intel B85",
+        "memorySlots": "4",
+        "socketType": "LGA 1150"
+      }
+    ],
+    "category": "motherboard",
+    "discount": "asd",
+    "quantity": "1"
+  },
+  {
+    "name": "ASUS RAMPAGE V EXTREME, Extended ATX X99 Motherboard , LGA 2011-V3 Socket, DDR4 3300Mhz+(OC)",
+    "image": "https://m.media-amazon.com/images/I/51Ayt-6CojL._SL75_.jpg",
+    "price": 949.4,
+    "brand": "ASUS",
+    "model": "RAMPAGE V EXTREME",
+    "details": [
+      {
+        "formFactor": "Extended ATX",
+        "chipset": "Intel X99",
+        "memorySlots": "8",
+        "socketType": "LGA 2011"
+      }
+    ],
+    "category": "motherboard",
+    "discount": "asd",
+    "quantity": "1"
+  },
+  {
+    "name": "Supermicro Motherboard ATX DDR4 3000 C7X99-OCE-O",
+    "image": "https://m.media-amazon.com/images/I/51zrdkAT-pL._SL75_.jpg",
+    "price": 598.99,
+    "brand": "Supermicro",
+    "model": "C7X99-OCE-O",
+    "details": [
+      {
+        "formFactor": "ATX",
+        "chipset": "Intel X99",
+        "memorySlots": "8",
+        "socketType": "LGA 2011"
+      }
+    ],
+    "category": "motherboard",
+    "discount": "asd",
+    "quantity": "1"
+  },
+  {
+    "name": "ASUS Micro ATX DDR3 1066 AMD - AM3+ Motherboards M5A78L-M LE/USB3",
+    "image": "https://m.media-amazon.com/images/I/51XTgO3LVKL._SL75_.jpg",
+    "price": 150.68,
+    "brand": "ASUS",
+    "model": "M5A78L-M LE/USB3",
+    "details": [
+      {
+        "formFactor": "Micro ATX",
+        "chipset": "AMD 760G",
+        "memorySlots": "2",
+        "socketType": "AM3+"
+      }
+    ],
+    "category": "motherboard",
+    "discount": "asd",
+    "quantity": "1"
+  },
+  {
+    "name": "Asus Micro ATX DDR4 LGA 1151 Motherboard H110M-C/CSM",
+    "image": "https://m.media-amazon.com/images/I/513rvmJ5NzL._SL75_.jpg",
+    "price": 134.02,
+    "brand": "ASUS",
+    "model": "H110M-C/CSM",
+    "details": [
+      {
+        "formFactor": "Micro ATX",
+        "chipset": "Intel H110",
+        "memorySlots": "2",
+        "socketType": "LGA 1151"
+      }
+    ],
+    "category": "motherboard",
+    "discount": "asd",
+    "quantity": "1"
+  },
+  {
+    "name": "ASUS Micro ATX DDR4 LGA 1151 Motherboards H110M-K",
+    "image": "https://m.media-amazon.com/images/I/41tOxWPLiNL._SL75_.jpg",
+    "price": 199.9,
+    "brand": "ASUS",
+    "model": "H110M-K",
+    "details": [
+      {
+        "formFactor": "Micro ATX",
+        "chipset": "Intel H110",
+        "memorySlots": "2",
+        "socketType": "LGA 1151"
+      }
+    ],
+    "category": "motherboard",
+    "discount": "asd",
+    "quantity": "1"
+  },
+  {
+    "name": "Asus H110I-PLUS S1151 H110 MITX SND+GLN+U3 SATA6GB/S DDR4, 90MB0PX0-M0EAY0 (SND+GLN+U3 SATA6GB/S DDR4)",
+    "image": "https://m.media-amazon.com/images/I/51Ffx-0J3GL._SL75_.jpg",
+    "price": 158.02,
+    "brand": "ASUS",
+    "model": "H110I Plus",
+    "details": [
+      {
+        "formFactor": "Mini ITX",
+        "chipset": "Intel H110",
+        "memorySlots": "2",
+        "socketType": "LGA 1151"
+      }
+    ],
+    "category": "motherboard",
+    "discount": "asd",
+    "quantity": "1"
+  },
+  {
+    "name": "ASRock Motherboard Micro ATX DDR4 LGA 1151 H110M-DGS",
+    "image": "https://m.media-amazon.com/images/I/61UajGoZJ7L._SL75_.jpg",
+    "price": 73.99,
+    "brand": "ASRock",
+    "model": "H110M-DGS",
+    "details": [
+      {
+        "formFactor": "Micro ATX",
+        "chipset": "Intel H110",
+        "memorySlots": "2",
+        "socketType": "LGA 1151"
+      }
+    ],
+    "category": "motherboard",
+    "discount": "asd",
+    "quantity": "1"
+  },
+  {
+    "name": "Asus H110I-PLUS Motherboard Mini ITX DDR4 LGA 1151 H110I-PLUS",
+    "image": "https://m.media-amazon.com/images/I/51w6W2blVpL._SL75_.jpg",
+    "price": 145.51,
+    "brand": "ASUS",
+    "model": "H110I-PLUS/CSM",
+    "details": [
+      {
+        "formFactor": "Mini ITX",
+        "chipset": "Intel H110",
+        "memorySlots": "2",
+        "socketType": "LGA 1151"
+      }
+    ],
+    "category": "motherboard",
+    "discount": "asd",
+    "quantity": "1"
+  },
+  {
+    "name": "Asus H110M-R/C/SI Intel H110 1151 Micro ATX DDR4 HDMI",
+    "image": "https://m.media-amazon.com/images/I/41RHr398m5L._SL75_.jpg",
+    "price": 228.68,
+    "brand": "ASUS",
+    "model": "H110M-R",
+    "details": [
+      {
+        "formFactor": "Micro ATX",
+        "chipset": "Intel H110",
+        "memorySlots": "2",
+        "socketType": "LGA 1151"
+      }
+    ],
+    "category": "motherboard",
+    "discount": "asd",
+    "quantity": "1"
+  },
+  {
+    "name": "ASUS X99-E LGA2011-v3 5-Way Optimization SafeSlot Aura RGB ATX Motherboard",
+    "image": "https://m.media-amazon.com/images/I/51bn+ONYm4L._SL75_.jpg",
+    "price": 658.66,
+    "brand": "ASUS",
+    "model": "X99-E",
+    "details": [
+      {
+        "formFactor": "ATX",
+        "chipset": "Intel X99",
+        "memorySlots": "4",
+        "socketType": "LGA 2011"
+      }
+    ],
+    "category": "motherboard",
+    "discount": "asd",
+    "quantity": "1"
+  },
+  {
+    "name": "ASUS M5A78L-M Plus/USB3 DDR3 HDMI DVI USB 3.0 760G AM3+ Based Motherboard,Black",
+    "image": "https://m.media-amazon.com/images/I/51MiKcgwsnL._SL75_.jpg",
+    "price": 299.98,
+    "brand": "ASUS",
+    "model": "M5A78L-M Plus/USB3",
+    "details": [
+      {
+        "formFactor": "Micro ATX",
+        "chipset": "AMD A78",
+        "memorySlots": "4",
+        "socketType": "AM3+"
+      }
+    ],
+    "category": "motherboard",
+    "discount": "asd",
+    "quantity": "1"
+  },
+  {
+    "name": "MSI Intel X99 LGA 2011 DDR4 USB 3.1 Form Factor ATX Motherboard (X99A WORKSTATION)",
+    "image": "https://m.media-amazon.com/images/I/41EmVatW1vL._SL75_.jpg",
+    "price": 598.86,
+    "brand": "MSI",
+    "model": "X99A WORKSTATION",
+    "details": [
+      {
+        "formFactor": "ATX",
+        "chipset": "Intel X99",
+        "memorySlots": "8",
+        "socketType": "LGA 2011"
+      }
+    ],
+    "category": "motherboard",
+    "discount": "asd",
+    "quantity": "1"
+  },
+  {
+    "name": "ASUS ROG STRIX Z270E GAMING LGA1151 DDR4 DP HDMI DVI M.2 ATX Motherboard With Onboard AC Wifi And USB 3.1",
+    "image": "https://m.media-amazon.com/images/I/5152lXWwX9L._SL75_.jpg",
+    "price": 862.69,
+    "brand": "ASUS",
+    "model": "ROG STRIX Z270E GAMING",
+    "details": [
+      {
+        "formFactor": "ATX",
+        "chipset": "Intel Z270",
+        "memorySlots": "4",
+        "socketType": "LGA 1151"
+      }
+    ],
+    "category": "motherboard",
+    "discount": "asd",
+    "quantity": "1"
+  },
+  {
+    "name": "Asus ROG Crosshair VI Hero AMD Ryzen AM4 DDR4 M.2 USB 3.1 ATX X370 Motherboard With Aura Sync RGB Lighting",
+    "image": "https://m.media-amazon.com/images/I/51EdMY3YSNL._SL75_.jpg",
+    "price": 169.99,
+    "brand": "ASUS",
+    "model": "ROG Crosshair VI Hero",
+    "details": [
+      {
+        "formFactor": "ATX",
+        "chipset": "AMD X370",
+        "memorySlots": "4",
+        "socketType": "AM4"
+      }
+    ],
+    "category": "motherboard",
+    "discount": "asd",
+    "quantity": "1"
+  },
+  {
+    "name": "ASUS Prime X370-Pro AMD Ryzen AM4 DDR4 DP HDMI M.2 USB 3.1 ATX X370 Motherboard With Aura Sync RGB Lighting",
+    "image": "https://m.media-amazon.com/images/I/51T1YHLsxRL._SL75_.jpg",
+    "price": 471.31,
+    "brand": "ASUS",
+    "model": "PRIME X370-PRO",
+    "details": [
+      {
+        "formFactor": "ATX",
+        "chipset": "AMD X370",
+        "memorySlots": "4",
+        "socketType": "AM4"
+      }
+    ],
+    "category": "motherboard",
+    "discount": "asd",
+    "quantity": "1"
+  },
+  {
+    "name": "MSI Gaming AMD Ryzen X370 DDR4 VR Ready HDMI USB 3 SLI CFX ATX Motherboard (X370 GAMING PRO CARBON)",
+    "image": "https://m.media-amazon.com/images/I/51rfIaeuUML._SL75_.jpg",
+    "price": 227.99,
+    "brand": "MSI",
+    "model": "X370 GAMING PRO CARBON",
+    "details": [
+      {
+        "formFactor": "ATX",
+        "chipset": "AMD X370",
+        "memorySlots": "4",
+        "socketType": "AM4"
+      }
+    ],
+    "category": "motherboard",
+    "discount": "asd",
+    "quantity": "1"
+  },
+  {
+    "name": "GIGABYTE AORUS GA-AX370-Gaming 5 (AMD Ryzen AM4/ X370/ RGB FUSION/ SMART FAN 5/ HDMI/ M.2/ U.2/ USB 3.1 Type-C/ ATX/ DDR4/ Motherboard)",
+    "image": "https://m.media-amazon.com/images/I/512enDxGL5L._SL75_.jpg",
+    "price": 228.68,
+    "brand": "Gigabyte",
+    "model": "GA-AX370-Gaming 5",
+    "details": [
+      {
+        "formFactor": "ATX",
+        "chipset": "AMD X370",
+        "memorySlots": "4",
+        "socketType": "AM4"
+      }
+    ],
+    "category": "motherboard",
+    "discount": "asd",
+    "quantity": "1"
+  },
+  {
+    "name": "ASRock X370 Gaming K4 FATAL1TY Socket AM4/AMD X370/DDR4/A&GbE/ATX Motherboard",
+    "image": "https://m.media-amazon.com/images/I/5131yPcvIBL._SL75_.jpg",
+    "price": 198.68,
+    "brand": "ASRock",
+    "model": "X370 GAMING K4",
+    "details": [
+      {
+        "formFactor": "ATX",
+        "chipset": "AMD X370",
+        "memorySlots": "4",
+        "socketType": "AM4"
+      }
+    ],
+    "category": "motherboard",
+    "discount": "asd",
+    "quantity": "1"
+  },
+  {
+    "name": "ASRock X370 Taichi Socket AM4/AMD X370/DDR4/Quad CrossFireX & SLI/SATA3&USB3.1/M.2/Wi-Fi/A&GbE/ATX Motherboard",
+    "image": "https://m.media-amazon.com/images/I/51ag9qRhEVL._SL75_.jpg",
+    "price": 267,
+    "brand": "ASRock",
+    "model": "X370 TAICHI",
+    "details": [
+      {
+        "formFactor": "ATX",
+        "chipset": "AMD X370",
+        "memorySlots": "4",
+        "socketType": "AM4"
+      }
+    ],
+    "category": "motherboard",
+    "discount": "asd",
+    "quantity": "1"
+  },
+  {
+    "name": "ASRock X370 Killer SLI AM4 AMD Promontory X370 SATA 6Gb/s USB 3.0 HDMI ATX AMD Motherboard",
+    "image": "https://m.media-amazon.com/images/I/51Fek3fj7JL._SL75_.jpg",
+    "price": 230.99,
+    "brand": "ASRock",
+    "model": "X370 Killer",
+    "details": [
+      {
+        "formFactor": "ATX",
+        "chipset": "AMD X370",
+        "memorySlots": "4",
+        "socketType": "AM4"
+      }
+    ],
+    "category": "motherboard",
+    "discount": "asd",
+    "quantity": "1"
+  },
+  {
+    "name": "ASRock X370 Professional Gaming Socket AM4/AMD ATX Motherboard",
+    "image": "https://m.media-amazon.com/images/I/51NXlJ+7g2L._SL75_.jpg",
+    "price": 279.99,
+    "brand": "ASRock",
+    "model": "X370 PROFESSIONAL GAMING",
+    "details": [
+      {
+        "formFactor": "ATX",
+        "chipset": "AMD X370",
+        "memorySlots": "4",
+        "socketType": "AM4"
+      }
+    ],
+    "category": "motherboard",
+    "discount": "asd",
+    "quantity": "1"
+  },
+  {
+    "name": "GIGABYTE AORUS GA-AX370-Gaming K5 (AMD Ryzen AM4/ X370/ RGB FUSION/ SMART FAN 5/ HDMI/ M.2/ USB 3.1 Type-C/ ATX/ DDR4/ Motherboard)",
+    "image": "https://m.media-amazon.com/images/I/51Vjr-WMCbL._SL75_.jpg",
+    "price": 0,
+    "brand": "Gigabyte",
+    "model": "GA-AX370-Gaming K5",
+    "details": [
+      {
+        "formFactor": "ATX",
+        "chipset": "AMD X370",
+        "memorySlots": "4",
+        "socketType": "AM4"
+      }
+    ],
+    "category": "motherboard",
+    "discount": "asd",
+    "quantity": "1"
+  },
+  {
+    "name": "ASUS PRIME A320M-K AMD Ryzen AM4 DDR4 HDMI VGA M.2 USB 3.1 Micro-ATX Motherboard",
+    "image": "https://m.media-amazon.com/images/I/615QF0Z2wNL._SL75_.jpg",
+    "price": 64.28,
+    "brand": "ASUS",
+    "model": "PRIME A320M-K",
+    "details": [
+      {
+        "formFactor": "Micro ATX",
+        "chipset": "AMD A320",
+        "memorySlots": "2",
+        "socketType": "AM4"
+      }
+    ],
+    "category": "motherboard",
+    "discount": "asd",
+    "quantity": "1"
+  },
+  {
+    "name": "MSI Gaming AMD Ryzen A320 DDR4 VR Ready HDMI USB 3 Micro-ATX Motherboard (A320M GAMING PRO)",
+    "image": "https://m.media-amazon.com/images/I/51Xljk5PU8L._SL75_.jpg",
+    "price": 399.99,
+    "brand": "MSI",
+    "model": "A320M GAMING PRO",
+    "details": [
+      {
+        "formFactor": "Micro ATX",
+        "chipset": "AMD A320",
+        "memorySlots": "2",
+        "socketType": "AM4"
+      }
+    ],
+    "category": "motherboard",
+    "discount": "asd",
+    "quantity": "1"
+  },
+  {
+    "name": "ASUS ROG Strix X370-F GAMING AMD Ryzen AM4 DDR4 HDMI DisplayPort M.2 ATX X370 Motherboard With USB 3.1",
+    "image": "https://m.media-amazon.com/images/I/518iwwF65XL._SL75_.jpg",
+    "price": 286.86,
+    "brand": "ASUS",
+    "model": "ROG Strix X370-F GAMING",
+    "details": [
+      {
+        "formFactor": "ATX",
+        "chipset": "AMD X370",
+        "memorySlots": "4",
+        "socketType": "AM4"
+      }
+    ],
+    "category": "motherboard",
+    "discount": "asd",
+    "quantity": "1"
+  },
+  {
+    "name": "ASUS Z270-WS LGA1151 DDR4 Display Port HDMI 4-Way SLI CrossfireX M.2 U.2 ATX Motherboard With Dual Gigabit LAN And USB 3.1 Z270-WS",
+    "image": "https://m.media-amazon.com/images/I/51zN4kbJD8L._SL75_.jpg",
+    "price": 1486.86,
+    "brand": "ASUS",
+    "model": "Z270-WS",
+    "details": [
+      {
+        "formFactor": "ATX",
+        "chipset": "Intel Z270",
+        "memorySlots": "4",
+        "socketType": "LGA 1151"
+      }
+    ],
+    "category": "motherboard",
+    "discount": "asd",
+    "quantity": "1"
+  },
+  {
+    "name": "ASUS ROG Crosshair VI Hero (WI-FI AC) AMD Ryzen AM4 DDR4 M.2 USB 3.1 ATX X370 Motherboard With Onboard 802.11AC WIFI And AURA Sync RGB Lighting",
+    "image": "https://m.media-amazon.com/images/I/514i9+mLJsL._SL75_.jpg",
+    "price": 293,
+    "brand": "ASUS",
+    "model": "ROG Crosshair VI Hero",
+    "details": [
+      {
+        "formFactor": "ATX",
+        "chipset": "AMD X370",
+        "memorySlots": "4",
+        "socketType": "AM4"
+      }
+    ],
+    "category": "motherboard",
+    "discount": "asd",
+    "quantity": "1"
+  },
+  {
+    "name": "ASRock X370 Gaming X Fatal1ty AM4 AMD Promontory X370 SATA 6Gb/s USB 3.0 HDMI ATX AMD Motherboard",
+    "image": "https://m.media-amazon.com/images/I/51yxHAMLH2L._SL75_.jpg",
+    "price": 349.99,
+    "brand": "ASRock",
+    "model": "X370 GAMING X",
+    "details": [
+      {
+        "formFactor": "ATX",
+        "chipset": "AMD X370",
+        "memorySlots": "4",
+        "socketType": "AM4"
+      }
+    ],
+    "category": "motherboard",
+    "discount": "asd",
+    "quantity": "1"
+  },
+  {
+    "name": "ASUS Ryzen AM4 DDR4 HDMI DVI-D VGA M.2 USB 3.1 PS/2 Micro-ATX Motherboard (PRIME A320M-A)",
+    "image": "https://m.media-amazon.com/images/I/51zraxCb6lL._SL75_.jpg",
+    "price": 99,
+    "brand": "ASUS",
+    "model": "PRIME A320M-A",
+    "details": [
+      {
+        "formFactor": "Micro ATX",
+        "chipset": "AMD A320",
+        "memorySlots": "4",
+        "socketType": "AM4"
+      }
+    ],
+    "category": "motherboard",
+    "discount": "asd",
+    "quantity": "1"
+  },
+  {
+    "name": "ASRock X399 TAICHI STR4 SATA 6Gb/s USB 3.1/3.0 ATX AMD Motherboard",
+    "image": "https://m.media-amazon.com/images/I/51-cEiYsr7L._SL75_.jpg",
+    "price": 644,
+    "brand": "ASRock",
+    "model": "X399 TAICHI",
+    "details": [
+      {
+        "formFactor": "ATX",
+        "chipset": "AMD X399",
+        "memorySlots": "8",
+        "socketType": "sTR4"
+      }
+    ],
+    "category": "motherboard",
+    "discount": "asd",
+    "quantity": "1"
+  },
+  {
+    "name": "ASRock X399 Professional Gaming STR4 SATA 6Gb/s USB 3.1/3.0 ATX AMD Motherboard",
+    "image": "https://m.media-amazon.com/images/I/51oz9P7WwhL._SL75_.jpg",
+    "price": 0,
+    "brand": "ASRock",
+    "model": "X399 Professional Gaming",
+    "details": [
+      {
+        "formFactor": "ATX",
+        "chipset": "AMD X399",
+        "memorySlots": "8",
+        "socketType": "sTR4"
+      }
+    ],
+    "category": "motherboard",
+    "discount": "asd",
+    "quantity": "1"
+  },
+  {
+    "name": "ASUS ROG STRIX X399-E GAMING AMD Ryzen Threadripper TR4 DDR4 M.2 U.2 X399 EATX HEDT Motherboard With Onboard 802.11AC WiFi, USB 3.1 Gen2, And AURA Sync RGB Lighting",
+    "image": "https://m.media-amazon.com/images/I/51VLn8pLsoL._SL75_.jpg",
+    "price": 1589,
+    "brand": "ASUS",
+    "model": "STRIX X399-E GAMING",
+    "details": [
+      {
+        "formFactor": "Extended ATX",
+        "chipset": "AMD X399",
+        "memorySlots": "8",
+        "socketType": "sTR4"
+      }
+    ],
+    "category": "motherboard",
+    "discount": "asd",
+    "quantity": "1"
+  },
+  {
+    "name": "GIGABYTE Z370 AORUS Ultra Gaming (Intel LGA1151/ Z370/ ATX/ 2xM.2/ Front USB 3.1/ RGB Fusion/ Fan Stop / SLI / Motherboard)",
+    "image": "https://m.media-amazon.com/images/I/51zmq8uWwaL._SL75_.jpg",
+    "price": 199.99,
+    "brand": "Gigabyte",
+    "model": "Z370 AORUS Ultra Gaming",
+    "details": [
+      {
+        "formFactor": "ATX",
+        "chipset": "Intel Z370",
+        "memorySlots": "4",
+        "socketType": "LGA 1151"
+      }
+    ],
+    "category": "motherboard",
+    "discount": "asd",
+    "quantity": "1"
+  },
+  {
+    "name": "ASUS TUF Z370-PLUS Gaming LGA1151 (Intel 8th Gen) DDR4 HDMI DVI M.2 Z370 ATX Motherboard With Gigabit LAN And USB 3.1",
+    "image": "https://m.media-amazon.com/images/I/51nLYKvofLL._SL75_.jpg",
+    "price": 409.99,
+    "brand": "ASUS",
+    "model": "TUF Z370 Plus Gaming",
+    "details": [
+      {
+        "formFactor": "ATX",
+        "chipset": "Intel Z370",
+        "memorySlots": "4",
+        "socketType": "LGA 1151"
+      }
+    ],
+    "category": "motherboard",
+    "discount": "asd",
+    "quantity": "1"
+  },
+  {
+    "name": "ASUS PRIME Z370-A LGA1151 DDR4 DP HDMI DVI M.2 USB 3.1 Z370 ATX Motherboard With USB 3.1 For 8th Generation Intel Core Processors",
+    "image": "https://m.media-amazon.com/images/I/51eb8lMeWzL._SL75_.jpg",
+    "price": 239.99,
+    "brand": "ASUS",
+    "model": "Prime Z370-A",
+    "details": [
+      {
+        "formFactor": "ATX",
+        "chipset": "Intel Z370",
+        "memorySlots": "4",
+        "socketType": "LGA 1151"
+      }
+    ],
+    "category": "motherboard",
+    "discount": "asd",
+    "quantity": "1"
+  },
+  {
+    "name": "ASUS TUF Z370-PRO Gaming LGA1151 (Intel 8th Gen) DDR4 HDMI DVI M.2 Z370 ATX Motherboard With Gigabit LAN And USB 3.1",
+    "image": "https://m.media-amazon.com/images/I/518nvGixGwL._SL75_.jpg",
+    "price": 289.99,
+    "brand": "ASUS",
+    "model": "TUF Z370 Pro Gaming",
+    "details": [
+      {
+        "formFactor": "ATX",
+        "chipset": "Intel Z370",
+        "memorySlots": "4",
+        "socketType": "LGA 1151"
+      }
+    ],
+    "category": "motherboard",
+    "discount": "asd",
+    "quantity": "1"
+  },
+  {
+    "name": "EVGA X299 Micro, LGA 2066, Intel X299, SATA 6GB/s, USB 3.1, USB 3.0, MATX, Intel Motherboard 131-SX-E295-KR",
+    "image": "https://m.media-amazon.com/images/I/51LNzsb-DhL._SL75_.jpg",
+    "price": 275.99,
+    "brand": "EVGA",
+    "model": "X299 Micro",
+    "details": [
+      {
+        "formFactor": "Micro ATX",
+        "chipset": "Intel X299",
+        "memorySlots": "4",
+        "socketType": "LGA 2066"
+      }
+    ],
+    "category": "motherboard",
+    "discount": "asd",
+    "quantity": "1"
+  },
+  {
+    "name": "ASRock Motherboard Motherboards Z370M PRO4",
+    "image": "https://m.media-amazon.com/images/I/51yFg3IWrlL._SL75_.jpg",
+    "price": 127,
+    "brand": "ASRock",
+    "model": "Z370M PRO4",
+    "details": [
+      {
+        "formFactor": "Micro ATX",
+        "chipset": "Intel Z370",
+        "memorySlots": "4",
+        "socketType": "LGA 1151"
+      }
+    ],
+    "category": "motherboard",
+    "discount": "asd",
+    "quantity": "1"
+  },
+  {
+    "name": "ASRock Motherboard Motherboards Z370 Gaming-ITX/AC",
+    "image": "https://m.media-amazon.com/images/I/51lU4Dq-wmL._SL75_.jpg",
+    "price": 0,
+    "brand": "ASRock",
+    "model": "Z370 GAMING-ITX/AC",
+    "details": [
+      {
+        "formFactor": "Mini ITX",
+        "chipset": "Intel Z370",
+        "memorySlots": "2",
+        "socketType": "LGA 1151"
+      }
+    ],
+    "category": "motherboard",
+    "discount": "asd",
+    "quantity": "1"
+  },
+  {
+    "name": "ASRock Motherboard Motherboards Z370 PRO4",
+    "image": "https://m.media-amazon.com/images/I/514oDeibDGL._SL75_.jpg",
+    "price": 249.99,
+    "brand": "ASRock",
+    "model": "Z370 PRO4",
+    "details": [
+      {
+        "formFactor": "ATX",
+        "chipset": "Intel Z370",
+        "memorySlots": "4",
+        "socketType": "LGA 1151"
+      }
+    ],
+    "category": "motherboard",
+    "discount": "asd",
+    "quantity": "1"
+  },
+  {
+    "name": "ASRock Motherboard Motherboards Z370 EXTREME4",
+    "image": "https://m.media-amazon.com/images/I/5185HfCkSaL._SL75_.jpg",
+    "price": 195.9,
+    "brand": "ASRock",
+    "model": "Z370 EXTREME4",
+    "details": [
+      {
+        "formFactor": "ATX",
+        "chipset": "Intel Z370",
+        "memorySlots": "4",
+        "socketType": "LGA 1151"
+      }
+    ],
+    "category": "motherboard",
+    "discount": "asd",
+    "quantity": "1"
+  },
+  {
+    "name": "Gigabyte Z370XP SLI (Intel LGA1151/ Z370/ ATX/ 2xM.2/ SLI/Motherboard)",
+    "image": "https://m.media-amazon.com/images/I/61Qko9hx67L._SL75_.jpg",
+    "price": 0,
+    "brand": "Gigabyte",
+    "model": "Z370XP SLI",
+    "details": [
+      {
+        "formFactor": "ATX",
+        "chipset": "Intel Z370",
+        "memorySlots": "4",
+        "socketType": "LGA 1151"
+      }
+    ],
+    "category": "motherboard",
+    "discount": "asd",
+    "quantity": "1"
+  },
+  {
+    "name": "GIGABYTE X399 Designare EX (AMD Ryzen Thread Ripper TR4/ATX /3X M.2/WIFI/Front & Rear USB 3.1/Dual Intel LAN/ Motherboard)",
+    "image": "https://m.media-amazon.com/images/I/51EkWBrZqDL._SL75_.jpg",
+    "price": 0,
+    "brand": "Gigabyte",
+    "model": "X399 Designare EX",
+    "details": [
+      {
+        "formFactor": "ATX",
+        "chipset": "AMD X399",
+        "memorySlots": "8",
+        "socketType": "sTR4"
+      }
+    ],
+    "category": "motherboard",
+    "discount": "asd",
+    "quantity": "1"
+  }
+]
