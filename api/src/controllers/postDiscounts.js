@@ -4,7 +4,6 @@ const postDiscounts = async ({ name, description, percent, active }) => {
   try {
     if ((!name, !description, !percent, !active))
       throw new Error("Send all Data please");
-    console.log(name, description);
     const discountCreate = await Discount.create({
       name,
       description,

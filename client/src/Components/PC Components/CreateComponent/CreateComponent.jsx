@@ -1,7 +1,10 @@
 import React, { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useHistory } from "react-router-dom";
-//import * as actions from "../../../redux/actions/actions";
+import {
+  createProduct,
+  createDiscount,
+} from "../../../redux/actions/actions.js";
 import "./CreateComponent.css";
 
 export function validate(newProduct) {
@@ -17,15 +20,13 @@ export function validate(newProduct) {
   } else if (newProduct.price < 0) {
     errors.price = "Price must be more than 0";
   }
-  if (Object.entries(newProduct.details).length === 0) {
-    errors.details = "Product requires an detail";
-  }
-  if (newProduct.inInventary < 0) {
-    errors.inInventary = "Require must be more than 0";
+  if (newProduct.quantity < 0) {
+    errors.quantity = "Require must be more than 0";
   }
   if (!newProduct.category) {
     errors.category = "Requires an category";
   }
+  return errors;
 }
 
 function CreateComponent() {
@@ -36,106 +37,170 @@ function CreateComponent() {
   const [newProduct, setNewProduct] = useState({
     name: "",
     price: 0,
-    image: "",
-    inInventary: 0,
+    quantity: "",
     category: "",
     details: [],
-    discount: 0,
+    discount: "",
   });
+  const [discountt, setDiscountt] = useState({
+    name: `${newProduct.discount}`,
+    description: "",
+    percent: 0,
+    active: 0,
+  });
+
+  const handleDiscount = (e) => {
+    setDiscountt({
+      ...discountt,
+      [e.target.name]: e.target.value,
+    });
+  };
 
   const handleChange = (e) => {
     setNewProduct({
       ...newProduct,
       [e.target.name]: e.target.value,
     });
-    setErrors(
-      validate({
-        ...newProduct,
-        [e.target.name]: e.target.value,
-      })
-    );
+    if (e.target.name === "discount") {
+      setDiscountt({
+        ...discountt,
+        name: e.target.value,
+      });
+    }
   };
+
   const handleDetailChange = (e) => {
     setNewProduct({
       ...newProduct,
-      details: [{ ...newProduct.details, [e.target.name]: e.target.value }],
+      details: [...newProduct.details[0], { [e.target.name]: e.target.value }],
     });
-    setErrors(
-      validate({
-        ...newProduct,
-        details: [{ ...newProduct.details, [e.target.name]: e.target.value }],
-      })
-    );
   };
 
   function dispatchDataToCreate(newProduct) {
-    dispatch(actions.createProduct(newProduct));
+    dispatch(createProduct(newProduct));
+  }
+  function dispatchDataToDiscount(newProduct) {
+    dispatch(createDiscount(newProduct));
   }
   return (
-    <>
+    <div className="form-container">
       <form
-      onSubmit={(e) => {
+        onSubmit={(e) => {
+          console.log(newProduct);
           e.preventDefault();
-          dispatchDataToCreate(newProduct);
+          dispatchDataToCreate(newProduct, newProduct.discount);
+          dispatchDataToDiscount(discountt);
           setTimeout(() => history.push("/home"), 3000);
-        }} 
+        }}
+        className="form"
       >
-        <h1>Create Product</h1>
-        <label>Name of product:</label>
+        <div className="form-header">
+          <h1 className="form-title">Create Product</h1>
+        </div>
+        <label className="form-label">Name of product:</label>
         <input
           type="text"
           name="name"
           value={newProduct.name}
-          /* onChange={handleChange} */
+          onChange={handleChange}
           placeholder="Write the name here..."
+          className="form-input"
         ></input>
-        {errors.name && <p>{errors.name}</p>}
-        <label>Image Url: Product</label>
-        <input
-          type="text"
-          name="image"
-          value={newProduct.image}
-          /* onChange={handleChange} */
-          placeholder="Image Product at here"
-        ></input>
-        <label>Price of product</label>
+        {errors.name && <p className="danger">{errors.name}</p>}
+        <label className="form-label">Price of product</label>
         <input
           type="number"
           name="price"
           value={newProduct.price}
-          /* onChange={handleChange} */
+          onChange={handleChange}
           placeholder="Price at here"
+          className="form-input"
         ></input>
-        {errors.price && <p>{errors.price}</p>}
-        <label>Discount:</label>
+        {errors.price && <p className="danger">{errors.price}</p>}
+        <label className="form-label">Details of Product</label>
         <input
-          type="number"
-          name="discount"
-          value={newProduct.discount}
-          /* onChange={handleChange} */
-          placeholder="Discount at here :D"
+          type="text"
+          name="brand"
+          onChange={handleDetailChange}
+          placeholder="brand"
+          className="form-input"
         ></input>
-        <label>Item in inventary</label>
-        <input
-          type="number"
-          name="inInventary"
-          value={newProduct.inInventary}
-          /* onChange={handleChange} */
-          placeholder="Quantity of product"
-        ></input>
-        {errors.inInventary && <p>{errors.inInventary}</p>}
-        <label>Category</label>
+        <label className="form-label">Category</label>
         <input
           type="text"
           name="category"
           value={newProduct.category}
-          /* onChange={handleChange} */
+          onChange={handleChange}
           placeholder="Category at here"
+          className="form-input"
         ></input>
         {errors.category && <p>{errors.category}</p>}
-        <label>Details of Product</label>
+        <label className="form-label">Discount:</label>
+        <input
+          type="text"
+          name="discount"
+          value={newProduct.discount}
+          onChange={handleChange}
+          placeholder="Discount at here :D"
+          className="form-input"
+        ></input>
+        <label className="form-label">Item in inventary</label>
+        <input
+          type="text"
+          name="quantity"
+          value={newProduct.quantity}
+          onChange={handleChange}
+          placeholder="Quantity of product"
+          className="form-input"
+        ></input>
+        {errors.quantity && <p>{errors.quantity}</p>}
+        <label className="form-label">Image Url: Product</label>
+        <input
+          type="text"
+          name="image"
+          value={newProduct.image}
+          onChange={handleChange}
+          placeholder="Image Product at here"
+          className="form-input"
+        ></input>
+
+        <>
+          <input
+            type="text"
+            name="description"
+            value={discountt.description}
+            onChange={handleDiscount}
+            placeholder="Description of discount"
+          ></input>
+          <input
+            type="text"
+            name="percent"
+            value={discountt.percent}
+            onChange={handleDiscount}
+            placeholder="Quantity of product"
+          ></input>
+          <input
+            type="number"
+            name="active"
+            value={discountt.active}
+            onChange={handleDiscount}
+            placeholder="Quantity of product"
+          ></input>
+        </>
+
+        {!newProduct.name ? (
+          <input type="submit" disabled className="btn-submit"></input>
+        ) : errors.name ||
+          errors.price ||
+          errors.details ||
+          errors.inInventary ||
+          errors.category ? (
+          <input type="submit" disabled className="btn-submit"></input>
+        ) : (
+          <input type="submit" className="btn-submit"></input>
+        )}
       </form>
-    </>
+    </div>
   );
 }
 
