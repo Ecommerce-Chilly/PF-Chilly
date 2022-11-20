@@ -1,10 +1,15 @@
 const { Product, Category, Inventory, Discount } = require("../db");
-const invetoryRoutes = require("../routes/inventoryRoute");
-// const dataCategory = require('../data/data-category.json')
+const caseData = require("../dataApi/case.json");
 const postInvetory = require("./postInventory");
+// const dataCategory = require('../data/data-category.json')
+// const caseData = require("./src/dataApi/case.json");
+// const postInvetory = require("./src/controllers/postInventory");
+
 const postProduct = async ({
   name,
   price,
+  brand,
+  model,
   details,
   category,
   discount,
@@ -25,6 +30,7 @@ const postProduct = async ({
     await proCreate.setDiscount(discountDB);
     await invCreate.setProduct(proCreate);
     await proCreate.setInventory(invCreate);
+
     return proCreate;
   }
 };

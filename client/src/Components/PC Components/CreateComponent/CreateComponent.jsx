@@ -72,7 +72,7 @@ function CreateComponent() {
   const handleDetailChange = (e) => {
     setNewProduct({
       ...newProduct,
-      details: [{ ...newProduct.details[0], [e.target.name]: e.target.value }],
+      details: [...newProduct.details[0], { [e.target.name]: e.target.value }],
     });
   };
 
@@ -170,7 +170,7 @@ function CreateComponent() {
             name="description"
             value={discountt.description}
             onChange={handleDiscount}
-            placeholder="Quantity of product"
+            placeholder="Description of discount"
           ></input>
           <input
             type="text"
