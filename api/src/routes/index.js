@@ -7,7 +7,7 @@ const discountsRoute = require("./discountsRoute");
 const router = Router();
 
 // Configurar los routers
-// Ejemplo: router.use('/auth', authRouter);}
+// Ejemplo: router.use('/auth', authRouter);
 
 router.use("/product", productRoute);
 // router.use("/category", categoryRoute);

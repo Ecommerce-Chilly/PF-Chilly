@@ -2,6 +2,7 @@ import {
   GET_ALL_PRODUCTS,
   CREATE_PRODUCT,
   CHANGE_MSG,
+  CREATE_DISCOUNT,
 } from "../actions/actions.js";
 
 const initialState = {
@@ -18,6 +19,11 @@ const rootReducer = (state = initialState, action) => {
         createMsg: "",
       };
     case CREATE_PRODUCT:
+      return {
+        ...state,
+        createMsg: action.payload,
+      };
+    case CREATE_DISCOUNT:
       return {
         ...state,
         createMsg: action.payload,
