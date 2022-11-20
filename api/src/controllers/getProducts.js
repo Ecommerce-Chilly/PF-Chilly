@@ -1,14 +1,27 @@
-const { Product } = require("../db");
+const { Product, Inventory } = require("../db");
 
-const getProducts = async ({ category }) => {
-  console.log(category);
+const getProducts = async ({ category }, id) => {
   try {
+    if (id) {
+      const product = await Product.findByPk(id);
+      if (!product) throw new Error(`Product with id ${id} is not exist`);
+      return product;
+    }
     if (!category) {
-      const all = await Product.findAll();
+      const all = await Product.findAll({
+        include: {
+          model: Inventory,
+          attributes: ["quantity"],
+        },
+      });
       return all;
     }
     const prodGet = await Product.findAll({
       where: { categoryName: category },
+      include: {
+        model: Inventory,
+        attributes: ["quantity"],
+      },
     });
     return prodGet;
   } catch (error) {
