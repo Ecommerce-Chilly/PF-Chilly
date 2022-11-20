@@ -11,4 +11,3 @@ conn.sync({ force: true }).then(() => {
     console.log(`Server listening on port ${PORT}`);
   });
 });
-// probando cosas
