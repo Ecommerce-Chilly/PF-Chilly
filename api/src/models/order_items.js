@@ -1,20 +1,19 @@
 const { DataTypes } = require("sequelize");
 module.exports = (sequelize) => {
-    sequelize.define("user_role", {
-        id: {
-            type: DataTypes.INTEGER,
-            primaryKey: true,
-            allowNull: false,
-        },
+    sequelize.define("order_items", {
         user_id: {
             type: DataTypes.INTEGER,
             allowNull: false,
 
         },
-        name: {
-            type: DataTypes.STRING,
+        pruduct_id: {
+            type: DataTypes.INTEGER,
             allowNull: false,
         },
+        quantity: {
+            type: DataTypes.INTEGER,
+            allowNull: false,
+        }
     },
         {
             timestamps: false
