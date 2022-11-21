@@ -17,24 +17,22 @@ function ProductDetail() {
       <Link to="/panel+admin/products">
         <button>Back to Page Admin - Product</button>
       </Link>
-      {produDetail.length > 0 ? (
+      {
         Object.keys(produDetail).length > 0 && (
-          <div key={produDetail[0].id}>
-            <img src={produDetail[0].image} alt={produDetail[0].name} />
-            <h1> {produDetail[0].name}</h1>
-            <h2> Price:{produDetail[0].price} </h2>
-            <h2> Brand: {produDetail[0].brand}</h2>
-            <h3> Mode: {produDetail[0].model}</h3>
-            <h2> Category: {produDetail[0].categoryName}</h2>
-            <h2> Stock: {produDetail[0].inventory.quantity}</h2>
-            <Link to={`/panel+admin/change/product/${produDetail[0].id}`}>
+          <div key={produDetail.id}>
+            <img src={produDetail.image} alt={produDetail.name} />
+            <h1> {produDetail.name}</h1>
+            <h2> Price:{produDetail.price} </h2>
+            <h2> Brand: {produDetail.brand}</h2>
+            <h3> Mode: {produDetail.model}</h3>
+            <h2> Category: {produDetail.categoryName}</h2>
+            <h2> Stock: {produDetail.inventory.quantity}</h2>
+            <Link to={`/panel+admin/change/product/${produDetail.id}`}>
               <button>Want to change product? Click here!</button>
             </Link>
           </div>
         )
-      ) : (
-        <></>
-      )}
+      }
     </div>
   );
 }

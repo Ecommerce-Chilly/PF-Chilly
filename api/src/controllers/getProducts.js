@@ -1,9 +1,14 @@
 const { Product, Inventory } = require("../db");
 
-const getProducts = async ({ category }, id) => {
+const getProducts = async (category, id) => {
   try {
     if (id) {
-      const product = await Product.findByPk(id);
+      const product = await Product.findByPk(id, {
+        include: {
+          model: Inventory,
+          attributes: ["quantity"],
+        },
+      });
       if (!product) throw new Error(`Product with id ${id} is not exist`);
       return product;
     }

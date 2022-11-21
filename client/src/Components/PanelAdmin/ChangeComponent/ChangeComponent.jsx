@@ -20,12 +20,12 @@ function ChangeComponent() {
   }, [dispatch, id]);
 
   const [newProduct, setNewProduct] = useState({
-    name: "",
-    price: "",
-    brand: "",
-    model: "",
-    quantity: "",
-    category: "",
+    name: productDetails.name,
+    price: productDetails.price,
+    brand: productDetails.brand,
+    model: productDetails.model,
+    quantity: productDetails.inventory.quantity,
+    category: productDetails.categoryName,
     details: [],
     discount: "",
   });
@@ -75,10 +75,10 @@ function ChangeComponent() {
       <form
         onSubmit={(e) => {
           console.log(newProduct);
-          dispatchDataToChange(id, newProduct);
+          dispatchDataToChange(productDetails.id, newProduct);
           dispatchDataToDiscount(discountt);
           e.preventDefault();
-          setTimeout(() => history.push("/home"), 3000);
+          setTimeout(() => history.push("/panel+admin/products"), 3000);
         }}
         className="form"
       >
@@ -104,7 +104,7 @@ function ChangeComponent() {
           className="form-input"
         ></input>
         <label className="form-label">Have new Brand?</label>
-        <select name="brand" className="form-input" onChange={handleChange}>
+        <select name="brand" className="form-input" onChange={handleChange} value={newProduct.brand} >
           <option></option>
           <option>Alphacool</option>
           <option>Antec</option>
@@ -187,6 +187,7 @@ function ChangeComponent() {
             <input
               className="form-input"
               name="model"
+              value={newProduct.model}
               onChange={handleChange}
               placeholder="Insert model"
             ></input>{" "}

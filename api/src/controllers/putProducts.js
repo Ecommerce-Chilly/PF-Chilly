@@ -1,8 +1,8 @@
 const { Product } = require("../db");
 
 const putProducts = async (
-  { name, price, brand, model, details, category, discount },
-  { id }
+  id,
+  { name, price, brand, model, details, category, discount }
 ) => {
   try {
     const product = await Product.findByPk(id);
