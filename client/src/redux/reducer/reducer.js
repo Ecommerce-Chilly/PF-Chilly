@@ -1,12 +1,17 @@
 import {
   GET_ALL_PRODUCTS,
+  GET_PRODUCT_BY_ID,
   CREATE_PRODUCT,
-  CHANGE_MSG,
+  CREATE_DISCOUNT,
+  PUT_PRODUCT,
+  FAIL_CREATED_MSG,
 } from "../actions/actions.js";
 
 const initialState = {
   product: [],
-  createMsg: "",
+  productDetail: [],
+  productChangedMsg: "",
+  createProductMsg: "",
 };
 
 const rootReducer = (state = initialState, action) => {
@@ -15,17 +20,34 @@ const rootReducer = (state = initialState, action) => {
       return {
         ...state,
         product: action.payload,
-        createMsg: "",
+        createProductMsg: "",
       };
+
+    case GET_PRODUCT_BY_ID:
+      return {
+        ...state,
+        productDetail: action.payload,
+      };
+
     case CREATE_PRODUCT:
       return {
         ...state,
-        createMsg: action.payload,
+        createProductMsg: action.payload,
       };
-    case CHANGE_MSG:
+
+    case CREATE_DISCOUNT:
       return {
         ...state,
-        createMsg: action.payload,
+      };
+    case PUT_PRODUCT:
+      return {
+        ...state,
+        productChangedMsg: action.payload,
+      };
+    case FAIL_CREATED_MSG:
+      return {
+        ...state,
+        createProductMsg: action.payload,
       };
     default:
       return state;

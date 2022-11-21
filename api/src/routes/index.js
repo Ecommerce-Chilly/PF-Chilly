@@ -3,6 +3,10 @@ const productRoute = require("./productRoute");
 // const categoryRoute = require("./categoryRoute");
 const inventoryRoute = require("./inventoryRoute");
 const discountsRoute = require("./discountsRoute");
+<<<<<<< HEAD
+=======
+const detailsCategoryRoute = require("./detailsCategoryRoute");
+>>>>>>> 6563f1c97d3357dec1f376f60b1d8f71233b8a31
 const { hardCodeoInfo } = require("../controllers/hardCode");
 const router = Router();
 
@@ -18,5 +22,6 @@ router.use("/product", productRoute);
 // router.use("/category", categoryRoute);
 router.use("/discount", discountsRoute);
 router.use("/inventory", inventoryRoute);
+router.use("/categoryDetails", detailsCategoryRoute);
 
 module.exports = router;

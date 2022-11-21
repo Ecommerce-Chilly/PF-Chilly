@@ -4,7 +4,6 @@ const discountsRoute = Router();
 
 discountsRoute.post("/", async (req, res) => {
   try {
-    // console.log('hola')
     const discountDb = await postDiscounts(req.body);
     res.status(200).send(discountDb);
   } catch (error) {
