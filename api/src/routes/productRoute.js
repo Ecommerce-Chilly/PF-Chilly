@@ -44,7 +44,10 @@ productRoute.get("/:id", async (req, res) => {
 });
 productRoute.put("/:id", async (req, res) => {
   try {
-    const product = await putProducts(req.params);
+    let { id } = req.params;
+    id = Number(id);
+
+    const product = await putProducts(id, req.body);
     res.send(product);
   } catch (error) {
     res.status(400).send({ error: error.message });
