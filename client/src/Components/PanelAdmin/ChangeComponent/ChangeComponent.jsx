@@ -5,31 +5,8 @@ import {
   createProduct,
   createDiscount,
 } from "../../../redux/actions/actions.js";
-import "./CreateComponent.css";
 
-export function validate(newProduct) {
-  let errors = {};
-  if (!newProduct.name) {
-    errors.name = "Product requires a name";
-  } else if (!/([A-Z])\w+/.test(newProduct.name)) {
-    errors.name =
-      "The first letter must be capital and must have more than one letter";
-  }
-  if (!newProduct.price) {
-    errors.price = "Product requires a price";
-  } else if (newProduct.price < 0) {
-    errors.price = "Price must be more than 0";
-  }
-  if (newProduct.quantity < 0) {
-    errors.quantity = "Require must be more than 0";
-  }
-  if (!newProduct.category) {
-    errors.category = "Requires an category";
-  }
-  return errors;
-}
-
-function CreateComponent() {
+function ChangeComponent() {
   const dispatch = useDispatch();
   const msg = useSelector((state) => state.createMsg);
   const history = useHistory();
@@ -98,9 +75,9 @@ function CreateComponent() {
         className="form"
       >
         <div className="form-header">
-          <h1 className="form-title">Create Product</h1>
+          <h1 className="form-title">Change Product</h1>
         </div>
-        <label className="form-label">Name of product:</label>
+        <label className="form-label">New name of product:</label>
         <input
           type="text"
           name="name"
@@ -110,7 +87,7 @@ function CreateComponent() {
           className="form-input"
         ></input>
         {errors.name && <p className="danger">{errors.name}</p>}
-        <label className="form-label">Price of product</label>
+        <label className="form-label">New Price:</label>
         <input
           type="number"
           name="price"
@@ -120,7 +97,7 @@ function CreateComponent() {
           className="form-input"
         ></input>
         {errors.price && <p className="danger">{errors.price}</p>}
-        <label className="form-label">Brand:</label>
+        <label className="form-label">Have new Brand?</label>
         <select name="brand" className="form-input" onChange={handleChange}>
           <option></option>
           <option>Alphacool</option>
@@ -191,7 +168,7 @@ function CreateComponent() {
         </select>
         {newProduct.brand === "" ? (
           <>
-            <label className="form-label">Model:</label>
+            <label className="form-label">Have new Model?</label>
             <input
               className="form-input"
               disabled
@@ -200,7 +177,7 @@ function CreateComponent() {
           </>
         ) : newProduct.brand.length ? (
           <>
-            <label className="form-label">Model:</label>
+            <label className="form-label">Have new Model?</label>
             <input
               className="form-input"
               name="model"
@@ -211,7 +188,7 @@ function CreateComponent() {
         ) : (
           <></>
         )}
-        <label className="form-label">Image Url: Product</label>
+        <label className="form-label">New image of product:</label>
         <input
           type="text"
           name="image"
@@ -221,7 +198,7 @@ function CreateComponent() {
           className="form-input"
         ></input>
 
-        <label className="form-label">Details of Product</label>
+        <label className="form-label">Details:</label>
         <input
           type="text"
           name="brand"
@@ -236,7 +213,7 @@ function CreateComponent() {
           placeholder="cosito"
           className="form-input"
         ></input>
-        <label className="form-label">Category</label>
+        <label className="form-label">Category:</label>
         <select name="category" className="form-input" onChange={handleChange}>
           <option></option>
           <option>cases</option>
@@ -252,7 +229,7 @@ function CreateComponent() {
           <option>storage</option>
         </select>
         {errors.category && <p>{errors.category}</p>}
-        <label className="form-label">Stock</label>
+        <label className="form-label">Stock:</label>
         <input
           type="text"
           name="quantity"
@@ -322,4 +299,4 @@ function CreateComponent() {
   );
 }
 
-export default CreateComponent;
+export default ChangeComponent;

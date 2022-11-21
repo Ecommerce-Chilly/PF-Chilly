@@ -6,6 +6,7 @@ import Navbar from "../Navbar/Navbar";
 import Fav from "../../Extras/Fav/Fav";
 import UserInfo from "../../Login/UserInfo/UserInfo";
 import CreateComponent from "../../PanelAdmin/CreateComponent/CreateComponent";
+import ChangeComponent from "../../PanelAdmin/ChangeComponent/ChangeComponent";
 import Home from "../Pages/Home";
 import Store from "../Pages/Store";
 import BuildYourOwn from "../Pages/BuildYourOwn";
@@ -31,11 +32,15 @@ function MainRoute() {
         <Route exact path="/blog" component={Blog} />
         <Route exact path="/about+us" component={AboutUS} />
 
-
         <Route
           exact
           path="/panel+admin/create/product"
           component={CreateComponent}
+        />
+        <Route
+          exact
+          path="/panel+admin/change/product"
+          component={ChangeComponent}
         />
       </div>
       <div>
