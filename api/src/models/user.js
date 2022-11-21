@@ -3,6 +3,7 @@ module.exports = (sequelize) => {
   sequelize.define("user", {
     id: {
       type: DataTypes.INTEGER,
+      autoIncrement: true,
       allowNull: false,
       primaryKey: true,
     },
@@ -16,6 +17,8 @@ module.exports = (sequelize) => {
       allowNull: false,
 
     },
+
+
   },
     {
       timestamps: false,
