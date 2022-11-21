@@ -33,7 +33,7 @@ const rootReducer = (state = initialState, action) => {
     case CREATE_PRODUCT:
       return {
         ...state,
-        createMsg: action.payload,
+        failToCreated: action.payload,
       };
 
     case CREATE_DISCOUNT:

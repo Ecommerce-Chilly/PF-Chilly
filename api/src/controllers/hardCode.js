@@ -14,8 +14,9 @@ const postInvetory = require("./postInventory");
 
 const create = async function (el, datos = [], categoryDB) {
   const invCreate = await postInvetory(12);
-  const details = datos.map((element) => {
-    return { [element]: el[element] };
+  const details = [{}];
+  datos.forEach((elem) => {
+    details[0][elem] = el[elem];
   });
   const proCreate = await Product.create({
     name: el.title,

@@ -191,8 +191,13 @@ function CreateComponent() {
           <option>ZOTAC</option>
         </select>
 
-        {msg.error ? <h2 className="sucessMsg">{msg.error}</h2> : null}
-        <p>{msg.error} </p>
+        {msg.error ? (
+          <h2 className="sucessMsg">{msg.error}</h2>
+        ) : msg.statusText ? (
+          <h2 className="sucessMsg">{msg.statusText}</h2>
+        ) : (
+          <></>
+        )}
 
         {newProduct.brand === "" ? (
           <>
