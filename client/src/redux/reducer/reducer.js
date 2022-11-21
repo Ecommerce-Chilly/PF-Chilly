@@ -11,8 +11,7 @@ const initialState = {
   product: [],
   productDetail: [],
   productChangedMsg: "",
-  createMsg: "",
-  failToCreated: "",
+  createProductMsg: "",
 };
 
 const rootReducer = (state = initialState, action) => {
@@ -21,7 +20,7 @@ const rootReducer = (state = initialState, action) => {
       return {
         ...state,
         product: action.payload,
-        failToCreated: "",
+        createProductMsg: "",
       };
 
     case GET_PRODUCT_BY_ID:
@@ -33,13 +32,12 @@ const rootReducer = (state = initialState, action) => {
     case CREATE_PRODUCT:
       return {
         ...state,
-        failToCreated: action.payload,
+        createProductMsg: action.payload,
       };
 
     case CREATE_DISCOUNT:
       return {
         ...state,
-        createMsg: action.payload,
       };
     case PUT_PRODUCT:
       return {
@@ -49,7 +47,7 @@ const rootReducer = (state = initialState, action) => {
     case CHANGE_MSG:
       return {
         ...state,
-        failToCreated: action.payload,
+        createProductMsg: action.payload,
       };
     default:
       return state;

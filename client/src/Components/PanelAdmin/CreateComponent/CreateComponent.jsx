@@ -31,7 +31,7 @@ export function validate(newProduct) {
 
 function CreateComponent() {
   const dispatch = useDispatch();
-  const msg = useSelector((state) => state.failToCreated);
+  const msg = useSelector((state) => state.createProductMsg);
   const history = useHistory();
   const [errors, setErrors] = useState({});
   const [newProduct, setNewProduct] = useState({
