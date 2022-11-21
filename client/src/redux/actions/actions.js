@@ -29,8 +29,7 @@ export const createProduct = (product) => {
       );
       return dispatch({ type: CREATE_PRODUCT, payload: createProdu });
     } catch (error) {
-      console.log(error);
-      return dispatch({ type: CHANGE_MSG, payload: error });
+      return dispatch({ type: CHANGE_MSG, payload: error.response.data});
     }
   };
 };
@@ -41,9 +40,9 @@ export const createDiscount = (product) => {
         "http://localhost:3001/discount",
         product
       );
-      return dispatch({ type: CREATE_DISCOUNT, payload: createDiscount });
+      return dispatch({ type: CREATE_DISCOUNT, payload: createDiscount.data });
     } catch (error) {
-      return dispatch({ type: CHANGE_MSG, payload: error });
+      return dispatch({ type: CHANGE_MSG, payload: error.response.error.data });
     }
   };
 };

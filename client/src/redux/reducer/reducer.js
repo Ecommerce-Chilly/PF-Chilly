@@ -12,6 +12,7 @@ const initialState = {
   productDetail: [],
   productChangedMsg: "",
   createMsg: "",
+  failToCreated: "",
 };
 
 const rootReducer = (state = initialState, action) => {
@@ -20,6 +21,7 @@ const rootReducer = (state = initialState, action) => {
       return {
         ...state,
         product: action.payload,
+        failToCreated: "",
       };
 
     case GET_PRODUCT_BY_ID:
@@ -44,7 +46,11 @@ const rootReducer = (state = initialState, action) => {
         ...state,
         productChangedMsg: action.payload,
       };
-
+    case CHANGE_MSG:
+      return {
+        ...state,
+        failToCreated: action.payload,
+      };
     default:
       return state;
   }

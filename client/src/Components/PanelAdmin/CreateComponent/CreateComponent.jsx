@@ -31,7 +31,7 @@ export function validate(newProduct) {
 
 function CreateComponent() {
   const dispatch = useDispatch();
-  const msg = useSelector((state) => state.createMsg);
+  const msg = useSelector((state) => state.failToCreated);
   const history = useHistory();
   const [errors, setErrors] = useState({});
   const [newProduct, setNewProduct] = useState({
@@ -90,10 +90,11 @@ function CreateComponent() {
       <form
         onSubmit={(e) => {
           console.log(newProduct);
+          console.log(msg);
           e.preventDefault();
           dispatchDataToCreate(newProduct);
           dispatchDataToDiscount(discountt);
-          setTimeout(() => history.push("/home"), 3000);
+          setTimeout(() => history.push("/panel+admin/products"), 3000);
         }}
         className="form"
       >
@@ -189,6 +190,10 @@ function CreateComponent() {
           <option>XFX</option>
           <option>ZOTAC</option>
         </select>
+
+        {msg.error ? <h2 className="sucessMsg">{msg.error}</h2> : null}
+        <p>{msg.error} </p>
+
         {newProduct.brand === "" ? (
           <>
             <label className="form-label">Model:</label>
