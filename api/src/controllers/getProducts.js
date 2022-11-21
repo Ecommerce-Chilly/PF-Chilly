@@ -1,6 +1,6 @@
 const { Product, Inventory } = require("../db");
 
-const getProducts = async ({ category }, id) => {
+const getProducts = async (category, id) => {
   try {
     if (id) {
       const product = await Product.findByPk(id);

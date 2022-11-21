@@ -14,7 +14,8 @@ productRoute.post("/", async (req, res) => {
 });
 productRoute.get("/", async (req, res) => {
   try {
-    const product = await getProducts(req.query);
+    const { category } = req.query;
+    const product = await getProducts(category);
     res.send(product);
   } catch (error) {
     res.status(400).send({ error: error.message });
@@ -22,7 +23,8 @@ productRoute.get("/", async (req, res) => {
 });
 productRoute.get("/:id", async (req, res) => {
   try {
-    const product = await getProducts(req.params.id);
+    const { id } = req.params;
+    const product = await getProducts(null, id);
     res.send(product);
   } catch (error) {
     res.status(400).send({ error: error.message });

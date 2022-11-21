@@ -3,13 +3,12 @@ const productRoute = require("./productRoute");
 // const categoryRoute = require("./categoryRoute");
 const inventoryRoute = require("./inventoryRoute");
 const discountsRoute = require("./discountsRoute");
+const detailsCategoryRoute = require("./detailsCategoryRoute");
 const { hardCodeoInfo } = require("../controllers/hardCode");
-const { getDetailsProducts } = require("../controllers/getDetailsProducts");
 const router = Router();
 
 router.use("/Guillo", async (req, res, next) => {
   await hardCodeoInfo();
-  await getDetailsProducts("cases");
   console.log("ya termine");
   next();
 });
@@ -20,5 +19,6 @@ router.use("/product", productRoute);
 // router.use("/category", categoryRoute);
 router.use("/discount", discountsRoute);
 router.use("/inventory", inventoryRoute);
+router.use("/categoryDetails", detailsCategoryRoute);
 
 module.exports = router;
