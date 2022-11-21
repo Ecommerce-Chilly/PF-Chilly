@@ -69,7 +69,7 @@ function ChangeComponent() {
   function dispatchDataToDiscount(newProduct) {
     dispatch(createDiscount(newProduct));
   }
-
+//
   return (
     <div className="form-container">
       <form
