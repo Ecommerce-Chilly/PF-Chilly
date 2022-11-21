@@ -7,8 +7,8 @@ export const CREATE_DISCOUNT = "CREATE_DISCOUNT";
 
 export const getProduct = () => {
   return async function (dispatch) {
-    let produ = await axios.get("https://localhost:3001/product");
-    return dispatch({ type: GET_ALL_PRODUCTS, payload: produ.data });
+    let produ = await axios.get("http://localhost:3001/product");
+    return dispatch({ type: GET_ALL_PRODUCTS, payload: produ });
   };
 };
 

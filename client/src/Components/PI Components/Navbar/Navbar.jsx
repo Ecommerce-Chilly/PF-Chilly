@@ -49,22 +49,46 @@ function Navbar() {
       </div>
       <div className="Navbar2">
         <Link to="/home">
-          <a href="/home" className="decoration">Home</a>
+          <a href="/home" className="decoration">
+            Home
+          </a>
         </Link>
         <Link to="/store">
-          <a href="/store" className="decoration">Store</a>
+          <a href="/store" className="decoration">
+            Store
+          </a>
         </Link>
         <Link to="/build+your+own">
-          <a href="/build+your+own" className="decoration">Build Your Own</a>
+          <a href="/build+your+own" className="decoration">
+            Build Your Own
+          </a>
         </Link>
         <Link to="/special+offers">
-          <a href="/special+offers" className="decoration">Special Offers</a>
+          <a href="/special+offers" className="decoration">
+            Special Offers
+          </a>
         </Link>
         <Link to="/blog">
-          <a href="/blog" className="decoration">Blog</a>
+          <a href="/blog" className="decoration">
+            Blog
+          </a>
         </Link>
         <Link to="/about+us">
-          <a href="/about+us" className="decoration">About Us</a>
+          <a href="/about+us" className="decoration">
+            About Us
+          </a>
+        </Link>
+      </div>
+      <div className="Navbar2">
+        <Link to="/panel+admin/products">
+          <a href="/panel+admin/products" className="decoration">
+            PANEL ADMIN - Products
+          </a>
+        </Link>
+        <Link to="/panel+admin/create/product">
+          <a href="/panel+admin/create/product" className="decoration">
+            PANEL ADMIN - Create Product
+          </a>
         </Link>
       </div>
     </>
