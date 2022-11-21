@@ -5,6 +5,8 @@ import {
   putProductById,
   getProductById,
   createDiscount,
+  putInventory,
+  putDiscount,
 } from "../../../redux/actions/actions.js";
 import { useParams } from "react-router-dom";
 import "./ChangeComponent.css";
@@ -27,7 +29,7 @@ function ChangeComponent() {
     quantity: productDetails.inventory.quantity,
     category: productDetails.categoryName,
     details: [],
-    discount: "",
+    discount: productDetails.discountName,
   });
   const [discountt, setDiscountt] = useState({
     name: `${newProduct.discount}`,
@@ -66,16 +68,28 @@ function ChangeComponent() {
   function dispatchDataToChange(id, newProduct) {
     dispatch(putProductById(id, newProduct));
   }
+
+  function dispatchDataToChangeInventory(id, newProduct) {
+    dispatch(putInventory(id, newProduct));
+  }
+
+  function dispatchDataToChangeDiscount(newProduct){
+    dispatch(putDiscount(newProduct))
+  }
+
   function dispatchDataToDiscount(newProduct) {
     dispatch(createDiscount(newProduct));
   }
-//
+
+  //
   return (
     <div className="form-container">
       <form
         onSubmit={(e) => {
           console.log(newProduct);
           dispatchDataToChange(productDetails.id, newProduct);
+          dispatchDataToChangeInventory(productDetails.id, newProduct);
+          dispatchDataToChangeDiscount(discountt)
           dispatchDataToDiscount(discountt);
           e.preventDefault();
           setTimeout(() => history.push("/panel+admin/products"), 3000);
@@ -104,7 +118,12 @@ function ChangeComponent() {
           className="form-input"
         ></input>
         <label className="form-label">Have new Brand?</label>
-        <select name="brand" className="form-input" onChange={handleChange} value={newProduct.brand} >
+        <select
+          name="brand"
+          className="form-input"
+          onChange={handleChange}
+          value={newProduct.brand}
+        >
           <option></option>
           <option>Alphacool</option>
           <option>Antec</option>

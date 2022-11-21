@@ -4,14 +4,18 @@ import {
   CREATE_PRODUCT,
   CREATE_DISCOUNT,
   PUT_PRODUCT,
+  PUT_INVENTORY,
   FAIL_CREATED_MSG,
+  PUT_DISCOUNT,
+  DELETE_PRODUCT,
 } from "../actions/actions.js";
 
 const initialState = {
   product: [],
   productDetail: [],
-  productChangedMsg: "",
   createProductMsg: "",
+  productChangedMsg: "",
+  productDeletedMsg: "",
 };
 
 const rootReducer = (state = initialState, action) => {
@@ -43,6 +47,21 @@ const rootReducer = (state = initialState, action) => {
       return {
         ...state,
         productChangedMsg: action.payload,
+      };
+    case PUT_INVENTORY:
+      return {
+        ...state,
+        productChangedMsg: action.payload,
+      };
+    case PUT_DISCOUNT:
+      return {
+        ...state,
+        productChangedMsg: action.payload,
+      };
+    case DELETE_PRODUCT:
+      return {
+        ...state,
+        productDeletedMsg: action.payload,
       };
     case FAIL_CREATED_MSG:
       return {

@@ -1,8 +1,8 @@
-const { DataTypes } = require('sequelize');
+const { DataTypes } = require("sequelize");
 
 module.exports = (sequelize) => {
   sequelize.define(
-    'product',
+    "product",
     {
       id: {
         type: DataTypes.INTEGER,
@@ -27,7 +27,7 @@ module.exports = (sequelize) => {
       },
       image: {
         type: DataTypes.STRING,
-        defaultValue: 'no hay imagen bro coloca la imagen cinthia',
+        defaultValue: "no hay imagen bro coloca la imagen cinthia",
       },
       details: {
         type: DataTypes.ARRAY(DataTypes.JSON),

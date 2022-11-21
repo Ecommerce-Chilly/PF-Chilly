@@ -1,9 +1,24 @@
 import React from "react";
 import { Link } from "react-router-dom";
+import { deleteProdut } from "../../../redux/actions/actions.js";
+import { useDispatch } from "react-redux";
 
 function ProductCard(props) {
+  const dispatch = useDispatch();
+
+  function dispatchToDeleteProduct(id) {
+    dispatch(deleteProdut(id));
+  }
+  
   return (
     <div>
+      <button
+        onClick={() => {
+          dispatchToDeleteProduct(props.id);
+        }}
+      >
+        Want to delete? Click here!
+      </button>
       <Link to={`/panel+admin/products/${props.id}`}>
         <div>
           <div>

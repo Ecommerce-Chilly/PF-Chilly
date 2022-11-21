@@ -1,4 +1,4 @@
-const { Product, Inventory } = require('../db');
+const { Product, Inventory } = require("../db");
 
 const getProducts = async (category, id) => {
   try {
@@ -6,7 +6,7 @@ const getProducts = async (category, id) => {
       const product = await Product.findByPk(id, {
         include: {
           model: Inventory,
-          attributes: ['quantity'],
+          attributes: ["quantity"],
         },
       });
       if (!product) throw new Error(`Product with id ${id} is not exist`);
@@ -16,7 +16,7 @@ const getProducts = async (category, id) => {
       const all = await Product.findAll({
         include: {
           model: Inventory,
-          attributes: ['quantity'],
+          attributes: ["quantity"],
         },
       });
       return all;
@@ -25,7 +25,7 @@ const getProducts = async (category, id) => {
       where: { categoryName: category },
       include: {
         model: Inventory,
-        attributes: ['quantity'],
+        attributes: ["quantity"],
       },
     });
     return prodGet;
