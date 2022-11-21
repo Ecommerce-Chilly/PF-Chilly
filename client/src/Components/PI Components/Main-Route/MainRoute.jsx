@@ -32,6 +32,9 @@ function MainRoute() {
         <Route exact path="/blog" component={Blog} />
         <Route exact path="/about+us" component={AboutUS} />
 
+
+
+
         <Route
           exact
           path="/panel+admin/create/product"
