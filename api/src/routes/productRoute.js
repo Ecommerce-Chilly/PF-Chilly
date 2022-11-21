@@ -2,6 +2,7 @@ const { Router } = require("express");
 const { postProduct } = require("../controllers/postProduct");
 const { getProducts } = require("../controllers/getProducts");
 const { putProducts } = require("../controllers/putProducts");
+const { deleteProduct } = require("../controllers/deleteProduct");
 const productRoute = Router();
 
 productRoute.post("/", async (req, res) => {
@@ -10,6 +11,16 @@ productRoute.post("/", async (req, res) => {
     res.status(201).send(productCreate);
   } catch (error) {
     res.status(400).send({ error: error.message });
+  }
+});
+productRoute.delete("/:id", async (req, res) => {
+  try {
+    let { id } = req.params;
+    id = Number(id);
+    const message = await deleteProduct(id);
+    res.send({ message });
+  } catch (error) {
+    res.status(404).send({ error: error.message });
   }
 });
 productRoute.get("/", async (req, res) => {
