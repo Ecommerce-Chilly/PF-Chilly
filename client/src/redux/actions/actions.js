@@ -1,14 +1,22 @@
 import axios from "axios";
 export const GET_ALL_PRODUCTS = "GET_ALL_PRODUCTS";
+export const GET_PRODUCT_BY_ID = "GET_PRODUCT_BY_ID";
 export const CREATE_PRODUCT = "CREATE_PRODUCT";
-export const CHANGE_MSG = "CHANGE_MSG";
 export const CREATE_DISCOUNT = "CREATE_DISCOUNT";
-
+export const PUT_PRODUCT = "PUT_PRODUCT";
+export const CHANGE_MSG = "CHANGE_MSG";
 
 export const getProduct = () => {
   return async function (dispatch) {
-    let produ = await axios.get("http://localhost:3001/product");
-    return dispatch({ type: GET_ALL_PRODUCTS, payload: produ });
+    let product = await axios.get("http://localhost:3001/product");
+    return dispatch({ type: GET_ALL_PRODUCTS, payload: product.data });
+  };
+};
+
+export const getProductById = (id) => {
+  return async function (dispatch) {
+    let productById = await axios.get(`http://localhost:3001/product/${id}`);
+    return dispatch({ type: GET_PRODUCT_BY_ID, payload: productById.data });
   };
 };
 
@@ -40,3 +48,12 @@ export const createDiscount = (product) => {
   };
 };
 
+export const putProductById = (id, product) => {
+  return async function (dispatch) {
+    const putProduct = await axios.put(
+      `http://localhost:3001/product/${id}`,
+      product
+    );
+    return dispatch({ type: PUT_PRODUCT, payload: putProduct.data });
+  };
+};

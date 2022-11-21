@@ -1,0 +1,16 @@
+PUT http://localhost:3001/product/1
+Content-Type: application/json
+
+{
+    "name": "asdasd",
+    "price": 0,
+    "brand": "SilverStone Technology",
+    "model": "FT03B",
+    "details": [
+      {
+        "sidePanel": "Yes"
+      },
+    ],
+    "category": "cases",
+    "discount": null,
+  },

@@ -7,6 +7,8 @@ import Fav from "../../Extras/Fav/Fav";
 import UserInfo from "../../Login/UserInfo/UserInfo";
 import CreateComponent from "../../PanelAdmin/CreateComponent/CreateComponent";
 import ChangeComponent from "../../PanelAdmin/ChangeComponent/ChangeComponent";
+import Products from "../../PanelAdmin/Products/Products";
+import ProductDetail from "../../PanelAdmin/Products/ProductDetail";
 import Home from "../Pages/Home";
 import Store from "../Pages/Store";
 import BuildYourOwn from "../Pages/BuildYourOwn";
@@ -35,6 +37,8 @@ function MainRoute() {
 
 
 
+        <Route exact path="/panel+admin/products" component={Products} />
+        <Route exact path="/panel+admin/products/:id" component={ProductDetail} />
         <Route
           exact
           path="/panel+admin/create/product"
@@ -42,7 +46,7 @@ function MainRoute() {
         />
         <Route
           exact
-          path="/panel+admin/change/product"
+          path="/panel+admin/change/product/:id"
           component={ChangeComponent}
         />
       </div>

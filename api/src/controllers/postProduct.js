@@ -27,7 +27,6 @@ const postProduct = async ({
       details,
       brand,
       model,
-      quantity,
     });
     await proCreate.setCategory(categoryDB);
     await proCreate.setDiscount(discountDB);
