@@ -4,6 +4,8 @@ const productRoute = require("./productRoute");
 const inventoryRoute = require("./inventoryRoute");
 const discountsRoute = require("./discountsRoute");
 const { hardCodeoInfo } = require("../controllers/hardCode");
+const { userRoute, } = require("./userRoute")
+
 const router = Router();
 
 router.use("/Guillo", async (req, res, next) => {
@@ -18,5 +20,6 @@ router.use("/product", productRoute);
 // router.use("/category", categoryRoute);
 router.use("/discount", discountsRoute);
 router.use("/inventory", inventoryRoute);
+router.use("/user", userRoute)
 
 module.exports = router;
