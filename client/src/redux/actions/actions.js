@@ -4,7 +4,7 @@ export const GET_PRODUCT_BY_ID = "GET_PRODUCT_BY_ID";
 export const CREATE_PRODUCT = "CREATE_PRODUCT";
 export const CREATE_DISCOUNT = "CREATE_DISCOUNT";
 export const PUT_PRODUCT = "PUT_PRODUCT";
-export const CHANGE_MSG = "CHANGE_MSG";
+export const FAIL_CREATED_MSG = "FAIL_CREATED_MSG";
 
 export const getProduct = () => {
   return async function (dispatch) {
@@ -29,7 +29,7 @@ export const createProduct = (product) => {
       );
       return dispatch({ type: CREATE_PRODUCT, payload: createProdu });
     } catch (error) {
-      return dispatch({ type: CHANGE_MSG, payload: error.response.data});
+      return dispatch({ type: FAIL_CREATED_MSG, payload: error.response.data});
     }
   };
 };
@@ -42,7 +42,7 @@ export const createDiscount = (product) => {
       );
       return dispatch({ type: CREATE_DISCOUNT, payload: createDiscount.data });
     } catch (error) {
-      return dispatch({ type: CHANGE_MSG, payload: error.response.error.data });
+      return dispatch({ type: FAIL_CREATED_MSG, payload: error.response.error.data });
     }
   };
 };

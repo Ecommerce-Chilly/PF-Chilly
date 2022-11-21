@@ -4,7 +4,7 @@ import {
   CREATE_PRODUCT,
   CREATE_DISCOUNT,
   PUT_PRODUCT,
-  CHANGE_MSG,
+  FAIL_CREATED_MSG,
 } from "../actions/actions.js";
 
 const initialState = {
@@ -44,7 +44,7 @@ const rootReducer = (state = initialState, action) => {
         ...state,
         productChangedMsg: action.payload,
       };
-    case CHANGE_MSG:
+    case FAIL_CREATED_MSG:
       return {
         ...state,
         createProductMsg: action.payload,
