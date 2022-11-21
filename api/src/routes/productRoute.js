@@ -23,7 +23,8 @@ productRoute.get("/", async (req, res) => {
 });
 productRoute.get("/:id", async (req, res) => {
   try {
-    const { id } = req.params;
+    let { id } = req.params;
+    id = Number(id);
     const product = await getProducts(null, id);
     res.send(product);
   } catch (error) {
