@@ -1,15 +1,15 @@
-import React, { useState, useEffect } from "react";
-import { useDispatch, useSelector } from "react-redux";
-import { useHistory } from "react-router-dom";
+import React, { useState, useEffect } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { useHistory } from 'react-router-dom';
 import {
   putProductById,
   getProductById,
   createDiscount,
   putInventory,
   putDiscount,
-} from "../../../redux/actions/actions.js";
-import { useParams } from "react-router-dom";
-import "./ChangeComponent.css";
+} from '../../../redux/actions/actions.js';
+import { useParams } from 'react-router-dom';
+import './ChangeComponent.css';
 
 function ChangeComponent() {
   const { id } = useParams();
@@ -33,7 +33,7 @@ function ChangeComponent() {
   });
   const [discountt, setDiscountt] = useState({
     name: `${newProduct.discount}`,
-    description: "",
+    description: '',
     percent: 0,
     active: 0,
   });
@@ -50,7 +50,7 @@ function ChangeComponent() {
       ...newProduct,
       [e.target.name]: e.target.value,
     });
-    if (e.target.name === "discount") {
+    if (e.target.name === 'discount') {
       setDiscountt({
         ...discountt,
         name: e.target.value,
@@ -73,8 +73,8 @@ function ChangeComponent() {
     dispatch(putInventory(id, newProduct));
   }
 
-  function dispatchDataToChangeDiscount(newProduct){
-    dispatch(putDiscount(newProduct))
+  function dispatchDataToChangeDiscount(newProduct) {
+    dispatch(putDiscount(newProduct));
   }
 
   function dispatchDataToDiscount(newProduct) {
@@ -89,10 +89,10 @@ function ChangeComponent() {
           console.log(newProduct);
           dispatchDataToChange(productDetails.id, newProduct);
           dispatchDataToChangeInventory(productDetails.id, newProduct);
-          dispatchDataToChangeDiscount(discountt)
+          dispatchDataToChangeDiscount(discountt);
           dispatchDataToDiscount(discountt);
           e.preventDefault();
-          setTimeout(() => history.push("/panel+admin/products"), 3000);
+          setTimeout(() => history.push('/panel+admin/products'), 3000);
         }}
         className="form"
       >
@@ -191,7 +191,7 @@ function ChangeComponent() {
           <option>XFX</option>
           <option>ZOTAC</option>
         </select>
-        {newProduct.brand === "" ? (
+        {newProduct.brand === '' ? (
           <>
             <label className="form-label">Have new Model?</label>
             <input
@@ -209,7 +209,7 @@ function ChangeComponent() {
               value={newProduct.model}
               onChange={handleChange}
               placeholder="Insert model"
-            ></input>{" "}
+            ></input>{' '}
           </>
         ) : (
           <></>
