@@ -1,8 +1,7 @@
 const { DataTypes } = require("sequelize");
-
 module.exports = (sequelize) => {
    sequelize.define(
-      "inventory",
+      "user",
       {
          id: {
             type: DataTypes.INTEGER,
@@ -10,17 +9,21 @@ module.exports = (sequelize) => {
             primaryKey: true,
             allowNull: false,
          },
-         quantity: {
-            type: DataTypes.INTEGER,
+         email: {
+            type: DataTypes.STRING,
+            allowNull: false,
+            validate: {
+               isEmail: true,
+            },
          },
-         status: {
-             type: DataTypes.BOOLEAN,
-             defaultValue:true,
+         password: {
+            type: DataTypes.STRING,
+            allowNull: false,
+            //validate: {xxxxxx: true,},
          },
       },
       {
-         timestamps: false,
-         paranoid: true,
+         timestamps: true,
       }
    );
 };
