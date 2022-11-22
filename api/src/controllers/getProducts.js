@@ -4,7 +4,7 @@ const getProducts = async (category, id, name) => {
    try {
       if (name) {
          const productName = await Product.findAll({
-            // Juanra hizo el Op.like
+            // Juanra hizo el Op.ilike
             where: { name: { [Op.iLike]: `%${name}%` } },
             include: {
                model: Inventory,
