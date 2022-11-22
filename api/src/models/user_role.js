@@ -9,15 +9,11 @@ module.exports = (sequelize) => {
             primaryKey: true,
             allowNull: false,
          },
-         user_id: {
-            type: DataTypes.INTEGER,
-         },
          name: {
             type: DataTypes.STRING,
             allowNull: false,
          },
       },
-
       {
          timestamps: true,
       }

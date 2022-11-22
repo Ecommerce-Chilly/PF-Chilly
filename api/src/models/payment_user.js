@@ -7,10 +7,6 @@ module.exports = (sequelize) => {
          primaryKey: true,
          allowNull: false,
       },
-      user_id: {
-         type: DataTypes.INTEGER,
-         allowNull: false,
-      },
       payment_type: {
          type: DataTypes.STRING,
          allowNull: false,
@@ -26,6 +22,9 @@ module.exports = (sequelize) => {
       expiry: {
          type: DataTypes.STRING,
          allowNull: false,
+         validate: {
+            isDate: true,
+         },
       },
    });
 };

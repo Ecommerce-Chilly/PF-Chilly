@@ -8,15 +8,19 @@ module.exports = (sequelize) => {
             autoIncrement: true,
             primaryKey: true,
             allowNull: false,
+            unique: true,
          },
          email: {
             type: DataTypes.STRING,
+            validate: { isEmail: true },
          },
          name: {
             type: DataTypes.STRING,
+            validate: { isAlpha: true },
          },
          last_name: {
             type: DataTypes.STRING,
+            validate: { isAlpha: true },
          },
       },
       {

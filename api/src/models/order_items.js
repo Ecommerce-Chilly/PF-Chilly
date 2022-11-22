@@ -9,22 +9,14 @@ module.exports = (sequelize) => {
             primaryKey: true,
             allowNull: false,
          },
-         user_id: {
-            type: DataTypes.INTEGER,
-         },
-         product_id: {
-            type: DataTypes.INTEGER,
-         },
          quantity: {
             type: DataTypes.INTEGER,
             allowNull: false,
          },
-         deleted_at: {
-            type: DataTypes.INTEGER,
-         },
       },
       {
          timestamps: true,
+         paranoid: true,
       }
    );
 };

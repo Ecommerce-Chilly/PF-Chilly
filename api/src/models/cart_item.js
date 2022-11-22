@@ -8,19 +8,14 @@ module.exports = (sequelize) => {
             autoIncrement: true,
             primaryKey: true,
             allowNull: false,
-         },
-         session_id: {
-            type: DataTypes.INTEGER,
-         },
-         product_id: {
-            type: DataTypes.INTEGER,
+            unique:true,
          },
          quantity: {
             type: DataTypes.INTEGER,
             allowNull: false,
+            validate: { isNumeric: true },
          },
       },
-
       {
          timestamps: true,
       }
