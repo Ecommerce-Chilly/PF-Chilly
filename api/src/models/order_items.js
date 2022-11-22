@@ -1,8 +1,7 @@
 const { DataTypes } = require("sequelize");
-
 module.exports = (sequelize) => {
    sequelize.define(
-      "inventory",
+      "order_items",
       {
          id: {
             type: DataTypes.INTEGER,
@@ -12,14 +11,11 @@ module.exports = (sequelize) => {
          },
          quantity: {
             type: DataTypes.INTEGER,
-         },
-         status: {
-             type: DataTypes.BOOLEAN,
-             defaultValue:true,
+            allowNull: false,
          },
       },
       {
-         timestamps: false,
+         timestamps: true,
          paranoid: true,
       }
    );

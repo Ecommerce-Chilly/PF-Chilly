@@ -1,9 +1,12 @@
-import React from 'react'
+import React from "react";
+import Products from "../../PanelAdmin/Products/Products.jsx";
 
 function Store() {
   return (
-    <div>Store</div>
-  )
+    <>
+      <Products />
+    </>
+  );
 }
 
-export default Store
+export default Store;

@@ -25,8 +25,8 @@ productRoute.delete("/:id", async (req, res) => {
 });
 productRoute.get("/", async (req, res) => {
   try {
-    const { category } = req.query;
-    const product = await getProducts(category);
+    const { category, name } = req.query;
+    const product = await getProducts(category, null, name);
     res.send(product);
   } catch (error) {
     res.status(400).send({ error: error.message });
