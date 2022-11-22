@@ -3,7 +3,6 @@ const { Op } = require("sequelize");
 const getProducts = async (category, id, name) => {
   try {
     if (name) {
-      console.log(name);
       const productName = await Product.findAll({
         // Juanra hizo el Op.like
         where: { name: { [Op.iLike]: `%${name}%` } },
