@@ -1,7 +1,7 @@
 const { User } = require("../db");
 
 const postUser = async ({ eMail, password, name, lastName }) => {
-    if (!eMail || !password || !name || !lastName) throw new Error("Send a quantity of products");
+    if (!eMail || !password || !name || !lastName) throw new Error("You need to fill all fields");
     try {
         const userCreate = await User.create({
             eMail,
