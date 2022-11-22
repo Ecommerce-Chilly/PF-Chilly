@@ -3,6 +3,7 @@ const productRoute = require("./productRoute");
 // const categoryRoute = require("./categoryRoute");
 const inventoryRoute = require("./inventoryRoute");
 const discountsRoute = require("./discountsRoute");
+const detailsCategoryRoute = require("./detailsCategoryRoute");
 const { hardCodeoInfo } = require("../controllers/hardCode");
 const router = Router();
 
@@ -18,5 +19,6 @@ router.use("/product", productRoute);
 // router.use("/category", categoryRoute);
 router.use("/discount", discountsRoute);
 router.use("/inventory", inventoryRoute);
+router.use("/categoryDetails", detailsCategoryRoute);
 
 module.exports = router;

@@ -14,8 +14,9 @@ const postInvetory = require("./postInventory");
 
 const create = async function (el, datos = [], categoryDB) {
   const invCreate = await postInvetory(12);
-  const details = datos.map((element) => {
-    return { [element]: el[element] };
+  const details = [{}];
+  datos.forEach((elem) => {
+    details[0][elem] = el[elem];
   });
   const proCreate = await Product.create({
     name: el.title,
@@ -72,12 +73,7 @@ async function hardCodeoInfo() {
   categoryDB = await Category.findOne({ where: { name: "keyboards" } });
   for (let i = 0; i < keyboard.length; i++) {
     const el = keyboard[i];
-    await create(
-      el,
-      ["style", "backlit", "color", "wireless"],
-
-      categoryDB
-    );
+    await create(el, ["style", "backlit", "color", "wireless"], categoryDB);
   }
   categoryDB = await Category.findOne({ where: { name: "power_supply" } });
   for (let i = 0; i < power_supply.length; i++) {

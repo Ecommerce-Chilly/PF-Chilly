@@ -1,9 +1,10 @@
-import React from 'react'
+import React from "react";
+import { Link } from "react-router-dom";
 
 function PanelAdmin() {
   return (
-    <div>PanelAdmin</div>
-  )
+    <></>
+  );
 }
 
-export default PanelAdmin
+export default PanelAdmin;
