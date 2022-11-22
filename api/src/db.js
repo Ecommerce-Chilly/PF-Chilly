@@ -2,7 +2,6 @@ require("dotenv").config();
 const { Sequelize } = require("sequelize");
 const fs = require("fs");
 const path = require("path");
-const order_items = require("./models/order_items");
 const { DB_USER, DB_PASSWORD, DB_HOST } = process.env;
 
 const sequelize = new Sequelize(
@@ -33,7 +32,7 @@ let capsEntries = entries.map((entry) => [
 ]);
 sequelize.models = Object.fromEntries(capsEntries);
 
-const { Category, Discount, Inventory, Order_items, Payment_user, Product, User_role, User } = sequelize.models;
+const { Category, Discount, Inventory, Product, User } = sequelize.models;
 
 Category.hasMany(Product);
 Product.belongsTo(Category);
@@ -44,14 +43,6 @@ Product.belongsTo(Discount);
 Product.hasOne(Inventory);
 Inventory.hasOne(Product);
 
-User.hasMany(Order_items)
-Order_items.belongsTo(User)
-
-Order_items.hasOne(Product)
-Product.hasOne(Order_items)
-
-Payment_user.hasMany(User)
-User.belongsTo(Payment_user)
 
 
 

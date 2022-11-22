@@ -3,7 +3,9 @@ const productRoute = require("./productRoute");
 // const categoryRoute = require("./categoryRoute");
 const inventoryRoute = require("./inventoryRoute");
 const discountsRoute = require("./discountsRoute");
+
 const { hardCodeoInfo } = require("../controllers/hardCode");
+
 const { userRoute, } = require("./userRoute")
 
 const router = Router();
