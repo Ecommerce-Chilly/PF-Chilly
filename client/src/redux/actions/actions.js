@@ -13,7 +13,7 @@ export const FILTER1 = 'FILTER1';
 
 export const getProduct = () => {
   return async function (dispatch) {
-    let product = await axios.get('http://localhost:3001/product');
+    let product = await axios.get('http://localhost:3002/product');
     return dispatch({ type: GET_ALL_PRODUCTS, payload: product.data });
   };
 };
