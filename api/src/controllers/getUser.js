@@ -3,12 +3,20 @@ const { User } = require("../db")
 
 const getUser = async (id) => {
     try {
-        const users = await User.findAll({ where: { id: id } })
-        console.log(users)
-        return users
+        const usersById = await User.findAll({ where: { id: id } })
+        return usersById
     } catch (error) {
         console.log(error)
     }
 }
 
-module.exports = getUser
+const getAllUsers = async () => {
+    try {
+        const allUsers = await User.findAll()
+        return allUsers
+    } catch (error) {
+        console.log(error)
+    }
+}
+
+module.exports = { getUser, getAllUsers }
