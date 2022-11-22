@@ -1,40 +1,38 @@
 const { DataTypes } = require("sequelize");
-
 module.exports = (sequelize) => {
    sequelize.define(
-      "product",
+      "data_user",
       {
          id: {
             type: DataTypes.INTEGER,
             autoIncrement: true,
             primaryKey: true,
             allowNull: false,
+            unique: true,
          },
-         name: {
+         direction: {
             type: DataTypes.STRING,
-            allowNull: false,
+            validate: { isAlphanumeric: true },
          },
-         price: {
-            type: DataTypes.FLOAT(2),
-            allowNull: false,
-            defaultValue: 50.0,
-         },
-         brand: {
+         dni: {
             type: DataTypes.STRING,
-            validate: {
-               isAlph: true,
-            },
+            validate: { isAlphanumeric: true },
          },
-         model: {
+         zip: {
+            type: DataTypes.INTEGER,
+            validate: { isAlphanumeric: true },
+         },
+         country: {
             type: DataTypes.STRING,
+            validate: { isAlpha: true },
          },
-         image: {
+         dep_prov: {
             type: DataTypes.STRING,
-            defaultValue: "no hay imagen bro coloca la imagen cinthia",
+            validate: { isAlpha: true },
          },
-         details: {
-            type: DataTypes.ARRAY(DataTypes.JSON),
-            allowNull: false,
+         city: {
+            type: DataTypes.STRING,
+            validate: { isAlpha: true },
          },
       },
       {
