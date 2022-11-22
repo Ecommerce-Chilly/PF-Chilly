@@ -10,6 +10,7 @@ import {
   DELETE_PRODUCT,
   GET_CATEGORY_DETAILS,
   FILTER1,
+  FILTER_BY_DETAILS,
 } from "../actions/actions.js";
 
 const initialState = {
@@ -88,6 +89,27 @@ const rootReducer = (state = initialState, action) => {
       return {
         ...state,
         product: filtered,
+      };
+    case FILTER_BY_DETAILS:
+      let temporal2 = state.allProduct;
+
+      let filtered2 = temporal2.filter(
+        (e) => e.categoryName === action.payload[0]
+      );
+
+      if (action.payload[0] === "") {
+        filtered2 = state.allProduct;
+      }
+
+      for (const property in action.payload[1]) {
+        filtered2 = filtered2.filter(
+          (e) => e.details[0][property] === action.payload[1][property]
+        );
+      }
+
+      return {
+        ...state,
+        product: filtered2,
       };
     default:
       return state;

@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { Route } from "react-router-dom";
 //import PanelAdmin from "../../PanelAdmin/PanelAdmin";
 import Cart from "../../Cart/Cart/Cart";
@@ -16,8 +16,17 @@ import SpecialOffers from "../Pages/SpecialOffers";
 import Blog from "../Pages/Blog";
 import AboutUS from "../Pages/AboutUS";
 import Footer from "../Footer/Footer";
+import { getProduct } from "../../../redux/actions/actions.js";
+import { useDispatch } from "react-redux";
+import axios from "axios";
 
 function MainRoute() {
+  let dispatch = useDispatch();
+
+  // useEffect(async () => {
+  //   await axios.get("http://localhost:3001/Guillo");
+  // }, []);
+
   return (
     <>
       <div>
@@ -34,11 +43,12 @@ function MainRoute() {
         <Route exact path="/blog" component={Blog} />
         <Route exact path="/about+us" component={AboutUS} />
 
-
-
-
         <Route exact path="/panel+admin/products" component={Products} />
-        <Route exact path="/panel+admin/products/:id" component={ProductDetail} />
+        <Route
+          exact
+          path="/panel+admin/products/:id"
+          component={ProductDetail}
+        />
         <Route
           exact
           path="/panel+admin/create/product"
