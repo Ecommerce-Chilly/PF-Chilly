@@ -80,12 +80,7 @@ function ChangeComponent() {
   function dispatchDataToDiscount(newProduct) {
     dispatch(createDiscount(newProduct));
   }
-<<<<<<< HEAD
 
-  //
-=======
-//
->>>>>>> 7af530864c2903624bad2f1b6ab40a72d1b9e96d
   return (
     <div className="form-container">
       <form

@@ -78,7 +78,7 @@ export const putInventory = (id, product) => {
 export const putDiscount = (product) => {
   return async function (dispatch) {
     const putInventory = await axios.put(
-      'http://localhost:3001/discount/',
+      'http://localhost:3002/discount/',
       product
     );
     return dispatch({ type: PUT_DISCOUNT, payload: putInventory.data });
@@ -88,7 +88,7 @@ export const putDiscount = (product) => {
 export const deleteProdut = (id) => {
   return async function (dispatch) {
     const deleteProduct = await axios.delete(
-      `http://localhost:3001/product/${id}`
+      `http://localhost:3002/product/${id}`
     );
     return dispatch({ type: DELETE_PRODUCT, payload: deleteProduct.data });
   };
@@ -97,7 +97,7 @@ export const deleteProdut = (id) => {
 export const getCategoryDetails = (category) => {
   return async function (dispatch) {
     const categoryDetails = await axios.get(
-      `http://localhost:3001/categoryDetails/${category}`
+      `http://localhost:3002/categoryDetails/${category}`
     );
     return dispatch({
       type: GET_CATEGORY_DETAILS,
