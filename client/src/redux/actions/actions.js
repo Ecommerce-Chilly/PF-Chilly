@@ -10,6 +10,7 @@ export const DELETE_PRODUCT = 'DELETE_PRODUCT';
 export const FAIL_CREATED_MSG = 'FAIL_CREATED_MSG';
 export const GET_CATEGORY_DETAILS = 'GET_CATEGORY_DETAILS';
 export const FILTER1 = 'FILTER1';
+export const FILTER_BY_DETAILS = 'FILTER_BY_DETAILS';
 
 export const getProduct = () => {
   return async function (dispatch) {
@@ -110,5 +111,12 @@ export const filter1 = (payload) => {
   return {
     type: FILTER1,
     payload: payload,
+  };
+};
+
+export const filterbyDetails = (category, details) => {
+  return {
+    type: FILTER_BY_DETAILS,
+    payload: [category, details],
   };
 };

@@ -1,18 +1,30 @@
 import React from 'react';
+import { useEffect } from 'react';
 import { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { getCategoryDetails, filter1 } from '../../../redux/actions/actions.js';
+import {
+  getCategoryDetails,
+  filter1,
+  filterbyDetails,
+} from '../../../redux/actions/actions.js';
 import store from '../../../redux/store/store';
 
 function Filters() {
+  let [details, setDetails] = useState({});
+  let [category, setCategory] = useState('');
   let [inputs, setInputs] = useState([]);
   let dispatch = useDispatch();
   let products = useSelector((state) => state.product);
   let categoryDetails = useSelector((state) => state.categoryDetails);
 
+  useEffect(() => {
+    console.log(details);
+    dispatch(filterbyDetails(category, details));
+  }, [details, category]);
+
   let dispatchCategory = (e) => {
     setInputs([]);
-
+    setDetails({});
     const getDetails = async () => {
       await dispatch(getCategoryDetails(e.target.value));
       let categoryDetail = store.getState().categoryDetails;
@@ -31,7 +43,12 @@ function Filters() {
 
   return (
     <div>
-      <select onChange={dispatchCategory}>
+      <select
+        onChange={(e) => {
+          dispatchCategory(e);
+          setCategory(e.target.value);
+        }}
+      >
         <option value="">------</option>
         <option value="cases">Cases</option>
         <option value="motherboards">Motherboards</option>
@@ -53,7 +70,17 @@ function Filters() {
               {categoryDetails[e]?.map((element) => (
                 <>
                   <label>{element}</label>
-                  <input type="radio" name={e} value={element}></input>
+                  <input
+                    type="radio"
+                    name={e}
+                    value={element}
+                    onClick={(e) => {
+                      setDetails({
+                        ...details,
+                        [e.target.name]: e.target.value,
+                      });
+                    }}
+                  ></input>
                   <br></br>
                 </>
               ))}
