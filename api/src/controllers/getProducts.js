@@ -25,7 +25,7 @@ const getProducts = async (category, id, name) => {
       if (!product) throw new Error(`Product with id ${id} is not exist`);
       return product;
     }
-    if (!category || !name) {
+    if (!category && !name && !id) {
       const all = await Product.findAll({
         include: {
           model: Inventory,
@@ -36,14 +36,16 @@ const getProducts = async (category, id, name) => {
         throw new Error("Dont have products in our data base");
       return all;
     }
-    const prodGet = await Product.findAll({
-      where: { categoryName: category },
-      include: {
-        model: Inventory,
-        attributes: ["quantity"],
-      },
-    });
-    return prodGet;
+    if (category && !name && !id) {
+      const prodGet = await Product.findAll({
+        where: { categoryName: category },
+        include: {
+          model: Inventory,
+          attributes: ["quantity"],
+        },
+      });
+      return prodGet;
+    }
   } catch (error) {
     throw new Error(error);
   }
