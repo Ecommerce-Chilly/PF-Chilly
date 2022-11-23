@@ -11,7 +11,7 @@ const getProducts = async (category, id, name) => {
           attributes: ["quantity"],
         },
       });
-      if (!productName)
+      if (productName.length === 0)
         throw new Error(`Product with name ${name} is not exist`);
       return productName;
     }
@@ -30,6 +30,7 @@ const getProducts = async (category, id, name) => {
         include: {
           model: Inventory,
           attributes: ["quantity"],
+          no,
         },
       });
       if (all.length === 0)
