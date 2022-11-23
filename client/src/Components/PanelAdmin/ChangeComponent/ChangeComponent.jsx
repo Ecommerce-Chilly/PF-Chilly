@@ -73,8 +73,8 @@ function ChangeComponent() {
     dispatch(putInventory(id, newProduct));
   }
 
-  function dispatchDataToChangeDiscount(newProduct){
-    dispatch(putDiscount(newProduct))
+  function dispatchDataToChangeDiscount(newProduct) {
+    dispatch(putDiscount(newProduct));
   }
 
   function dispatchDataToDiscount(newProduct) {
@@ -89,7 +89,7 @@ function ChangeComponent() {
           console.log(newProduct);
           dispatchDataToChange(productDetails.id, newProduct);
           dispatchDataToChangeInventory(productDetails.id, newProduct);
-          dispatchDataToChangeDiscount(discountt)
+          dispatchDataToChangeDiscount(discountt);
           dispatchDataToDiscount(discountt);
           e.preventDefault();
           setTimeout(() => history.push("/panel+admin/products"), 3000);
@@ -274,7 +274,7 @@ function ChangeComponent() {
           className="form-input"
         ></input>
 
-        {newProduct.discount.length ? (
+        {newProduct.discount ? (
           <>
             <label className="form-label">Description of discount:</label>
             <input
