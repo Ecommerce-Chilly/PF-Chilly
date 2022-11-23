@@ -20,9 +20,6 @@ module.exports = (sequelize) => {
          },
          brand: {
             type: DataTypes.STRING,
-            validate: {
-               isAlph: true,
-            },
          },
          model: {
             type: DataTypes.STRING,
