@@ -1,37 +1,28 @@
 const { DataTypes } = require("sequelize");
 module.exports = (sequelize) => {
    sequelize.define(
-      "discount",
+      "payment_details",
       {
          id: {
             type: DataTypes.INTEGER,
             autoIncrement: true,
             primaryKey: true,
             allowNull: false,
-            unique: true,
          },
-         name: {
-            type: DataTypes.STRING,
-            allowNull: false,
-            validate: { isAlpha: true },
-         },
-         description: {
-            type: DataTypes.STRING,
-         },
-         percent: {
+         amount: {
             type: DataTypes.INTEGER,
-            allowNull: false,
-            validate: { isInt: true },
          },
-         active: {
+         provider: {
+            type: DataTypes.STRING,
+            validate: { isAlph: true },
+         },
+         status: {
             type: DataTypes.BOOLEAN,
             allowNull: false,
-            defaultValue: true,
          },
       },
       {
-         timestamps: true,
-         paranoid: true,
+         timestamp: true,
       }
    );
 };

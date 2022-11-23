@@ -1,5 +1,6 @@
 const { Router } = require("express");
 const postInventory = require("../controllers/postInventory");
+const { putInventory } = require("../controllers/putInventory");
 const invetoryRoutes = Router();
 
 invetoryRoutes.post("/", async (req, res) => {
@@ -13,8 +14,14 @@ invetoryRoutes.post("/", async (req, res) => {
     res.status(404).send(error);
   }
 });
-invetoryRoutes.put("/", async (req, res) => {
+invetoryRoutes.put("/:id", async (req, res) => {
   try {
-  } catch (error) {}
+    const { id } = req.params;
+    const { quantity } = req.body;
+    const inv = await putInventory(id, quantity);
+    return res.send(inv);
+  } catch (error) {
+    res.status(404).send(error);
+  }
 });
 module.exports = invetoryRoutes;
