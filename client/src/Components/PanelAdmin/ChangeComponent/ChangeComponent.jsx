@@ -1,13 +1,15 @@
-import React, { useState, useEffect } from "react";
-import { useDispatch, useSelector } from "react-redux";
-import { useHistory } from "react-router-dom";
+import React, { useState, useEffect } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { useHistory } from 'react-router-dom';
 import {
   putProductById,
   getProductById,
   createDiscount,
-} from "../../../redux/actions/actions.js";
-import { useParams } from "react-router-dom";
-import "./ChangeComponent.css";
+  putInventory,
+  putDiscount,
+} from '../../../redux/actions/actions.js';
+import { useParams } from 'react-router-dom';
+import './ChangeComponent.css';
 
 function ChangeComponent() {
   const { id } = useParams();
@@ -27,11 +29,11 @@ function ChangeComponent() {
     quantity: productDetails.inventory.quantity,
     category: productDetails.categoryName,
     details: [],
-    discount: "",
+    discount: productDetails.discountName,
   });
   const [discountt, setDiscountt] = useState({
     name: `${newProduct.discount}`,
-    description: "",
+    description: '',
     percent: 0,
     active: 0,
   });
@@ -48,7 +50,7 @@ function ChangeComponent() {
       ...newProduct,
       [e.target.name]: e.target.value,
     });
-    if (e.target.name === "discount") {
+    if (e.target.name === 'discount') {
       setDiscountt({
         ...discountt,
         name: e.target.value,
@@ -66,19 +68,30 @@ function ChangeComponent() {
   function dispatchDataToChange(id, newProduct) {
     dispatch(putProductById(id, newProduct));
   }
+
+  function dispatchDataToChangeInventory(id, newProduct) {
+    dispatch(putInventory(id, newProduct));
+  }
+
+  function dispatchDataToChangeDiscount(newProduct) {
+    dispatch(putDiscount(newProduct));
+  }
+
   function dispatchDataToDiscount(newProduct) {
     dispatch(createDiscount(newProduct));
   }
-//
+
   return (
     <div className="form-container">
       <form
         onSubmit={(e) => {
           console.log(newProduct);
           dispatchDataToChange(productDetails.id, newProduct);
+          dispatchDataToChangeInventory(productDetails.id, newProduct);
+          dispatchDataToChangeDiscount(discountt);
           dispatchDataToDiscount(discountt);
           e.preventDefault();
-          setTimeout(() => history.push("/panel+admin/products"), 3000);
+          setTimeout(() => history.push('/panel+admin/products'), 3000);
         }}
         className="form"
       >
@@ -104,7 +117,12 @@ function ChangeComponent() {
           className="form-input"
         ></input>
         <label className="form-label">Have new Brand?</label>
-        <select name="brand" className="form-input" onChange={handleChange} value={newProduct.brand} >
+        <select
+          name="brand"
+          className="form-input"
+          onChange={handleChange}
+          value={newProduct.brand}
+        >
           <option></option>
           <option>Alphacool</option>
           <option>Antec</option>
@@ -172,7 +190,7 @@ function ChangeComponent() {
           <option>XFX</option>
           <option>ZOTAC</option>
         </select>
-        {newProduct.brand === "" ? (
+        {newProduct.brand === '' ? (
           <>
             <label className="form-label">Have new Model?</label>
             <input
@@ -190,7 +208,7 @@ function ChangeComponent() {
               value={newProduct.model}
               onChange={handleChange}
               placeholder="Insert model"
-            ></input>{" "}
+            ></input>{' '}
           </>
         ) : (
           <></>

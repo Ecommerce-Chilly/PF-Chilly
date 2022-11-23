@@ -4,14 +4,23 @@ import {
   CREATE_PRODUCT,
   CREATE_DISCOUNT,
   PUT_PRODUCT,
+  PUT_INVENTORY,
   FAIL_CREATED_MSG,
+  PUT_DISCOUNT,
+  DELETE_PRODUCT,
+  GET_CATEGORY_DETAILS,
+  FILTER1,
+  FILTER_BY_DETAILS,
 } from "../actions/actions.js";
 
 const initialState = {
   product: [],
+  allProduct: [],
   productDetail: [],
-  productChangedMsg: "",
   createProductMsg: "",
+  productChangedMsg: "",
+  productDeletedMsg: "",
+  categoryDetails: [],
 };
 
 const rootReducer = (state = initialState, action) => {
@@ -20,6 +29,7 @@ const rootReducer = (state = initialState, action) => {
       return {
         ...state,
         product: action.payload,
+        allProduct: action.payload,
         createProductMsg: "",
       };
 
@@ -44,10 +54,62 @@ const rootReducer = (state = initialState, action) => {
         ...state,
         productChangedMsg: action.payload,
       };
+    case PUT_INVENTORY:
+      return {
+        ...state,
+        productChangedMsg: action.payload,
+      };
+    case PUT_DISCOUNT:
+      return {
+        ...state,
+        productChangedMsg: action.payload,
+      };
+    case DELETE_PRODUCT:
+      return {
+        ...state,
+        productDeletedMsg: action.payload,
+      };
     case FAIL_CREATED_MSG:
       return {
         ...state,
         createProductMsg: action.payload,
+      };
+    case GET_CATEGORY_DETAILS:
+      return {
+        ...state,
+        categoryDetails: action.payload,
+      };
+    case FILTER1:
+      let temporal = state.allProduct;
+      let filtered = temporal.filter((e) => e.categoryName === action.payload);
+
+      if (action.payload === "") {
+        filtered = state.allProduct;
+      }
+      return {
+        ...state,
+        product: filtered,
+      };
+    case FILTER_BY_DETAILS:
+      let temporal2 = state.allProduct;
+
+      let filtered2 = temporal2.filter(
+        (e) => e.categoryName === action.payload[0]
+      );
+
+      if (action.payload[0] === "") {
+        filtered2 = state.allProduct;
+      }
+
+      for (const property in action.payload[1]) {
+        filtered2 = filtered2.filter(
+          (e) => e.details[0][property] === action.payload[1][property]
+        );
+      }
+
+      return {
+        ...state,
+        product: filtered2,
       };
     default:
       return state;
