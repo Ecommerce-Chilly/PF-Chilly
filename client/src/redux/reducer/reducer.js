@@ -11,6 +11,7 @@ import {
   GET_CATEGORY_DETAILS,
   FILTER1,
   FILTER_BY_DETAILS,
+  GET_PRODUCT_BY_NAME,
 } from "../actions/actions.js";
 
 const initialState = {
@@ -21,6 +22,10 @@ const initialState = {
   productChangedMsg: "",
   productDeletedMsg: "",
   categoryDetails: [],
+
+
+  page: 1,
+  productPerPage: 30,
 };
 
 const rootReducer = (state = initialState, action) => {
@@ -37,6 +42,11 @@ const rootReducer = (state = initialState, action) => {
       return {
         ...state,
         productDetail: action.payload,
+      };
+    case GET_PRODUCT_BY_NAME:
+      return {
+        ...state,
+        product: action.payload,
       };
 
     case CREATE_PRODUCT:
@@ -86,6 +96,10 @@ const rootReducer = (state = initialState, action) => {
       if (action.payload === "") {
         filtered = state.allProduct;
       }
+      return {
+        ...state,
+        product: filtered,
+      };
     case FILTER_BY_DETAILS:
       let temporal2 = state.allProduct;
 
@@ -107,10 +121,23 @@ const rootReducer = (state = initialState, action) => {
         ...state,
         product: filtered2,
       };
+
+    case "SET_PAGE":
       return {
         ...state,
-        product: filtered,
+        page: action.payload,
       };
+    case "NEXT_PAGE":
+      return {
+        ...state,
+        page: state.page + 1,
+      };
+    case "PREVIOUS_PAGE":
+      return {
+        ...state,
+        page: state.page - 1,
+      };
+
     default:
       return state;
   }

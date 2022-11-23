@@ -3,10 +3,15 @@ import ProductCard from "./ProductCard";
 import { useDispatch, useSelector } from "react-redux";
 import { getProduct } from "../../../redux/actions/actions.js";
 import Filters from "../../PI Components/Filters/Filters";
+import Paginate from "../../PI Components/Paginate/Paginate";
 
 function Products() {
   const dispatch = useDispatch();
   const products = useSelector((state) => state.product);
+  const { productPerPage, page, orders } = useSelector((state) => state);
+
+  const pagination = (_, i) =>
+    productPerPage * page <= i && i < productPerPage * (page + 1);
 
   useEffect(() => {
     dispatch(getProduct());
@@ -14,10 +19,12 @@ function Products() {
 
   return (
     <div>
-       <Filters/>
+      <Filters />
+      <Paginate filtered={products} />
       {products.length > 0 ? (
         products
-          ?.map((el) => (
+          ?.filter(pagination)
+          .map((el) => (
             <ProductCard
               key={el.id}
               id={el.id}

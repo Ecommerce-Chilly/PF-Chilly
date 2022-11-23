@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
+import SearchBar from "../SearchBar/SearchBar";
 import "./Navbar.css";
 
 function Navbar() {
@@ -21,7 +22,13 @@ function Navbar() {
             alt="search"
             className="logo"
           />
-          <input type="text" placeholder="Search Component..."></input>
+
+
+          <SearchBar />
+
+
+
+          
         </div>
         <div className={`nav-items ${open && "open"}`}>
           <Link to="/cart">

@@ -9,9 +9,9 @@ function ProductCard(props) {
   function dispatchToDeleteProduct(id) {
     dispatch(deleteProdut(id));
   }
-  
+
   return (
-    <div>
+    <div className="container mx-auto bg-green-200 rounded-xl shadow border p-8 m-10">
       <button
         onClick={() => {
           dispatchToDeleteProduct(props.id);
