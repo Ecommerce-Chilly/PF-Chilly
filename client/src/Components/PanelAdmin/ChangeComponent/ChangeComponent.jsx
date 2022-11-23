@@ -274,7 +274,7 @@ function ChangeComponent() {
           className="form-input"
         ></input>
 
-        {newProduct.discount.length ? (
+        {newProduct.discount ? (
           <>
             <label className="form-label">Description of discount:</label>
             <input

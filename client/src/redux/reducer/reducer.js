@@ -11,6 +11,8 @@ import {
   GET_CATEGORY_DETAILS,
   FILTER1,
   FILTER_BY_DETAILS,
+  GET_PRODUCT_BY_NAME,
+  ERROR_MSSG,
 } from "../actions/actions.js";
 
 const initialState = {
@@ -19,7 +21,7 @@ const initialState = {
   productDetail: [],
   createProductMsg: "",
   productChangedMsg: "",
-  productDeletedMsg: "",
+  searchProductMsg: "",
   categoryDetails: [],
 };
 
@@ -31,12 +33,18 @@ const rootReducer = (state = initialState, action) => {
         product: action.payload,
         allProduct: action.payload,
         createProductMsg: "",
+        searchProductMsg: "",
       };
 
     case GET_PRODUCT_BY_ID:
       return {
         ...state,
         productDetail: action.payload,
+      };
+    case GET_PRODUCT_BY_NAME:
+      return {
+        ...state,
+        product: action.payload,
       };
 
     case CREATE_PRODUCT:
@@ -110,6 +118,11 @@ const rootReducer = (state = initialState, action) => {
       return {
         ...state,
         product: filtered2,
+      };
+    case ERROR_MSSG:
+      return {
+        ...state,
+        searchProductMsg: action.payload,
       };
     default:
       return state;

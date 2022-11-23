@@ -3,6 +3,7 @@ const { postProduct } = require("../controllers/postProduct");
 const { getProducts } = require("../controllers/getProducts");
 const { putProducts } = require("../controllers/putProducts");
 const { deleteProduct } = require("../controllers/deleteProduct");
+const { restoreProduct } = require("../controllers/restoreProduct")
 const productRoute = Router();
 
 productRoute.post("/", async (req, res) => {
@@ -25,8 +26,8 @@ productRoute.delete("/:id", async (req, res) => {
 });
 productRoute.get("/", async (req, res) => {
   try {
-    const { category } = req.query;
-    const product = await getProducts(category);
+    const { category, name } = req.query;
+    const product = await getProducts(category, null, name);
     res.send(product);
   } catch (error) {
     res.status(400).send({ error: error.message });
@@ -44,12 +45,22 @@ productRoute.get("/:id", async (req, res) => {
 });
 productRoute.put("/:id", async (req, res) => {
   try {
-    const { id } = req.params;
-    const newId = Number(id)
-    const product = await putProducts(newId, req.body);
+    let { id } = req.params;
+    id = Number(id);
+    const product = await putProducts(id, req.body);
     res.send(product);
   } catch (error) {
     res.status(400).send({ error: error.message });
   }
 });
+productRoute.put('/restore/:id', async (req, res) => {
+  try {
+    let { id } = req.params;
+    id = Number(id);
+    const product = await restoreProduct(id)
+    res.send({ message: product })
+  } catch (error) {
+    res.status(400).send({ error: error.message });
+  }
+})
 module.exports = productRoute;
