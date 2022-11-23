@@ -1,49 +1,9 @@
-import React from "react";
-import { useSelector, useDispatch } from "react-redux";
-import {
-  setPage,
-  nextPage,
-  previousPage,
-} from "../../../redux/actions/actions.js";
+import React from 'react'
 
-function Paginate({ filtered }) {
-  const dispatch = useDispatch();
-  const { page, productPerPage } = useSelector((state) => state);
-  const handleSetPage = (n) => dispatch(setPage(n));
-  
-  const newPage = page + 1
-
+function Paginate() {
   return (
-    <div className="flex justify-around">
-      {page >= 1 ? (
-        <button onClick={() => (page >= 1 ? dispatch(previousPage()) : null)}>
-          Prev
-        </button>
-      ) : (
-        <></>
-      )}
-
-      <div>
-        <button onClick={() => handleSetPage(setPage)}>{page + 1}</button>
-        <label>/</label>
-        <button>{Math.floor(filtered.length / productPerPage)}</button>
-      </div>
-
-      {Math.ceil(filtered.length / productPerPage) > newPage? (
-        <button
-          onClick={() =>
-            page + 1 < Math.ceil(filtered.length / productPerPage)
-              ? dispatch(nextPage())
-              : null
-          }
-        >
-          Next
-        </button>
-      ) : (
-        <></>
-      )}
-    </div>
-  );
+    <div>Paginate</div>
+  )
 }
 
-export default Paginate;
+export default Paginate

@@ -38,10 +38,7 @@ module.exports = (sequelize) => {
       },
     },
     {
-      timestamps: false,
-      sequelize,
       paranoid: true,
-      deleteAt: "deleteTime",
     }
   );
 };

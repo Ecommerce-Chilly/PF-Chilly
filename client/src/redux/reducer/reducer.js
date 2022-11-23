@@ -23,9 +23,6 @@ const initialState = {
   productChangedMsg: "",
   searchProductMsg: "",
   categoryDetails: [],
-
-  page: 0,
-  productPerPage: 50,
 };
 
 const rootReducer = (state = initialState, action) => {
@@ -36,7 +33,7 @@ const rootReducer = (state = initialState, action) => {
         product: action.payload,
         allProduct: action.payload,
         createProductMsg: "",
-        searchProductMsg: "",
+        searchProductMsg: "", 
       };
 
     case GET_PRODUCT_BY_ID:
@@ -122,26 +119,6 @@ const rootReducer = (state = initialState, action) => {
         ...state,
         product: filtered2,
       };
-
-
-
-
-    case "SET_PAGE":
-      return {
-        ...state,
-        page: action.payload,
-      };
-    case "NEXT_PAGE":
-      return {
-        ...state,
-        page: state.page + 1,
-      };
-    case "PREVIOUS_PAGE":
-      return {
-        ...state,
-        page: state.page - 1,
-      };
-
 
 
 

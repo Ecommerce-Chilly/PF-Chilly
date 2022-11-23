@@ -8,12 +8,7 @@ import Paginate from "../../PI Components/Paginate/Paginate";
 function Products() {
   const dispatch = useDispatch();
   const products = useSelector((state) => state.product);
-  const { productPerPage, page, searchProductMsg } = useSelector(
-    (state) => state
-  );
-
-  const pagination = (_, i) =>
-    productPerPage * page < i && i <= productPerPage * (page + 1);
+  const { searchProductMsg } = useSelector((state) => state);
 
   useEffect(() => {
     dispatch(getProduct());
@@ -24,22 +19,14 @@ function Products() {
       <div>
         <Filters />
       </div>
+      <Paginate/>
       <div>
-        <Paginate filtered={products} />
         {products.length > 0 && searchProductMsg === "" ? (
-          products
-            ?.filter(pagination)
-            .map((el) => (
-              <ProductCard
-                key={el.id}
-                id={el.id}
-                name={el.name}
-                image={el.image}
-                brand={el.brand}
-                price={el.price}
-                categoryName={el.categoryName}
-              />
-            ))
+          products?.map((el) => (
+            <ProductCard
+              {...el}
+            />
+          ))
         ) : searchProductMsg.error ? (
           <p>{searchProductMsg.error.slice(6, 47)}</p>
         ) : (

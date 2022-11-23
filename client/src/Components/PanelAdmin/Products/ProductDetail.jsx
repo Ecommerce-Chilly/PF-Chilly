@@ -24,7 +24,7 @@ function ProductDetail() {
             <h1> {produDetail.name}</h1>
             <h2> Price:{produDetail.price} </h2>
             <h2> Brand: {produDetail.brand}</h2>
-            <h3> Mode: {produDetail.model}</h3>
+            <h3> Model: {produDetail.model}</h3>
             <h2> Category: {produDetail.categoryName}</h2>
             <h2> Stock: {produDetail.inventory.quantity}</h2>
             <Link to={`/panel+admin/change/product/${produDetail.id}`}>

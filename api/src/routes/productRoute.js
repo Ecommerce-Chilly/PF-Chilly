@@ -3,6 +3,7 @@ const { postProduct } = require("../controllers/postProduct");
 const { getProducts } = require("../controllers/getProducts");
 const { putProducts } = require("../controllers/putProducts");
 const { deleteProduct } = require("../controllers/deleteProduct");
+const { restoreProduct } = require("../controllers/restoreProduct")
 const productRoute = Router();
 
 productRoute.post("/", async (req, res) => {
@@ -46,11 +47,20 @@ productRoute.put("/:id", async (req, res) => {
   try {
     let { id } = req.params;
     id = Number(id);
-
     const product = await putProducts(id, req.body);
     res.send(product);
   } catch (error) {
     res.status(400).send({ error: error.message });
   }
 });
+productRoute.put('/restore/:id', async (req, res) => {
+  try {
+    let { id } = req.params;
+    id = Number(id);
+    const product = await restoreProduct(id)
+    res.send({ message: product })
+  } catch (error) {
+    res.status(400).send({ error: error.message });
+  }
+})
 module.exports = productRoute;
