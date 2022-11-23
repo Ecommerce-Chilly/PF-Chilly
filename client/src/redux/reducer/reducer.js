@@ -11,6 +11,11 @@ import {
   GET_CATEGORY_DETAILS,
   FILTER1,
   FILTER_BY_DETAILS,
+<<<<<<< HEAD
+=======
+  GET_PRODUCT_BY_NAME,
+  ERROR_MSSG,
+>>>>>>> fc54c9862ea68ad23a8af581c2a677e9f29483b2
 } from "../actions/actions.js";
 
 const initialState = {
@@ -19,8 +24,16 @@ const initialState = {
   productDetail: [],
   createProductMsg: "",
   productChangedMsg: "",
+<<<<<<< HEAD
   productDeletedMsg: "",
   categoryDetails: [],
+=======
+  searchProductMsg: "",
+  categoryDetails: [],
+
+  page: 0,
+  productPerPage: 50,
+>>>>>>> fc54c9862ea68ad23a8af581c2a677e9f29483b2
 };
 
 const rootReducer = (state = initialState, action) => {
@@ -31,12 +44,18 @@ const rootReducer = (state = initialState, action) => {
         product: action.payload,
         allProduct: action.payload,
         createProductMsg: "",
+        searchProductMsg: "",
       };
 
     case GET_PRODUCT_BY_ID:
       return {
         ...state,
         productDetail: action.payload,
+      };
+    case GET_PRODUCT_BY_NAME:
+      return {
+        ...state,
+        product: action.payload,
       };
 
     case CREATE_PRODUCT:
@@ -111,6 +130,40 @@ const rootReducer = (state = initialState, action) => {
         ...state,
         product: filtered2,
       };
+<<<<<<< HEAD
+=======
+
+
+
+
+    case "SET_PAGE":
+      return {
+        ...state,
+        page: action.payload,
+      };
+    case "NEXT_PAGE":
+      return {
+        ...state,
+        page: state.page + 1,
+      };
+    case "PREVIOUS_PAGE":
+      return {
+        ...state,
+        page: state.page - 1,
+      };
+
+
+
+
+
+    case ERROR_MSSG:
+      return {
+        ...state,
+        searchProductMsg: action.payload,
+      };
+
+
+>>>>>>> fc54c9862ea68ad23a8af581c2a677e9f29483b2
     default:
       return state;
   }
