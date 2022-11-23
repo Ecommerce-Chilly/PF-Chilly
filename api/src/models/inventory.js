@@ -1,14 +1,9 @@
 const { DataTypes } = require("sequelize");
 module.exports = (sequelize) => {
-<<<<<<< HEAD
-    sequelize.define('inventory', {
-        id: {
-=======
    sequelize.define(
       "inventory",
       {
          id: {
->>>>>>> 6e7355d84470fde1f722ce15d628d2c7e6dc53f7
             type: DataTypes.INTEGER,
             autoIncrement: true,
             primaryKey: true,
@@ -16,17 +11,10 @@ module.exports = (sequelize) => {
          },
          quantity: {
             type: DataTypes.INTEGER,
-<<<<<<< HEAD
-            allowNull: false
-        },
-    },
-    );
-}
-=======
          },
          status: {
-             type: DataTypes.BOOLEAN,
-             defaultValue:true,
+            type: DataTypes.BOOLEAN,
+            defaultValue: true,
          },
       },
       {
@@ -35,4 +23,3 @@ module.exports = (sequelize) => {
       }
    );
 };
->>>>>>> 6e7355d84470fde1f722ce15d628d2c7e6dc53f7
