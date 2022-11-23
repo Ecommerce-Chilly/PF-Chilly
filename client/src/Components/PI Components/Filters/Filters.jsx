@@ -12,7 +12,7 @@ function Filters() {
   let [category, setCategory] = useState("");
   let [inputs, setInputs] = useState([]);
   let dispatch = useDispatch();
-  let products = useSelector((state) => state.product);
+  let { page } = useSelector((state) => state);
   let categoryDetails = useSelector((state) => state.categoryDetails);
 
   useEffect(() => {

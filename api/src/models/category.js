@@ -5,9 +5,11 @@ module.exports = (sequelize) => {
       type: DataTypes.STRING,
       allowNull: false,
       primaryKey: true,
+      unique: true,
     },
     description: {
       type: DataTypes.STRING,
+      validate: { isAlphanumeric: true },
     },
   });
 };

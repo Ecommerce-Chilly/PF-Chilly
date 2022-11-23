@@ -10,27 +10,29 @@ function Paginate({ filtered }) {
   const dispatch = useDispatch();
   const { page, productPerPage } = useSelector((state) => state);
   const handleSetPage = (n) => dispatch(setPage(n));
-
+  
+  const newPage = page + 1
 
   return (
     <div className="flex justify-around">
-      {page > 1 ? (
-        <button onClick={() => (page > 0 ? dispatch(previousPage()) : null)}>
+      {page >= 1 ? (
+        <button onClick={() => (page >= 1 ? dispatch(previousPage()) : null)}>
           Prev
         </button>
       ) : (
         <></>
       )}
+
       <div>
-        <button onClick={() => handleSetPage(setPage)}>{page}</button>
+        <button onClick={() => handleSetPage(setPage)}>{page + 1}</button>
         <label>/</label>
-        <button>{Math.floor(filtered.length / productPerPage)} </button>
+        <button>{Math.floor(filtered.length / productPerPage)}</button>
       </div>
 
-      {page < Math.floor(filtered.length / productPerPage) ? (
+      {Math.ceil(filtered.length / productPerPage) > newPage? (
         <button
           onClick={() =>
-            page + 1 < filtered.length / productPerPage
+            page + 1 < Math.ceil(filtered.length / productPerPage)
               ? dispatch(nextPage())
               : null
           }

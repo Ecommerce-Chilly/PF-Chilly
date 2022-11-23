@@ -12,6 +12,7 @@ export const GET_CATEGORY_DETAILS = "GET_CATEGORY_DETAILS";
 export const FILTER1 = "FILTER1";
 export const FILTER_BY_DETAILS = "FILTER_BY_DETAILS";
 export const GET_PRODUCT_BY_NAME = "GET_PRODUCT_BY_NAME";
+export const ERROR_MSSG = "ERROR_MSSG";
 
 export const getProduct = () => {
   return async function (dispatch) {
@@ -124,24 +125,23 @@ export const filterbyDetails = (category, details) => {
 
 export const getProductByName = (name) => {
   return async function (dispatch) {
-    let productByName = await axios.get(
-      `http://localhost:3001/product?name=${name}`
-    );
-    return dispatch({ type: GET_PRODUCT_BY_NAME, payload: productByName.data });
+    if (name === "") {
+      return dispatch({ type: ERROR_MSSG });
+    }
+    try {
+      let productByName = await axios.get(
+        `http://localhost:3001/product?name=${name}`
+      );
+
+      return dispatch({
+        type: GET_PRODUCT_BY_NAME,
+        payload: productByName.data,
+      });
+    } catch (error) {
+      return dispatch({ type: ERROR_MSSG, payload: error.response.data });
+    }
   };
 };
-
-
-
-
-
-
-
-
-
-
-
-
 
 export function setPage(page) {
   return async function (dispatch) {
