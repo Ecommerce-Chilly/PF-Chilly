@@ -5,9 +5,11 @@ const inventoryRoute = require("./inventoryRoute");
 const discountsRoute = require("./discountsRoute");
 const detailsCategoryRoute = require("./detailsCategoryRoute");
 const { hardCodeoInfo } = require("../controllers/hardCode");
+// const { defaultDiscount } = require('../controllers/defaultDiscount')
 const router = Router();
 
 router.use("/Guillo", async (req, res, next) => {
+  // await defaultDiscount()
   await hardCodeoInfo();
   console.log("ya termine");
   next();

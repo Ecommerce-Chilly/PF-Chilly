@@ -2,7 +2,7 @@ const { Discount } = require("../db");
 
 const postDiscounts = async ({ name, description, percent, active }) => {
   try {
-    if ((!name, !description, !percent, !active))
+    if ((!name, !description, !percent))
       throw new Error("Send all Data please");
     const discountCreate = await Discount.create({
       name,
