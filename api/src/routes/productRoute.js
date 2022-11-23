@@ -46,7 +46,6 @@ productRoute.put("/:id", async (req, res) => {
    try {
       let { id } = req.params;
       id = Number(id);
-
       const product = await putProducts(id, req.body);
       res.send(product);
    } catch (error) {

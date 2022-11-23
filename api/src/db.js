@@ -72,7 +72,7 @@ User_role.hasOne(User);
 User.hasMany(User_role);
 
 User.hasOne(Data_user);
-Data_user.hasOne(User);
+Data_user.belongsTo(User);
 
 User.hasOne(Shopping_session);
 Shopping_session.hasOne(User);
