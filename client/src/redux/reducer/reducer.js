@@ -11,11 +11,8 @@ import {
   GET_CATEGORY_DETAILS,
   FILTER1,
   FILTER_BY_DETAILS,
-<<<<<<< HEAD
-=======
   GET_PRODUCT_BY_NAME,
   ERROR_MSSG,
->>>>>>> fc54c9862ea68ad23a8af581c2a677e9f29483b2
 } from "../actions/actions.js";
 
 const initialState = {
@@ -24,16 +21,11 @@ const initialState = {
   productDetail: [],
   createProductMsg: "",
   productChangedMsg: "",
-<<<<<<< HEAD
-  productDeletedMsg: "",
-  categoryDetails: [],
-=======
   searchProductMsg: "",
   categoryDetails: [],
 
   page: 0,
   productPerPage: 50,
->>>>>>> fc54c9862ea68ad23a8af581c2a677e9f29483b2
 };
 
 const rootReducer = (state = initialState, action) => {
@@ -130,8 +122,6 @@ const rootReducer = (state = initialState, action) => {
         ...state,
         product: filtered2,
       };
-<<<<<<< HEAD
-=======
 
 
 
@@ -163,7 +153,6 @@ const rootReducer = (state = initialState, action) => {
       };
 
 
->>>>>>> fc54c9862ea68ad23a8af581c2a677e9f29483b2
     default:
       return state;
   }
