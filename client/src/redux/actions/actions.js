@@ -13,6 +13,7 @@ export const FILTER1 = "FILTER1";
 export const FILTER_BY_DETAILS = "FILTER_BY_DETAILS";
 export const GET_PRODUCT_BY_NAME = "GET_PRODUCT_BY_NAME";
 export const ERROR_MSSG = "ERROR_MSSG";
+export const EUSEBIO = "EUSEBIO";
 
 export const getProduct = () => {
   return async function (dispatch) {
@@ -23,8 +24,12 @@ export const getProduct = () => {
 
 export const getProductById = (id) => {
   return async function (dispatch) {
-    let productById = await axios.get(`http://localhost:3001/product/${id}`);
-    return dispatch({ type: GET_PRODUCT_BY_ID, payload: productById.data });
+    try {
+      let productById = await axios.get(`http://localhost:3001/product/${id}`);
+      return dispatch({ type: GET_PRODUCT_BY_ID, payload: productById.data });
+    } catch (error) {
+      return dispatch({ type: EUSEBIO, payload: error.response.data.error });
+    }
   };
 };
 

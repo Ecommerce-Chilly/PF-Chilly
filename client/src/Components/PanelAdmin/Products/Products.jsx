@@ -4,35 +4,32 @@ import { useDispatch, useSelector } from "react-redux";
 import { getProduct } from "../../../redux/actions/actions.js";
 import Filters from "../../PI Components/Filters/Filters";
 import Paginate from "../../PI Components/Paginate/Paginate";
+import "../../PI Components/Paginate/Paginate.css";
 
 function Products() {
   const dispatch = useDispatch();
   const products = useSelector((state) => state.product);
-  const { searchProductMsg } = useSelector((state) => state);
 
   useEffect(() => {
     dispatch(getProduct());
   }, [dispatch]);
 
   return (
-    <div className="flex">
+    <div className="flex justify-around">
       <div>
         <Filters />
       </div>
-      <Paginate/>
-      <div>
+
+        <Paginate products={products} />
+      {/* <div>
         {products.length > 0 && searchProductMsg === "" ? (
-          products?.map((el) => (
-            <ProductCard
-              {...el}
-            />
-          ))
+          products?.map((el) => <ProductCard {...el} />)
         ) : searchProductMsg.error ? (
           <p>{searchProductMsg.error.slice(6, 47)}</p>
         ) : (
           <div>No se ha encontrado productos</div>
         )}
-      </div>
+      </div> */}
     </div>
   );
 }

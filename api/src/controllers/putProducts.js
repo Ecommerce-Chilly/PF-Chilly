@@ -19,7 +19,7 @@ const putProducts = async (
     await product.setDiscount(discountDB);
     putInventory(product.inventoryId, quantity);
     await product.save();
-    return product;
+    return "Product was successfully changed"
   } catch (error) {
     throw new Error(error);
   }

@@ -3,7 +3,7 @@ const { postProduct } = require("../controllers/postProduct");
 const { getProducts } = require("../controllers/getProducts");
 const { putProducts } = require("../controllers/putProducts");
 const { deleteProduct } = require("../controllers/deleteProduct");
-const { restoreProduct } = require("../controllers/restoreProduct")
+const { restoreProduct } = require("../controllers/restoreProduct");
 const productRoute = Router();
 
 productRoute.post("/", async (req, res) => {
@@ -37,6 +37,7 @@ productRoute.get("/:id", async (req, res) => {
   try {
     let { id } = req.params;
     id = Number(id);
+    if (isNaN(id)) return res.status(404).send({ error: "Send a number id" });
     const product = await getProducts(null, id);
     res.send(product);
   } catch (error) {
@@ -53,14 +54,14 @@ productRoute.put("/:id", async (req, res) => {
     res.status(400).send({ error: error.message });
   }
 });
-productRoute.put('/restore/:id', async (req, res) => {
+productRoute.put("/restore/:id", async (req, res) => {
   try {
     let { id } = req.params;
     id = Number(id);
-    const product = await restoreProduct(id)
-    res.send({ message: product })
+    const product = await restoreProduct(id);
+    res.send({ message: product });
   } catch (error) {
     res.status(400).send({ error: error.message });
   }
-})
+});
 module.exports = productRoute;

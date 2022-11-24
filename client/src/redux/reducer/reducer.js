@@ -13,6 +13,7 @@ import {
   FILTER_BY_DETAILS,
   GET_PRODUCT_BY_NAME,
   ERROR_MSSG,
+  EUSEBIO,
 } from "../actions/actions.js";
 
 const initialState = {
@@ -33,13 +34,14 @@ const rootReducer = (state = initialState, action) => {
         product: action.payload,
         allProduct: action.payload,
         createProductMsg: "",
-        searchProductMsg: "", 
+        searchProductMsg: "",
+        productChangedMsg: "",
       };
 
     case GET_PRODUCT_BY_ID:
       return {
         ...state,
-        productDetail: action.payload,
+        productDetail: [action.payload],
       };
     case GET_PRODUCT_BY_NAME:
       return {
@@ -96,6 +98,7 @@ const rootReducer = (state = initialState, action) => {
       }
       return {
         ...state,
+        searchProductMsg: "",
         product: filtered,
       };
     case FILTER_BY_DETAILS:
@@ -117,18 +120,20 @@ const rootReducer = (state = initialState, action) => {
 
       return {
         ...state,
+        searchProductMsg: "",
         product: filtered2,
       };
-
-
-
 
     case ERROR_MSSG:
       return {
         ...state,
         searchProductMsg: action.payload,
       };
-
+    case EUSEBIO:
+      return {
+        ...state,
+        searchProductMsg: action.payload,
+      };
 
     default:
       return state;
