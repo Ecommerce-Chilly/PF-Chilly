@@ -1,5 +1,4 @@
 const { DataTypes } = require("sequelize");
-
 module.exports = (sequelize) => {
    sequelize.define(
       "inventory",
@@ -14,8 +13,8 @@ module.exports = (sequelize) => {
             type: DataTypes.INTEGER,
          },
          status: {
-             type: DataTypes.BOOLEAN,
-             defaultValue:true,
+            type: DataTypes.BOOLEAN,
+            defaultValue: true,
          },
       },
       {
