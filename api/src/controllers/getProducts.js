@@ -12,7 +12,7 @@ const getProducts = async (category, id, name) => {
         },
       });
       if (productName.length === 0)
-        throw new Error(`Product with name ${name} is not exist`);
+        throw new Error(`Product with name ${name} does not exist`);
       return productName;
     }
     else if (id && !category && !name) {
@@ -22,7 +22,7 @@ const getProducts = async (category, id, name) => {
           attributes: ["quantity"],
         },
       });
-      if (!product) throw new Error(`Product with id ${id} is not exist`);
+      if (!product) throw new Error(`Product with id ${id} does not exist`);
       return product;
     }
     else if (category && !name && !id) {
