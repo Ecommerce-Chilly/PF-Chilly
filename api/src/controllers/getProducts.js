@@ -12,7 +12,7 @@ const getProducts = async (category, id, name) => {
         },
       });
       if (productName.length === 0)
-        throw new Error(`Product with name ${name} does not exist`);
+        throw (`Product with name ${name} does not exist`);
       return productName;
     }
     else if (id && !category && !name) {
@@ -22,7 +22,7 @@ const getProducts = async (category, id, name) => {
           attributes: ["quantity"],
         },
       });
-      if (!product) throw new Error(`Product with id ${id} does not exist`);
+      if (!product) throw (`Product with id ${id} does not exist`);
       return product;
     }
     else if (category && !name && !id) {
@@ -42,11 +42,11 @@ const getProducts = async (category, id, name) => {
         },
       });
       if (all.length === 0)
-        throw new Error("Dont have products in our data base");
+        throw ("Dont have products in our data base");
       return all;
     }
   } catch (error) {
-    throw new Error(error);
+    throw (error);
   }
 };
 module.exports = { getProducts };
