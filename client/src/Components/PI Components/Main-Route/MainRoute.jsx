@@ -16,16 +16,9 @@ import SpecialOffers from "../Pages/SpecialOffers";
 import Blog from "../Pages/Blog";
 import AboutUS from "../Pages/AboutUS";
 import Footer from "../Footer/Footer";
-import { getProduct } from "../../../redux/actions/actions.js";
-import { useDispatch } from "react-redux";
-import axios from "axios";
+
 
 function MainRoute() {
-  let dispatch = useDispatch();
-
-  // useEffect(async () => {
-  //   await axios.get("http://localhost:3001/Guillo");
-  // }, []);
 
   return (
     <div>

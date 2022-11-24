@@ -15,6 +15,7 @@ import {
   ERROR_MSSG,
   EUSEBIO,
   RESTORE_PRODUCT,
+  ERROR_IN_PUT_PRODUCT,
 } from "../actions/actions.js";
 
 const initialState = {
@@ -68,12 +69,10 @@ const rootReducer = (state = initialState, action) => {
     case PUT_INVENTORY:
       return {
         ...state,
-        productChangedMsg: action.payload,
       };
     case PUT_DISCOUNT:
       return {
         ...state,
-        productChangedMsg: action.payload,
       };
     case DELETE_PRODUCT:
       return {
@@ -135,6 +134,11 @@ const rootReducer = (state = initialState, action) => {
       return {
         ...state,
         searchProductMsg: action.payload,
+      };
+    case ERROR_IN_PUT_PRODUCT:
+      return {
+        ...state,
+        productChangedMsg: action.payload,
       };
     case EUSEBIO:
       return {

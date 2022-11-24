@@ -15,10 +15,11 @@ export const GET_PRODUCT_BY_NAME = "GET_PRODUCT_BY_NAME";
 export const ERROR_MSSG = "ERROR_MSSG";
 export const EUSEBIO = "EUSEBIO";
 export const RESTORE_PRODUCT = "RESTORE_PRODUCT";
+export const ERROR_IN_PUT_PRODUCT = "ERROR_IN_PUT_PRODUCT";
 
 export const getProduct = () => {
   return async function (dispatch) {
-    let product = await axios.get('http://localhost:3001/product');
+    let product = await axios.get("http://localhost:3001/product");
     return dispatch({ type: GET_ALL_PRODUCTS, payload: product.data });
   };
 };
@@ -38,7 +39,7 @@ export const createProduct = (product) => {
   return async function (dispatch) {
     try {
       const createProdu = await axios.post(
-        'http://localhost:3001/product',
+        "http://localhost:3001/product",
         product
       );
       return dispatch({ type: CREATE_PRODUCT, payload: createProdu });
@@ -52,7 +53,7 @@ export const createDiscount = (product) => {
   return async function (dispatch) {
     try {
       const createDiscount = await axios.post(
-        'http://localhost:3001/discount',
+        "http://localhost:3001/discount",
         product
       );
       return dispatch({ type: CREATE_DISCOUNT, payload: createDiscount.data });
@@ -67,11 +68,18 @@ export const createDiscount = (product) => {
 
 export const putProductById = (id, product) => {
   return async function (dispatch) {
-    const putProduct = await axios.put(
-      `http://localhost:3001/product/${id}`,
-      product
-    );
-    return dispatch({ type: PUT_PRODUCT, payload: putProduct.data });
+    try {
+      const putProduct = await axios.put(
+        `http://localhost:3001/product/${id}`,
+        product
+      );
+      return dispatch({ type: PUT_PRODUCT, payload: putProduct.data });
+    } catch (error) {
+      return dispatch({
+        type: ERROR_IN_PUT_PRODUCT,
+        payload: error.response.data.error,
+      });
+    }
   };
 };
 
@@ -88,7 +96,7 @@ export const putInventory = (id, product) => {
 export const putDiscount = (product) => {
   return async function (dispatch) {
     const putInventory = await axios.put(
-      'http://localhost:3001/discount/',
+      "http://localhost:3001/discount/",
       product
     );
     return dispatch({ type: PUT_DISCOUNT, payload: putInventory.data });

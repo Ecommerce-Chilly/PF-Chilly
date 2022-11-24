@@ -13,13 +13,16 @@ const putProducts = async (
     product.model = model;
     product.image = image;
     product.details = details;
+    if (!name || !price || !brand || !model || !image || !details) {
+      throw ("Wrong information entered");
+    }
     const categoryDB = await Category.findOne({ where: { name: category } });
     const discountDB = await Discount.findOne({ where: { name: discount } });
     await product.setCategory(categoryDB);
     await product.setDiscount(discountDB);
     putInventory(product.inventoryId, quantity);
     await product.save();
-    return "Product was successfully changed"
+    return "Product was successfully changed";
   } catch (error) {
     throw new Error(error);
   }

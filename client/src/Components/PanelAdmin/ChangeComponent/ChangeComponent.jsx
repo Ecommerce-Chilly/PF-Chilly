@@ -19,6 +19,8 @@ function ChangeComponent() {
   const msg = useSelector((state) => state.productChangedMsg);
   const history = useHistory();
 
+
+
   useEffect(() => {
     dispatch(getProductById(id));
   }, [dispatch, id]);
@@ -101,7 +103,7 @@ function ChangeComponent() {
             dispatchDataToChangeDiscount(discountt);
             dispatchDataToDiscount(discountt);
             e.preventDefault();
-            setTimeout(() => history.push("/panel+admin/products"), 3000);
+           
           }}
           className="form"
         >

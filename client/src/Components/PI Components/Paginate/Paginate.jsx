@@ -19,9 +19,8 @@ function Paginate({ products }) {
   };
 
   useEffect(() => {
-    setProductOffset(0)
-  }, [products])
-  
+    setProductOffset(0);
+  }, [products]);
 
   return (
     <>
@@ -42,7 +41,7 @@ function Paginate({ products }) {
       />
       <div>
         {currentItems.length > 0 && searchProductMsg === "" ? (
-          currentItems?.map((el) => <ProductCard {...el} />)
+          currentItems?.map((el) => <ProductCard key={el.id} {...el} />)
         ) : searchProductMsg.error ? (
           <p>{searchProductMsg.error}</p>
         ) : (
