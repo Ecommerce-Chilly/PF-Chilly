@@ -5,12 +5,10 @@ const getFavorites = async (userId) => {
     include: {
       model: Product,
       attributes: ['name', 'image'],
-      through: {
-        attributes: [],
-      }
     }
 
   })
+  console.log(user);
   if (!user) throw `User does not exist`
   return user
 }
