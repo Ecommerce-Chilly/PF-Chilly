@@ -37,6 +37,7 @@ productRoute.get("/:id", async (req, res) => {
   try {
     let { id } = req.params;
     id = Number(id);
+    if (isNaN(id)) return res.status(404).send({ error: "Send a number id" })
     const product = await getProducts(null, id);
     res.send(product);
   } catch (error) {

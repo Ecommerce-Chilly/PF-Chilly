@@ -8,6 +8,7 @@ const postProduct = async ({
   brand,
   model,
   details,
+  image,
   category,
   discount,
   quantity,
@@ -29,6 +30,7 @@ const postProduct = async ({
       name,
       price,
       details,
+      image,
       brand,
       model,
     });
