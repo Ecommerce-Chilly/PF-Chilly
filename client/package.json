@@ -8,8 +8,9 @@
     "postcss-cli": "^10.0.0",
     "react": "^17.0.2",
     "react-dom": "^17.0.2",
-    "react-paginate": "^8.1.4",
     "react-redux": "^7.2.3",
+    "react-paginate": "^8.1.4",
+    "react-responsive-carousel": "^3.2.23",
     "react-router-dom": "^5.2.0",
     "react-scripts": "^5.0.1",
     "redux": "^4.0.5",
@@ -19,9 +20,11 @@
   },
   "scripts": {
     "start": "react-scripts start",
+    "dev": "run-p watch:tailwind start",
     "build": "npm run watch:css && react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
+    "build:css": "postcss src/assets/tailwind.css -o src/assets/main.css",
     "watch:css": "postcss src/assets/tailwind.css -o src/assets/main.css --watch"
   },
   "browserslist": {

@@ -1,6 +1,6 @@
-import React, { useState, useEffect } from "react";
-import { useDispatch, useSelector } from "react-redux";
-import { useHistory } from "react-router-dom";
+import React, { useState, useEffect } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { useHistory } from 'react-router-dom';
 import {
   putProductById,
   getProductById,
@@ -41,7 +41,7 @@ function ChangeComponent() {
   });
   const [discountt, setDiscountt] = useState({
     name: `${newProduct.discount}`,
-    description: "",
+    description: '',
     percent: 0,
     active: 0,
   });
@@ -58,7 +58,7 @@ function ChangeComponent() {
       ...newProduct,
       [e.target.name]: e.target.value,
     });
-    if (e.target.name === "discount") {
+    if (e.target.name === 'discount') {
       setDiscountt({
         ...discountt,
         name: e.target.value,
@@ -91,7 +91,6 @@ function ChangeComponent() {
     dispatch(createDiscount(newProduct));
   }
 
-  //
   return (
     <div className="form-container">
       {productDetails.length > 0 ? (

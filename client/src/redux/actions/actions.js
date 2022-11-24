@@ -18,7 +18,7 @@ export const RESTORE_PRODUCT = "RESTORE_PRODUCT";
 
 export const getProduct = () => {
   return async function (dispatch) {
-    let product = await axios.get("http://localhost:3001/product");
+    let product = await axios.get('http://localhost:3001/product');
     return dispatch({ type: GET_ALL_PRODUCTS, payload: product.data });
   };
 };
@@ -38,7 +38,7 @@ export const createProduct = (product) => {
   return async function (dispatch) {
     try {
       const createProdu = await axios.post(
-        "http://localhost:3001/product",
+        'http://localhost:3001/product',
         product
       );
       return dispatch({ type: CREATE_PRODUCT, payload: createProdu });
@@ -52,7 +52,7 @@ export const createDiscount = (product) => {
   return async function (dispatch) {
     try {
       const createDiscount = await axios.post(
-        "http://localhost:3001/discount",
+        'http://localhost:3001/discount',
         product
       );
       return dispatch({ type: CREATE_DISCOUNT, payload: createDiscount.data });
@@ -88,7 +88,7 @@ export const putInventory = (id, product) => {
 export const putDiscount = (product) => {
   return async function (dispatch) {
     const putInventory = await axios.put(
-      "http://localhost:3001/discount/",
+      'http://localhost:3001/discount/',
       product
     );
     return dispatch({ type: PUT_DISCOUNT, payload: putInventory.data });
