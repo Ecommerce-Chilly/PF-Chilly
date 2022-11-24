@@ -14,21 +14,21 @@ favoritesRoute.post('/', async (req, res) => {
 
 favoritesRoute.get('/:id', async (req, res) => {
     try {
-        const user = await getFavorite(req.params.id)
-        res.status(200).send(user)
+        const favorite = await getFavorite(req.params.id)
+        res.status(200).send(favorite)
     } catch (error) {
         res.status(404).send({ error: error.message })
     }
 })
 
-favoritesRoute.get('/', async (res) => {
+favoritesRoute.get('/', async (req, res) => {
     try {
-        const users = await getAllFavorites()
-        res.status(200).send(users)
+        const favorite = await getAllFavorites()
+        res.status(200).send(favorite)
 
     } catch (error) {
         res.status(404).send({ error: error.message })
     }
 })
 
-module.exports = { favoritesRoute } 
+module.exports = favoritesRoute  
