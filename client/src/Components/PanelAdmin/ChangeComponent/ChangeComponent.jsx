@@ -9,7 +9,6 @@ import {
   putDiscount,
 } from "../../../redux/actions/actions.js";
 import { useParams } from "react-router-dom";
-import store from "../../../redux/store/store";
 import "./ChangeComponent.css";
 
 

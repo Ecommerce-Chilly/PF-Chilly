@@ -19,7 +19,7 @@ import Footer from "../Footer/Footer";
 
 function MainRoute() {
   return (
-    <>
+    <div>
       <div>
         <Navbar />
       </div>
@@ -53,7 +53,7 @@ function MainRoute() {
       <div>
         <Footer />
       </div>
-    </>
+    </div>
   );
 }
 

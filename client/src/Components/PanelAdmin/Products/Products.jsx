@@ -20,7 +20,8 @@ function Products() {
         <Filters />
       </div>
 
-        <Paginate products={products} />
+      <Paginate products={products} />
+      
       {/* <div>
         {products.length > 0 && searchProductMsg === "" ? (
           products?.map((el) => <ProductCard {...el} />)
@@ -30,6 +31,7 @@ function Products() {
           <div>No se ha encontrado productos</div>
         )}
       </div> */}
+
     </div>
   );
 }

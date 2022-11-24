@@ -4,7 +4,7 @@ import SearchBar from "../SearchBar/SearchBar";
 import "./Navbar.css";
 
 function Navbar() {
-  const [open, setOpen] = useState(false);
+
   return (
     <>
       <div className="Navbar">
@@ -30,7 +30,7 @@ function Navbar() {
 
           
         </div>
-        <div className={`nav-items ${open && "open"}`}>
+        <div className="flex">
           <Link to="/cart">
             <img
               src="https://cdn-icons-png.flaticon.com/512/1170/1170678.png"

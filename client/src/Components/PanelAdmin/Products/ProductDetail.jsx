@@ -12,7 +12,6 @@ function ProductDetail() {
     dispatch(getProductById(id));
   }, [dispatch, id]);
 
-  
   return (
     <div>
       <Link to="/panel+admin/products">
@@ -20,14 +19,18 @@ function ProductDetail() {
       </Link>
       {produDetail.length > 0 ? (
         Object.keys(produDetail).length > 0 && (
-          <div key={produDetail[0].id}>
-            <img src={produDetail[0].image} alt={produDetail[0].name} />
-            <h1> {produDetail[0].name}</h1>
-            <h2> Price:{produDetail[0].price} </h2>
-            <h2> Brand: {produDetail[0].brand}</h2>
-            <h3> Model: {produDetail[0].model}</h3>
-            <h2> Category: {produDetail[0].categoryName}</h2>
-            <h2> Stock: {produDetail[0].inventory.quantity}</h2>
+          <div key={produDetail[0].id} className="flex row">
+            <div>
+              <img src={produDetail[0].image} alt={produDetail[0].name} />
+            </div>
+            <div>
+              <h1> {produDetail[0].name}</h1>
+              <h2> Price:{produDetail[0].price} </h2>
+              <h2> Brand: {produDetail[0].brand}</h2>
+              <h3> Model: {produDetail[0].model}</h3>
+              <h2> Category: {produDetail[0].categoryName}</h2>
+              <h2> Stock: {produDetail[0].inventory.quantity}</h2>
+            </div>
             <Link to={`/panel+admin/change/product/${produDetail[0].id}`}>
               <button>Want to change product? Click here!</button>
             </Link>

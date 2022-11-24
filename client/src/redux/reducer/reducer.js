@@ -14,6 +14,7 @@ import {
   GET_PRODUCT_BY_NAME,
   ERROR_MSSG,
   EUSEBIO,
+  RESTORE_PRODUCT,
 } from "../actions/actions.js";
 
 const initialState = {
@@ -89,6 +90,12 @@ const rootReducer = (state = initialState, action) => {
         ...state,
         categoryDetails: action.payload,
       };
+    case RESTORE_PRODUCT:
+      return {
+        ...state,
+        productChangedMsg: action.payload,
+      };
+
     case FILTER1:
       let temporal = state.allProduct;
       let filtered = temporal.filter((e) => e.categoryName === action.payload);

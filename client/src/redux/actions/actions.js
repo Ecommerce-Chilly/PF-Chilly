@@ -14,6 +14,7 @@ export const FILTER_BY_DETAILS = "FILTER_BY_DETAILS";
 export const GET_PRODUCT_BY_NAME = "GET_PRODUCT_BY_NAME";
 export const ERROR_MSSG = "ERROR_MSSG";
 export const EUSEBIO = "EUSEBIO";
+export const RESTORE_PRODUCT = "RESTORE_PRODUCT";
 
 export const getProduct = () => {
   return async function (dispatch) {
@@ -46,6 +47,7 @@ export const createProduct = (product) => {
     }
   };
 };
+
 export const createDiscount = (product) => {
   return async function (dispatch) {
     try {
@@ -145,5 +147,15 @@ export const getProductByName = (name) => {
     } catch (error) {
       return dispatch({ type: ERROR_MSSG, payload: error.response.data });
     }
+  };
+};
+
+export const restoreProduct = (id) => {
+  return async function (dispatch) {
+    let restoreProduct = await axios.put(
+      `http://localhost:3001/product/restore/${id}`
+    );
+    console.log(restoreProduct);
+    return dispatch({ type: RESTORE_PRODUCT, payload: restoreProduct.data });
   };
 };
