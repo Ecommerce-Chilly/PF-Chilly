@@ -14,18 +14,16 @@ const getProducts = async (category, id, name) => {
       if (productName.length === 0)
         throw new Error(`Product with name ${name} is not exist`);
       return productName;
-    }
-    else if (id && !category && !name) {
+    } else if (id && !category && !name) {
       const product = await Product.findByPk(id, {
         include: {
           model: Inventory,
           attributes: ["quantity"],
         },
       });
-      if (!product) throw new Error(`Product with id ${id} is not exist`);
+      if (!product) throw new Error(`Product with id ${id} does not exist`);
       return product;
-    }
-    else if (category && !name && !id) {
+    } else if (category && !name && !id) {
       const prodGet = await Product.findAll({
         where: { categoryName: category },
         include: {

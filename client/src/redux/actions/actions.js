@@ -11,11 +11,8 @@ export const FAIL_CREATED_MSG = "FAIL_CREATED_MSG";
 export const GET_CATEGORY_DETAILS = "GET_CATEGORY_DETAILS";
 export const FILTER1 = "FILTER1";
 export const FILTER_BY_DETAILS = "FILTER_BY_DETAILS";
-<<<<<<< HEAD
-=======
 export const GET_PRODUCT_BY_NAME = "GET_PRODUCT_BY_NAME";
 export const ERROR_MSSG = "ERROR_MSSG";
->>>>>>> 3de35bddf5083c3f5e90ca1ce87672daf43b04de
 
 export const getProduct = () => {
   return async function (dispatch) {
@@ -125,8 +122,6 @@ export const filterbyDetails = (category, details) => {
     payload: [category, details],
   };
 };
-<<<<<<< HEAD
-=======
 
 export const getProductByName = (name) => {
   return async function (dispatch) {
@@ -147,4 +142,3 @@ export const getProductByName = (name) => {
     }
   };
 };
->>>>>>> 3de35bddf5083c3f5e90ca1ce87672daf43b04de
