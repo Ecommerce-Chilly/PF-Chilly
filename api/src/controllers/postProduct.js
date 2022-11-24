@@ -1,6 +1,6 @@
 const { Product, Category, Inventory, Discount } = require("../db");
 const caseData = require("../dataApi/case.json");
-const postInvetory = require("./postInventory");
+const postInventory = require("./postInventory");
 // const dataCategory = require('../data/data-category.json')
 // const caseData = require("./src/dataApi/case.json");
 // const postinventory = require("./src/controllers/postInventory");
@@ -18,7 +18,8 @@ const postProduct = async ({
    if (!name || !price || !details || !category || !discount || !quantity) {
       throw Error("Sending incomplete information!");
    } else {
-      const invCreate = await postInvetory(quantity);
+      console.log("estoy en else de pp");
+      const invCreate = await postInventory(quantity);
       const discountDB = await Discount.findOne({ where: { name: discount } });
       const categoryDB = await Category.findOne({ where: { name: category } });
       const proCreate = await Product.create({

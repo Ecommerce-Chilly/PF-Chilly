@@ -10,6 +10,7 @@ productRoute.post("/", async (req, res) => {
       const productCreate = await postProduct(req.body);
       res.status(201).send(productCreate);
    } catch (error) {
+      console.log(error)
       res.status(400).send({ error: error.message });
    }
 });

@@ -1,6 +1,6 @@
 const { Inventory } = require("../db");
 
-const postInvetory = async (quantity) => {
+const postInventory = async (quantity) => {
    if (!quantity) throw new Error("Send a quantity of products");
    try {
       const invCreate = await Inventory.create({
@@ -12,4 +12,4 @@ const postInvetory = async (quantity) => {
    }
 };
 
-module.exports = postInvetory;
+module.exports = postInventory;

@@ -56,11 +56,11 @@ const {
 Category.hasMany(Product);
 Product.belongsTo(Category);
 
-Product.hasOne(Inventory);
-Inventory.hasOne(Product);
-
 Discount.hasMany(Product);
 Product.belongsTo(Discount);
+
+Product.hasOne(Inventory);
+Inventory.hasOne(Product);
 
 Administrator.hasOne(Clients);
 Clients.hasOne(Administrator);
@@ -68,8 +68,8 @@ Clients.hasOne(Administrator);
 Administrator.hasOne(User_role);
 User_role.hasMany(Administrator);
 
-User_role.hasOne(User);
 User.hasMany(User_role);
+User_role.belongsTo(User);
 
 User.hasOne(Data_user);
 Data_user.belongsTo(User);
@@ -84,10 +84,7 @@ Shopping_session.hasMany(Cart_item);
 Cart_item.hasOne(Shopping_session);
 
 Payment_details.hasOne(Order_details);
-Order_details.hasOne(Payment_details);
-
-Favorite.hasOne(User);
-User.hasMany(Favorite);
+Order_details.hasOne(Payment_details);;
 
 Product.hasOne(Order_items);
 Order_items.hasOne(Product);
@@ -101,10 +98,10 @@ User.hasMany(Order_items);
 User.hasMany(Order_details);
 Order_details.hasOne(User);
 
-Favorite.hasOne(Product);
-Product.hasOne(Favorite);
+Favorite.belongsTo(Product);
+Product.hasMany(Favorite);
 
-Favorite.hasOne(User);
+Favorite.belongsTo(User);
 User.hasMany(Favorite);
 
 module.exports = {
