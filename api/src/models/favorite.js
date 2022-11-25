@@ -9,5 +9,13 @@ module.exports = (sequelize) => {
          allowNull: false,
          unique: true,
       },
-   });
+   },
+      {
+         indexes: [
+            {
+               unique: true,
+               fields: ['productId', 'userId'],
+            },
+         ]
+      });
 };

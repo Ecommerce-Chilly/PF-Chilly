@@ -4,6 +4,8 @@ const productRoute = require("./productRoute");
 const inventoryRoute = require("./inventoryRoute");
 const discountsRoute = require("./discountsRoute");
 const detailsCategoryRoute = require("./detailsCategoryRoute");
+const favoritesRoute = require("./favoritesRoute")
+const orderItemsRoute = require("./orderItemsRoute")
 const { hardCodeoInfo } = require("../controllers/hardCode");
 const userRoute = require("./userRoute")
 const favoriteRoute = require('./favoriteRoute')
@@ -28,5 +30,7 @@ router.use("/categoryDetails", detailsCategoryRoute);
 router.use("/user", userRoute)
 router.use("/favorite", favoriteRoute)
 router.use("/payment", mercadoPago)
+router.use("/favorite", favoritesRoute)
+router.use("/orderItems", orderItemsRoute)
 
 module.exports = router;
