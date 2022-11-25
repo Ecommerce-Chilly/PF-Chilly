@@ -1,7 +1,7 @@
-import React, { useEffect } from "react";
-import { Link, useParams } from "react-router-dom";
-import { getProductById } from "../../../redux/actions/actions.js";
-import { useDispatch, useSelector } from "react-redux";
+import React, { useEffect } from 'react';
+import { Link, useParams } from 'react-router-dom';
+import { getProductById } from '../../../redux/actions/actions.js';
+import { useDispatch, useSelector } from 'react-redux';
 
 function ProductDetail() {
   const { id } = useParams();
@@ -24,12 +24,12 @@ function ProductDetail() {
               <img src={produDetail[0].image} alt={produDetail[0].name} />
             </div>
             <div>
-              <h1> {produDetail[0].name}</h1>
-              <h2> Price:{produDetail[0].price} </h2>
-              <h2> Brand: {produDetail[0].brand}</h2>
-              <h3> Model: {produDetail[0].model}</h3>
-              <h2> Category: {produDetail[0].categoryName}</h2>
-              <h2> Stock: {produDetail[0].inventory.quantity}</h2>
+              <p> {produDetail[0].name}</p>
+              <p> Price:{produDetail[0].price} </p>
+              <p> Brand: {produDetail[0].brand}</p>
+              <p> Model: {produDetail[0].model}</p>
+              <p> Category: {produDetail[0].categoryName}</p>
+              <p> Stock: {produDetail[0].inventory.quantity}</p>
             </div>
             <Link to={`/panel+admin/change/product/${produDetail[0].id}`}>
               <button>Want to change product? Click here!</button>

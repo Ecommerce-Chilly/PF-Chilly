@@ -1,8 +1,8 @@
 import {
   deleteProdut,
   restoreProduct,
-} from "../../../redux/actions/actions.js";
-import { useDispatch } from "react-redux";
+} from '../../../redux/actions/actions.js';
+import { useDispatch } from 'react-redux';
 import React from 'react';
 import { Link } from 'react-router-dom';
 
@@ -16,11 +16,14 @@ function ProductCard(props) {
   function dispatchToRestore(id) {
     dispatch(restoreProduct(id));
   }
-
+  let newImage = props.image.replace('SL75', 'SL500');
   return (
-    <div className="container mx-auto bg-green-200 rounded-xl shadow border p-8 m-10">
-      <>
-        <div className="flex justify-between">
+    <div className="w-72 h-96 mb-11 bg-white rounded-xl shadow-xl border  m-2 relative flex flex-col justify-between">
+      <Link
+        to={`/panel+admin/products/${props.id}`}
+        className="h-96 flex flex-col p-5"
+      >
+        {/* <div className="flex justify-between">
           <button
             onClick={() => {
               dispatchToDeleteProduct(props.id);
@@ -35,19 +38,16 @@ function ProductCard(props) {
           >
             RESTORE_PRODUCT
           </button>
-        </div>
-        <Link to={`/panel+admin/products/${props.id}`}>
-          <div>
-            <div>
-              <h2>{props.name}</h2>
-              <img src={props.image} alt={props.name} />
-              <p>Brand: {props.brand}</p>
-              <p>Price: {props.price}</p>
-              <p>Category:{props.categoryName}</p>
-            </div>
-          </div>
-        </Link>
-      </>
+        </div> */}
+
+        <h2>{props.name}</h2>
+        <img className="m-auto h-40" src={newImage} alt={props.name} />
+        {/* <p>{props.brand}</p> */}
+
+        {/* <p>Category:{props.categoryName}</p> */}
+
+        <p className="">$ {props.price}</p>
+      </Link>
     </div>
   );
 }
