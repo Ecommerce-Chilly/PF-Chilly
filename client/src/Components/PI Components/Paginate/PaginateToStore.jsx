@@ -48,7 +48,6 @@ function Paginate({ products }) {
               image={el.image}
               brand={el.brand}
               price={el.price}
-              categoryName={el.categoryName}
             />
           ))
         ) : searchProductMsg.error ? (
