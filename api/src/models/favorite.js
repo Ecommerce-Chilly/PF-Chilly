@@ -14,6 +14,13 @@ module.exports = (sequelize) => {
       },
       {
          paranoid: true,
+         indexes: [
+            // Create a unique index on email
+            {
+               unique: true,
+               fields: ["userId", "productId"],
+            },
+         ],
       }
    );
 };

@@ -10,6 +10,7 @@ const postFavorite = async ({ userId, productId }) => {
          const findUserId = await User.findByPk(userId);
          //find the userId from the active User
          const findProductId = await Product.findByPk(productId);
+
          const newFavorite = await Favorite.create({});
          await newFavorite.setUser(findUserId);
          await newFavorite.setProduct(findProductId);

@@ -1,7 +1,6 @@
 const { Favorite } = require("../db");
 
 const deleteFavorite = async (id) => {
-   console.log("soy id " + id);
    try {
       if (!id) throw new Error("Send an id");
       const foundFavorite = await Favorite.findByPk(id);
@@ -15,4 +14,4 @@ const deleteFavorite = async (id) => {
    }
 };
 
-module.exports = { deleteFavorite };
+module.exports = deleteFavorite;

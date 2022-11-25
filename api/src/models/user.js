@@ -23,6 +23,13 @@ module.exports = (sequelize) => {
       },
       {
          timestamps: true,
+         indexes: [
+            // Create a unique index on email
+            {
+               unique: true,
+               fields: ["email"],
+            },
+         ],
       }
    );
 };
