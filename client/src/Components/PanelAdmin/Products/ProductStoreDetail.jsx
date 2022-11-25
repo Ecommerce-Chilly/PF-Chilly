@@ -13,7 +13,7 @@ function ProductDetail() {
   }, [dispatch, id]);
 
   return (
-    <div>
+    <div className="  w-5/6 m-auto">
       {produDetail.length > 0 ? (
         Object.keys(produDetail).length > 0 && (
           <div key={produDetail[0].id} className="flex row">
@@ -34,17 +34,16 @@ function ProductDetail() {
                         {produDetail[0].name}
                       </h1>
 
-                      <p class="leading-relaxed">
-                        Fam locavore kickstarter distillery. Mixtape chillwave
-                        tumeric sriracha taximy chia microdosing tilde DIY. XOXO
-                        fam indxgo juiceramps cornhole raw denim forage
-                        brooklyn. Everyday carry +1 seitan poutine tumeric.
-                        Gastropub blue bottle austin listicle pour-over, neutra
-                        jean shorts keytar banjo tattooed umami cardigan.
+                      <p class="mb-10 mt-4 font-display">
+                        Lorem, ipsum dolor sit amet consectetur adipisicing
+                        elit. Modi, facilis nobis? Culpa fuga aspernatur dolorum
+                        accusantium. Ducimus reiciendis voluptatem temporibus id
+                        debitis. Architecto, dolorem corporis aperiam et
+                        voluptas officiis omnis.
                       </p>
 
                       <div class="flex">
-                        <span class="title-font font-medium text-2xl text-gray-900">
+                        <span class="title-font font-medium text-4xl text-gray-900">
                           ${' '}
                           {produDetail[0].price == 0
                             ? 50

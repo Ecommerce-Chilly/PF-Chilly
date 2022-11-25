@@ -2,9 +2,9 @@ import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import {
   getCategoryDetails,
-  getProduct,
   filter1,
   filterbyDetails,
+  getProduct,
 } from '../../../redux/actions/actions.js';
 import store from '../../../redux/store/store';
 
@@ -18,11 +18,6 @@ function Filters() {
   useEffect(() => {
     dispatch(filterbyDetails(category, details));
   }, [details, category]);
-
-  function handleClearFilters(event) {
-    event.preventDefault();
-    dispatch(getProduct());
-  }
 
   let dispatchCategory = (e) => {
     setInputs([]);
@@ -42,13 +37,20 @@ function Filters() {
     getDetails();
     dispatch(filter1(e.target.value));
   };
+  function handleClearFilters(event) {
+    event.preventDefault();
+    dispatch(getProduct());
+  }
 
   return (
     <div className="bg-slate-200 w-60 pl-5 pt-8 h-full">
-      <h3 className="text-2xl uppercase mb-4">Category</h3>
+      <h3 className="text-2xl uppercase font-medium mb-4">Category</h3>
       <div>
-        <button onClick={(event) => handleClearFilters(event)}>
-          RESET FILTERS
+        <button
+          onClick={(event) => handleClearFilters(event)}
+          className=" absolute left-40 ml-1 top-40 z-10 border-solid border-main rounded border-2 px-2.5"
+        >
+          Reset
         </button>
       </div>
       <select
@@ -76,11 +78,11 @@ function Filters() {
           return (
             <>
               <div className=" border-b-1 mb-7 h-7 w-36 bg-gradient-to-r from-main  to-slate-200">
-                <p className="bg-slate-200  uppercase my-5 ">{e}</p>
+                <p className="bg-slate-200 font-medium uppercase my-5 ">{e}</p>
               </div>
               {categoryDetails[e]?.map((element) => (
                 <div className="flex justify-between">
-                  <label className=" w-40">{element}</label>
+                  <label className="w-40 font-regular">{element}</label>
                   <input
                     className="form-check-input appearance-none rounded-full h-4 w-4 border border-gray-300 bg-white checked:bg-main checked:border-sky-400 focus:outline-none transition duration-200 mt-1 align-top bg-no-repeat bg-center bg-contain float-left mr-2 cursor-pointer"
                     type="radio"

@@ -601,6 +601,46 @@ video {
   top: 50%;
 }
 
+.right-1 {
+  right: 0.25rem;
+}
+
+.left-3\/4 {
+  left: 75%;
+}
+
+.-left-3\/4 {
+  left: -75%;
+}
+
+.left-20 {
+  left: 5rem;
+}
+
+.left-64 {
+  left: 16rem;
+}
+
+.top-60 {
+  top: 15rem;
+}
+
+.top-40 {
+  top: 10rem;
+}
+
+.left-32 {
+  left: 8rem;
+}
+
+.left-40 {
+  left: 10rem;
+}
+
+.left-44 {
+  left: 11rem;
+}
+
 .z-20 {
   z-index: 20;
 }
@@ -786,6 +826,10 @@ video {
 
 .mr-auto {
   margin-right: auto;
+}
+
+.mt-4 {
+  margin-top: 1rem;
 }
 
 .block {
@@ -1249,6 +1293,11 @@ video {
   border-color: rgb(156 163 175 / var(--tw-border-opacity));
 }
 
+.border-main {
+  --tw-border-opacity: 1;
+  border-color: rgb(48 63 159 / var(--tw-border-opacity));
+}
+
 .bg-main {
   --tw-bg-opacity: 1;
   background-color: rgb(48 63 159 / var(--tw-bg-opacity));
@@ -1382,6 +1431,16 @@ video {
 .bg-orange-500 {
   --tw-bg-opacity: 1;
   background-color: rgb(249 115 22 / var(--tw-bg-opacity));
+}
+
+.bg-red-100 {
+  --tw-bg-opacity: 1;
+  background-color: rgb(254 226 226 / var(--tw-bg-opacity));
+}
+
+.bg-green-100 {
+  --tw-bg-opacity: 1;
+  background-color: rgb(220 252 231 / var(--tw-bg-opacity));
 }
 
 .bg-gradient-to-r {
@@ -1551,6 +1610,21 @@ video {
   padding-right: 1.5rem;
 }
 
+.py-3 {
+  padding-top: 0.75rem;
+  padding-bottom: 0.75rem;
+}
+
+.px-2\.5 {
+  padding-left: 0.625rem;
+  padding-right: 0.625rem;
+}
+
+.py-1 {
+  padding-top: 0.25rem;
+  padding-bottom: 0.25rem;
+}
+
 .pr-2 {
   padding-right: 0.5rem;
 }
@@ -1623,6 +1697,14 @@ video {
   font-family: Inter;
 }
 
+.font-serif {
+  font-family: ui-serif, Georgia, Cambria, "Times New Roman", Times, serif;
+}
+
+.font-mono {
+  font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+}
+
 .text-3xl {
   font-size: 1.875rem;
   line-height: 2.25rem;
@@ -1651,6 +1733,21 @@ video {
 .text-base {
   font-size: 1rem;
   line-height: 1.5rem;
+}
+
+.text-lg {
+  font-size: 1.125rem;
+  line-height: 1.75rem;
+}
+
+.text-6xl {
+  font-size: 3.75rem;
+  line-height: 1;
+}
+
+.text-5xl {
+  font-size: 3rem;
+  line-height: 1;
 }
 
 .font-normal {

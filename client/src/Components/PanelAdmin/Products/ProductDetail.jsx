@@ -13,7 +13,7 @@ function ProductDetail() {
   }, [dispatch, id]);
 
   return (
-    <div>
+    <div className="w-5/6 m-auto">
       {produDetail.length > 0 ? (
         Object.keys(produDetail).length > 0 && (
           <div key={produDetail[0].id} className="flex row">
@@ -32,7 +32,6 @@ function ProductDetail() {
               <button>Want to change product? Click here!</button>
             </Link> */}
             <div>
-              {' '}
               <div>
                 <section class="text-gray-700 body-font overflow-hidden bg-white">
                   <div class="container px-5 py-24 mx-auto">

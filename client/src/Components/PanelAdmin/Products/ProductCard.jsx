@@ -72,36 +72,20 @@ function ProductCard(props) {
   function dispatchToRestore(id) {
     dispatch(restoreProduct(id));
   }
-  console.log(props.name.length);
+
   return (
     <div className="w-72 h-96 mb-11 bg-white rounded-xl shadow-xl border  m-2 relative flex flex-col justify-between">
       {props.categoryName ? (
         <>
-          <div className="flex justify-between">
-            <button
-              onClick={() => {
-                dispatchToDeleteProduct(props.id);
-              }}
-            >
-              Want to delete? Click here!
-            </button>
-            <button
-              onClick={() => {
-                dispatchToRestore(props.id);
-              }}
-            >
-              RESTORE_PRODUCT
-            </button>
-          </div>
           <Link
             to={`/panel+admin/products/${props.id}`}
-            className="h-96 flex flex-col p-5"
+            className="h-96 flex flex-col px-5 pt-5"
           >
             <div>
               <div>
-                <h2>
-                  {props.name.length > 50
-                    ? `${props.name.slice(0, 20)}...`
+                <h2 className="font-medium text-lg">
+                  {props.name.length > 40
+                    ? `${props.name.slice(0, 50)}...`
                     : props.name}
                 </h2>
 
@@ -116,6 +100,24 @@ function ProductCard(props) {
               </div>
             </div>
           </Link>
+          <div className="flex justify-evenly mb-3">
+            <button
+              className="bg-red-100 rounded px-3 py-1"
+              onClick={() => {
+                dispatchToDeleteProduct(props.id);
+              }}
+            >
+              Delete Product
+            </button>
+            <button
+              className="bg-green-100 rounded px-3"
+              onClick={() => {
+                dispatchToRestore(props.id);
+              }}
+            >
+              Restore
+            </button>
+          </div>
         </>
       ) : (
         <div>
@@ -123,7 +125,7 @@ function ProductCard(props) {
             to={`/store/products/${props.id}`}
             className="h-96 flex flex-col p-5"
           >
-            <h2>
+            <h2 className="font-medium text-lg">
               {props.name.length > 50
                 ? `${props.name.slice(0, 60)}...`
                 : props.name}
@@ -133,8 +135,7 @@ function ProductCard(props) {
               src={props.image.replace('SL75', 'SL500')}
               alt={props.name}
             />
-
-            <p>$ {props.price === 0 ? 50 : props.price}</p>
+            <p className="text-2xl">$ {props.price === 0 ? 50 : props.price}</p>
           </Link>
         </div>
       )}

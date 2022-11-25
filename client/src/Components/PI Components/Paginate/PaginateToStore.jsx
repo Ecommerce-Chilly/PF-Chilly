@@ -46,7 +46,7 @@ function Paginate({ products }) {
               key={el.id}
               id={el.id}
               name={el.name}
-              image={el.image}
+              image={el.image.replace('SL75', 'SL500')}
               brand={el.brand}
               price={el.price}
             />
