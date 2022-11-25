@@ -5,7 +5,7 @@ const getProducts = async (category, id, name) => {
     if (name && !category && !id) {
       const productName = await Product.findAll({
         // Juanra hizo el Op.like
-        where: { name: { [Op.iLike]: `%${name}%` }, deletedAt: null },
+        where: { name: { [Op.iLike]: `%${name}%` } },
         include: {
           model: Inventory,
           attributes: ["quantity"],
@@ -27,7 +27,7 @@ const getProducts = async (category, id, name) => {
     }
     else if (category && !name && !id) {
       const prodGet = await Product.findAll({
-        where: { categoryName: category, deleteAt: null },
+        where: { categoryName: category },
         include: {
           model: Inventory,
           attributes: ["quantity"],
@@ -36,7 +36,6 @@ const getProducts = async (category, id, name) => {
       return prodGet;
     } else {
       const all = await Product.findAll({
-        where: { deletedAt: null },
         include: {
           model: Inventory,
           attributes: ["quantity"],
