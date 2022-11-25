@@ -5,8 +5,10 @@ const inventoryRoute = require("./inventoryRoute");
 const discountsRoute = require("./discountsRoute");
 const detailsCategoryRoute = require("./detailsCategoryRoute");
 const favoritesRoute = require("./favoritesRoute")
+const orderItemsRoute = require("./orderItemsRoute")
 const { hardCodeoInfo } = require("../controllers/hardCode");
-const { userRoute, } = require("./userRoute")
+const { userRoute, } = require("./userRoute");
+
 
 const router = Router();
 
@@ -25,5 +27,6 @@ router.use("/inventory", inventoryRoute);
 router.use("/categoryDetails", detailsCategoryRoute);
 router.use("/user", userRoute)
 router.use("/favorite", favoritesRoute)
+router.use("/orderItems", orderItemsRoute)
 
 module.exports = router;
