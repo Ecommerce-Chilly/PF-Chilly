@@ -12,10 +12,6 @@ module.exports = (sequelize) => {
          quantity: {
             type: DataTypes.INTEGER,
          },
-         status: {
-            type: DataTypes.BOOLEAN,
-            defaultValue: true,
-         },
       },
       {
          timestamps: false,
