@@ -1,7 +1,7 @@
-import React, { useEffect, useState } from "react";
-import { useSelector } from "react-redux";
-import ReactPaginate from "react-paginate";
-import ProductCard from "../../PanelAdmin/Products/ProductCard";
+import React, { useEffect, useState } from 'react';
+import { useSelector } from 'react-redux';
+import ReactPaginate from 'react-paginate';
+import ProductCard from '../../PanelAdmin/Products/ProductCard';
 // import "./Paginate.css";
 
 function Paginate({ products }) {
@@ -23,7 +23,7 @@ function Paginate({ products }) {
   }, [products]);
 
   return (
-    <>
+    <div className="">
       <ReactPaginate
         breakLabel="..."
         nextLabel="Next"
@@ -33,32 +33,22 @@ function Paginate({ products }) {
         pageCount={pageCount}
         previousLabel="Previous"
         renderOnZeroPageCount={null}
-        containerClassName={"pagination"}
-        pageLinkClassName={"page-num"}
-        previousLinkClassName={"page-num"}
-        nextLinkClassName={"page-num"}
-        activeLinkClassName={"active"}
+        containerClassName={'pagination'}
+        pageLinkClassName={'page-num'}
+        previousLinkClassName={'page-num'}
+        nextLinkClassName={'page-num'}
+        activeLinkClassName={'active'}
       />
-      <div>
-        {currentItems.length > 0 && searchProductMsg === "" ? (
-          currentItems?.map((el) => (
-            <ProductCard
-              key={el.id}
-              id={el.id}
-              name={el.name}
-              image={el.image}
-              brand={el.brand}
-              price={el.price}
-              categoryName={el.categoryName}
-            />
-          ))
+      <div className="flex flex-wrap justify-evenly">
+        {currentItems.length > 0 && searchProductMsg === '' ? (
+          currentItems?.map((el) => <ProductCard key={el.id} {...el} />)
         ) : searchProductMsg.error ? (
           <p>{searchProductMsg.error}</p>
         ) : (
           <div>Products not found</div>
         )}
       </div>
-    </>
+    </div>
   );
 }
 

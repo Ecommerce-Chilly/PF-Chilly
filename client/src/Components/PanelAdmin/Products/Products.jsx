@@ -1,9 +1,10 @@
-import React, { useEffect } from "react";
-import { useDispatch, useSelector } from "react-redux";
-import { getProduct } from "../../../redux/actions/actions.js";
-import Filters from "../../PI Components/Filters/Filters";
-import Paginate from "../../PI Components/Paginate/Paginate";
-import "../../PI Components/Paginate/Paginate.css";
+import React, { useEffect } from 'react';
+import ProductCard from './ProductCard';
+import { useDispatch, useSelector } from 'react-redux';
+import { getProduct } from '../../../redux/actions/actions.js';
+import Filters from '../../PI Components/Filters/Filters';
+import Paginate from '../../PI Components/Paginate/Paginate';
+import '../../PI Components/Paginate/Paginate.css';
 
 function Products() {
   const dispatch = useDispatch();
@@ -14,13 +15,13 @@ function Products() {
   }, [dispatch]);
 
   return (
-    <div className="flex justify-around">
+    <div className="flex ">
       <div>
         <Filters />
       </div>
-
-      <Paginate products={products} />
-      
+      <div className="w-full text-center flex mt-20">
+        <Paginate products={products} />
+      </div>
       {/* <div>
         {products.length > 0 && searchProductMsg === "" ? (
           products?.map((el) => <ProductCard {...el} />)
@@ -30,7 +31,6 @@ function Products() {
           <div>No se ha encontrado productos</div>
         )}
       </div> */}
-
     </div>
   );
 }

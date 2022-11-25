@@ -1,8 +1,8 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
+import SearchBar from '../SearchBar/SearchBar';
 
 function Navbar() {
-
   return (
     <>
       <nav class="	bg-white border-gray-200 px-2 sm:px-4 py-5  dark:bg-main static">
@@ -12,8 +12,8 @@ function Navbar() {
               Chilly
             </span>
           </a>
-
-          <div class="absolute  left-1/2 transform -translate-x-1/2  ">
+          <SearchBar></SearchBar>
+          {/* <div class="absolute  left-1/2 transform -translate-x-1/2  ">
             <div class=" flex items-center w-full h-10 rounded-lg focus-within:shadow-lg bg-white overflow-hidden">
               <div class="grid place-items-center h-full w-12 text-gray-300">
                 <svg
@@ -39,7 +39,7 @@ function Navbar() {
                 placeholder="Search something.."
               />
             </div>
-          </div>
+          </div> */}
 
           <div class="hidden w-full md:block md:w-auto" id="navbar-default">
             <Link to="/user/favorites" className="inline-block mx-4">

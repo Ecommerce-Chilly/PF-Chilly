@@ -8,7 +8,7 @@ discountsRoute.post("/", async (req, res) => {
     const discountDb = await postDiscounts(req.body);
     res.status(200).send(discountDb);
   } catch (error) {
-    res.status(400).send({ error: error.message });
+    res.status(400).send({ error: error });
   }
 });
 discountsRoute.put("/", async (req, res) => {
@@ -16,7 +16,7 @@ discountsRoute.put("/", async (req, res) => {
     const discount = await putDiscounts(req.body);
     return res.send(discount);
   } catch (error) {
-    res.status(400).send({ error: error.message });
+    res.status(400).send({ error: error });
   }
 });
 module.exports = discountsRoute;

@@ -1,10 +1,10 @@
-import React, { useEffect, useState } from "react";
-import { useSelector } from "react-redux";
-import ReactPaginate from "react-paginate";
-import ProductCard from "../../PanelAdmin/Products/ProductCard";
+import React, { useEffect, useState } from 'react';
+import { useSelector } from 'react-redux';
+import ReactPaginate from 'react-paginate';
+import ProductCard from '../../PanelAdmin/Products/ProductCard';
 // import "./Paginate.css";
 
-function PaginateToStore({ products }) {
+function Paginate({ products }) {
   const { searchProductMsg } = useSelector((state) => state);
   const [productOffset, setProductOffset] = useState(0);
   const productsPerPage = 25;
@@ -33,14 +33,14 @@ function PaginateToStore({ products }) {
         pageCount={pageCount}
         previousLabel="Previous"
         renderOnZeroPageCount={null}
-        containerClassName={"pagination"}
-        pageLinkClassName={"page-num"}
-        previousLinkClassName={"page-num"}
-        nextLinkClassName={"page-num"}
-        activeLinkClassName={"active"}
+        containerClassName={'pagination'}
+        pageLinkClassName={'page-num'}
+        previousLinkClassName={'page-num'}
+        nextLinkClassName={'page-num'}
+        activeLinkClassName={'active'}
       />
-      <div>
-        {currentItems.length > 0 && searchProductMsg === "" ? (
+      <div className="flex flex-wrap justify-evenly">
+        {currentItems.length > 0 && searchProductMsg === '' ? (
           currentItems?.map((el) => (
             <ProductCard
               key={el.id}
@@ -61,4 +61,4 @@ function PaginateToStore({ products }) {
   );
 }
 
-export default PaginateToStore;
+export default Paginate;

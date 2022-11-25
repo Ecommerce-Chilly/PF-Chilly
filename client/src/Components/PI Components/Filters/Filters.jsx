@@ -1,15 +1,16 @@
-import React, { useEffect, useState } from "react";
-import { useDispatch, useSelector } from "react-redux";
+import React, { useEffect, useState } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 import {
   getCategoryDetails,
+  getProduct,
   filter1,
   filterbyDetails,
-} from "../../../redux/actions/actions.js";
-import store from "../../../redux/store/store";
+} from '../../../redux/actions/actions.js';
+import store from '../../../redux/store/store';
 
 function Filters() {
   let [details, setDetails] = useState({});
-  let [category, setCategory] = useState("");
+  let [category, setCategory] = useState('');
   let [inputs, setInputs] = useState([]);
   let dispatch = useDispatch();
   let categoryDetails = useSelector((state) => state.categoryDetails);
@@ -17,6 +18,11 @@ function Filters() {
   useEffect(() => {
     dispatch(filterbyDetails(category, details));
   }, [details, category]);
+
+  function handleClearFilters(event) {
+    event.preventDefault();
+    dispatch(getProduct());
+  }
 
   let dispatchCategory = (e) => {
     setInputs([]);
@@ -26,7 +32,7 @@ function Filters() {
       let categoryDetail = store.getState().categoryDetails;
       for (const element in categoryDetail) {
         console.log(element);
-        if (element !== "name") {
+        if (element !== 'name') {
           setInputs((oldArray) => [...oldArray, element]);
           console.log(inputs);
         }
@@ -38,14 +44,21 @@ function Filters() {
   };
 
   return (
-    <div>
+    <div className="bg-slate-200 w-60 pl-5 pt-8 h-full">
+      <h3 className="text-2xl uppercase mb-4">Category</h3>
+      <div>
+        <button onClick={(event) => handleClearFilters(event)}>
+          RESET FILTERS
+        </button>
+      </div>
       <select
+        className="border-solid border-black bg-white rounded w-11/12 h-7"
         onChange={(e) => {
           dispatchCategory(e);
           setCategory(e.target.value);
         }}
       >
-        <option value="">------</option>
+        <option value="">Select category</option>
         <option value="cases">Cases</option>
         <option value="motherboards">Motherboards</option>
         <option value="case_fan">Case Fan</option>
@@ -62,11 +75,14 @@ function Filters() {
         inputs?.map((e) => {
           return (
             <>
-              <p>{e}</p>
+              <div className=" border-b-1 mb-7 h-7 w-36 bg-gradient-to-r from-main  to-slate-200">
+                <p className="bg-slate-200  uppercase my-5 ">{e}</p>
+              </div>
               {categoryDetails[e]?.map((element) => (
-                <>
-                  <label>{element}</label>
+                <div className="flex justify-between">
+                  <label className=" w-40">{element}</label>
                   <input
+                    className="form-check-input appearance-none rounded-full h-4 w-4 border border-gray-300 bg-white checked:bg-main checked:border-sky-400 focus:outline-none transition duration-200 mt-1 align-top bg-no-repeat bg-center bg-contain float-left mr-2 cursor-pointer"
                     type="radio"
                     name={e}
                     value={element}
@@ -78,7 +94,7 @@ function Filters() {
                     }}
                   ></input>
                   <br></br>
-                </>
+                </div>
               ))}
             </>
           );
