@@ -1,0 +1,36 @@
+### solicitar acceso data
+GET http://localhost:3001/guillo
+
+### solicitar data
+GET http://localhost:3001/product
+
+### get users
+GET http://localhost:3001/user/1
+
+### post new user
+POST http://localhost:3001/user
+content-type:application/json
+
+{ 
+"email":"juanrnoya@gmail.com",
+"password":"password"
+}
+
+### POST FAVORITE
+POST http://localhost:3001/favorite
+content-type:application/json
+
+{ 
+"productId":2,
+"userId":1
+}
+
+### GET FAVORITES
+GET http://localhost:3001/favorite
+
+
+
+### DELETE FAVORITE
+DELETE http://localhost:3001/favorite/1
+
+### DESTROY FAVORITE

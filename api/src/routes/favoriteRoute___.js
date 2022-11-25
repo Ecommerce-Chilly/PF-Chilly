@@ -1,7 +1,6 @@
 const { Router } = require("express");
 const { getFavorite, getAllFavorites } = require("../controllers/getFavorite");
 const postFavorites = require("../controllers/postFavorites");
-
 const { deleteFavorite } = require("../controllers/deleteFavorite___");
 const favoritesRoute = Router();
 
@@ -35,6 +34,8 @@ favoritesRoute.get("/", async (req, res) => {
 favoritesRoute.delete("/:id", async (req, res) => {
    try {
       let { id } = req.params;
+
+      console.log("soy Id " + id);
       id = Number(id);
       const message = await deleteFavorite(id);
       res.send({ message });
