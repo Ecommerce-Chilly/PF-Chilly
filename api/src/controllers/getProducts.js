@@ -5,7 +5,7 @@ const getProducts = async (category, id, name) => {
     if (name && !category && !id) {
       const productName = await Product.findAll({
         // Juanra hizo el Op.like
-        where: { name: { [Op.iLike]: `%${name}%` } },
+        where: { name: { [Op.iLike]: `%${name}%` }, deletedAt: null },
         include: {
           model: Inventory,
           attributes: ["quantity"],
@@ -27,7 +27,7 @@ const getProducts = async (category, id, name) => {
     }
     else if (category && !name && !id) {
       const prodGet = await Product.findAll({
-        where: { categoryName: category },
+        where: { categoryName: category, deleteAt: null },
         include: {
           model: Inventory,
           attributes: ["quantity"],
@@ -36,10 +36,12 @@ const getProducts = async (category, id, name) => {
       return prodGet;
     } else {
       const all = await Product.findAll({
+        where: { deletedAt: null },
         include: {
           model: Inventory,
           attributes: ["quantity"],
         },
+
       });
       if (all.length === 0)
         throw ("Dont have products in our data base");
@@ -49,4 +51,20 @@ const getProducts = async (category, id, name) => {
     throw (error);
   }
 };
-module.exports = { getProducts };
+const getProductsDeleted = async () => {
+  try {
+    const products = await Product.findAll({
+      where: { deletedAt: { [Op.not]: null } },
+      include: {
+        model: Inventory,
+        attributes: ["quantity"],
+      },
+      paranoid: false
+    })
+    if (products.length === 0) throw `There are not products deleted`
+    return products
+  } catch (error) {
+    throw error
+  }
+}
+module.exports = { getProducts, getProductsDeleted };

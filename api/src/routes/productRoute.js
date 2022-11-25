@@ -1,6 +1,6 @@
 const { Router } = require("express");
 const { postProduct } = require("../controllers/postProduct");
-const { getProducts } = require("../controllers/getProducts");
+const { getProducts, getProductsDeleted } = require("../controllers/getProducts");
 const { putProducts } = require("../controllers/putProducts");
 const { deleteProduct } = require("../controllers/deleteProduct");
 const { restoreProduct } = require("../controllers/restoreProduct")
@@ -33,6 +33,14 @@ productRoute.get("/", async (req, res) => {
     res.status(400).send({ error: error });
   }
 });
+productRoute.get('/deleted', async (req, res) => {
+  try {
+    const products = await getProductsDeleted()
+    res.send(products)
+  } catch (error) {
+    res.status(404).send(error)
+  }
+})
 productRoute.get("/:id", async (req, res) => {
   try {
     let { id } = req.params;
