@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import "./Navbar.css";
+import Login from "../../Login/Login/Login";
 
 function Navbar() {
   const [open, setOpen] = useState(false);
@@ -39,11 +40,11 @@ function Navbar() {
             />
           </Link>
           <Link to="/user/info">
-            <img
-              src="https://cdn-icons-png.flaticon.com/512/511/511560.png"
-              alt="icon-user"
-              className="logo"
-            />
+          <Login />
+           
+           
+           
+            
           </Link>
         </div>
       </div>

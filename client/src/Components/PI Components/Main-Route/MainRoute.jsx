@@ -20,6 +20,7 @@ import { getProduct } from "../../../redux/actions/actions.js";
 import { useDispatch } from "react-redux";
 import axios from "axios";
 
+
 function MainRoute() {
   let dispatch = useDispatch();
 
@@ -31,6 +32,7 @@ function MainRoute() {
     <>
       <div>
         <Navbar />
+      
       </div>
       <div>
         <Route exact path="/cart" component={Cart} />
