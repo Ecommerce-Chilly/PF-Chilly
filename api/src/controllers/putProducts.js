@@ -1,8 +1,8 @@
-const { Product } = require("../db");
-
+const { Product, Category, Discount } = require("../db");
+const { putInventory } = require("./putInventory");
 const putProducts = async (
   id,
-  { name, price, brand, model, details, category, discount }
+  { name, price, brand, image, model, details, category, discount, quantity }
 ) => {
   try {
     const product = await Product.findByPk(id);
@@ -11,11 +11,15 @@ const putProducts = async (
     product.price = price;
     product.brand = brand;
     product.model = model;
+    product.image = image;
     product.details = details;
-    product.categoryName = category;
-    product.discountName = discount;
+    const categoryDB = await Category.findOne({ where: { name: category } });
+    const discountDB = await Discount.findOne({ where: { name: discount } });
+    await product.setCategory(categoryDB);
+    await product.setDiscount(discountDB);
+    putInventory(product.inventoryId, quantity);
     await product.save();
-    return product;
+    return "Product was successfully changed"
   } catch (error) {
     throw new Error(error);
   }

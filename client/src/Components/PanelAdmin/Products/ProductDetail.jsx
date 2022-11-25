@@ -7,7 +7,7 @@ function ProductDetail() {
   const { id } = useParams();
   const dispatch = useDispatch();
   const produDetail = useSelector((state) => state.productDetail);
-
+  const failMsg = useSelector((state) => state.searchProductMsg);
   useEffect(() => {
     dispatch(getProductById(id));
   }, [dispatch, id]);
@@ -17,22 +17,30 @@ function ProductDetail() {
       <Link to="/panel+admin/products">
         <button>Back to Page Admin - Product</button>
       </Link>
-      {
+      {produDetail.length > 0 ? (
         Object.keys(produDetail).length > 0 && (
-          <div key={produDetail.id}>
-            <img src={produDetail.image} alt={produDetail.name} />
-            <h1> {produDetail.name}</h1>
-            <h2> Price:{produDetail.price} </h2>
-            <h2> Brand: {produDetail.brand}</h2>
-            <h3> Mode: {produDetail.model}</h3>
-            <h2> Category: {produDetail.categoryName}</h2>
-            <h2> Stock: {produDetail.inventory.quantity}</h2>
-            <Link to={`/panel+admin/change/product/${produDetail.id}`}>
+          <div key={produDetail[0].id} className="flex row">
+            <div>
+              <img src={produDetail[0].image} alt={produDetail[0].name} />
+            </div>
+            <div>
+              <h1> {produDetail[0].name}</h1>
+              <h2> Price:{produDetail[0].price} </h2>
+              <h2> Brand: {produDetail[0].brand}</h2>
+              <h3> Model: {produDetail[0].model}</h3>
+              <h2> Category: {produDetail[0].categoryName}</h2>
+              <h2> Stock: {produDetail[0].inventory.quantity}</h2>
+            </div>
+            <Link to={`/panel+admin/change/product/${produDetail[0].id}`}>
               <button>Want to change product? Click here!</button>
             </Link>
           </div>
         )
-      }
+      ) : !produDetail.length ? (
+        <p>{failMsg}</p>
+      ) : (
+        <></>
+      )}
     </div>
   );
 }

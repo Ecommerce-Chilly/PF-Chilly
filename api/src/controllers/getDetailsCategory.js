@@ -2,9 +2,7 @@ const { Product } = require("../db");
 const { getProducts } = require("./getProducts");
 const getDetailsCategory = async (category) => {
   try {
-    console.log(category);
-    const productsCategory = await getProducts(category);
-    console.log(productsCategory);
+    const productsCategory = await getProducts(category, null, null);
     const detailsName = Object.keys(productsCategory[0].details[0]);
     let details = { name: category };
     detailsName.forEach((el) => {

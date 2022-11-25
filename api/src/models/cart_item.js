@@ -1,26 +1,23 @@
 const { DataTypes } = require("sequelize");
-
 module.exports = (sequelize) => {
    sequelize.define(
-      "inventory",
+      "cart_item",
       {
          id: {
             type: DataTypes.INTEGER,
             autoIncrement: true,
             primaryKey: true,
             allowNull: false,
+            unique:true,
          },
          quantity: {
             type: DataTypes.INTEGER,
-         },
-         status: {
-             type: DataTypes.BOOLEAN,
-             defaultValue:true,
+            allowNull: false,
+            validate: { isNumeric: true },
          },
       },
       {
-         timestamps: false,
-         paranoid: true,
+         timestamps: true,
       }
    );
 };

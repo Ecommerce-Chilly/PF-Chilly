@@ -40,6 +40,7 @@ module.exports = {
       fuchsia: colors.fuchsia,
       pink: colors.pink,
       rose: colors.rose,
+      main: '#303f9f',
     }),
     columns: {
       auto: 'auto',
@@ -366,6 +367,8 @@ module.exports = {
     },
     fontFamily: {
       sans: [
+        '"Josefin Sans"',
+
         'ui-sans-serif',
         'system-ui',
         '-apple-system',
@@ -399,6 +402,7 @@ module.exports = {
         '"Courier New"',
         'monospace',
       ],
+      display: ['Inter'],
     },
     fontSize: {
       xs: ['0.75rem', { lineHeight: '1rem' }],

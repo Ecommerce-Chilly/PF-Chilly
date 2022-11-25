@@ -11,6 +11,10 @@ import {
   GET_CATEGORY_DETAILS,
   FILTER1,
   FILTER_BY_DETAILS,
+  GET_PRODUCT_BY_NAME,
+  ERROR_MSSG,
+  EUSEBIO,
+  RESTORE_PRODUCT,
 } from "../actions/actions.js";
 
 const initialState = {
@@ -19,7 +23,7 @@ const initialState = {
   productDetail: [],
   createProductMsg: "",
   productChangedMsg: "",
-  productDeletedMsg: "",
+  searchProductMsg: "",
   categoryDetails: [],
 };
 
@@ -31,12 +35,19 @@ const rootReducer = (state = initialState, action) => {
         product: action.payload,
         allProduct: action.payload,
         createProductMsg: "",
+        searchProductMsg: "",
+        productChangedMsg: "",
       };
 
     case GET_PRODUCT_BY_ID:
       return {
         ...state,
-        productDetail: action.payload,
+        productDetail: [action.payload],
+      };
+    case GET_PRODUCT_BY_NAME:
+      return {
+        ...state,
+        product: action.payload,
       };
 
     case CREATE_PRODUCT:
@@ -79,6 +90,12 @@ const rootReducer = (state = initialState, action) => {
         ...state,
         categoryDetails: action.payload,
       };
+    case RESTORE_PRODUCT:
+      return {
+        ...state,
+        productChangedMsg: action.payload,
+      };
+
     case FILTER1:
       let temporal = state.allProduct;
       let filtered = temporal.filter((e) => e.categoryName === action.payload);
@@ -88,6 +105,7 @@ const rootReducer = (state = initialState, action) => {
       }
       return {
         ...state,
+        searchProductMsg: "",
         product: filtered,
       };
     case FILTER_BY_DETAILS:
@@ -109,8 +127,21 @@ const rootReducer = (state = initialState, action) => {
 
       return {
         ...state,
+        searchProductMsg: "",
         product: filtered2,
       };
+
+    case ERROR_MSSG:
+      return {
+        ...state,
+        searchProductMsg: action.payload,
+      };
+    case EUSEBIO:
+      return {
+        ...state,
+        searchProductMsg: action.payload,
+      };
+
     default:
       return state;
   }

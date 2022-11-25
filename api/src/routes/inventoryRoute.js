@@ -18,8 +18,7 @@ invetoryRoutes.put("/:id", async (req, res) => {
   try {
     const { id } = req.params;
     const { quantity } = req.body;
-    const newId = Number(id);
-    const inv = await putInventory(newId, quantity);
+    const inv = await putInventory(id, quantity);
     return res.send(inv);
   } catch (error) {
     res.status(404).send(error);

@@ -1,24 +1,20 @@
-import React from 'react';
-import { useEffect } from 'react';
-import { useState } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
+import React, { useEffect, useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
 import {
   getCategoryDetails,
   filter1,
   filterbyDetails,
-} from '../../../redux/actions/actions.js';
-import store from '../../../redux/store/store';
+} from "../../../redux/actions/actions.js";
+import store from "../../../redux/store/store";
 
 function Filters() {
   let [details, setDetails] = useState({});
-  let [category, setCategory] = useState('');
+  let [category, setCategory] = useState("");
   let [inputs, setInputs] = useState([]);
   let dispatch = useDispatch();
-  let products = useSelector((state) => state.product);
   let categoryDetails = useSelector((state) => state.categoryDetails);
 
   useEffect(() => {
-    console.log(details);
     dispatch(filterbyDetails(category, details));
   }, [details, category]);
 
@@ -30,12 +26,12 @@ function Filters() {
       let categoryDetail = store.getState().categoryDetails;
       for (const element in categoryDetail) {
         console.log(element);
-        if (element !== 'name') {
+        if (element !== "name") {
           setInputs((oldArray) => [...oldArray, element]);
           console.log(inputs);
         }
       }
-      console.log(inputs);
+      console.log(categoryDetail);
     };
     getDetails();
     dispatch(filter1(e.target.value));

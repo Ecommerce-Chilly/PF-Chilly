@@ -1,4 +1,3 @@
-import './App.css';
 import MainRoute from './Components/PI Components/Main-Route/MainRoute';
 
 function App() {

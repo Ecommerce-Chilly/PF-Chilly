@@ -20,7 +20,15 @@ export function validate(newProduct) {
   } else if (newProduct.price < 0) {
     errors.price = "Price must be more than 0";
   }
-  if (newProduct.quantity < 0) {
+  if (!newProduct.brand) {
+    errors.brand = "Products require a brand";
+  }
+  if (!newProduct.model) {
+    errors.model = "Products requires a model";
+  }
+  if (!newProduct.quantity) {
+    errors.quantity = "Product requires a quantity";
+  } else if (newProduct.quantity < 0) {
     errors.quantity = "Require must be more than 0";
   }
   if (!newProduct.category) {
@@ -63,6 +71,12 @@ function CreateComponent() {
       ...newProduct,
       [e.target.name]: e.target.value,
     });
+    setErrors(
+      validate({
+        ...newProduct,
+        [e.target.name]: e.target.value,
+      })
+    );
     if (e.target.name === "discount") {
       setDiscountt({
         ...discountt,
@@ -89,8 +103,6 @@ function CreateComponent() {
     <div className="form-container">
       <form
         onSubmit={(e) => {
-          console.log(newProduct);
-          console.log(msg);
           e.preventDefault();
           dispatchDataToCreate(newProduct);
           dispatchDataToDiscount(discountt);
@@ -190,7 +202,7 @@ function CreateComponent() {
           <option>XFX</option>
           <option>ZOTAC</option>
         </select>
-
+        {errors.brand && <p className="danger">{errors.brand}</p>}
         {msg.error ? (
           <h2 className="sucessMsg">{msg.error}</h2>
         ) : msg.statusText ? (
@@ -216,7 +228,8 @@ function CreateComponent() {
               name="model"
               onChange={handleChange}
               placeholder="Insert model"
-            ></input>{" "}
+            ></input>
+            {errors.model && <p className="danger">{errors.model}</p>}
           </>
         ) : (
           <></>
@@ -261,7 +274,7 @@ function CreateComponent() {
           <option>ram</option>
           <option>storage</option>
         </select>
-        {errors.category && <p>{errors.category}</p>}
+        {errors.category && <p className="danger">{errors.category}</p>}
         <label className="form-label">Stock</label>
         <input
           type="text"
@@ -271,7 +284,7 @@ function CreateComponent() {
           placeholder="Quantity of product"
           className="form-input"
         ></input>
-        {errors.quantity && <p>{errors.quantity}</p>}
+        {errors.quantity && <p className="danger">{errors.quantity}</p>}
         <label className="form-label">Discount:</label>
 
         <input

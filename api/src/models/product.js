@@ -21,6 +21,9 @@ module.exports = (sequelize) => {
       },
       brand: {
         type: DataTypes.STRING,
+        // validate: {
+        //   isAlph: true,
+        // },
       },
       model: {
         type: DataTypes.STRING,
@@ -35,7 +38,7 @@ module.exports = (sequelize) => {
       },
     },
     {
-      timestamps: false,
+      paranoid: true,
     }
   );
 };

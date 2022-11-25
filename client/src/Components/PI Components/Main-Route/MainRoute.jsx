@@ -29,7 +29,7 @@ function MainRoute() {
   // }, []);
 
   return (
-    <>
+    <div>
       <div>
         <Navbar />
       
@@ -65,7 +65,7 @@ function MainRoute() {
       <div>
         <Footer />
       </div>
-    </>
+    </div>
   );
 }
 
