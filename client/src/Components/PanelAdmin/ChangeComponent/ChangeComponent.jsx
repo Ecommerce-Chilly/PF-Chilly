@@ -1,16 +1,15 @@
-import React, { useState, useEffect } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
-import { useHistory } from 'react-router-dom';
+import React, { useState, useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { useHistory } from "react-router-dom";
 import {
   putProductById,
   getProductById,
-  createDiscount,
   putInventory,
   putDiscount,
 } from "../../../redux/actions/actions.js";
 import { useParams } from "react-router-dom";
 import "./ChangeComponent.css";
-
+const { validate } = require("./utils");
 
 function ChangeComponent() {
   const { id } = useParams();
@@ -39,9 +38,10 @@ function ChangeComponent() {
           : ""
         : "",
   });
+  const [errors, setErrors] = useState({});
   const [discountt, setDiscountt] = useState({
     name: `${newProduct.discount}`,
-    description: '',
+    description: "",
     percent: 0,
     active: 0,
   });
@@ -58,7 +58,13 @@ function ChangeComponent() {
       ...newProduct,
       [e.target.name]: e.target.value,
     });
-    if (e.target.name === 'discount') {
+    setErrors(
+      validate({
+        ...newProduct,
+        [e.target.name]: e.target.value,
+      })
+    );
+    if (e.target.name === "discount") {
       setDiscountt({
         ...discountt,
         name: e.target.value,
@@ -73,22 +79,12 @@ function ChangeComponent() {
     });
   };
 
-  function dispatchDataToChange(id, newProduct) {
+  function dispatchDataToChange(id, newProduct, discountt) {
     dispatch(putProductById(id, newProduct));
-  }
-
-  function dispatchDataToChangeInventory(id, newProduct) {
     dispatch(putInventory(id, newProduct));
-  }
-
-  function dispatchDataToChangeDiscount(newProduct) {
     if (newProduct.discount) {
-      dispatch(putDiscount(newProduct));
+      dispatch(putDiscount(discountt));
     }
-  }
-
-  function dispatchDataToDiscount(newProduct) {
-    dispatch(createDiscount(newProduct));
   }
 
   return (
@@ -96,10 +92,7 @@ function ChangeComponent() {
       {productDetails.length > 0 ? (
         <form
           onSubmit={(e) => {
-            dispatchDataToChange(productDetails[0].id, newProduct);
-            dispatchDataToChangeInventory(productDetails[0].id, newProduct);
-            dispatchDataToChangeDiscount(discountt);
-            dispatchDataToDiscount(discountt);
+            dispatchDataToChange(productDetails[0].id, newProduct, discountt);
             e.preventDefault();
             setTimeout(() => history.push("/panel+admin/products"), 3000);
           }}
@@ -117,6 +110,7 @@ function ChangeComponent() {
             placeholder="Write the name here..."
             className="form-input"
           ></input>
+          {errors.name && <p className="danger">{errors.name}</p>}
           <label className="form-label">New Price:</label>
           <input
             type="number"
@@ -126,6 +120,7 @@ function ChangeComponent() {
             placeholder="Price at here"
             className="form-input"
           ></input>
+          {errors.price && <p className="danger">{errors.price}</p>}
           <label className="form-label">Have new Brand?</label>
           <select
             name="brand"
@@ -200,6 +195,7 @@ function ChangeComponent() {
             <option>XFX</option>
             <option>ZOTAC</option>
           </select>
+          {errors.brand && <p className="danger">{errors.brand}</p>}
 
           {msg ? <h2 className="sucessMsg">{`${msg}`}</h2> : <></>}
 
@@ -222,6 +218,7 @@ function ChangeComponent() {
                 onChange={handleChange}
                 placeholder="Insert model"
               ></input>
+              {errors.model && <p className="danger">{errors.model}</p>}
             </>
           ) : (
             <></>
@@ -271,6 +268,7 @@ function ChangeComponent() {
             <option>ram</option>
             <option>storage</option>
           </select>
+          {errors.category && <p className="danger">{errors.category}</p>}
           <label className="form-label">Stock:</label>
           <input
             type="text"
@@ -280,7 +278,7 @@ function ChangeComponent() {
             placeholder="Quantity of product"
             className="form-input"
           ></input>
-
+          {errors.quantity && <p className="danger">{errors.quantity}</p>}
           {productDetails[0].discountName ? (
             <>
               <label className="form-label">Discount:</label>
@@ -292,6 +290,7 @@ function ChangeComponent() {
                 placeholder="Discount at here :D"
                 className="form-input"
               ></input>
+              {errors.discount && <p className="danger">{errors.discount}</p>}
             </>
           ) : (
             <></>
@@ -330,7 +329,17 @@ function ChangeComponent() {
             <></>
           )}
 
-          <input type="submit" className="btn-submit"></input>
+          {!newProduct.name ? (
+            <input type="submit" disabled className="btn-submit"></input>
+          ) : errors.name ||
+            errors.price ||
+            errors.details ||
+            errors.inInventary ||
+            errors.category ? (
+            <input type="submit" disabled className="btn-submit"></input>
+          ) : (
+            <input type="submit" className="btn-submit"></input>
+          )}
         </form>
       ) : (
         <p>No se cargo correctamente</p>

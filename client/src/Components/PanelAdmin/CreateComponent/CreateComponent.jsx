@@ -6,36 +6,7 @@ import {
   createDiscount,
 } from "../../../redux/actions/actions.js";
 import "./CreateComponent.css";
-
-export function validate(newProduct) {
-  let errors = {};
-  if (!newProduct.name) {
-    errors.name = "Product requires a name";
-  } else if (!/([A-Z])\w+/.test(newProduct.name)) {
-    errors.name =
-      "The first letter must be capital and must have more than one letter";
-  }
-  if (!newProduct.price) {
-    errors.price = "Product requires a price";
-  } else if (newProduct.price < 0) {
-    errors.price = "Price must be more than 0";
-  }
-  if (!newProduct.brand) {
-    errors.brand = "Products require a brand";
-  }
-  if (!newProduct.model) {
-    errors.model = "Products requires a model";
-  }
-  if (!newProduct.quantity) {
-    errors.quantity = "Product requires a quantity";
-  } else if (newProduct.quantity < 0) {
-    errors.quantity = "Require must be more than 0";
-  }
-  if (!newProduct.category) {
-    errors.category = "Requires an category";
-  }
-  return errors;
-}
+const { validate } = require("../ChangeComponent/utils");
 
 function CreateComponent() {
   const dispatch = useDispatch();
@@ -58,6 +29,7 @@ function CreateComponent() {
     percent: 0,
     active: 0,
   });
+
 
   const handleDiscount = (e) => {
     setDiscountt({
@@ -275,6 +247,7 @@ function CreateComponent() {
           <option>storage</option>
         </select>
         {errors.category && <p className="danger">{errors.category}</p>}
+
         <label className="form-label">Stock</label>
         <input
           type="text"
@@ -285,8 +258,8 @@ function CreateComponent() {
           className="form-input"
         ></input>
         {errors.quantity && <p className="danger">{errors.quantity}</p>}
-        <label className="form-label">Discount:</label>
 
+        <label className="form-label">Discount:</label>
         <input
           type="text"
           name="discount"
@@ -295,6 +268,7 @@ function CreateComponent() {
           placeholder="Discount at here :D"
           className="form-input"
         ></input>
+        {errors.discount && <p className="danger">{errors.discount}</p>}
 
         {newProduct.discount.length ? (
           <>
