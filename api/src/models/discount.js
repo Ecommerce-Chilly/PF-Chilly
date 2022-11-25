@@ -9,7 +9,7 @@ module.exports = (sequelize) => {
         primaryKey: true,
         allowNull: false,
         unique: true,
-        validate: { isAlpha: true },
+        // validate: { isAlpha: true },
       },
       description: {
         type: DataTypes.STRING,
@@ -17,7 +17,7 @@ module.exports = (sequelize) => {
       percent: {
         type: DataTypes.INTEGER,
         allowNull: false,
-        validate: { isInt: true },
+        // validate: { isInt: true },
       },
       active: {
         type: DataTypes.BOOLEAN,

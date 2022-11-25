@@ -18,8 +18,12 @@ function Paginate({ products }) {
     setProductOffset(newOffset);
   };
 
+  useEffect(() => {
+    setProductOffset(0);
+  }, [products]);
+
   return (
-    <>
+    <div className="">
       <ReactPaginate
         breakLabel="..."
         nextLabel="Next"
@@ -35,16 +39,16 @@ function Paginate({ products }) {
         nextLinkClassName={"page-num"}
         activeLinkClassName={"active"}
       />
-      <div>
+      <div className="flex flex-wrap justify-evenly">
         {currentItems.length > 0 && searchProductMsg === "" ? (
-          currentItems?.map((el) => <ProductCard {...el} />)
+          currentItems?.map((el) => <ProductCard key={el.id} {...el} />)
         ) : searchProductMsg.error ? (
           <p>{searchProductMsg.error}</p>
         ) : (
           <div>Products not found</div>
         )}
       </div>
-    </>
+    </div>
   );
 }
 

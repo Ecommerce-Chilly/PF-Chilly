@@ -1,5 +1,4 @@
 import React, { useEffect } from "react";
-import ProductCard from "./ProductCard";
 import { useDispatch, useSelector } from "react-redux";
 import { getProduct } from "../../../redux/actions/actions.js";
 import Filters from "../../PI Components/Filters/Filters";
@@ -9,18 +8,17 @@ import "../../PI Components/Paginate/Paginate.css";
 function Products() {
   const dispatch = useDispatch();
   const products = useSelector((state) => state.product);
-  const { searchProductMsg } = useSelector((state) => state);
 
   useEffect(() => {
     dispatch(getProduct());
   }, [dispatch]);
 
   return (
-    <div className="flex">
+    <div className="flex ">
       <div>
         <Filters />
       </div>
-      <div>
+      <div className="w-full text-center flex mt-20">
         <Paginate products={products} />
       </div>
       {/* <div>

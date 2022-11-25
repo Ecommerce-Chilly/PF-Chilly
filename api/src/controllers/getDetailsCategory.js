@@ -23,7 +23,7 @@ const getDetailsCategory = async (category) => {
     });
     return details;
   } catch (error) {
-    throw new Error(error);
+    throw (error);
   }
 };
 module.exports = { getDetailsCategory };

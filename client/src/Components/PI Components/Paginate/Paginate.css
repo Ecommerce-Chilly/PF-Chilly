@@ -3,21 +3,39 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  gap: 5px;
+  width: 500px;
+  height: 50px;
+  left: 40vw;
+  font-size: 20px;
+  font-weight: lighter;
+  position: absolute;
+  top: 145px;
+  color: grey;
 }
 
 .pagination .page-num {
-  padding: 8px 15px;
+  width: 50px;
+  padding: 10px;
   cursor: pointer;
   border-radius: 3px;
   font-weight: 400;
 }
 
 .pagination .page-num:hover {
-  background-color: #5ab1bb;
+  background-color: rgb(48 63 159);
   color: #fff;
 }
 
 .pagination .active {
-  background-color: #5ab1bb;
+  text-decoration: underline;
+  text-decoration-style: double;
+  text-decoration-color: rgb(48 63 159);
+  text-underline-offset: 6px;
+  color: black;
+}
+
+.active:hover {
+  text-decoration: underline;
+  text-decoration-style: double;
+  text-decoration-color: white;
 }

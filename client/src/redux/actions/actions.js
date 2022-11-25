@@ -13,6 +13,9 @@ export const FILTER1 = "FILTER1";
 export const FILTER_BY_DETAILS = "FILTER_BY_DETAILS";
 export const GET_PRODUCT_BY_NAME = "GET_PRODUCT_BY_NAME";
 export const ERROR_MSSG = "ERROR_MSSG";
+export const EUSEBIO = "EUSEBIO";
+export const ERROR_PUT_PRODUCT = "ERROR_PUT_PRODUCT";
+export const RESTORE_PRODUCT = "RESTORE_PRODUCT";
 
 export const getProduct = () => {
   return async function (dispatch) {
@@ -23,8 +26,12 @@ export const getProduct = () => {
 
 export const getProductById = (id) => {
   return async function (dispatch) {
-    let productById = await axios.get(`http://localhost:3001/product/${id}`);
-    return dispatch({ type: GET_PRODUCT_BY_ID, payload: productById.data });
+    try {
+      let productById = await axios.get(`http://localhost:3001/product/${id}`);
+      return dispatch({ type: GET_PRODUCT_BY_ID, payload: productById.data });
+    } catch (error) {
+      return dispatch({ type: EUSEBIO, payload: error.response.data.error });
+    }
   };
 };
 
@@ -41,6 +48,7 @@ export const createProduct = (product) => {
     }
   };
 };
+
 export const createDiscount = (product) => {
   return async function (dispatch) {
     try {
@@ -60,11 +68,19 @@ export const createDiscount = (product) => {
 
 export const putProductById = (id, product) => {
   return async function (dispatch) {
-    const putProduct = await axios.put(
-      `http://localhost:3001/product/${id}`,
-      product
-    );
-    return dispatch({ type: PUT_PRODUCT, payload: putProduct.data });
+    try {
+      const putProduct = await axios.put(
+        `http://localhost:3001/product/${id}`,
+        product
+      );
+      return dispatch({ type: PUT_PRODUCT, payload: putProduct.data });
+    } catch (error) {
+      console.log(error.response.data.error);
+      return dispatch({
+        type: ERROR_PUT_PRODUCT,
+        payload: error.response.data.error,
+      });
+    }
   };
 };
 
@@ -93,6 +109,7 @@ export const deleteProdut = (id) => {
     const deleteProduct = await axios.delete(
       `http://localhost:3001/product/${id}`
     );
+    console.log(deleteProduct.data);
     return dispatch({ type: DELETE_PRODUCT, payload: deleteProduct.data });
   };
 };
@@ -140,5 +157,15 @@ export const getProductByName = (name) => {
     } catch (error) {
       return dispatch({ type: ERROR_MSSG, payload: error.response.data });
     }
+  };
+};
+
+export const restoreProduct = (id) => {
+  return async function (dispatch) {
+    let restoreProduct = await axios.put(
+      `http://localhost:3001/product/restore/${id}`
+    );
+    console.log(restoreProduct);
+    return dispatch({ type: RESTORE_PRODUCT, payload: restoreProduct.data });
   };
 };

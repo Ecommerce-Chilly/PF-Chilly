@@ -6,28 +6,7 @@ import {
   createDiscount,
 } from "../../../redux/actions/actions.js";
 import "./CreateComponent.css";
-
-export function validate(newProduct) {
-  let errors = {};
-  if (!newProduct.name) {
-    errors.name = "Product requires a name";
-  } else if (!/([A-Z])\w+/.test(newProduct.name)) {
-    errors.name =
-      "The first letter must be capital and must have more than one letter";
-  }
-  if (!newProduct.price) {
-    errors.price = "Product requires a price";
-  } else if (newProduct.price < 0) {
-    errors.price = "Price must be more than 0";
-  }
-  if (newProduct.quantity < 0) {
-    errors.quantity = "Require must be more than 0";
-  }
-  if (!newProduct.category) {
-    errors.category = "Requires an category";
-  }
-  return errors;
-}
+const { validate } = require("../ChangeComponent/utils");
 
 function CreateComponent() {
   const dispatch = useDispatch();
@@ -51,6 +30,7 @@ function CreateComponent() {
     active: 0,
   });
 
+
   const handleDiscount = (e) => {
     setDiscountt({
       ...discountt,
@@ -63,6 +43,12 @@ function CreateComponent() {
       ...newProduct,
       [e.target.name]: e.target.value,
     });
+    setErrors(
+      validate({
+        ...newProduct,
+        [e.target.name]: e.target.value,
+      })
+    );
     if (e.target.name === "discount") {
       setDiscountt({
         ...discountt,
@@ -89,8 +75,6 @@ function CreateComponent() {
     <div className="form-container">
       <form
         onSubmit={(e) => {
-          console.log(newProduct);
-          console.log(msg);
           e.preventDefault();
           dispatchDataToCreate(newProduct);
           dispatchDataToDiscount(discountt);
@@ -190,7 +174,7 @@ function CreateComponent() {
           <option>XFX</option>
           <option>ZOTAC</option>
         </select>
-
+        {errors.brand && <p className="danger">{errors.brand}</p>}
         {msg.error ? (
           <h2 className="sucessMsg">{msg.error}</h2>
         ) : msg.statusText ? (
@@ -216,7 +200,8 @@ function CreateComponent() {
               name="model"
               onChange={handleChange}
               placeholder="Insert model"
-            ></input>{" "}
+            ></input>
+            {errors.model && <p className="danger">{errors.model}</p>}
           </>
         ) : (
           <></>
@@ -261,7 +246,8 @@ function CreateComponent() {
           <option>ram</option>
           <option>storage</option>
         </select>
-        {errors.category && <p>{errors.category}</p>}
+        {errors.category && <p className="danger">{errors.category}</p>}
+
         <label className="form-label">Stock</label>
         <input
           type="text"
@@ -271,9 +257,9 @@ function CreateComponent() {
           placeholder="Quantity of product"
           className="form-input"
         ></input>
-        {errors.quantity && <p>{errors.quantity}</p>}
-        <label className="form-label">Discount:</label>
+        {errors.quantity && <p className="danger">{errors.quantity}</p>}
 
+        <label className="form-label">Discount:</label>
         <input
           type="text"
           name="discount"
@@ -282,6 +268,7 @@ function CreateComponent() {
           placeholder="Discount at here :D"
           className="form-input"
         ></input>
+        {errors.discount && <p className="danger">{errors.discount}</p>}
 
         {newProduct.discount.length ? (
           <>

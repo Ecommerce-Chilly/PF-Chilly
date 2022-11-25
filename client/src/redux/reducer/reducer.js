@@ -13,6 +13,9 @@ import {
   FILTER_BY_DETAILS,
   GET_PRODUCT_BY_NAME,
   ERROR_MSSG,
+  EUSEBIO,
+  RESTORE_PRODUCT,
+  ERROR_PUT_PRODUCT,
 } from "../actions/actions.js";
 
 const initialState = {
@@ -34,12 +37,13 @@ const rootReducer = (state = initialState, action) => {
         allProduct: action.payload,
         createProductMsg: "",
         searchProductMsg: "",
+        productChangedMsg: "",
       };
 
     case GET_PRODUCT_BY_ID:
       return {
         ...state,
-        productDetail: action.payload,
+        productDetail: [action.payload],
       };
     case GET_PRODUCT_BY_NAME:
       return {
@@ -65,12 +69,10 @@ const rootReducer = (state = initialState, action) => {
     case PUT_INVENTORY:
       return {
         ...state,
-        productChangedMsg: action.payload,
       };
     case PUT_DISCOUNT:
       return {
         ...state,
-        productChangedMsg: action.payload,
       };
     case DELETE_PRODUCT:
       return {
@@ -87,6 +89,12 @@ const rootReducer = (state = initialState, action) => {
         ...state,
         categoryDetails: action.payload,
       };
+    case RESTORE_PRODUCT:
+      return {
+        ...state,
+        productChangedMsg: action.payload,
+      };
+
     case FILTER1:
       let temporal = state.allProduct;
       let filtered = temporal.filter((e) => e.categoryName === action.payload);
@@ -96,6 +104,7 @@ const rootReducer = (state = initialState, action) => {
       }
       return {
         ...state,
+        searchProductMsg: "",
         product: filtered,
       };
     case FILTER_BY_DETAILS:
@@ -117,6 +126,7 @@ const rootReducer = (state = initialState, action) => {
 
       return {
         ...state,
+        searchProductMsg: "",
         product: filtered2,
       };
     case ERROR_MSSG:
@@ -124,6 +134,17 @@ const rootReducer = (state = initialState, action) => {
         ...state,
         searchProductMsg: action.payload,
       };
+    case ERROR_PUT_PRODUCT:
+      return {
+        ...state,
+        productChangedMsg: action.payload,
+      };
+    case EUSEBIO:
+      return {
+        ...state,
+        searchProductMsg: action.payload,
+      };
+
     default:
       return state;
   }

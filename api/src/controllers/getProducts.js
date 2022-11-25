@@ -12,7 +12,7 @@ const getProducts = async (category, id, name) => {
         },
       });
       if (productName.length === 0)
-        throw new Error(`Product with name ${name} is not exist`);
+        throw `Product with name ${name} does not exist`;
       return productName;
     } else if (id && !category && !name) {
       const product = await Product.findByPk(id, {
@@ -21,7 +21,7 @@ const getProducts = async (category, id, name) => {
           attributes: ["quantity"],
         },
       });
-      if (!product) throw new Error(`Product with id ${id} does not exist`);
+      if (!product) throw `Product with id ${id} does not exist`;
       return product;
     } else if (category && !name && !id) {
       const prodGet = await Product.findAll({
@@ -39,12 +39,27 @@ const getProducts = async (category, id, name) => {
           attributes: ["quantity"],
         },
       });
-      if (all.length === 0)
-        throw new Error("Dont have products in our data base");
+      if (all.length === 0) throw "Dont have products in our data base";
       return all;
     }
   } catch (error) {
-    throw new Error(error);
+    throw error;
   }
 };
-module.exports = { getProducts };
+const getProductsDeleted = async () => {
+  try {
+    const products = await Product.findAll({
+      where: { deletedAt: { [Op.not]: null } },
+      include: {
+        model: Inventory,
+        attributes: ["quantity"],
+      },
+      paranoid: false,
+    });
+    if (products.length === 0) throw `There are not products deleted`;
+    return products;
+  } catch (error) {
+    throw error;
+  }
+};
+module.exports = { getProducts, getProductsDeleted };

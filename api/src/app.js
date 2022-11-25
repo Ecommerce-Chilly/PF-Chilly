@@ -3,12 +3,21 @@ const morgan = require("morgan");
 const cookieParser = require("cookie-parser");
 const bodyParser = require("body-parser");
 const app = express();
-const routes = require('./routes/index.js');
-const cors = require('cors');
+const routes = require("./routes/index.js");
+const cors = require("cors");
+const dotenv = require("dotenv");
+dotenv.config();
+// SDK de Mercado Pago
+const mercadopago = require("mercadopago");
+// Agrega credenciales
+const { ACCESS_TOKEN } = process.env;
 
-require('./db.js');
+mercadopago.configure({
+  access_token: ACCESS_TOKEN,
+});
+require("./db.js");
 
-app.use(cors())
+app.use(cors());
 app.use(morgan("dev"));
 app.use(cookieParser());
 app.use(bodyParser.json());
@@ -24,7 +33,7 @@ app.use((req, res, next) => {
   next();
 });
 
-app.use('/', routes);
+app.use("/", routes);
 
 //manejador de errores
 app.use((err, req, res, next) => {
