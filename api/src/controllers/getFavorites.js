@@ -8,7 +8,6 @@ const getFavorites = async (userId) => {
     }
 
   })
-  console.log(user);
   if (!user) throw `User does not exist`
   return user
 }
