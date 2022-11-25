@@ -4,7 +4,7 @@ import ReactPaginate from "react-paginate";
 import ProductCard from "../../PanelAdmin/Products/ProductCard";
 // import "./Paginate.css";
 
-function Paginate({ products }) {
+function PaginateToStore({ products }) {
   const { searchProductMsg } = useSelector((state) => state);
   const [productOffset, setProductOffset] = useState(0);
   const productsPerPage = 25;
@@ -44,6 +44,7 @@ function Paginate({ products }) {
           currentItems?.map((el) => (
             <ProductCard
               key={el.id}
+              id={el.id}
               name={el.name}
               image={el.image}
               brand={el.brand}
@@ -60,4 +61,4 @@ function Paginate({ products }) {
   );
 }
 
-export default Paginate;
+export default PaginateToStore;

@@ -2,7 +2,7 @@ import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { getProduct } from "../../../redux/actions/actions.js";
 import Filters from "../../PI Components/Filters/Filters";
-import Paginate2 from "../../PI Components/Paginate/PaginateToStore";
+import PaginateToStore from "../../PI Components/Paginate/PaginateToStore";
 import "../../PI Components/Paginate/Paginate.css";
 
 function Store() {
@@ -19,8 +19,8 @@ function Store() {
         <Filters />
       </div>
 
-      <Paginate2 products={products} />
-
+      <PaginateToStore products={products} />
+      
       {/* <div>
         {products.length > 0 && searchProductMsg === "" ? (
           products?.map((el) => <ProductCard {...el} />)
@@ -30,6 +30,7 @@ function Store() {
           <div>No se ha encontrado productos</div>
         )}
       </div> */}
+
     </div>
   );
 }

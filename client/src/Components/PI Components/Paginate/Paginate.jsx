@@ -44,6 +44,7 @@ function Paginate({ products }) {
           currentItems?.map((el) => (
             <ProductCard
               key={el.id}
+              id={el.id}
               name={el.name}
               image={el.image}
               brand={el.brand}

@@ -9,6 +9,7 @@ import CreateComponent from "../../PanelAdmin/CreateComponent/CreateComponent";
 import ChangeComponent from "../../PanelAdmin/ChangeComponent/ChangeComponent";
 import Products from "../../PanelAdmin/Products/Products";
 import ProductDetail from "../../PanelAdmin/Products/ProductDetail";
+import ProductDetailToStore from "../../PanelAdmin/Products/ProductDetailToStore";
 import Home from "../Pages/Home";
 import Store from "../Pages/Store";
 import BuildYourOwn from "../Pages/BuildYourOwn";
@@ -31,6 +32,7 @@ function MainRoute() {
         <Route exact path="/user/info" component={UserInfo} />
         <Route exact path="/home" component={Home} />
         <Route exact path="/store" component={Store} />
+        <Route exact path="/store/product/:id" component={ProductDetailToStore} />
         <Route exact path="/build+your+own" component={BuildYourOwn} />
         <Route exact path="/special+offers" component={SpecialOffers} />
         <Route exact path="/blog" component={Blog} />

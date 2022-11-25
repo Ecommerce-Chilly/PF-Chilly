@@ -50,12 +50,14 @@ function ProductCard(props) {
           </Link>
         </>
       ) : (
-        <div>
-          <h2>{props.name}</h2>
-          <img src={props.image} alt={props.name} />
-          <p>Brand: {props.brand}</p>
-          <p>Price: {props.price}</p>
-        </div>
+        <Link to={`/store/product/${props.id}`}>
+          <div>
+            <h2>{props.name}</h2>
+            <img src={props.image} alt={props.name} />
+            <p>Brand: {props.brand}</p>
+            <p>Price: {props.price}</p>
+          </div>
+        </Link>
       )}
     </div>
   );

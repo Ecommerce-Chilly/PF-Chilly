@@ -1,5 +1,4 @@
 import React, { useEffect } from "react";
-import ProductCard from "./ProductCard";
 import { useDispatch, useSelector } from "react-redux";
 import { getProduct } from "../../../redux/actions/actions.js";
 import Filters from "../../PI Components/Filters/Filters";
