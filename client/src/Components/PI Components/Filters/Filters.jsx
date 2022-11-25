@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import {
   getCategoryDetails,
+  getProduct,
   filter1,
   filterbyDetails,
 } from '../../../redux/actions/actions.js';
@@ -17,6 +18,11 @@ function Filters() {
   useEffect(() => {
     dispatch(filterbyDetails(category, details));
   }, [details, category]);
+
+  function handleClearFilters(event) {
+    event.preventDefault();
+    dispatch(getProduct());
+  }
 
   let dispatchCategory = (e) => {
     setInputs([]);
@@ -40,6 +46,11 @@ function Filters() {
   return (
     <div className="bg-slate-200 w-60 pl-5 pt-8 h-full">
       <h3 className="text-2xl uppercase mb-4">Category</h3>
+      <div>
+        <button onClick={(event) => handleClearFilters(event)}>
+          RESET FILTERS
+        </button>
+      </div>
       <select
         className="border-solid border-black bg-white rounded w-11/12 h-7"
         onChange={(e) => {

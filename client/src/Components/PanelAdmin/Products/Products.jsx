@@ -15,7 +15,7 @@ function Products() {
   }, [dispatch]);
 
   return (
-    <div className="  flex ">
+    <div className="flex ">
       <div>
         <Filters />
       </div>
