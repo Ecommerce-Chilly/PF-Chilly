@@ -1,7 +1,7 @@
-import React, { useEffect } from 'react';
-import { Link, useParams } from 'react-router-dom';
-import { getProductById } from '../../../redux/actions/actions.js';
-import { useDispatch, useSelector } from 'react-redux';
+import React, { useEffect } from "react";
+import { Link, useParams } from "react-router-dom";
+import { getProductById, addToCart } from "../../../redux/actions/actions.js";
+import { useDispatch, useSelector } from "react-redux";
 
 function ProductDetail() {
   const { id } = useParams();
@@ -11,6 +11,10 @@ function ProductDetail() {
   useEffect(() => {
     dispatch(getProductById(id));
   }, [dispatch, id]);
+
+  function addCart(id) {
+    dispatch(addToCart(id));
+  }
 
   return (
     <div>
@@ -24,7 +28,7 @@ function ProductDetail() {
                     <img
                       alt="ecommerce"
                       class="lg:w-1/2 w-full object-cover object-center rounded border border-gray-200"
-                      src={produDetail[0].image.replace('SL75', 'SL700')}
+                      src={produDetail[0].image.replace("SL75", "SL700")}
                     />
                     <div class="lg:w-1/2 w-full lg:pl-10 lg:py-6 mt-6 lg:mt-0">
                       <h2 class="text-sm title-font text-gray-500 tracking-widest">
@@ -45,12 +49,15 @@ function ProductDetail() {
 
                       <div class="flex">
                         <span class="title-font font-medium text-2xl text-gray-900">
-                          ${' '}
+                          ${" "}
                           {produDetail[0].price == 0
                             ? 50
                             : produDetail[0].price}
                         </span>
-                        <button class="flex ml-auto text-white bg-main border-0 py-2 px-6 focus:outline-none hover:bg-blue-600 rounded">
+                        <button
+                          onClick={() => addCart(produDetail[0].id)}
+                          class="flex ml-auto text-white bg-main border-0 py-2 px-6 focus:outline-none hover:bg-blue-600 rounded"
+                        >
                           Add to cart
                         </button>
                         <button class="rounded-full w-10 h-10 bg-gray-200 p-0 border-0 inline-flex items-center justify-center text-gray-500 ml-4">

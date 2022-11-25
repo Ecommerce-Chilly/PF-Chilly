@@ -1,8 +1,12 @@
-import React, { useState } from 'react';
-import { Link } from 'react-router-dom';
-import SearchBar from '../SearchBar/SearchBar';
+import React, { useState } from "react";
+import { useSelector } from "react-redux";
+import { Link } from "react-router-dom";
+import Cart from "../../Cart/Cart/Cart";
+import SearchBar from "../SearchBar/SearchBar";
 
 function Navbar() {
+  let cart = useSelector((state) => state.cart);
+
   return (
     <>
       <nav class="	bg-white border-gray-200 px-2 sm:px-4 py-5  dark:bg-main static">
@@ -59,6 +63,9 @@ function Navbar() {
               </svg>
             </Link>
             <Link to="/cart" className="inline-block mx-4">
+              <div className="w-5 bg-red-200">
+                <p className="bg-red-200 z-10 absolute ">{cart.length}</p>
+              </div>
               <svg
                 xmlns="http://www.w3.org/2000/svg"
                 fill="none"
@@ -95,44 +102,47 @@ function Navbar() {
         <div class="container flex  mx-auto mt-6">
           <ul class="flex justify-between w-5/6 mx-auto uppercase font-sans underline-offset-4  font-light text-white">
             <li>
-              <a href="/home" className="hover:underline">
+              <Link to="/home" className="hover:underline">
                 Home
-              </a>
+              </Link>
             </li>
             <li>
-              <a href="/store" className="hover:underline">
+              <Link to="/store" className="hover:underline">
                 Store
-              </a>
+              </Link>
             </li>
             <li>
-              <a href="/build+your+own" className="hover:underline">
+              <Link to="/build+your+own" className="hover:underline">
                 Build Your Own
-              </a>
+              </Link>
             </li>
             <li>
-              <a href="/special+offers" className="hover:underline">
+              <Link to="/special+offers" className="hover:underline">
                 Special Offers
-              </a>
+              </Link>
             </li>
             <li>
-              <a href="/blog" className="hover:underline">
+              <Link to="/blog" className="hover:underline">
                 Blog
-              </a>
+              </Link>
             </li>
             <li>
-              <a href="/about+us" className="hover:underline">
+              <Link to="/about+us" className="hover:underline">
                 About Us
-              </a>
+              </Link>
             </li>
             <li>
-              <a href="/panel+admin/products" className="hover:underline">
+              <Link to="/panel+admin/products" className="hover:underline">
                 PA - Products
-              </a>
-            </li>{' '}
+              </Link>
+            </li>{" "}
             <li>
-              <a href="/panel+admin/create/product" className="hover:underline">
+              <Link
+                to="/panel+admin/create/product"
+                className="hover:underline"
+              >
                 PA - Create Product
-              </a>
+              </Link>
             </li>
           </ul>
         </div>

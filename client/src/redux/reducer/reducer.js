@@ -16,6 +16,9 @@ import {
   EUSEBIO,
   RESTORE_PRODUCT,
   ERROR_PUT_PRODUCT,
+  ADD_TO_CART,
+  DELETE_CART_PRODUCT,
+  CLEAR_CART,
 } from "../actions/actions.js";
 
 const initialState = {
@@ -26,6 +29,7 @@ const initialState = {
   productChangedMsg: "",
   searchProductMsg: "",
   categoryDetails: [],
+  cart: [],
 };
 
 const rootReducer = (state = initialState, action) => {
@@ -144,7 +148,25 @@ const rootReducer = (state = initialState, action) => {
         ...state,
         searchProductMsg: action.payload,
       };
-
+    case ADD_TO_CART:
+      console.log(action.payload);
+      let prod = state.allProduct.find((e) => e.id === action.payload);
+      console.log(prod);
+      return {
+        ...state,
+        cart: state.cart.concat(prod),
+      };
+    case DELETE_CART_PRODUCT:
+      let cart1 = state.cart.filter((e) => e.id !== action.payload);
+      return {
+        ...state,
+        cart: cart1,
+      };
+    case CLEAR_CART:
+      return {
+        ...state,
+        cart: [],
+      };
     default:
       return state;
   }
