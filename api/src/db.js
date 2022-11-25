@@ -84,7 +84,7 @@ Shopping_session.hasMany(Cart_item);
 Cart_item.hasOne(Shopping_session);
 
 Payment_details.hasOne(Order_details);
-Order_details.hasOne(Payment_details);;
+Order_details.hasOne(Payment_details);
 
 Product.hasOne(Order_items);
 Order_items.hasOne(Product);

@@ -1,29 +1,51 @@
 const { Favorite, User, Product } = require("../db");
 
-const postFavorite = async ({
-   userId,
-   productId
-}) => {
-   try {
-      if (!userId || !productId) {
-         throw new Error("Sending incomplete information!");
-      } else {
-         const foundUser = await User.findByPk(userId);//find the userId from the active User
-         const foundProduct = await Product.findByPk(productId);
-         if (!foundUser || !foundProduct) return "product and user not found"
-         const newFavorite = await Favorite.create({});
-         await newFavorite.setUser(foundUser)
-         await newFavorite.setProduct(foundProduct)
+// const postFavorite = async ({
+//    userId,
+//    productId
+// }) => {
+//    try {
+//       if (!userId || !productId) {
+//          throw new Error("Sending incomplete information!");
+//       } else {
+//          const foundUser = await User.findByPk(userId);//find the userId from the active User
+//          const foundProduct = await Product.findByPk(productId);
+//          if (!foundUser || !foundProduct) return "product and user not found"
+//          const newFavorite = await Favorite.create({});
+//          await newFavorite.setUser(foundUser)
+//          await newFavorite.setProduct(foundProduct)
 
-         return newFavorite
-      }
+//          return newFavorite
+//       }
 
-   } catch (error) {
-      throw new Error(error)
+//    } catch (error) {
+//       throw new Error(error)
 
 
-   }
-}
+//    }
+// }
 
-module.exports = postFavorite
+// module.exports = postFavorite
+const postFavorite = async ({ userId, productId }) => {
+  try {
+    if (!userId || !productId) {
+      throw new Error("fields not found");
+    } else {
+      // userId = Number(userId);
+      // productId = Number(productId);
+      const findUserId = await User.findByPk(userId);
+      //find the userId from the active User
+      const findProductId = await Product.findByPk(productId);
 
+      const newFavorite = await Favorite.create({});
+      await newFavorite.setUser(findUserId);
+      await newFavorite.setProduct(findProductId);
+
+      return newFavorite;
+    }
+  } catch (error) {
+    throw new Error(error);
+  }
+};
+
+module.exports = postFavorite;

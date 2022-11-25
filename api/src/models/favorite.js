@@ -1,21 +1,26 @@
 const { DataTypes } = require("sequelize");
 
 module.exports = (sequelize) => {
-   sequelize.define("favorite", {
+  sequelize.define(
+    "favorite",
+    {
       id: {
-         type: DataTypes.INTEGER,
-         autoIncrement: true,
-         primaryKey: true,
-         allowNull: false,
-         unique: true,
+        type: DataTypes.INTEGER,
+        autoIncrement: true,
+        primaryKey: true,
+        allowNull: false,
+        unique: true,
       },
-   },
-      {
-         indexes: [
-            {
-               unique: true,
-               fields: ['productId', 'userId'],
-            },
-         ]
-      });
+    },
+    {
+      paranoid: true,
+      indexes: [
+        // Create a unique index on email
+        {
+          unique: true,
+          fields: ["userId", "productId"],
+        },
+      ],
+    }
+  );
 };

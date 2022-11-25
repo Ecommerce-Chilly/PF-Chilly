@@ -10,6 +10,8 @@ const { hardCodeoInfo } = require("../controllers/hardCode");
 const userRoute = require("./userRoute")
 const favoriteRoute = require('./favoriteRoute')
 const mercadoPago = require('./mercadoPago')
+const favoritesRoute = require("./favoriteRoute___");
+const { userRoute } = require("./userRoute");
 // const { defaultDiscount } = require('../controllers/defaultDiscount')
 const router = Router();
 
@@ -18,6 +20,7 @@ router.use("/Guillo", async (req, res, next) => {
   await hardCodeoInfo();
   console.log("ya termine");
   next();
+
 });
 // Configurar los routers
 // Ejemplo: router.use('/auth', authRouter);}
