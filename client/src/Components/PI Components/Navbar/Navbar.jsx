@@ -7,11 +7,11 @@ function Navbar() {
     <>
       <nav class="	bg-white border-gray-200 px-2 sm:px-4 py-5  dark:bg-main static">
         <div class="container flex flex-wrap items-center justify-between mx-auto">
-          <a href="#" class="flex items-center">
+          <Link to="/home" class="flex items-center">
             <span class="self-center text-4xl font-semibold whitespace-nowrap dark:text-white font-sans">
               Chilly
             </span>
-          </a>
+          </Link>
           <SearchBar></SearchBar>
           {/* <div class="absolute  left-1/2 transform -translate-x-1/2  ">
             <div class=" flex items-center w-full h-10 rounded-lg focus-within:shadow-lg bg-white overflow-hidden">
@@ -95,24 +95,24 @@ function Navbar() {
         <div class="container flex  mx-auto mt-6">
           <ul class="flex justify-between w-5/6 mx-auto uppercase font-sans underline-offset-4  font-light text-white">
             <li>
-              <a href="/home" className="hover:underline">
+              <Link to="/home" className="hover:underline">
                 Home
-              </a>
+              </Link>
             </li>
             <li>
-              <a href="/store" className="hover:underline">
+              <Link to="/store" className="hover:underline">
                 Store
-              </a>
+              </Link>
             </li>
             <li>
-              <a href="/build+your+own" className="hover:underline">
+              <Link to="/build+your+own" className="hover:underline">
                 Build Your Own
-              </a>
+              </Link>
             </li>
             <li>
-              <a href="/special+offers" className="hover:underline">
+              <Link to="/special+offers" className="hover:underline">
                 Special Offers
-              </a>
+              </Link>
             </li>
             <li>
               <a href="/blog" className="hover:underline">
@@ -120,19 +120,19 @@ function Navbar() {
               </a>
             </li>
             <li>
-              <a href="/about+us" className="hover:underline">
+              <Link to="/about+us" className="hover:underline">
                 About Us
-              </a>
+              </Link>
             </li>
             <li>
-              <a href="/panel+admin/products" className="hover:underline">
+              <Link to="/panel+admin/products" className="hover:underline">
                 PA - Products
-              </a>
+              </Link>
             </li>{' '}
             <li>
-              <a href="/panel+admin/create/product" className="hover:underline">
+              <Link to="/panel+admin/create/product" className="hover:underline">
                 PA - Create Product
-              </a>
+              </Link>
             </li>
           </ul>
         </div>

@@ -22,15 +22,6 @@ function Products() {
       <div className="w-full text-center flex mt-20">
         <Paginate products={products} />
       </div>
-      {/* <div>
-        {products.length > 0 && searchProductMsg === "" ? (
-          products?.map((el) => <ProductCard {...el} />)
-        ) : searchProductMsg.error ? (
-          <p>{searchProductMsg.error.slice(6, 47)}</p>
-        ) : (
-          <div>No se ha encontrado productos</div>
-        )}
-      </div> */}
     </div>
   );
 }

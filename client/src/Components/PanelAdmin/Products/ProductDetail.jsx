@@ -12,6 +12,7 @@ function ProductDetail() {
     dispatch(getProductById(id));
   }, [dispatch, id]);
 
+
   return (
     <div>
       {produDetail.length > 0 ? (

@@ -16,6 +16,10 @@ export const ERROR_MSSG = "ERROR_MSSG";
 export const EUSEBIO = "EUSEBIO";
 export const ERROR_PUT_PRODUCT = "ERROR_PUT_PRODUCT"
 export const RESTORE_PRODUCT = "RESTORE_PRODUCT";
+export const ADD_TO_CART = "ADD_TO_CART";
+export const DELETE_CART_PRODUCT = "DELETE_CART_PRODUCT";
+export const CLEAR_CART = "CLEAR_CART";
+
 
 export const getProduct = () => {
   return async function (dispatch) {
@@ -164,5 +168,25 @@ export const restoreProduct = (id) => {
     );
     console.log(restoreProduct);
     return dispatch({ type: RESTORE_PRODUCT, payload: restoreProduct.data });
+  };
+};
+
+export const addToCart = (id) => {
+  return {
+    type: ADD_TO_CART,
+    payload: id,
+  };
+};
+
+export const deleteP = (id) => {
+  return {
+    type: DELETE_CART_PRODUCT,
+    payload: id,
+  };
+};
+
+export const clearCart = () => {
+  return {
+    type: CLEAR_CART,
   };
 };
