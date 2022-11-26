@@ -1,5 +1,5 @@
 const { Router } = require("express");
-const { getDetailsCategory } = require("../controllers/getDetailsCategory");
+const { getDetailsCategory } = require("../controllers/category/getDetailsCategory");
 const detailsCategoryRoute = Router();
 
 detailsCategoryRoute.get("/:category", async (req, res) => {
