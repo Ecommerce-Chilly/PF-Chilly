@@ -1,43 +1,43 @@
 const { Router } = require("express");
+<<<<<<< HEAD
 const { getFavorite, getAllFavorites } = require("../controllers/getFavorite");
 const postFavorites = require("../controllers/postFavorites");
 const deleteFavorite = require("../controllers/deleteFavorite");
 const favoritesRoute = Router();
+=======
+const { addFavorites } = require('../controllers/favorite/addFavorites')
+const { removeFavorites } = require('../controllers/favorite/removeFavorite')
+const { getFavorites } = require('../controllers/favorite/getFavorites')
+const favoriteRoute = Router()
+>>>>>>> 620647c6952243495d539c1e70f26b4f66e3e02a
 
-favoritesRoute.post("/", async (req, res) => {
-   try {
-      const newFavorite = await postFavorites(req.body);
-      res.status(201).send(newFavorite);
-   } catch (error) {
-      res.status(404).send({ error: error.message });
-   }
-});
+favoriteRoute.get('/', async (req, res) => {
+  try {
+    const { userId } = req.body
+    const fav = await getFavorites(userId)
+    res.send(fav)
+  } catch (error) {
+    res.status(404).send(error)
+  }
+})
 
-favoritesRoute.get("/:id", async (req, res) => {
-   try {
-      const favorite = await getFavorite(req.params.id);
-      res.status(200).send(favorite);
-   } catch (error) {
-      res.status(404).send({ error: error.message });
-   }
-});
+favoriteRoute.post('/', async (req, res) => {
+  try {
+    const { userId, productId } = req.body
+    const msg = await addFavorites(userId, productId)
+    res.send(msg)
+  } catch (error) {
+    res.status(404).send(error)
+  }
+})
+favoriteRoute.delete('/', async (req, res) => {
+  try {
+    const { userId, productId } = req.body
+    const msg = await removeFavorites(userId, productId)
+    res.send(msg)
+  } catch (error) {
+    res.status(404).send(error)
+  }
+})
+module.exports = favoriteRoute
 
-favoritesRoute.get("/", async (req, res) => {
-   try {
-      const favorite = await getAllFavorites();
-      res.status(200).send(favorite);
-   } catch (error) {
-      res.status(404).send({ error: error.message });
-   }
-});
-
-favoritesRoute.delete("/:id", async (req, res) => {
-   try {
-      const message = await deleteFavorite(req.params.id);
-      return res.status(200).send(message);
-   } catch (error) {
-      res.status(404).send({ error: error.message });
-   }
-});
-
-module.exports = favoritesRoute;
