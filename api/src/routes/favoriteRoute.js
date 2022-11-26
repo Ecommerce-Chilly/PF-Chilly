@@ -1,7 +1,7 @@
 const { Router } = require("express");
 const { getFavorite, getAllFavorites } = require("../controllers/getFavorite");
 const postFavorites = require("../controllers/postFavorites");
-const deleteFavorite = require("../controllers/deleteFavorite___");
+const deleteFavorite = require("../controllers/deleteFavorite");
 const favoritesRoute = Router();
 
 favoritesRoute.post("/", async (req, res) => {
