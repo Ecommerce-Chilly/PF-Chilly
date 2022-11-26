@@ -1,4 +1,4 @@
-const { User, Product } = require("../db");
+const { User, Product } = require("../../db");
 
 const addFavorites = async (userId, productId) => {
   const user = await User.findByPk(userId)

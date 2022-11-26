@@ -17,16 +17,10 @@ import SpecialOffers from '../Pages/SpecialOffers';
 import Blog from '../Pages/Blog';
 import AboutUS from '../Pages/AboutUS';
 import Footer from '../Footer/Footer';
-import { getProduct } from '../../../redux/actions/actions.js';
-import { useDispatch } from 'react-redux';
-import axios from 'axios';
+import Register from '../../Login/Register/Register';
+
 
 function MainRoute() {
-  let dispatch = useDispatch();
-
-  // useEffect(async () => {
-  //   await axios.get("http://localhost:3001/Guillo");
-  // }, []);
 
   return (
     <div>
@@ -43,6 +37,13 @@ function MainRoute() {
         <Route exact path="/special+offers" component={SpecialOffers} />
         <Route exact path="/blog" component={Blog} />
         <Route exact path="/about+us" component={AboutUS} />
+
+      <Route exact path="/register" component={Register}/>
+      
+
+
+
+
         <Route exact path="/panel+admin/products" component={Products} />
         <Route
           exact

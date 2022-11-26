@@ -1,6 +1,6 @@
 const { Router } = require("express");
-const postUser = require("../controllers/postUser")
-const { getUser, getAllUsers } = require("../controllers/getUser")
+const postUser = require("../controllers/user/postUser")
+const { getUser, getAllUsers } = require("../controllers/user/getUser")
 const userRoute = Router();
 
 
@@ -14,6 +14,7 @@ userRoute.post('/', async (req, res) => {
     res.status(404).send({ error: error.message })
   }
 })
+
 userRoute.get('/:id', async (req, res) => {
   try {
     const user = await getUser(req.params.id)
@@ -22,4 +23,16 @@ userRoute.get('/:id', async (req, res) => {
     res.status(404).send({ error: error.message })
   }
 })
-module.exports = userRoute;
+
+userRoute.get('/', async (req, res) => {
+  try {
+    const users = await getAllUsers()
+    res.status(200).send(users)
+
+  } catch (error) {
+    res.status(404).send({ error: error.message })
+  }
+})
+
+
+module.exports = userRoute 

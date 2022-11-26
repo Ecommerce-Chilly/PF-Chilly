@@ -14,16 +14,18 @@ export const FILTER_BY_DETAILS = "FILTER_BY_DETAILS";
 export const GET_PRODUCT_BY_NAME = "GET_PRODUCT_BY_NAME";
 export const ERROR_MSSG = "ERROR_MSSG";
 export const EUSEBIO = "EUSEBIO";
-export const ERROR_PUT_PRODUCT = "ERROR_PUT_PRODUCT"
+export const ERROR_PUT_PRODUCT = "ERROR_PUT_PRODUCT";
 export const RESTORE_PRODUCT = "RESTORE_PRODUCT";
 export const ADD_TO_CART = "ADD_TO_CART";
 export const DELETE_CART_PRODUCT = "DELETE_CART_PRODUCT";
 export const CLEAR_CART = "CLEAR_CART";
-
+export const CREATE_USER = "CREATE_USER";
+export const USER_SPECIFIC = "USER_SPECIFIC";
+export const LOGOUT = "LOGOUT";
 
 export const getProduct = () => {
   return async function (dispatch) {
-    let product = await axios.get('http://localhost:3001/product');
+    let product = await axios.get("http://localhost:3001/product");
     return dispatch({ type: GET_ALL_PRODUCTS, payload: product.data });
   };
 };
@@ -43,11 +45,12 @@ export const createProduct = (product) => {
   return async function (dispatch) {
     try {
       const createProdu = await axios.post(
-        'http://localhost:3001/product',
+        "http://localhost:3001/product",
         product
       );
       return dispatch({ type: CREATE_PRODUCT, payload: createProdu });
     } catch (error) {
+      console.log(error);
       return dispatch({ type: FAIL_CREATED_MSG, payload: error.response.data });
     }
   };
@@ -57,7 +60,7 @@ export const createDiscount = (product) => {
   return async function (dispatch) {
     try {
       const createDiscount = await axios.post(
-        'http://localhost:3001/discount',
+        "http://localhost:3001/discount",
         product
       );
       return dispatch({ type: CREATE_DISCOUNT, payload: createDiscount.data });
@@ -79,8 +82,11 @@ export const putProductById = (id, product) => {
       );
       return dispatch({ type: PUT_PRODUCT, payload: putProduct.data });
     } catch (error) {
-      console.log(error.response.data.error)
-      return dispatch({type: ERROR_PUT_PRODUCT, payload: error.response.data.error})
+      console.log(error.response.data.error);
+      return dispatch({
+        type: ERROR_PUT_PRODUCT,
+        payload: error.response.data.error,
+      });
     }
   };
 };
@@ -98,7 +104,7 @@ export const putInventory = (id, product) => {
 export const putDiscount = (product) => {
   return async function (dispatch) {
     const putInventory = await axios.put(
-      'http://localhost:3001/discount/',
+      "http://localhost:3001/discount/",
       product
     );
     return dispatch({ type: PUT_DISCOUNT, payload: putInventory.data });
@@ -110,7 +116,7 @@ export const deleteProdut = (id) => {
     const deleteProduct = await axios.delete(
       `http://localhost:3001/product/${id}`
     );
-    console.log(deleteProduct.data)
+    console.log(deleteProduct.data);
     return dispatch({ type: DELETE_PRODUCT, payload: deleteProduct.data });
   };
 };
@@ -188,5 +194,25 @@ export const deleteP = (id) => {
 export const clearCart = () => {
   return {
     type: CLEAR_CART,
+  };
+};
+
+export const createUser = (newUser) => {
+  return async function (dispatch) {
+    let createUser = await axios.post("http://localhost:3001/user", newUser);
+    return dispatch({ type: CREATE_USER, payload: createUser.data });
+  };
+};
+
+export const userSpecific = (id) => {
+  return async function (dispatch) {
+    let userSpecific = await axios.get(`http://localhost:3001/user/${id}`);
+    return dispatch({ type: USER_SPECIFIC, payload: userSpecific.data });
+  };
+};
+
+export const logoutUser = () => {
+  return {
+    type: LOGOUT,
   };
 };

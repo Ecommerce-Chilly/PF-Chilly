@@ -19,6 +19,9 @@ import {
   ADD_TO_CART,
   DELETE_CART_PRODUCT,
   CLEAR_CART,
+  CREATE_USER,
+  USER_SPECIFIC,
+  LOGOUT,
 } from "../actions/actions.js";
 
 const initialState = {
@@ -30,6 +33,8 @@ const initialState = {
   searchProductMsg: "",
   categoryDetails: [],
   cart: [],
+  users: [],
+  userSpecific: [],
 };
 
 const rootReducer = (state = initialState, action) => {
@@ -168,6 +173,22 @@ const rootReducer = (state = initialState, action) => {
         ...state,
         cart: [],
       };
+
+    case CREATE_USER:
+      return {
+        ...state,
+        users: state.users.concat(action.payload),
+      };
+    case USER_SPECIFIC:
+      return {
+        ...state,
+        userSpecific: action.payload,
+      };
+    case LOGOUT:
+      return {
+        ...state,
+        userSpecific: []
+      }
     default:
       return state;
   }

@@ -1,7 +1,8 @@
-const { User } = require("../db")
+const { User } = require("../../db")
 
 const getUser = async (id) => {
   try {
+    id = Number(id)
     const usersById = await User.findAll({ where: { id: id } })
     return usersById
   } catch (error) {
