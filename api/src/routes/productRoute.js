@@ -1,9 +1,17 @@
 const { Router } = require("express");
+<<<<<<< HEAD
 const { postProduct } = require("../controllers/product/postProduct");
 const { getProducts, getProductsDeleted } = require("../controllers/product/getProducts");
 const { putProducts } = require("../controllers/product/putProducts");
 const { deleteProduct } = require("../controllers/product/deleteProduct");
 const { restoreProduct } = require("../controllers/product/restoreProduct")
+=======
+const { postProduct } = require("../controllers/postProduct");
+const { getProducts, getProductsDeleted } = require("../controllers/getProducts");
+const { putProducts } = require("../controllers/putProducts");
+const { deleteProduct } = require("../controllers/deleteProduct");
+const { restoreProduct } = require("../controllers/restoreProduct")
+>>>>>>> 44fe9fa9264024360b95c6cda0f8753ee688b9e0
 const productRoute = Router();
 
 productRoute.post("/", async (req, res) => {

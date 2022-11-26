@@ -19,10 +19,15 @@ module.exports = (sequelize) => {
          password: {
             type: DataTypes.STRING,
             allowNull: false,
+<<<<<<< HEAD
+=======
+            //validate: {xxxxxx: true,},
+>>>>>>> 44fe9fa9264024360b95c6cda0f8753ee688b9e0
          },
       },
       {
          timestamps: true,
+<<<<<<< HEAD
          indexes: [
             // Create a unique index on email
             {
@@ -30,6 +35,8 @@ module.exports = (sequelize) => {
                fields: ["email"],
             },
          ],
+=======
+>>>>>>> 44fe9fa9264024360b95c6cda0f8753ee688b9e0
       }
    );
 };
