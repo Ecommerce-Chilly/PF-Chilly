@@ -82,8 +82,8 @@ function ProductCard(props) {
             className="h-96 flex flex-col px-5 pt-5"
           >
             <div>
-              <div>
-                <h2 className="font-medium text-lg">
+              <div className="text-slate-800">
+                <h2 className="font-semibold tracking-wide	 text-slate-700 font-display">
                   {props.name.length > 40
                     ? `${props.name.slice(0, 50)}...`
                     : props.name}
@@ -100,9 +100,9 @@ function ProductCard(props) {
               </div>
             </div>
           </Link>
-          <div className="flex justify-evenly mb-3">
+          <div className="flex justify-evenly mb-6">
             <button
-              className="bg-red-100 rounded px-3 py-1"
+              className="text-main font-semibold rounded px-3 py-1"
               onClick={() => {
                 dispatchToDeleteProduct(props.id);
               }}
@@ -110,7 +110,7 @@ function ProductCard(props) {
               Delete Product
             </button>
             <button
-              className="bg-green-100 rounded px-3"
+              className="bg-main text-white font-semibold rounded px-3"
               onClick={() => {
                 dispatchToRestore(props.id);
               }}
@@ -125,7 +125,7 @@ function ProductCard(props) {
             to={`/store/products/${props.id}`}
             className="h-96 flex flex-col p-5"
           >
-            <h2 className="font-medium text-lg">
+            <h2 className="font-semibold tracking-wide	 text-slate-700 font-display">
               {props.name.length > 50
                 ? `${props.name.slice(0, 60)}...`
                 : props.name}
@@ -135,7 +135,9 @@ function ProductCard(props) {
               src={props.image.replace('SL75', 'SL500')}
               alt={props.name}
             />
-            <p className="text-2xl">$ {props.price === 0 ? 50 : props.price}</p>
+            <p className="text-2xl font-display text-slate-700">
+              $ {props.price === 0 ? 50 : props.price}
+            </p>
           </Link>
         </div>
       )}

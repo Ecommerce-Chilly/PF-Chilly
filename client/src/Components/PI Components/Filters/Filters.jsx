@@ -44,7 +44,9 @@ function Filters() {
 
   return (
     <div className="bg-slate-200 w-60 pl-5 pt-8 h-full">
-      <h3 className="text-2xl uppercase font-medium mb-4">Category</h3>
+      <h3 className="text-2xl uppercase font-medium mb-4 text-slate-800">
+        Category
+      </h3>
       <div>
         <button
           onClick={(event) => handleClearFilters(event)}
@@ -54,7 +56,7 @@ function Filters() {
         </button>
       </div>
       <select
-        className="border-solid border-black bg-white rounded w-11/12 h-7"
+        className="border-solid border-black bg-white rounded w-11/12 h-7 text-slate-800"
         onChange={(e) => {
           dispatchCategory(e);
           setCategory(e.target.value);
@@ -77,12 +79,16 @@ function Filters() {
         inputs?.map((e) => {
           return (
             <>
-              <div className=" border-b-1 mb-7 h-7 w-36 bg-gradient-to-r from-main  to-slate-200">
-                <p className="bg-slate-200 font-medium uppercase my-5 ">{e}</p>
+              <div className=" border-b-1  w-36 bg-slate-800">
+                <p className="bg-slate-200  uppercase mt-5 pt-3 mb-2 text-slate-800 font-bold ">
+                  {e}
+                </p>
               </div>
               {categoryDetails[e]?.map((element) => (
                 <div className="flex justify-between">
-                  <label className="w-40 font-regular">{element}</label>
+                  <label className="w-40 font-regular text-slate-800">
+                    {element}
+                  </label>
                   <input
                     className="form-check-input appearance-none rounded-full h-4 w-4 border border-gray-300 bg-white checked:bg-main checked:border-sky-400 focus:outline-none transition duration-200 mt-1 align-top bg-no-repeat bg-center bg-contain float-left mr-2 cursor-pointer"
                     type="radio"
