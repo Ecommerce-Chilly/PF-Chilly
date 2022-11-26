@@ -5,6 +5,9 @@ const putProducts = async (
   { name, price, brand, image, model, details, category, discount, quantity }
 ) => {
   try {
+    if (!name || !price || !details || !category || !quantity) {
+      throw "Sending incomplete information!";
+    }
     const product = await Product.findByPk(id);
     if (!product) throw (`The product with id: ${id} is not exist`);
     product.name = name;
@@ -19,7 +22,7 @@ const putProducts = async (
     await product.setDiscount(discountDB);
     putInventory(product.inventoryId, quantity);
     await product.save();
-    return product;
+    return "Product successfully modified";
   } catch (error) {
     throw (error);
   }
