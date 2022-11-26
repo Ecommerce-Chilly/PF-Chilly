@@ -1,11 +1,6 @@
 const { Router } = require("express");
-<<<<<<< HEAD
 const postInventory = require("../controllers/inventory/postInventory");
 const { putInventory } = require("../controllers/inventory/putInventory");
-=======
-const postInventory = require("../controllers/postInventory");
-const { putInventory } = require("../controllers/putInventory");
->>>>>>> 44fe9fa9264024360b95c6cda0f8753ee688b9e0
 const inventoryRoutes = Router();
 
 inventoryRoutes.post("/", async (req, res) => {

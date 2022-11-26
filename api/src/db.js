@@ -34,7 +34,6 @@ let capsEntries = entries.map((entry) => [
 ]);
 sequelize.models = Object.fromEntries(capsEntries);
 
-<<<<<<< HEAD
 const {
   Product,
   Administrator,
@@ -52,9 +51,6 @@ const {
   User_role,
   User,
 } = sequelize.models;
-=======
-const { Product, Inventory, Discount, Category, User } = sequelize.models;
->>>>>>> 44fe9fa9264024360b95c6cda0f8753ee688b9e0
 
 Category.hasMany(Product);
 Product.belongsTo(Category);
@@ -62,7 +58,6 @@ Product.belongsTo(Category);
 Discount.hasMany(Product);
 Product.belongsTo(Discount);
 
-<<<<<<< HEAD
 Product.hasOne(Inventory);
 Inventory.hasOne(Product);
 
@@ -102,8 +97,6 @@ User.hasMany(Order_items);
 User.hasMany(Order_details);
 Order_details.hasOne(User);
 
-=======
->>>>>>> 44fe9fa9264024360b95c6cda0f8753ee688b9e0
 User.belongsToMany(Product, { through: "favorites", paranoid: true })
 Product.belongsToMany(User, { through: "favorites", paranoid: true })
 module.exports = {
