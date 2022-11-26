@@ -1,6 +1,6 @@
 const { Router } = require("express");
-const postUser = require("../controllers/postUser")
-const { getUser, getAllUsers } = require("../controllers/getUser")
+const postUser = require("../controllers/user/postUser")
+const { getUser, getAllUsers } = require("../controllers/user/getUser")
 const userRoute = Router();
 
 
@@ -35,4 +35,4 @@ userRoute.get('/', async (req, res) => {
 })
 
 
-module.exports = { userRoute }
+module.exports = userRoute 

@@ -1,4 +1,4 @@
-const { Product, Inventory } = require("../db");
+const { Product, Inventory } = require("../../db");
 const { Op } = require("sequelize");
 require("dotenv").config();
 

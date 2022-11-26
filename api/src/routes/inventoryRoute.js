@@ -1,6 +1,6 @@
 const { Router } = require("express");
-const postInventory = require("../controllers/postInventory");
-const { putInventory } = require("../controllers/putInventory");
+const postInventory = require("../controllers/inventory/postInventory");
+const { putInventory } = require("../controllers/inventory/putInventory");
 const inventoryRoutes = Router();
 
 inventoryRoutes.post("/", async (req, res) => {

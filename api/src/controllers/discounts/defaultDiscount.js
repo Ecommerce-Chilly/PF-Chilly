@@ -1,4 +1,4 @@
-const { postDiscounts } = require('./postDiscounts')
+const { postDiscounts } = require('../discounts/postDiscounts')
 
 const defaultDiscount = async () => {
   const discount = await postDiscounts({ name: "JoseMa", description: "The JoseMa Disocunt ", percent: 5 })

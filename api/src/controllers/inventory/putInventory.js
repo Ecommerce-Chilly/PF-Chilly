@@ -1,4 +1,4 @@
-const { Inventory } = require("../db");
+const { Inventory } = require("../../db");
 
 const putInventory = async (id, quantity) => {
   try {

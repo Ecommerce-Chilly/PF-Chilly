@@ -1,5 +1,5 @@
-const { Product, Category, Discount } = require("../db");
-const { putInventory } = require("./putInventory");
+const { Product, Category, Discount } = require("../../db");
+const { putInventory } = require("../inventory/putInventory");
 const putProducts = async (
   id,
   { name, price, brand, image, model, details, category, discount, quantity }

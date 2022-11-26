@@ -1,4 +1,4 @@
-const { Inventory } = require("../db");
+const { Inventory } = require("../../db");
 
 const postInventory = async (quantity) => {
   if (!quantity) throw ("Send a quantity of products");

@@ -43,7 +43,6 @@ const {
   Cart_item,
   Clients,
   Data_user,
-  Favorite,
   Order_details,
   Order_items,
   Payment_details,
@@ -97,12 +96,6 @@ User.hasMany(Order_items);
 
 User.hasMany(Order_details);
 Order_details.hasOne(User);
-
-Favorite.belongsTo(Product);
-Product.hasMany(Favorite);
-
-Favorite.belongsTo(User);
-User.hasMany(Favorite);
 
 User.belongsToMany(Product, { through: "favorites", paranoid: true })
 Product.belongsToMany(User, { through: "favorites", paranoid: true })

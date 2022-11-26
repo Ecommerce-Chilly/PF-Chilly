@@ -1,6 +1,6 @@
-const { Product, Category, Inventory, Discount } = require("../db");
-const postInvetory = require("./postInventory");
-const { defaultDiscount } = require('./defaultDiscount')
+const { Product, Category, Inventory, Discount } = require("../../db");
+const postInvetory = require("../inventory/postInventory");
+const { defaultDiscount } = require('../discounts/defaultDiscount')
 
 const postProduct = async ({
   name,
