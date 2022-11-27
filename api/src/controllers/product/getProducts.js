@@ -1,5 +1,7 @@
-const { Product, Inventory } = require("../db");
+const { Product, Inventory } = require("../../db");
 const { Op } = require("sequelize");
+require("dotenv").config();
+
 const getProducts = async (category, id, name) => {
   try {
     if (name) {
@@ -12,7 +14,7 @@ const getProducts = async (category, id, name) => {
         },
       });
       if (productName.length === 0)
-        throw new Error(`Product with name ${name} is not exist`);
+        throw (`Product with name ${name} does not exist`);
       return productName;
     }
     if (id) {
@@ -22,7 +24,7 @@ const getProducts = async (category, id, name) => {
           attributes: ["quantity"],
         },
       });
-      if (!product) throw new Error(`Product with id ${id} is not exist`);
+      if (!product) throw (`Product with id ${id} does not exist`);
       return product;
     }
     if (!category && !name && !id) {
@@ -31,9 +33,10 @@ const getProducts = async (category, id, name) => {
           model: Inventory,
           attributes: ["quantity"],
         },
+
       });
       if (all.length === 0)
-        throw new Error("Dont have products in our data base");
+        throw ("Dont have products in our data base");
       return all;
     }
     if (category && !name && !id) {
@@ -47,7 +50,23 @@ const getProducts = async (category, id, name) => {
       return prodGet;
     }
   } catch (error) {
-    throw new Error(error);
+    throw (error);
   }
 };
-module.exports = { getProducts };
+const getProductsDeleted = async () => {
+  try {
+    const products = await Product.findAll({
+      where: { deletedAt: { [Op.not]: null } },
+      include: {
+        model: Inventory,
+        attributes: ["quantity"],
+      },
+      paranoid: false
+    })
+    if (products.length === 0) throw `There are not products deleted`
+    return products
+  } catch (error) {
+    throw error
+  }
+}
+module.exports = { getProducts, getProductsDeleted };

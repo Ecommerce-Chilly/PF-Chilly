@@ -1,12 +1,15 @@
-const { Product, Category, Discount } = require("../db");
-const { putInventory } = require("./putInventory");
+const { Product, Category, Discount } = require("../../db");
+const { putInventory } = require("../inventory/putInventory");
 const putProducts = async (
   id,
   { name, price, brand, image, model, details, category, discount, quantity }
 ) => {
   try {
+    if (!name || !price || !details || !category || !quantity) {
+      throw "Sending incomplete information!";
+    }
     const product = await Product.findByPk(id);
-    if (!product) throw new Error(`The product with id: ${id} is not exist`);
+    if (!product) throw (`The product with id: ${id} is not exist`);
     product.name = name;
     product.price = price;
     product.brand = brand;
@@ -19,9 +22,9 @@ const putProducts = async (
     await product.setDiscount(discountDB);
     putInventory(product.inventoryId, quantity);
     await product.save();
-    return product;
+    return "Product successfully modified";
   } catch (error) {
-    throw new Error(error);
+    throw (error);
   }
 };
 module.exports = { putProducts };
