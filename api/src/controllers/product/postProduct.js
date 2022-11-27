@@ -1,6 +1,6 @@
-const { Product, Category, Inventory, Discount } = require("../db");
-const postInvetory = require("./postInventory");
-const { defaultDiscount } = require('./defaultDiscount')
+const { Product, Category, Inventory, Discount } = require("../../db");
+const postInvetory = require("../inventory/postInventory");
+const { defaultDiscount } = require('../discounts/defaultDiscount')
 
 const postProduct = async ({
   name,
@@ -14,7 +14,7 @@ const postProduct = async ({
   quantity,
 }) => {
   if (!name || !price || !details || !category || !quantity) {
-    throw Error("Sending incomplete information!");
+    throw ("Sending incomplete information!");
   } else {
     let discountDB
     const invCreate = await postInvetory(quantity);

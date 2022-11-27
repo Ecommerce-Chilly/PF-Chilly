@@ -368,7 +368,6 @@ module.exports = {
     fontFamily: {
       sans: [
         '"Josefin Sans"',
-
         'ui-sans-serif',
         'system-ui',
         '-apple-system',
@@ -393,6 +392,7 @@ module.exports = {
         'serif',
       ],
       mono: [
+        'Inter',
         'ui-monospace',
         'SFMono-Regular',
         'Menlo',
@@ -402,7 +402,7 @@ module.exports = {
         '"Courier New"',
         'monospace',
       ],
-      display: ['Inter'],
+      display: ['Montserrat'],
     },
     fontSize: {
       xs: ['0.75rem', { lineHeight: '1rem' }],

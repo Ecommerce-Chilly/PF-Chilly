@@ -1,5 +1,7 @@
-const { Product, Inventory } = require("../db");
+const { Product, Inventory } = require("../../db");
 const { Op } = require("sequelize");
+require("dotenv").config();
+
 const getProducts = async (category, id, name) => {
   try {
     if (name && !category && !id) {

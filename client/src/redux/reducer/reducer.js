@@ -19,6 +19,12 @@ import {
   ADD_TO_CART,
   DELETE_CART_PRODUCT,
   CLEAR_CART,
+  CREATE_USER,
+  USER_SPECIFIC,
+  LOGOUT,
+  ERROR_CREATE_USER,
+  ALL_USERS,
+  USER_NOT_FOUND,
 } from "../actions/actions.js";
 
 const initialState = {
@@ -30,6 +36,10 @@ const initialState = {
   searchProductMsg: "",
   categoryDetails: [],
   cart: [],
+  users: [],
+  userInfo: [],
+  userNotFound: "",
+  createUserMsg: "",
 };
 
 const rootReducer = (state = initialState, action) => {
@@ -127,7 +137,6 @@ const rootReducer = (state = initialState, action) => {
           (e) => e.details[0][property] === action.payload[1][property]
         );
       }
-
       return {
         ...state,
         searchProductMsg: "",
@@ -148,13 +157,20 @@ const rootReducer = (state = initialState, action) => {
         ...state,
         searchProductMsg: action.payload,
       };
+
     case ADD_TO_CART:
-      console.log(action.payload);
       let prod = state.allProduct.find((e) => e.id === action.payload);
-      console.log(prod);
+      let foundProd = state.cart.find((e) => e.id === action.payload);
+      console.log(prod, foundProd);
+      if (foundProd) {
+        foundProd.quantity++;
+      } else {
+        prod.quantity = 1;
+      }
+      console.log(prod, foundProd);
       return {
         ...state,
-        cart: state.cart.concat(prod),
+        cart: prod.quantity === 1 ? state.cart.concat(prod) : state.cart,
       };
     case DELETE_CART_PRODUCT:
       let cart1 = state.cart.filter((e) => e.id !== action.payload);
@@ -166,6 +182,40 @@ const rootReducer = (state = initialState, action) => {
       return {
         ...state,
         cart: [],
+      };
+    case ALL_USERS:
+      return {
+        ...state,
+        users: action.payload,
+        createUserMsg: "",
+      };
+
+    case CREATE_USER:
+      return {
+        ...state,
+        createUserMsg: action.payload,
+        userNotFound: "",
+      };
+    case ERROR_CREATE_USER:
+      return {
+        ...state,
+        createUserMsg: action.payload,
+      };
+    case USER_SPECIFIC:
+      return {
+        ...state,
+        userInfo: action.payload,
+        createUserMsg: "",
+      };
+    case USER_NOT_FOUND:
+      return {
+        ...state,
+        userNotFound: action.payload,
+      };
+    case LOGOUT:
+      return {
+        ...state,
+        userInfo: [],
       };
     default:
       return state;

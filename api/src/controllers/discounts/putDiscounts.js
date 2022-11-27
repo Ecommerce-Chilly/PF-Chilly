@@ -1,4 +1,4 @@
-const { Discount } = require("../db");
+const { Discount } = require("../../db");
 
 const putDiscounts = async ({ name, description, percent, active }) => {
   try {

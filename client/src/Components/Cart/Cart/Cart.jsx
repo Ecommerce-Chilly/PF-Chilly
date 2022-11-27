@@ -9,7 +9,7 @@ function Cart() {
   let totalPrice = 0;
 
   for (let i = 0; i < cart.length; i++) {
-    totalPrice = totalPrice + cart[i].price;
+    totalPrice = totalPrice + cart[i].price * cart[i].quantity;
   }
 
   const deleteProduct = (id) => {
@@ -26,7 +26,8 @@ function Cart() {
       {cart.length > 0 ? (
         cart?.map((e) => (
           <div>
-            <p>{e.name} </p> <p>{e.price}</p>{" "}
+            <p>{e.name} </p> <p>{e.quantity}</p>
+            <p>{e.price * e.quantity}</p>{" "}
             <button onClick={() => deleteProduct(e.id)}>X</button>
           </div>
         ))

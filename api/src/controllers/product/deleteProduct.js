@@ -1,4 +1,4 @@
-const { Product, Inventory } = require("../db");
+const { Product, Inventory } = require("../../db");
 
 const deleteProduct = async (id) => {
   try {

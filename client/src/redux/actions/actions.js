@@ -19,6 +19,12 @@ export const RESTORE_PRODUCT = "RESTORE_PRODUCT";
 export const ADD_TO_CART = "ADD_TO_CART";
 export const DELETE_CART_PRODUCT = "DELETE_CART_PRODUCT";
 export const CLEAR_CART = "CLEAR_CART";
+export const CREATE_USER = "CREATE_USER";
+export const USER_SPECIFIC = "USER_SPECIFIC";
+export const LOGOUT = "LOGOUT";
+export const ERROR_CREATE_USER = "ERROR_CREATE_USER";
+export const ALL_USERS = "ALL_USERS";
+export const USER_NOT_FOUND = "USER_NOT_FOUND";
 
 export const getProduct = () => {
   return async function (dispatch) {
@@ -47,6 +53,7 @@ export const createProduct = (product) => {
       );
       return dispatch({ type: CREATE_PRODUCT, payload: createProdu });
     } catch (error) {
+      console.log(error);
       return dispatch({ type: FAIL_CREATED_MSG, payload: error.response.data });
     }
   };
@@ -190,5 +197,46 @@ export const deleteP = (id) => {
 export const clearCart = () => {
   return {
     type: CLEAR_CART,
+  };
+};
+
+export const getAllUsers = () => {
+  return async function (dispatch) {
+    let allUsers = await axios.get("http://localhost:3001/user");
+    return dispatch({ type: ALL_USERS, payload: allUsers.data });
+  };
+};
+
+export const createUser = (newUser) => {
+  return async function (dispatch) {
+    try {
+      let createUser = await axios.post("http://localhost:3001/user", newUser);
+      return dispatch({ type: CREATE_USER, payload: createUser.data });
+    } catch (error) {
+      return dispatch({
+        type: ERROR_CREATE_USER,
+        payload: error.response.data.error,
+      });
+    }
+  };
+};
+
+export const userSpecific = (userFound) => {
+  return async function (dispatch) {
+    try {
+      let userSpeci = await axios.get("http://localhost:3001/user", userFound);
+      return dispatch({ type: USER_SPECIFIC, payload: userSpeci.data });
+    } catch (error) {
+      return dispatch({
+        type: USER_NOT_FOUND,
+        payload: error.response.data.error,
+      });
+    }
+  };
+};
+
+export const logoutUser = () => {
+  return {
+    type: LOGOUT,
   };
 };

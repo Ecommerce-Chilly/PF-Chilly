@@ -1,49 +1,20 @@
 import React, { useState } from "react";
 import { useSelector } from "react-redux";
 import { Link } from "react-router-dom";
-import Cart from "../../Cart/Cart/Cart";
 import SearchBar from "../SearchBar/SearchBar";
 
 function Navbar() {
   let cart = useSelector((state) => state.cart);
-
   return (
     <>
       <nav class="	bg-white border-gray-200 px-2 sm:px-4 py-5  dark:bg-main static">
         <div class="container flex flex-wrap items-center justify-between mx-auto">
-          <a href="#" class="flex items-center">
+          <Link to="/home" class="flex items-center">
             <span class="self-center text-4xl font-semibold whitespace-nowrap dark:text-white font-sans">
               Chilly
             </span>
-          </a>
-          <SearchBar></SearchBar>
-          {/* <div class="absolute  left-1/2 transform -translate-x-1/2  ">
-            <div class=" flex items-center w-full h-10 rounded-lg focus-within:shadow-lg bg-white overflow-hidden">
-              <div class="grid place-items-center h-full w-12 text-gray-300">
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  class="h-6 w-6"
-                  fill="none"
-                  viewBox="0 0 24 24"
-                  stroke="currentColor"
-                >
-                  <path
-                    stroke-linecap="round"
-                    stroke-linejoin="round"
-                    stroke-width="2"
-                    d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"
-                  />
-                </svg>
-              </div>
-
-              <input
-                class="peer h-full w-full outline-none text-sm text-gray-700 pr-2"
-                type="text"
-                id="search"
-                placeholder="Search something.."
-              />
-            </div>
-          </div> */}
+          </Link>
+          <SearchBar />
 
           <div class="hidden w-full md:block md:w-auto" id="navbar-default">
             <Link to="/user/favorites" className="inline-block mx-4">
@@ -63,9 +34,10 @@ function Navbar() {
               </svg>
             </Link>
             <Link to="/cart" className="inline-block mx-4">
-              <div className="w-5 bg-red-200">
-                <p className="bg-red-200 z-10 absolute ">{cart.length}</p>
+              <div className=" font-display -top-2 font-medium left-3 text-main text-sm text-center relative box-content	">
+                <p className="w-5 h-5 bg-white z-10 rounded-full border-1 absolute"></p>
               </div>
+
               <svg
                 xmlns="http://www.w3.org/2000/svg"
                 fill="none"
@@ -135,7 +107,7 @@ function Navbar() {
               <Link to="/panel+admin/products" className="hover:underline">
                 PA - Products
               </Link>
-            </li>{" "}
+            </li>
             <li>
               <Link
                 to="/panel+admin/create/product"

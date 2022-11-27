@@ -1,0 +1,44 @@
+### solicitar acceso data
+GET http://localhost:3001/guillo
+
+### solicitar data
+GET http://localhost:3001/product
+
+### post new user
+POST http://localhost:3001/user
+content-type:application/json
+
+{ 
+"email":"eltioss@gmail.com",
+"password":"passs"
+}
+
+### get users
+GET http://localhost:3001/user
+
+
+### POST FAVORITE
+POST http://localhost:3001/favorite
+content-type:application/json
+
+{ 
+"productId":1,
+"userId":1
+}
+
+### GET FAVORITES
+GET http://localhost:3001/favorite
+
+
+### DESTROY FAVORITE
+DELETE http://localhost:3001/favorite/1
+
+
+#####
+GET http://localhost:3001/user
+Content-Type: application/json
+
+{ 
+"email":"eltio@gmail.com",
+"password":"passs"
+}
