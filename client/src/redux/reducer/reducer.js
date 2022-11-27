@@ -22,6 +22,9 @@ import {
   CREATE_USER,
   USER_SPECIFIC,
   LOGOUT,
+  ERROR_CREATE_USER,
+  ALL_USERS,
+  USER_NOT_FOUND,
 } from "../actions/actions.js";
 
 const initialState = {
@@ -34,7 +37,9 @@ const initialState = {
   categoryDetails: [],
   cart: [],
   users: [],
-  userSpecific: [],
+  userInfo: [],
+  userNotFound: "",
+  createUserMsg: "",
 };
 
 const rootReducer = (state = initialState, action) => {
@@ -132,7 +137,6 @@ const rootReducer = (state = initialState, action) => {
           (e) => e.details[0][property] === action.payload[1][property]
         );
       }
-
       return {
         ...state,
         searchProductMsg: "",
@@ -157,7 +161,6 @@ const rootReducer = (state = initialState, action) => {
 
     case ADD_TO_CART:
       let prod = state.allProduct.find((e) => e.id === action.payload);
-      console.log(prod);
       return {
         ...state,
         cart: state.cart.concat(prod),
@@ -174,21 +177,40 @@ const rootReducer = (state = initialState, action) => {
         cart: [],
       };
 
+    case ALL_USERS:
+      return {
+        ...state,
+        users: action.payload,
+        createUserMsg: "",
+      };
+
     case CREATE_USER:
       return {
         ...state,
-        users: state.users.concat(action.payload),
+        createUserMsg: action.payload,
+        userNotFound: ""
+      };
+    case ERROR_CREATE_USER:
+      return {
+        ...state,
+        createUserMsg: action.payload,
       };
     case USER_SPECIFIC:
       return {
         ...state,
-        userSpecific: action.payload,
+        userInfo: action.payload,
+        createUserMsg: "",
+      };
+    case USER_NOT_FOUND:
+      return {
+        ...state,
+        userNotFound: action.payload,
       };
     case LOGOUT:
       return {
         ...state,
-        userSpecific: []
-      }
+        userInfo: [],
+      };
     default:
       return state;
   }

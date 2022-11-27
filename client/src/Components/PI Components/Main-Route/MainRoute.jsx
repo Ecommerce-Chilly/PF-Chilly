@@ -1,24 +1,22 @@
-import React, { useEffect } from 'react';
-import { Route } from 'react-router-dom';
-//import PanelAdmin from "../../PanelAdmin/PanelAdmin";
-import Cart from '../../Cart/Cart/Cart';
-import Navbar from '../Navbar/Navbar';
-import Fav from '../../Extras/Fav/Fav';
-import UserInfo from '../../Login/UserInfo/UserInfo';
-import CreateComponent from '../../PanelAdmin/CreateComponent/CreateComponent';
-import ChangeComponent from '../../PanelAdmin/ChangeComponent/ChangeComponent';
-import Products from '../../PanelAdmin/Products/Products';
-import ProductDetail from '../../PanelAdmin/Products/ProductDetail';
-import ProductStoreDetail from '../../PanelAdmin/Products/ProductStoreDetail';
-import Home from '../Pages/Home';
-import Store from '../Pages/Store';
-import BuildYourOwn from '../Pages/BuildYourOwn';
-import SpecialOffers from '../Pages/SpecialOffers';
-import Blog from '../Pages/Blog';
-import AboutUS from '../Pages/AboutUS';
-import Footer from '../Footer/Footer';
-import Register from '../../Login/Register/Register';
-
+import React, { useEffect } from "react";
+import { Route } from "react-router-dom";
+import Cart from "../../Cart/Cart/Cart";
+import Navbar from "../Navbar/Navbar";
+import Fav from "../../Extras/Fav/Fav";
+import UserInfo from "../../Login/UserInfo/UserInfo";
+import CreateComponent from "../../PanelAdmin/CreateComponent/CreateComponent";
+import ChangeComponent from "../../PanelAdmin/ChangeComponent/ChangeComponent";
+import Products from "../../PanelAdmin/Products/Products";
+import ProductDetail from "../../PanelAdmin/Products/ProductDetail";
+import ProductStoreDetail from "../../PanelAdmin/Products/ProductStoreDetail";
+import Home from "../Pages/Home";
+import Store from "../Pages/Store";
+import BuildYourOwn from "../Pages/BuildYourOwn";
+import SpecialOffers from "../Pages/SpecialOffers";
+import Blog from "../Pages/Blog";
+import AboutUS from "../Pages/AboutUS";
+import Footer from "../Footer/Footer";
+import Register from "../../Login/Register/Register";
 
 function MainRoute() {
 
@@ -38,11 +36,7 @@ function MainRoute() {
         <Route exact path="/blog" component={Blog} />
         <Route exact path="/about+us" component={AboutUS} />
 
-      <Route exact path="/register" component={Register}/>
-      
-
-
-
+        <Route exact path="/register" component={Register} />
 
         <Route exact path="/panel+admin/products" component={Products} />
         <Route

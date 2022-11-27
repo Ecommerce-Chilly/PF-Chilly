@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { createUser } from "../../../redux/actions/actions";
 import { useHistory } from "react-router-dom";
 
@@ -10,6 +10,7 @@ function Register() {
     email: "",
     password: "",
   });
+  const errorMsg = useSelector((state) => state.createUserMsg);
 
   const handleChange = (e) => {
     setNewUser({
@@ -28,14 +29,17 @@ function Register() {
         onSubmit={(e) => {
           e.preventDefault();
           dispatchCreateUser(newUser);
+          setTimeout(() => history.push("/user/info"), 2000);
         }}
       >
-        <label>E-mail:</label>
+        <p>E-mail:</p>
         <input type="text" name="email" onChange={handleChange} />
-        <label>Password:</label>
+        <p>Password:</p>
         <input type="password" name="password" onChange={handleChange} />
+        <br></br>
         <input type="submit" />
       </form>
+      {errorMsg.length > 0 ? <p>{`${errorMsg}`}</p> : <></>}
     </div>
   );
 }

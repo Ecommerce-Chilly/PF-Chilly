@@ -22,6 +22,9 @@ export const CLEAR_CART = "CLEAR_CART";
 export const CREATE_USER = "CREATE_USER";
 export const USER_SPECIFIC = "USER_SPECIFIC";
 export const LOGOUT = "LOGOUT";
+export const ERROR_CREATE_USER = "ERROR_CREATE_USER";
+export const ALL_USERS = "ALL_USERS";
+export const USER_NOT_FOUND = "USER_NOT_FOUND";
 
 export const getProduct = () => {
   return async function (dispatch) {
@@ -197,17 +200,41 @@ export const clearCart = () => {
   };
 };
 
-export const createUser = (newUser) => {
+export const getAllUsers = () => {
   return async function (dispatch) {
-    let createUser = await axios.post("http://localhost:3001/user", newUser);
-    return dispatch({ type: CREATE_USER, payload: createUser.data });
+    let allUsers = await axios.get("http://localhost:3001/user");
+    return dispatch({ type: ALL_USERS, payload: allUsers.data });
   };
 };
 
-export const userSpecific = (id) => {
+export const createUser = (newUser) => {
   return async function (dispatch) {
-    let userSpecific = await axios.get(`http://localhost:3001/user/${id}`);
-    return dispatch({ type: USER_SPECIFIC, payload: userSpecific.data });
+    try {
+      let createUser = await axios.post("http://localhost:3001/user", newUser);
+      return dispatch({ type: CREATE_USER, payload: createUser.data });
+    } catch (error) {
+      return dispatch({
+        type: ERROR_CREATE_USER,
+        payload: error.response.data.error,
+      });
+    }
+  };
+};
+
+export const userSpecific = (userFound) => {
+  return async function (dispatch) {
+    try {
+      let userSpeci = await axios.get(
+        "http://localhost:3001/user",
+        userFound
+      );
+      return dispatch({ type: USER_SPECIFIC, payload: userSpeci.data });
+    } catch (error) {
+      return dispatch({
+        type: USER_NOT_FOUND,
+        payload: error.response.data.error,
+      });
+    }
   };
 };
 
