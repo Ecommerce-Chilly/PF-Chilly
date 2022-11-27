@@ -224,12 +224,11 @@ export const createUser = (newUser) => {
 export const userSpecific = (userFound) => {
   return async function (dispatch) {
     try {
-      let userSpeci = await axios.get(
-        "http://localhost:3001/user",
-        userFound
-      );
+      let userSpeci = await axios.post("http://localhost:3001/user/tio", userFound);
+      console.log(userFound, userSpeci)
       return dispatch({ type: USER_SPECIFIC, payload: userSpeci.data });
     } catch (error) {
+      console.log(error)
       return dispatch({
         type: USER_NOT_FOUND,
         payload: error.response.data.error,

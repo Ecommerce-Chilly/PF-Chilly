@@ -21,6 +21,7 @@ function Login() {
     dispatch(getAllUsers());
   }, [dispatch]);
 
+
   const handleChange = (e) => {
     setLoginUser({
       ...loginUser,
@@ -28,8 +29,8 @@ function Login() {
     });
   };
 
-  function dispatchLoginUser(loginUser) {
-    dispatch(userSpecific(loginUser));
+  function dispatchLoginUser(email, password) {
+    dispatch(userSpecific(email, password));
   }
 
   function handleLogout(e) {
@@ -46,7 +47,7 @@ function Login() {
             <input type="text" name="email" onChange={handleChange} />
             <p>Password:</p>
             <input type="password" name="password" onChange={handleChange} />
-            <br></br>
+            <br/>
             <button
               type="submit"
               onClick={(e) => {
@@ -62,24 +63,13 @@ function Login() {
             </Link>
           </div>
         </>
-      ) : userUnique.length && !userNotFound ? (
-        userUnique.map((e) => {
-          if (
-            e.email === loginUser.email &&
-            e.password === loginUser.password
-          ) {
-            return (
-              <div key={e.id} >
-                <h2>User info:</h2>
-                <h2>Email: {e.email} </h2>
-                <h2>CreatedAt: {e.createdAt} </h2>
-                <button onClick={(e) => handleLogout(e)}>Logout</button>
-              </div>
-            );
-          } 
-        })
       ) : (
-        <></>
+        <>
+          <h2>User info:</h2>
+          <h2>Email: {userUnique[0].email} </h2>
+          <h2>CreatedAt: {userUnique[0].createdAt} </h2>
+          <button onClick={(e) => handleLogout(e)}>Logout</button>
+        </>
       )}
     </div>
   );
