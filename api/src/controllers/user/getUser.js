@@ -1,20 +1,22 @@
 const { User } = require("../../db")
 
-const getUser = async (id) => {
+const getUser = async (email) => {
   try {
-    const usersById = await User.findAll({ where: { id: id } })
-    return usersById
+    const user = await User.findOne({ where: { email: email } })
+    if (!user) throw ("User not exits")
+    return user
   } catch (error) {
-    console.log(error)
+    throw (error)
   }
 }
 
 const getAllUsers = async () => {
   try {
     const allUsers = await User.findAll()
+    if (allUsers.length === 0) throw "There are not users"
     return allUsers
   } catch (error) {
-    console.log(error)
+    throw (error)
   }
 }
 

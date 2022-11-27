@@ -15,22 +15,18 @@ userRoute.post('/', async (req, res) => {
   }
 })
 
-userRoute.get('/:id', async (req, res) => {
-  try {
-    const user = await getUser(req.params.id)
-    res.status(200).send(user)
-  } catch (error) {
-    res.status(404).send({ error: error.message })
-  }
-})
 
 userRoute.get('/', async (req, res) => {
   try {
-    const users = await getAllUsers()
-    res.status(200).send(users)
-
+    const { email } = req.body
+    if (!email) {
+      const users = await getAllUsers()
+      return res.status(200).send(users)
+    }
+    const user = await getUser(email)
+    return res.send(user)
   } catch (error) {
-    res.status(404).send({ error: error.message })
+    res.status(404).send({ error: error })
   }
 })
 
