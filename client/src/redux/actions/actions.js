@@ -13,6 +13,21 @@ export const FILTER1 = "FILTER1";
 export const FILTER_BY_DETAILS = "FILTER_BY_DETAILS";
 export const GET_PRODUCT_BY_NAME = "GET_PRODUCT_BY_NAME";
 export const ERROR_MSSG = "ERROR_MSSG";
+<<<<<<< HEAD
+=======
+export const EUSEBIO = "EUSEBIO";
+export const ERROR_PUT_PRODUCT = "ERROR_PUT_PRODUCT";
+export const RESTORE_PRODUCT = "RESTORE_PRODUCT";
+export const ADD_TO_CART = "ADD_TO_CART";
+export const DELETE_CART_PRODUCT = "DELETE_CART_PRODUCT";
+export const CLEAR_CART = "CLEAR_CART";
+export const CREATE_USER = "CREATE_USER";
+export const USER_SPECIFIC = "USER_SPECIFIC";
+export const LOGOUT = "LOGOUT";
+export const ERROR_CREATE_USER = "ERROR_CREATE_USER";
+export const ALL_USERS = "ALL_USERS";
+export const USER_NOT_FOUND = "USER_NOT_FOUND";
+>>>>>>> 99b2219f13ceeaa90b2ed86c7cae0fe64cd2d2e4
 
 export const getProduct = () => {
   return async function (dispatch) {
@@ -23,8 +38,12 @@ export const getProduct = () => {
 
 export const getProductById = (id) => {
   return async function (dispatch) {
-    let productById = await axios.get(`http://localhost:3001/product/${id}`);
-    return dispatch({ type: GET_PRODUCT_BY_ID, payload: productById.data });
+    try {
+      let productById = await axios.get(`http://localhost:3001/product/${id}`);
+      return dispatch({ type: GET_PRODUCT_BY_ID, payload: productById.data });
+    } catch (error) {
+      return dispatch({ type: EUSEBIO, payload: error.response.data.error });
+    }
   };
 };
 
@@ -37,10 +56,12 @@ export const createProduct = (product) => {
       );
       return dispatch({ type: CREATE_PRODUCT, payload: createProdu });
     } catch (error) {
+      console.log(error);
       return dispatch({ type: FAIL_CREATED_MSG, payload: error.response.data });
     }
   };
 };
+
 export const createDiscount = (product) => {
   return async function (dispatch) {
     try {
@@ -60,11 +81,19 @@ export const createDiscount = (product) => {
 
 export const putProductById = (id, product) => {
   return async function (dispatch) {
-    const putProduct = await axios.put(
-      `http://localhost:3001/product/${id}`,
-      product
-    );
-    return dispatch({ type: PUT_PRODUCT, payload: putProduct.data });
+    try {
+      const putProduct = await axios.put(
+        `http://localhost:3001/product/${id}`,
+        product
+      );
+      return dispatch({ type: PUT_PRODUCT, payload: putProduct.data });
+    } catch (error) {
+      console.log(error.response.data.error);
+      return dispatch({
+        type: ERROR_PUT_PRODUCT,
+        payload: error.response.data.error,
+      });
+    }
   };
 };
 
@@ -93,6 +122,7 @@ export const deleteProdut = (id) => {
     const deleteProduct = await axios.delete(
       `http://localhost:3001/product/${id}`
     );
+    console.log(deleteProduct.data);
     return dispatch({ type: DELETE_PRODUCT, payload: deleteProduct.data });
   };
 };
@@ -143,27 +173,80 @@ export const getProductByName = (name) => {
   };
 };
 
-export function setPage(page) {
+export const restoreProduct = (id) => {
   return async function (dispatch) {
-    return dispatch({
-      type: "SET_PAGE",
-      payload: page,
-    });
+    let restoreProduct = await axios.put(
+      `http://localhost:3001/product/restore/${id}`
+    );
+    console.log(restoreProduct);
+    return dispatch({ type: RESTORE_PRODUCT, payload: restoreProduct.data });
   };
-}
+};
 
-export function previousPage() {
-  return async function (dispatch) {
-    return dispatch({
-      type: "PREVIOUS_PAGE",
-    });
+export const addToCart = (id) => {
+  return {
+    type: ADD_TO_CART,
+    payload: id,
   };
-}
+};
 
-export function nextPage() {
-  return async function (dispatch) {
-    return dispatch({
-      type: "NEXT_PAGE",
-    });
+export const deleteP = (id) => {
+  return {
+    type: DELETE_CART_PRODUCT,
+    payload: id,
   };
+<<<<<<< HEAD
 }
+=======
+};
+
+export const clearCart = () => {
+  return {
+    type: CLEAR_CART,
+  };
+};
+
+export const getAllUsers = () => {
+  return async function (dispatch) {
+    let allUsers = await axios.get("http://localhost:3001/user");
+    return dispatch({ type: ALL_USERS, payload: allUsers.data });
+  };
+};
+
+export const createUser = (newUser) => {
+  return async function (dispatch) {
+    try {
+      let createUser = await axios.post("http://localhost:3001/user", newUser);
+      return dispatch({ type: CREATE_USER, payload: createUser.data });
+    } catch (error) {
+      return dispatch({
+        type: ERROR_CREATE_USER,
+        payload: error.response.data.error,
+      });
+    }
+  };
+};
+
+export const userSpecific = (userFound) => {
+  return async function (dispatch) {
+    try {
+      let userSpeci = await axios.get(
+        "http://localhost:3001/user",
+        userFound
+      );
+      return dispatch({ type: USER_SPECIFIC, payload: userSpeci.data });
+    } catch (error) {
+      return dispatch({
+        type: USER_NOT_FOUND,
+        payload: error.response.data.error,
+      });
+    }
+  };
+};
+
+export const logoutUser = () => {
+  return {
+    type: LOGOUT,
+  };
+};
+>>>>>>> 99b2219f13ceeaa90b2ed86c7cae0fe64cd2d2e4

@@ -23,7 +23,7 @@ function Paginate({ products }) {
   }, [products]);
 
   return (
-    <div className="">
+    <>
       <ReactPaginate
         breakLabel="..."
         nextLabel="Next"
@@ -41,14 +41,23 @@ function Paginate({ products }) {
       />
       <div className="flex flex-wrap justify-evenly">
         {currentItems.length > 0 && searchProductMsg === '' ? (
-          currentItems?.map((el) => <ProductCard key={el.id} {...el} />)
+          currentItems?.map((el) => (
+            <ProductCard
+              key={el.id}
+              id={el.id}
+              name={el.name}
+              image={el.image}
+              brand={el.brand}
+              price={el.price}
+            />
+          ))
         ) : searchProductMsg.error ? (
           <p>{searchProductMsg.error}</p>
         ) : (
           <div>Products not found</div>
         )}
       </div>
-    </div>
+    </>
   );
 }
 

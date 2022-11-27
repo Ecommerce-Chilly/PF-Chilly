@@ -9,14 +9,16 @@ const postUser = async ({
 }) => {
   try {
     if (!email || !password) throw "You need to fill all fields";
-    const userExist = await User.findOne({ where: { email: email, password, password } });
-    if (userExist) throw "The user already exists";
-    await User.create({
-      email,
-      password,
-    });
 
-    return "User created";
+    const userExist = await User.findOne({ where: { email, password } });
+    if (userExist) throw "User exist";
+    else {
+      const userCreate = await User.create({
+        email,
+        password,
+      });
+      return "User created";
+    }
   } catch (error) {
     throw new Error(error);
   }
