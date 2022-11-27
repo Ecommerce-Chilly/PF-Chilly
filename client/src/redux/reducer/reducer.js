@@ -25,6 +25,7 @@ import {
   ERROR_CREATE_USER,
   ALL_USERS,
   USER_NOT_FOUND,
+  UPDATE_CART_QUANTITY,
 } from "../actions/actions.js";
 
 const initialState = {
@@ -40,6 +41,7 @@ const initialState = {
   userInfo: [],
   userNotFound: "",
   createUserMsg: "",
+  quantity: 0,
 };
 
 const rootReducer = (state = initialState, action) => {
@@ -161,13 +163,13 @@ const rootReducer = (state = initialState, action) => {
     case ADD_TO_CART:
       let prod = state.allProduct.find((e) => e.id === action.payload);
       let foundProd = state.cart.find((e) => e.id === action.payload);
-      console.log(prod, foundProd);
+
       if (foundProd) {
         foundProd.quantity++;
       } else {
         prod.quantity = 1;
       }
-      console.log(prod, foundProd);
+
       return {
         ...state,
         cart: prod.quantity === 1 ? state.cart.concat(prod) : state.cart,
@@ -182,6 +184,7 @@ const rootReducer = (state = initialState, action) => {
       return {
         ...state,
         cart: [],
+        quantity: 0,
       };
     case ALL_USERS:
       return {
@@ -216,6 +219,16 @@ const rootReducer = (state = initialState, action) => {
       return {
         ...state,
         userInfo: [],
+      };
+    case UPDATE_CART_QUANTITY:
+      let cartQuantity = 0;
+      for (let i = 0; i < state.cart.length; i++) {
+        cartQuantity = cartQuantity + state.cart[i].quantity;
+      }
+      console.log(cartQuantity);
+      return {
+        ...state,
+        quantity: cartQuantity,
       };
     default:
       return state;

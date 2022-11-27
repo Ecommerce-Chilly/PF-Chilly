@@ -25,6 +25,7 @@ export const LOGOUT = "LOGOUT";
 export const ERROR_CREATE_USER = "ERROR_CREATE_USER";
 export const ALL_USERS = "ALL_USERS";
 export const USER_NOT_FOUND = "USER_NOT_FOUND";
+export const UPDATE_CART_QUANTITY = "UPDATE_CART_QUANTITY";
 
 export const getProduct = () => {
   return async function (dispatch) {
@@ -238,5 +239,11 @@ export const userSpecific = (userFound) => {
 export const logoutUser = () => {
   return {
     type: LOGOUT,
+  };
+};
+
+export const updateCartQuantity = () => {
+  return {
+    type: UPDATE_CART_QUANTITY,
   };
 };

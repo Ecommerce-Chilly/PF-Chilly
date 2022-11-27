@@ -1,6 +1,10 @@
 import React, { useEffect } from "react";
 import { Link, useParams } from "react-router-dom";
-import { getProductById, addToCart } from "../../../redux/actions/actions.js";
+import {
+  getProductById,
+  addToCart,
+  updateCartQuantity,
+} from "../../../redux/actions/actions.js";
 import { useDispatch, useSelector } from "react-redux";
 
 function ProductDetail() {
@@ -14,6 +18,7 @@ function ProductDetail() {
 
   function addCart(id) {
     dispatch(addToCart(id));
+    dispatch(updateCartQuantity());
   }
 
   return (

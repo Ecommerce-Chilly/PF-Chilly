@@ -69,14 +69,14 @@ function Login() {
             e.password === loginUser.password
           ) {
             return (
-              <div key={e.id} >
+              <div key={e.id}>
                 <h2>User info:</h2>
                 <h2>Email: {e.email} </h2>
                 <h2>CreatedAt: {e.createdAt} </h2>
                 <button onClick={(e) => handleLogout(e)}>Logout</button>
               </div>
             );
-          } 
+          }
         })
       ) : (
         <></>
