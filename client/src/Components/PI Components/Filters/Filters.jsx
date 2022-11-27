@@ -1,10 +1,5 @@
-<<<<<<< HEAD
-import React, { useEffect, useState } from "react";
-import { useDispatch, useSelector } from "react-redux";
-=======
 import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
->>>>>>> 99b2219f13ceeaa90b2ed86c7cae0fe64cd2d2e4
 import {
   getCategoryDetails,
   filter1,
@@ -18,10 +13,6 @@ function Filters() {
   let [category, setCategory] = useState('');
   let [inputs, setInputs] = useState([]);
   let dispatch = useDispatch();
-<<<<<<< HEAD
-  let { page } = useSelector((state) => state);
-=======
->>>>>>> 99b2219f13ceeaa90b2ed86c7cae0fe64cd2d2e4
   let categoryDetails = useSelector((state) => state.categoryDetails);
 
   useEffect(() => {

@@ -1,19 +1,4 @@
 import {
-<<<<<<< HEAD
-   GET_ALL_PRODUCTS,
-   GET_PRODUCT_BY_ID,
-   CREATE_PRODUCT,
-   CREATE_DISCOUNT,
-   PUT_PRODUCT,
-   PUT_INVENTORY,
-   FAIL_CREATED_MSG,
-   PUT_DISCOUNT,
-   DELETE_PRODUCT,
-   GET_CATEGORY_DETAILS,
-   FILTER1,
-   FILTER_BY_DETAILS,
-} from "../actions/actions.js";
-=======
   GET_ALL_PRODUCTS,
   GET_PRODUCT_BY_ID,
   CREATE_PRODUCT,
@@ -79,7 +64,6 @@ const rootReducer = (state = initialState, action) => {
         ...state,
         product: action.payload,
       };
->>>>>>> 99b2219f13ceeaa90b2ed86c7cae0fe64cd2d2e4
 
     case CREATE_PRODUCT:
       return {
@@ -87,100 +71,6 @@ const rootReducer = (state = initialState, action) => {
         createProductMsg: action.payload,
       };
 
-<<<<<<< HEAD
-const rootReducer = (state = initialState, action) => {
-   switch (action.type) {
-      case GET_ALL_PRODUCTS:
-         return {
-            ...state,
-            product: action.payload,
-            allProduct: action.payload,
-            createProductMsg: "",
-         };
-
-      case GET_PRODUCT_BY_ID:
-         return {
-            ...state,
-            productDetail: action.payload,
-         };
-
-      case CREATE_PRODUCT:
-         return {
-            ...state,
-            createProductMsg: action.payload,
-         };
-
-      case CREATE_DISCOUNT:
-         return {
-            ...state,
-         };
-      case PUT_PRODUCT:
-         return {
-            ...state,
-            productChangedMsg: action.payload,
-         };
-      case PUT_INVENTORY:
-         return {
-            ...state,
-            productChangedMsg: action.payload,
-         };
-      case PUT_DISCOUNT:
-         return {
-            ...state,
-            productChangedMsg: action.payload,
-         };
-      case DELETE_PRODUCT:
-         return {
-            ...state,
-            productDeletedMsg: action.payload,
-         };
-      case FAIL_CREATED_MSG:
-         return {
-            ...state,
-            createProductMsg: action.payload,
-         };
-      case GET_CATEGORY_DETAILS:
-         return {
-            ...state,
-            categoryDetails: action.payload,
-         };
-      case FILTER1:
-         let temporal = state.allProduct;
-         let filtered = temporal.filter(
-            (e) => e.categoryName === action.payload
-         );
-         if (action.payload === "") {
-            filtered = state.allProduct;
-         }
-         return {
-            ...state,
-            product: filtered,
-         };
-      case FILTER_BY_DETAILS:
-         let temporal2 = state.allProduct;
-         console.log(action.payload);
-         let filtered2 = temporal2.filter(
-            (e) => e.categoryName === action.payload[0]
-         );
-
-         if (action.payload[0] === "") {
-            filtered2 = state.allProduct;
-         }
-
-         for (const property in action.payload[1]) {
-            filtered2 = filtered2.filter(
-               (e) => e.details[0][property] === action.payload[1][property]
-            );
-         }
-
-         return {
-            ...state,
-            product: filtered2,
-         };
-      default:
-         return state;
-   }
-=======
     case CREATE_DISCOUNT:
       return {
         ...state,
@@ -324,7 +214,6 @@ const rootReducer = (state = initialState, action) => {
     default:
       return state;
   }
->>>>>>> 99b2219f13ceeaa90b2ed86c7cae0fe64cd2d2e4
 };
 
 export default rootReducer;

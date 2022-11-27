@@ -13,8 +13,6 @@ export const FILTER1 = "FILTER1";
 export const FILTER_BY_DETAILS = "FILTER_BY_DETAILS";
 export const GET_PRODUCT_BY_NAME = "GET_PRODUCT_BY_NAME";
 export const ERROR_MSSG = "ERROR_MSSG";
-<<<<<<< HEAD
-=======
 export const EUSEBIO = "EUSEBIO";
 export const ERROR_PUT_PRODUCT = "ERROR_PUT_PRODUCT";
 export const RESTORE_PRODUCT = "RESTORE_PRODUCT";
@@ -27,7 +25,6 @@ export const LOGOUT = "LOGOUT";
 export const ERROR_CREATE_USER = "ERROR_CREATE_USER";
 export const ALL_USERS = "ALL_USERS";
 export const USER_NOT_FOUND = "USER_NOT_FOUND";
->>>>>>> 99b2219f13ceeaa90b2ed86c7cae0fe64cd2d2e4
 
 export const getProduct = () => {
   return async function (dispatch) {
@@ -195,9 +192,6 @@ export const deleteP = (id) => {
     type: DELETE_CART_PRODUCT,
     payload: id,
   };
-<<<<<<< HEAD
-}
-=======
 };
 
 export const clearCart = () => {
@@ -249,4 +243,3 @@ export const logoutUser = () => {
     type: LOGOUT,
   };
 };
->>>>>>> 99b2219f13ceeaa90b2ed86c7cae0fe64cd2d2e4
