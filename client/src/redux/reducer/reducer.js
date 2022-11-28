@@ -19,18 +19,28 @@ import {
   ADD_TO_CART,
   DELETE_CART_PRODUCT,
   CLEAR_CART,
+  CREATE_USER,
+  USER_SPECIFIC,
+  LOGOUT,
+  ERROR_CREATE_USER,
+  ALL_USERS,
+  USER_NOT_FOUND,
   UPDATE_CART_QUANTITY,
-} from '../actions/actions.js';
+} from "../actions/actions.js";
 
 const initialState = {
   product: [],
   allProduct: [],
   productDetail: [],
-  createProductMsg: '',
-  productChangedMsg: '',
-  searchProductMsg: '',
+  createProductMsg: "",
+  productChangedMsg: "",
+  searchProductMsg: "",
   categoryDetails: [],
   cart: [],
+  users: [],
+  userInfo: [],
+  userNotFound: "",
+  createUserMsg: "",
   quantity: 0,
 };
 
@@ -41,9 +51,9 @@ const rootReducer = (state = initialState, action) => {
         ...state,
         product: action.payload,
         allProduct: action.payload,
-        createProductMsg: '',
-        searchProductMsg: '',
-        productChangedMsg: '',
+        createProductMsg: "",
+        searchProductMsg: "",
+        productChangedMsg: "",
       };
 
     case GET_PRODUCT_BY_ID:
@@ -105,12 +115,12 @@ const rootReducer = (state = initialState, action) => {
       let temporal = state.allProduct;
       let filtered = temporal.filter((e) => e.categoryName === action.payload);
 
-      if (action.payload === '') {
+      if (action.payload === "") {
         filtered = state.allProduct;
       }
       return {
         ...state,
-        searchProductMsg: '',
+        searchProductMsg: "",
         product: filtered,
       };
     case FILTER_BY_DETAILS:
@@ -120,7 +130,7 @@ const rootReducer = (state = initialState, action) => {
         (e) => e.categoryName === action.payload[0]
       );
 
-      if (action.payload[0] === '') {
+      if (action.payload[0] === "") {
         filtered2 = state.allProduct;
       }
 
@@ -129,10 +139,9 @@ const rootReducer = (state = initialState, action) => {
           (e) => e.details[0][property] === action.payload[1][property]
         );
       }
-
       return {
         ...state,
-        searchProductMsg: '',
+        searchProductMsg: "",
         product: filtered2,
       };
 
@@ -155,13 +164,11 @@ const rootReducer = (state = initialState, action) => {
     case ADD_TO_CART:
       let prod = state.allProduct.find((e) => e.id === action.payload);
       let foundProd = state.cart.find((e) => e.id === action.payload);
-
       if (foundProd) {
         foundProd.quantity++;
       } else {
         prod.quantity = 1;
       }
-
       return {
         ...state,
         cart: prod.quantity === 1 ? state.cart.concat(prod) : state.cart,
@@ -176,7 +183,6 @@ const rootReducer = (state = initialState, action) => {
       return {
         ...state,
         cart: [],
-        quantity: 0,
       };
     case UPDATE_CART_QUANTITY:
       let cartQuantity = 0;
@@ -187,6 +193,40 @@ const rootReducer = (state = initialState, action) => {
       return {
         ...state,
         quantity: cartQuantity,
+      };
+    case ALL_USERS:
+      return {
+        ...state,
+        users: action.payload,
+        createUserMsg: "",
+      };
+
+    case CREATE_USER:
+      return {
+        ...state,
+        createUserMsg: action.payload,
+        userNotFound: "",
+      };
+    case ERROR_CREATE_USER:
+      return {
+        ...state,
+        createUserMsg: action.payload,
+      };
+    case USER_SPECIFIC:
+      return {
+        ...state,
+        userInfo: action.payload,
+        createUserMsg: "",
+      };
+    case USER_NOT_FOUND:
+      return {
+        ...state,
+        userNotFound: action.payload,
+      };
+    case LOGOUT:
+      return {
+        ...state,
+        userInfo: [],
       };
     default:
       return state;

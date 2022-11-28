@@ -102,9 +102,9 @@ function Navbar() {
               </Link>
             </li>
             <li>
-              <a href="/blog" className="hover:underline">
+              <Link to="/blog" className="hover:underline">
                 Blog
-              </a>
+              </Link>
             </li>
             <li>
               <Link to="/about+us" className="hover:underline">

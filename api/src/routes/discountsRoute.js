@@ -1,6 +1,7 @@
 const { Router } = require("express");
-const { postDiscounts } = require("../controllers/postDiscounts");
-const { putDiscounts } = require("../controllers/putDiscounts");
+const { postDiscounts } = require('../controllers/discounts/postDiscounts')
+const { putDiscounts } = require("../controllers/discounts/putDiscounts");
+
 const discountsRoute = Router();
 
 discountsRoute.post("/", async (req, res) => {

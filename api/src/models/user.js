@@ -19,11 +19,17 @@ module.exports = (sequelize) => {
          password: {
             type: DataTypes.STRING,
             allowNull: false,
-            //validate: {xxxxxx: true,},
          },
       },
       {
          timestamps: true,
+         indexes: [
+            // Create a unique index on email
+            {
+               unique: true,
+               fields: ["email"],
+            },
+         ],
       }
    );
 };

@@ -34,16 +34,68 @@ let capsEntries = entries.map((entry) => [
 ]);
 sequelize.models = Object.fromEntries(capsEntries);
 
-const { Product, Inventory, Discount, Category, User } = sequelize.models;
+const {
+  Product,
+  Administrator,
+  Inventory,
+  Discount,
+  Category,
+  Cart_item,
+  Clients,
+  Data_user,
+  Order_details,
+  Order_items,
+  Payment_details,
+  Payment_user,
+  Shopping_session,
+  User_role,
+  User,
+} = sequelize.models;
 
 Category.hasMany(Product);
 Product.belongsTo(Category);
 
+Discount.hasMany(Product);
+Product.belongsTo(Discount);
+
 Product.hasOne(Inventory);
 Inventory.hasOne(Product);
 
-Discount.hasMany(Product);
-Product.belongsTo(Discount);
+Administrator.hasOne(Clients);
+Clients.hasOne(Administrator);
+
+Administrator.hasOne(User_role);
+User_role.hasMany(Administrator);
+
+User.hasMany(User_role);
+User_role.belongsTo(User);
+
+User.hasOne(Data_user);
+Data_user.belongsTo(User);
+
+User.hasOne(Shopping_session);
+Shopping_session.hasOne(User);
+
+User.hasMany(Payment_user);
+Payment_user.belongsTo(User);
+
+Shopping_session.hasMany(Cart_item);
+Cart_item.hasOne(Shopping_session);
+
+Payment_details.hasOne(Order_details);
+Order_details.hasOne(Payment_details);
+
+Product.hasOne(Order_items);
+Order_items.hasOne(Product);
+
+Product.hasOne(Cart_item);
+Cart_item.hasOne(Product);
+
+Order_items.hasMany(User);
+User.hasMany(Order_items);
+
+User.hasMany(Order_details);
+Order_details.hasOne(User);
 
 User.belongsToMany(Product, { through: "favorites", paranoid: true })
 Product.belongsToMany(User, { through: "favorites", paranoid: true })

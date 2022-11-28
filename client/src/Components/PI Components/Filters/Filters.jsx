@@ -29,10 +29,8 @@ function Filters() {
         console.log(element);
         if (element !== 'name') {
           setInputs((oldArray) => [...oldArray, element]);
-          console.log(inputs);
         }
       }
-      console.log(categoryDetail);
     };
     getDetails();
     dispatch(filter1(e.target.value));

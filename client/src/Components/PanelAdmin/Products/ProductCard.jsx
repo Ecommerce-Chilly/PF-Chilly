@@ -26,7 +26,7 @@ function ProductCard(props) {
           >
             <div>
               <div className="text-slate-800">
-                <h2 className="font-semibold tracking-wide	 text-slate-700 font-display">
+                <h2 className="font-semibold tracking-wide     text-slate-700 font-display">
                   {props.name.length > 40
                     ? `${props.name.slice(0, 50)}...`
                     : props.name}
@@ -68,7 +68,7 @@ function ProductCard(props) {
             to={`/store/products/${props.id}`}
             className="h-96 flex flex-col p-5"
           >
-            <h2 className="font-semibold tracking-wide	 text-slate-700 font-display">
+            <h2 className="font-semibold tracking-wide     text-slate-700 font-display">
               {props.name.length > 50
                 ? `${props.name.slice(0, 60)}...`
                 : props.name}

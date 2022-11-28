@@ -1,7 +1,7 @@
 const { Router } = require("express");
-const { addFavorites } = require('../controllers/addFavorites')
-const { removeFavorites } = require('../controllers/removeFavorite')
-const { getFavorites } = require('../controllers/getFavorites')
+const { addFavorites } = require('../controllers/favorite/addFavorites')
+const { removeFavorites } = require('../controllers/favorite/removeFavorite')
+const { getFavorites } = require('../controllers/favorite/getFavorites')
 const favoriteRoute = Router()
 
 favoriteRoute.get('/', async (req, res) => {
@@ -33,3 +33,4 @@ favoriteRoute.delete('/', async (req, res) => {
   }
 })
 module.exports = favoriteRoute
+

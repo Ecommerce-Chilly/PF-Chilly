@@ -1,11 +1,11 @@
-import React from 'react';
-import WorkInProgress from '../../PI Components/WorkInProgress/WorkInProgress';
+import React from "react";
+import Login from "../Login/Login";
 
 function UserInfo() {
   return (
-    <div>
-      <WorkInProgress />
-    </div>
+    <>
+      <Login />
+    </>
   );
 }
 
