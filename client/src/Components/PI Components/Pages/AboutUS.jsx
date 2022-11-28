@@ -15,8 +15,9 @@ function AboutUS() {
       <AboutCard />
       <AboutCard />
       </div>
-      <Frequestions />
+     <Frequestions />
       </div>
+
 
   )
 }
