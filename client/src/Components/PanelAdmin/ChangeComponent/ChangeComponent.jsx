@@ -1,14 +1,14 @@
-import React, { useState, useEffect } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
-import { useHistory } from 'react-router-dom';
+import React, { useState, useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { useHistory } from "react-router-dom";
 import {
   putProductById,
   getProductById,
   putInventory,
   putDiscount,
-} from '../../../redux/actions/actions.js';
-import { useParams } from 'react-router-dom';
-const { validate } = require('./utils');
+} from "../../../redux/actions/actions.js";
+import { useParams } from "react-router-dom";
+const { validate } = require("./utils");
 
 function ChangeComponent() {
   const { id } = useParams();
@@ -22,25 +22,25 @@ function ChangeComponent() {
   }, [dispatch, id]);
 
   const [newProduct, setNewProduct] = useState({
-    name: productDetails.length > 0 ? productDetails[0].name : '',
-    price: productDetails.length > 0 ? productDetails[0].price : '',
-    brand: productDetails.length > 0 ? productDetails[0].brand : '',
-    model: productDetails.length > 0 ? productDetails[0].model : '',
-    image: productDetails.length > 0 ? productDetails[0].image : '',
-    quantity: '',
-    category: productDetails.length > 0 ? productDetails[0].categoryName : '',
+    name: productDetails.length > 0 ? productDetails[0].name : "",
+    price: productDetails.length > 0 ? productDetails[0].price : "",
+    brand: productDetails.length > 0 ? productDetails[0].brand : "",
+    model: productDetails.length > 0 ? productDetails[0].model : "",
+    image: productDetails.length > 0 ? productDetails[0].image : "",
+    quantity: "",
+    category: productDetails.length > 0 ? productDetails[0].categoryName : "",
     details: [],
     discount:
       productDetails.length > 0
         ? productDetails[0].discountName
           ? productDetails[0].discountName
-          : ''
-        : '',
+          : ""
+        : "",
   });
   const [errors, setErrors] = useState({});
   const [discountt, setDiscountt] = useState({
     name: `${newProduct.discount}`,
-    description: '',
+    description: "",
     percent: 0,
     active: 0,
   });
@@ -63,7 +63,7 @@ function ChangeComponent() {
         [e.target.name]: e.target.value,
       })
     );
-    if (e.target.name === 'discount') {
+    if (e.target.name === "discount") {
       setDiscountt({
         ...discountt,
         name: e.target.value,
@@ -93,7 +93,7 @@ function ChangeComponent() {
           onSubmit={(e) => {
             dispatchDataToChange(productDetails[0].id, newProduct, discountt);
             e.preventDefault();
-            setTimeout(() => history.push('/panel+admin/products'), 3000);
+            setTimeout(() => history.push("/panel+admin/products"), 3000);
           }}
           className="w-2/3 m-auto mt-9"
         >
@@ -204,9 +204,7 @@ function ChangeComponent() {
           </select>
           {errors.brand && <p className="text-red-400 mb-4">{errors.brand}</p>}
 
-          {msg ? <h2 className="sucessMsg">{`${msg}`}</h2> : <></>}
-
-          {newProduct.brand === '' ? (
+          {newProduct.brand === "" ? (
             <>
               <label className="block mb-2 text-sm font-medium text-gray-900">
                 New model:
@@ -388,6 +386,7 @@ function ChangeComponent() {
               ></input>
             )}
           </div>
+          {msg ? <h2>{`${msg}`}</h2> : <></>}
         </form>
       ) : (
         <p>No se cargo correctamente</p>
