@@ -7,7 +7,7 @@ function Home() {
     <div>
       <Slider></Slider>
       <h2 className="text-center text-3xl font-bold mt-10 mb-10">Articles</h2>
-      <div className="flex	 justify-evenly">
+      <div className="flex	flex-row justify-evenly">
         <ArticleCard></ArticleCard>
         <ArticleCard></ArticleCard>
         <ArticleCard></ArticleCard>

@@ -2,7 +2,7 @@ import React from 'react';
 
 function ArticleCard() {
   return (
-    <div class="max-w-sm p-6 bg-white border border-gray-200 rounded-lg shadow-md  ">
+    <div class="max-w-sm p-6  bg-white border border-gray-200 rounded-lg shadow-md flex-row ">
       <a href="#">
         <h5 class="mb-2 text-2xl font-bold tracking-tight text-gray-900 ">
           Noteworthy technology acquisitions 2021

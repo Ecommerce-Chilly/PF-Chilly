@@ -1,21 +1,15 @@
-<<<<<<< HEAD
-import React, { useState } from "react";
-import { Link } from "react-router-dom";
-import "./Navbar.css";
-import Login from "../../Login/Login/Login";
-=======
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import SearchBar from '../SearchBar/SearchBar';
->>>>>>> 33f158560a27cd4bc501c66b38571f3a9f0e2dce
+import Login from '../../Login/Login/Login';
 
 function Navbar() {
   return (
     <>
-      <nav class="	bg-white border-gray-200 px-2 sm:px-4 py-5  dark:bg-main static">
+      <nav class="	bg-main border-gray-200 px-2 sm:px-4 py-5  dark:bg-main static">
         <div class="container flex flex-wrap items-center justify-between mx-auto">
           <a href="#" class="flex items-center">
-            <span class="self-center text-4xl font-semibold whitespace-nowrap dark:text-white font-sans">
+            <span class="self-center text-4xl font-semibold whitespace-nowrap text-white font-sans">
               Chilly
             </span>
           </a>
@@ -82,6 +76,7 @@ function Navbar() {
               </svg>
             </Link>
             <Link to="/user/info" className="inline-block mx-4">
+              <Login />
               <svg
                 xmlns="http://www.w3.org/2000/svg"
                 fill="none"
@@ -96,33 +91,10 @@ function Navbar() {
                   d="M15.75 6a3.75 3.75 0 11-7.5 0 3.75 3.75 0 017.5 0zM4.501 20.118a7.5 7.5 0 0114.998 0A17.933 17.933 0 0112 21.75c-2.676 0-5.216-.584-7.499-1.632z"
                 />
               </svg>
+              
             </Link>
           </div>
         </div>
-<<<<<<< HEAD
-        <div className={`nav-items ${open && "open"}`}>
-          <Link to="/cart">
-            <img
-              src="https://cdn-icons-png.flaticon.com/512/1170/1170678.png"
-              alt="icon-cart"
-              className="logo"
-            />
-          </Link>
-          <Link to="/user/favorites">
-            <img
-              src="https://cdn-icons-png.flaticon.com/512/121/121727.png"
-              alt="icon-favorites"
-              className="logo"
-            />
-          </Link>
-          <Link to="/user/info">
-          <Login />
-           
-           
-           
-            
-          </Link>
-=======
         <div class="container flex  mx-auto mt-6">
           <ul class="flex justify-between w-5/6 mx-auto uppercase font-sans underline-offset-4  font-light text-white">
             <li>
@@ -166,7 +138,6 @@ function Navbar() {
               </a>
             </li>
           </ul>
->>>>>>> 33f158560a27cd4bc501c66b38571f3a9f0e2dce
         </div>
       </nav>
       {/* <nav className="bg-white px-2 sm:px-4 py-2.5 dark:bg-gray-900 w-full z-20 top-0 left-0 border-b border-gray-200 dark:border-gray-600">
