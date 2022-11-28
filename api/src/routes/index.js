@@ -26,5 +26,6 @@ router.use("/categoryDetails", detailsCategoryRoute);
 router.use("/user", userRoute);
 router.use("/favorite", favoriteRoute);
 router.use("/payment", mercadoPago);
+//router.use("/cartItems", cartItemsRoute); ////
 
 module.exports = router;
