@@ -1,9 +1,7 @@
-import React from 'react'
+import React from 'react';
 
 function AboutUS() {
-  return (
-    <div>AboutUS</div>
-  )
+  return <div>AboutUS</div>;
 }
 
-export default AboutUS
+export default AboutUS;
