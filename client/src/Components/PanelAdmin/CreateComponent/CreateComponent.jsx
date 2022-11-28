@@ -1,12 +1,11 @@
-import React, { useState } from "react";
-import { useDispatch, useSelector } from "react-redux";
-import { useHistory } from "react-router-dom";
+import React, { useState } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { useHistory } from 'react-router-dom';
 import {
   createProduct,
   createDiscount,
-} from "../../../redux/actions/actions.js";
-import "./CreateComponent.css";
-const { validate } = require("../ChangeComponent/utils");
+} from '../../../redux/actions/actions.js';
+const { validate } = require('../ChangeComponent/utils');
 
 function CreateComponent() {
   const dispatch = useDispatch();
@@ -14,22 +13,21 @@ function CreateComponent() {
   const history = useHistory();
   const [errors, setErrors] = useState({});
   const [newProduct, setNewProduct] = useState({
-    name: "",
+    name: '',
     price: 0,
-    brand: "",
-    model: "",
-    quantity: "",
-    category: "",
+    brand: '',
+    model: '',
+    quantity: '',
+    category: '',
     details: [],
-    discount: "",
+    discount: '',
   });
   const [discountt, setDiscountt] = useState({
     name: `${newProduct.discount}`,
-    description: "",
+    description: '',
     percent: 0,
     active: 0,
   });
-
 
   const handleDiscount = (e) => {
     setDiscountt({
@@ -49,7 +47,7 @@ function CreateComponent() {
         [e.target.name]: e.target.value,
       })
     );
-    if (e.target.name === "discount") {
+    if (e.target.name === 'discount') {
       setDiscountt({
         ...discountt,
         name: e.target.value,
@@ -72,41 +70,53 @@ function CreateComponent() {
   }
 
   return (
-    <div className="form-container">
+    <div className="w-2/3 m-auto mb-9">
       <form
         onSubmit={(e) => {
           e.preventDefault();
           dispatchDataToCreate(newProduct);
           dispatchDataToDiscount(discountt);
-          setTimeout(() => history.push("/panel+admin/products"), 3000);
+          setTimeout(() => history.push('/panel+admin/products'), 3000);
         }}
-        className="form"
+        className="w-2/3 m-auto mt-9"
       >
         <div className="form-header">
-          <h1 className="form-title">Create Product</h1>
+          <h1 className="text-3xl text-slate-800   font-display font-semibold mt-12 ml-50 mb-9">
+            Create Product
+          </h1>
         </div>
-        <label className="form-label">Name of product:</label>
+        <label className="block mb-2 text-sm font-medium text-gray-900">
+          Product name:
+        </label>
         <input
           type="text"
           name="name"
           value={newProduct.name}
           onChange={handleChange}
-          placeholder="Write the name here..."
-          className="form-input"
+          placeholder="Type name here"
+          className="bg-gray-50 border  text-gray-900 text-sm rounded-lg  focus:border-blue-500 block w-full p-2.5  border-gray-600 placeholder-gray-400 mb-6 "
         ></input>
-        {errors.name && <p className="danger">{errors.name}</p>}
-        <label className="form-label">Price of product</label>
+        {errors.name && <p className="text-red-400 mb-4">{errors.name}</p>}
+        <label className="block mb-2 text-sm font-medium text-gray-900">
+          Product price:
+        </label>
         <input
           type="number"
           name="price"
           value={newProduct.price}
           onChange={handleChange}
-          placeholder="Price at here"
-          className="form-input"
+          placeholder="Set a price"
+          className="bg-gray-50 border  text-gray-900 text-sm rounded-lg  focus:border-blue-500 block w-full p-2.5  border-gray-600 placeholder-gray-400 mb-6"
         ></input>
-        {errors.price && <p className="danger">{errors.price}</p>}
-        <label className="form-label">Brand:</label>
-        <select name="brand" className="form-input" onChange={handleChange}>
+        {errors.price && <p className="text-red-400 mb-4">{errors.price}</p>}
+        <label className="block mb-2 text-sm font-medium text-gray-900">
+          Product brand:
+        </label>
+        <select
+          name="brand"
+          className="bg-gray-50 border  text-gray-900 text-sm rounded-lg  focus:border-blue-500 block w-full p-2.5  border-gray-600 placeholder-gray-400 mb-6"
+          onChange={handleChange}
+        >
           <option></option>
           <option>Alphacool</option>
           <option>Antec</option>
@@ -174,7 +184,7 @@ function CreateComponent() {
           <option>XFX</option>
           <option>ZOTAC</option>
         </select>
-        {errors.brand && <p className="danger">{errors.brand}</p>}
+        {errors.brand && <p className="text-red-400 mb-4">{errors.brand}</p>}
         {msg.error ? (
           <h2 className="sucessMsg">{msg.error}</h2>
         ) : msg.statusText ? (
@@ -183,56 +193,72 @@ function CreateComponent() {
           <></>
         )}
 
-        {newProduct.brand === "" ? (
+        {newProduct.brand === '' ? (
           <>
-            <label className="form-label">Model:</label>
+            <label className="block mb-2 text-sm font-medium text-gray-900">
+              Product model:
+            </label>
             <input
-              className="form-input"
+              className="bg-gray-50 border  text-gray-900 text-sm rounded-lg  focus:border-blue-500 block w-full p-2.5  border-gray-600 placeholder-gray-400 mb-6"
               disabled
-              placeholder="Before insert a brand"
+              placeholder="Select a brand first"
             ></input>
           </>
         ) : newProduct.brand.length ? (
           <>
-            <label className="form-label">Model:</label>
+            <label className="block mb-2 text-sm font-medium text-gray-900">
+              Product model:
+            </label>
             <input
-              className="form-input"
+              className="bg-gray-50 border  text-gray-900 text-sm rounded-lg  focus:border-blue-500 block w-full p-2.5  border-gray-600 placeholder-gray-400 mb-6"
               name="model"
               onChange={handleChange}
-              placeholder="Insert model"
+              placeholder="Type model"
             ></input>
-            {errors.model && <p className="danger">{errors.model}</p>}
+            {errors.model && (
+              <p className="text-red-400 mb-4">{errors.model}</p>
+            )}
           </>
         ) : (
           <></>
         )}
-        <label className="form-label">Image Url: Product</label>
+        <label className="block mb-2 text-sm font-medium text-gray-900">
+          Product Img (URL):
+        </label>
         <input
           type="text"
           name="image"
           value={newProduct.image}
           onChange={handleChange}
-          placeholder="Image Product at here"
-          className="form-input"
+          placeholder="Type Img URL here"
+          className="bg-gray-50 border  text-gray-900 text-sm rounded-lg  focus:border-blue-500 block w-full p-2.5  border-gray-600 placeholder-gray-400 mb-6"
         ></input>
 
-        <label className="form-label">Details of Product</label>
+        <label className="block mb-2 text-sm font-medium text-gray-900">
+          Product details:
+        </label>
         <input
           type="text"
           name="brand"
           onChange={handleDetailChange}
-          placeholder="brand"
-          className="form-input"
+          placeholder="Type brand here"
+          className="bg-gray-50 border  text-gray-900 text-sm rounded-lg  focus:border-blue-500 block w-full p-2.5  border-gray-600 placeholder-gray-400 mb-6"
         ></input>
         <input
           type="text"
           name="cosito"
           onChange={handleDetailChange}
-          placeholder="cosito"
-          className="form-input"
+          placeholder="Type cosito here"
+          className="bg-gray-50 border  text-gray-900 text-sm rounded-lg  focus:border-blue-500 block w-full p-2.5  border-gray-600 placeholder-gray-400 mb-6"
         ></input>
-        <label className="form-label">Category</label>
-        <select name="category" className="form-input" onChange={handleChange}>
+        <label className="block mb-2 text-sm font-medium text-gray-900">
+          Product category:
+        </label>
+        <select
+          name="category"
+          className="bg-gray-50 border  text-gray-900 text-sm rounded-lg  focus:border-blue-500 block w-full p-2.5  border-gray-600 placeholder-gray-400 mb-6"
+          onChange={handleChange}
+        >
           <option></option>
           <option>cases</option>
           <option>case_fan</option>
@@ -246,50 +272,66 @@ function CreateComponent() {
           <option>ram</option>
           <option>storage</option>
         </select>
-        {errors.category && <p className="danger">{errors.category}</p>}
+        {errors.category && (
+          <p className="text-red-400 mb-4">{errors.category}</p>
+        )}
 
-        <label className="form-label">Stock</label>
+        <label className="block mb-2 text-sm font-medium text-gray-900">
+          Product stock:
+        </label>
         <input
           type="text"
           name="quantity"
           value={newProduct.quantity}
           onChange={handleChange}
           placeholder="Quantity of product"
-          className="form-input"
+          className="bg-gray-50 border  text-gray-900 text-sm rounded-lg  focus:border-blue-500 block w-full p-2.5  border-gray-600 placeholder-gray-400 mb-6"
         ></input>
-        {errors.quantity && <p className="danger">{errors.quantity}</p>}
+        {errors.quantity && (
+          <p className="text-red-400 mb-4">{errors.quantity}</p>
+        )}
 
-        <label className="form-label">Discount:</label>
+        <label className="block mb-2 text-sm font-medium text-gray-900">
+          Product discount:
+        </label>
         <input
           type="text"
           name="discount"
           value={newProduct.discount}
           onChange={handleChange}
-          placeholder="Discount at here :D"
-          className="form-input"
+          placeholder="Discount"
+          className="bg-gray-50 border  text-gray-900 text-sm rounded-lg  focus:border-blue-500 block w-full p-2.5  border-gray-600 placeholder-gray-400 mb-6"
         ></input>
-        {errors.discount && <p className="danger">{errors.discount}</p>}
+        {errors.discount && (
+          <p className="text-red-400 mb-4">{errors.discount}</p>
+        )}
 
         {newProduct.discount.length ? (
           <>
-            <label className="form-label">Description of discount:</label>
+            <label className="block mb-2 text-sm font-medium text-gray-900">
+              Discount description:
+            </label>
             <input
               type="text"
               name="description"
               value={discountt.description}
               onChange={handleDiscount}
               placeholder="Description of discount"
+              className="bg-gray-50 border  text-gray-900 text-sm rounded-lg  focus:border-blue-500 block w-full p-2.5  border-gray-600 placeholder-gray-400 mb-6"
             ></input>
-            <label className="form-label">Percent discount:</label>
+            <label className="block mb-2 text-sm font-medium text-gray-900">
+              Discount percentage:
+            </label>
             <input
               type="text"
               name="percent"
               value={discountt.percent}
               onChange={handleDiscount}
               placeholder="Quantity of product"
+              className="bg-gray-50 border  text-gray-900 text-sm rounded-lg  focus:border-blue-500 block w-full p-2.5  border-gray-600 placeholder-gray-400 mb-6"
             ></input>
-            <label className="form-label">
-              State discount(0 = inactive; 1 = active):
+            <label className="block mb-2 text-sm font-medium text-gray-900">
+              Discount status (0 = inactive; 1 = active):
             </label>
             <input
               type="number"
@@ -297,23 +339,36 @@ function CreateComponent() {
               value={discountt.active}
               onChange={handleDiscount}
               placeholder="Quantity of product"
+              className="bg-gray-50 border  text-gray-900 text-sm rounded-lg  focus:border-blue-500 block w-full p-2.5  border-gray-600 placeholder-gray-400 mb-6"
             ></input>
           </>
         ) : (
           <></>
         )}
-
-        {!newProduct.name ? (
-          <input type="submit" disabled className="btn-submit"></input>
-        ) : errors.name ||
-          errors.price ||
-          errors.details ||
-          errors.inInventary ||
-          errors.category ? (
-          <input type="submit" disabled className="btn-submit"></input>
-        ) : (
-          <input type="submit" className="btn-submit"></input>
-        )}
+        <div className=" text-center">
+          {!newProduct.name ? (
+            <input
+              type="submit"
+              disabled
+              className=" font-semibold  text-white border-solid bg-blue-900 border-2 border-blue-900 py-2 px-6 focus:outline-none  rounded "
+            ></input>
+          ) : errors.name ||
+            errors.price ||
+            errors.details ||
+            errors.inInventary ||
+            errors.category ? (
+            <input
+              type="submit"
+              disabled
+              className=" font-semibold  text-white border-solid bg-blue-900 border-2 border-blue-900 py-2 px-6 focus:outline-none  rounded "
+            ></input>
+          ) : (
+            <input
+              type="submit"
+              className="cursor-pointer font-semibold  text-white border-solid bg-main border-2 border-main py-2 px-6 focus:outline-none hover:bg-blue-600 rounded hover:border-blue-600"
+            ></input>
+          )}
+        </div>
       </form>
     </div>
   );

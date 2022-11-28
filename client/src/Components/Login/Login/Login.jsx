@@ -1,12 +1,10 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import {
   userSpecific,
   logoutUser,
-  getAllUsers,
 } from "../../../redux/actions/actions";
 import { Link } from "react-router-dom";
-import store from "../../../redux/store/store";
 
 function Login() {
   const dispatch = useDispatch();
@@ -16,10 +14,6 @@ function Login() {
   });
   const userUnique = useSelector((state) => state.userInfo);
   const userNotFound = useSelector((state) => state.userNotFound);
-
-  useEffect(() => {
-    dispatch(getAllUsers());
-  }, [dispatch]);
 
 
   const handleChange = (e) => {

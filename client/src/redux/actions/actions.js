@@ -25,6 +25,8 @@ export const LOGOUT = "LOGOUT";
 export const ERROR_CREATE_USER = "ERROR_CREATE_USER";
 export const ALL_USERS = "ALL_USERS";
 export const USER_NOT_FOUND = "USER_NOT_FOUND";
+export const UPDATE_CART_QUANTITY = 'UPDATE_CART_QUANTITY';
+
 
 export const getProduct = () => {
   return async function (dispatch) {
@@ -53,7 +55,6 @@ export const createProduct = (product) => {
       );
       return dispatch({ type: CREATE_PRODUCT, payload: createProdu });
     } catch (error) {
-      console.log(error);
       return dispatch({ type: FAIL_CREATED_MSG, payload: error.response.data });
     }
   };
@@ -85,7 +86,6 @@ export const putProductById = (id, product) => {
       );
       return dispatch({ type: PUT_PRODUCT, payload: putProduct.data });
     } catch (error) {
-      console.log(error.response.data.error);
       return dispatch({
         type: ERROR_PUT_PRODUCT,
         payload: error.response.data.error,
@@ -119,7 +119,6 @@ export const deleteProdut = (id) => {
     const deleteProduct = await axios.delete(
       `http://localhost:3001/product/${id}`
     );
-    console.log(deleteProduct.data);
     return dispatch({ type: DELETE_PRODUCT, payload: deleteProduct.data });
   };
 };
@@ -152,7 +151,7 @@ export const filterbyDetails = (category, details) => {
 
 export const getProductByName = (name) => {
   return async function (dispatch) {
-    if (name === "") {
+    if (name === '') {
       return dispatch({ type: ERROR_MSSG });
     }
     try {
@@ -175,7 +174,6 @@ export const restoreProduct = (id) => {
     let restoreProduct = await axios.put(
       `http://localhost:3001/product/restore/${id}`
     );
-    console.log(restoreProduct);
     return dispatch({ type: RESTORE_PRODUCT, payload: restoreProduct.data });
   };
 };
@@ -225,10 +223,8 @@ export const userSpecific = (userFound) => {
   return async function (dispatch) {
     try {
       let userSpeci = await axios.post("http://localhost:3001/user/tio", userFound);
-      console.log(userFound, userSpeci)
       return dispatch({ type: USER_SPECIFIC, payload: userSpeci.data });
     } catch (error) {
-      console.log(error)
       return dispatch({
         type: USER_NOT_FOUND,
         payload: error.response.data.error,
@@ -240,5 +236,11 @@ export const userSpecific = (userFound) => {
 export const logoutUser = () => {
   return {
     type: LOGOUT,
+  };
+};
+
+export const updateCartQuantity = () => {
+  return {
+    type: UPDATE_CART_QUANTITY,
   };
 };

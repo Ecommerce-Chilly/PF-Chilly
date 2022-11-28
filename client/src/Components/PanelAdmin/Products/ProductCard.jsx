@@ -1,13 +1,3 @@
-// import {
-//   deleteProdut,
-//   restoreProduct,
-// } from '../../../redux/actions/actions.js';
-// import { useDispatch } from 'react-redux';
-// import React from 'react';
-// import { Link } from 'react-router-dom';
-
-// function ProductCard(props) {
-//   const dispatch = useDispatch();
 import React from 'react';
 import {
   deleteProdut,
