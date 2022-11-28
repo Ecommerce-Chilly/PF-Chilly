@@ -1,9 +1,12 @@
-import React from 'react'
+import React from 'react';
+import WorkInProgress from '../../PI Components/WorkInProgress/WorkInProgress';
 
 function Fav() {
   return (
-    <div>Fav</div>
-  )
+    <div>
+      <WorkInProgress />
+    </div>
+  );
 }
 
-export default Fav
+export default Fav;

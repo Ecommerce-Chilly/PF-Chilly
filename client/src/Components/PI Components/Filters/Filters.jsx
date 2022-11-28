@@ -43,7 +43,7 @@ function Filters() {
   }
 
   return (
-    <div className="bg-slate-200 w-60 pl-5 pt-8 h-full">
+    <div className="bg-slate-200 w-60 pl-5 pt-8 h-full min-h-screen">
       <h3 className="text-2xl uppercase font-medium mb-4 text-slate-800">
         Category
       </h3>

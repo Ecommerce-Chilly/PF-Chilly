@@ -1,9 +1,12 @@
-import React from 'react'
+import React from 'react';
+import WorkInProgress from '../../PI Components/WorkInProgress/WorkInProgress';
 
 function UserInfo() {
   return (
-    <div>UserInfo</div>
-  )
+    <div>
+      <WorkInProgress />
+    </div>
+  );
 }
 
-export default UserInfo
+export default UserInfo;

@@ -19,17 +19,19 @@ import {
   ADD_TO_CART,
   DELETE_CART_PRODUCT,
   CLEAR_CART,
-} from "../actions/actions.js";
+  UPDATE_CART_QUANTITY,
+} from '../actions/actions.js';
 
 const initialState = {
   product: [],
   allProduct: [],
   productDetail: [],
-  createProductMsg: "",
-  productChangedMsg: "",
-  searchProductMsg: "",
+  createProductMsg: '',
+  productChangedMsg: '',
+  searchProductMsg: '',
   categoryDetails: [],
   cart: [],
+  quantity: 0,
 };
 
 const rootReducer = (state = initialState, action) => {
@@ -39,9 +41,9 @@ const rootReducer = (state = initialState, action) => {
         ...state,
         product: action.payload,
         allProduct: action.payload,
-        createProductMsg: "",
-        searchProductMsg: "",
-        productChangedMsg: "",
+        createProductMsg: '',
+        searchProductMsg: '',
+        productChangedMsg: '',
       };
 
     case GET_PRODUCT_BY_ID:
@@ -103,12 +105,12 @@ const rootReducer = (state = initialState, action) => {
       let temporal = state.allProduct;
       let filtered = temporal.filter((e) => e.categoryName === action.payload);
 
-      if (action.payload === "") {
+      if (action.payload === '') {
         filtered = state.allProduct;
       }
       return {
         ...state,
-        searchProductMsg: "",
+        searchProductMsg: '',
         product: filtered,
       };
     case FILTER_BY_DETAILS:
@@ -118,7 +120,7 @@ const rootReducer = (state = initialState, action) => {
         (e) => e.categoryName === action.payload[0]
       );
 
-      if (action.payload[0] === "") {
+      if (action.payload[0] === '') {
         filtered2 = state.allProduct;
       }
 
@@ -130,7 +132,7 @@ const rootReducer = (state = initialState, action) => {
 
       return {
         ...state,
-        searchProductMsg: "",
+        searchProductMsg: '',
         product: filtered2,
       };
 
@@ -152,10 +154,17 @@ const rootReducer = (state = initialState, action) => {
 
     case ADD_TO_CART:
       let prod = state.allProduct.find((e) => e.id === action.payload);
-      console.log(prod);
+      let foundProd = state.cart.find((e) => e.id === action.payload);
+
+      if (foundProd) {
+        foundProd.quantity++;
+      } else {
+        prod.quantity = 1;
+      }
+
       return {
         ...state,
-        cart: state.cart.concat(prod),
+        cart: prod.quantity === 1 ? state.cart.concat(prod) : state.cart,
       };
     case DELETE_CART_PRODUCT:
       let cart1 = state.cart.filter((e) => e.id !== action.payload);
@@ -167,6 +176,17 @@ const rootReducer = (state = initialState, action) => {
       return {
         ...state,
         cart: [],
+        quantity: 0,
+      };
+    case UPDATE_CART_QUANTITY:
+      let cartQuantity = 0;
+      for (let i = 0; i < state.cart.length; i++) {
+        cartQuantity = cartQuantity + state.cart[i].quantity;
+      }
+      console.log(cartQuantity);
+      return {
+        ...state,
+        quantity: cartQuantity,
       };
     default:
       return state;

@@ -1,9 +1,11 @@
-import React from 'react'
-
+import React from 'react';
+import WorkInProgress from '../WorkInProgress/WorkInProgress';
 function BuildYourOwn() {
   return (
-    <div>BuildYourOwn</div>
-  )
+    <div>
+      <WorkInProgress />
+    </div>
+  );
 }
 
-export default BuildYourOwn
+export default BuildYourOwn;

@@ -1,25 +1,25 @@
-import axios from "axios";
-export const GET_ALL_PRODUCTS = "GET_ALL_PRODUCTS";
-export const GET_PRODUCT_BY_ID = "GET_PRODUCT_BY_ID";
-export const CREATE_PRODUCT = "CREATE_PRODUCT";
-export const CREATE_DISCOUNT = "CREATE_DISCOUNT";
-export const PUT_PRODUCT = "PUT_PRODUCT";
-export const PUT_INVENTORY = "PUT_INVENTORY";
-export const PUT_DISCOUNT = "PUT_DISCOUNT";
-export const DELETE_PRODUCT = "DELETE_PRODUCT";
-export const FAIL_CREATED_MSG = "FAIL_CREATED_MSG";
-export const GET_CATEGORY_DETAILS = "GET_CATEGORY_DETAILS";
-export const FILTER1 = "FILTER1";
-export const FILTER_BY_DETAILS = "FILTER_BY_DETAILS";
-export const GET_PRODUCT_BY_NAME = "GET_PRODUCT_BY_NAME";
-export const ERROR_MSSG = "ERROR_MSSG";
-export const EUSEBIO = "EUSEBIO";
-export const ERROR_PUT_PRODUCT = "ERROR_PUT_PRODUCT"
-export const RESTORE_PRODUCT = "RESTORE_PRODUCT";
-export const ADD_TO_CART = "ADD_TO_CART";
-export const DELETE_CART_PRODUCT = "DELETE_CART_PRODUCT";
-export const CLEAR_CART = "CLEAR_CART";
-
+import axios from 'axios';
+export const GET_ALL_PRODUCTS = 'GET_ALL_PRODUCTS';
+export const GET_PRODUCT_BY_ID = 'GET_PRODUCT_BY_ID';
+export const CREATE_PRODUCT = 'CREATE_PRODUCT';
+export const CREATE_DISCOUNT = 'CREATE_DISCOUNT';
+export const PUT_PRODUCT = 'PUT_PRODUCT';
+export const PUT_INVENTORY = 'PUT_INVENTORY';
+export const PUT_DISCOUNT = 'PUT_DISCOUNT';
+export const DELETE_PRODUCT = 'DELETE_PRODUCT';
+export const FAIL_CREATED_MSG = 'FAIL_CREATED_MSG';
+export const GET_CATEGORY_DETAILS = 'GET_CATEGORY_DETAILS';
+export const FILTER1 = 'FILTER1';
+export const FILTER_BY_DETAILS = 'FILTER_BY_DETAILS';
+export const GET_PRODUCT_BY_NAME = 'GET_PRODUCT_BY_NAME';
+export const ERROR_MSSG = 'ERROR_MSSG';
+export const EUSEBIO = 'EUSEBIO';
+export const ERROR_PUT_PRODUCT = 'ERROR_PUT_PRODUCT';
+export const RESTORE_PRODUCT = 'RESTORE_PRODUCT';
+export const ADD_TO_CART = 'ADD_TO_CART';
+export const DELETE_CART_PRODUCT = 'DELETE_CART_PRODUCT';
+export const CLEAR_CART = 'CLEAR_CART';
+export const UPDATE_CART_QUANTITY = 'UPDATE_CART_QUANTITY';
 
 export const getProduct = () => {
   return async function (dispatch) {
@@ -79,8 +79,11 @@ export const putProductById = (id, product) => {
       );
       return dispatch({ type: PUT_PRODUCT, payload: putProduct.data });
     } catch (error) {
-      console.log(error.response.data.error)
-      return dispatch({type: ERROR_PUT_PRODUCT, payload: error.response.data.error})
+      console.log(error.response.data.error);
+      return dispatch({
+        type: ERROR_PUT_PRODUCT,
+        payload: error.response.data.error,
+      });
     }
   };
 };
@@ -110,7 +113,7 @@ export const deleteProdut = (id) => {
     const deleteProduct = await axios.delete(
       `http://localhost:3001/product/${id}`
     );
-    console.log(deleteProduct.data)
+    console.log(deleteProduct.data);
     return dispatch({ type: DELETE_PRODUCT, payload: deleteProduct.data });
   };
 };
@@ -143,7 +146,7 @@ export const filterbyDetails = (category, details) => {
 
 export const getProductByName = (name) => {
   return async function (dispatch) {
-    if (name === "") {
+    if (name === '') {
       return dispatch({ type: ERROR_MSSG });
     }
     try {
@@ -188,5 +191,10 @@ export const deleteP = (id) => {
 export const clearCart = () => {
   return {
     type: CLEAR_CART,
+  };
+};
+export const updateCartQuantity = () => {
+  return {
+    type: UPDATE_CART_QUANTITY,
   };
 };
