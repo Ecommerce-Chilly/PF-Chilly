@@ -25,6 +25,7 @@ import {
   ERROR_CREATE_USER,
   ALL_USERS,
   USER_NOT_FOUND,
+  UPDATE_CART_QUANTITY,
 } from "../actions/actions.js";
 
 const initialState = {
@@ -40,6 +41,7 @@ const initialState = {
   userInfo: [],
   userNotFound: "",
   createUserMsg: "",
+  quantity: 0,
 };
 
 const rootReducer = (state = initialState, action) => {
@@ -161,9 +163,15 @@ const rootReducer = (state = initialState, action) => {
 
     case ADD_TO_CART:
       let prod = state.allProduct.find((e) => e.id === action.payload);
+      let foundProd = state.cart.find((e) => e.id === action.payload);
+      if (foundProd) {
+        foundProd.quantity++;
+      } else {
+        prod.quantity = 1;
+      }
       return {
         ...state,
-        cart: state.cart.concat(prod),
+        cart: prod.quantity === 1 ? state.cart.concat(prod) : state.cart,
       };
     case DELETE_CART_PRODUCT:
       let cart1 = state.cart.filter((e) => e.id !== action.payload);
@@ -176,7 +184,16 @@ const rootReducer = (state = initialState, action) => {
         ...state,
         cart: [],
       };
-
+    case UPDATE_CART_QUANTITY:
+      let cartQuantity = 0;
+      for (let i = 0; i < state.cart.length; i++) {
+        cartQuantity = cartQuantity + state.cart[i].quantity;
+      }
+      console.log(cartQuantity);
+      return {
+        ...state,
+        quantity: cartQuantity,
+      };
     case ALL_USERS:
       return {
         ...state,
@@ -188,7 +205,7 @@ const rootReducer = (state = initialState, action) => {
       return {
         ...state,
         createUserMsg: action.payload,
-        userNotFound: ""
+        userNotFound: "",
       };
     case ERROR_CREATE_USER:
       return {

@@ -14,13 +14,17 @@ userRoute.post("/", async (req, res) => {
 
 userRoute.get("/", async (req, res) => {
   try {
-    const { email, password } = req.body;
-    if (!email && !password) {
-      const users = await getAllUsers();
-      return res.status(200).send(users);
-    }
-    const user = await getUser(email, password);
-    if (!user) {
+    const users = await getAllUsers();
+    return res.status(200).send(users);
+  } catch (error) {
+    res.status(404).send({ error: error });
+  }
+});
+
+userRoute.post("/tio", async (req, res) => {
+  try {
+    const user = await getUser(req.body);
+    if (!user.length) {
       return res.status(404).send({ error: "User not exist" });
     }
     return res.send(user);
