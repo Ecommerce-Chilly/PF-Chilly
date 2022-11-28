@@ -1,11 +1,11 @@
-import React, { useState } from "react";
-import { useDispatch, useSelector } from "react-redux";
-import { useHistory } from "react-router-dom";
+import React, { useState } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { useHistory } from 'react-router-dom';
 import {
   createProduct,
   createDiscount,
-} from "../../../redux/actions/actions.js";
-const { validate } = require("../ChangeComponent/utils");
+} from '../../../redux/actions/actions.js';
+const { validate } = require('../ChangeComponent/utils');
 
 function CreateComponent() {
   const dispatch = useDispatch();
@@ -13,18 +13,18 @@ function CreateComponent() {
   const history = useHistory();
   const [errors, setErrors] = useState({});
   const [newProduct, setNewProduct] = useState({
-    name: "",
+    name: '',
     price: 0,
-    brand: "",
-    model: "",
-    quantity: "",
-    category: "",
+    brand: '',
+    model: '',
+    quantity: '',
+    category: '',
     details: [],
-    discount: "",
+    discount: '',
   });
   const [discountt, setDiscountt] = useState({
     name: `${newProduct.discount}`,
-    description: "",
+    description: '',
     percent: 0,
     active: 0,
   });
@@ -47,7 +47,7 @@ function CreateComponent() {
         [e.target.name]: e.target.value,
       })
     );
-    if (e.target.name === "discount") {
+    if (e.target.name === 'discount') {
       setDiscountt({
         ...discountt,
         name: e.target.value,
@@ -76,7 +76,7 @@ function CreateComponent() {
           e.preventDefault();
           dispatchDataToCreate(newProduct);
           dispatchDataToDiscount(discountt);
-          setTimeout(() => history.push("/panel+admin/products"), 3000);
+          setTimeout(() => history.push('/panel+admin/products'), 3000);
         }}
         className="w-2/3 m-auto mt-9"
       >
@@ -186,7 +186,7 @@ function CreateComponent() {
         </select>
         {errors.brand && <p className="text-red-400 mb-4">{errors.brand}</p>}
 
-        {newProduct.brand === "" ? (
+        {newProduct.brand === '' ? (
           <>
             <label className="block mb-2 text-sm font-medium text-gray-900">
               Product model:
@@ -287,6 +287,7 @@ function CreateComponent() {
         <label className="block mb-2 text-sm font-medium text-gray-900">
           Product discount:
         </label>
+
         <input
           type="text"
           name="discount"
@@ -364,9 +365,17 @@ function CreateComponent() {
         </div>
       </form>
       {msg.error ? (
-        <h2>{msg.error}</h2>
+        <div className="absolute rounded-lg text-slate-800 font-display  ">
+          <h2 className="fixed top-1/2 left-auto ml-60 text-2xl py-16 bg-red-400 rounded-lg px-8 ">
+            {msg.error}
+          </h2>
+        </div>
       ) : msg.statusText ? (
-        <h2>{msg.statusText}</h2>
+        <div className="absolute rounded-lg ml-6 text-slate-800 font-display  ">
+          <h2 className="fixed top-1/2 ml-96 text-2xl py-16 bg-green-400 rounded-lg px-8 ">
+            {msg.statusText}
+          </h2>
+        </div>
       ) : (
         <></>
       )}
