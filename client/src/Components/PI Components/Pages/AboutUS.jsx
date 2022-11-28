@@ -5,7 +5,7 @@ import AboutCard from './AboutCard'
 function AboutUS() {
   return (
     <div>
-   <div class='flex flex-wrap justify-evenly mb-10'>
+   <div class='flex flex-wrap justify-evenly mb-10 '>
       <AboutCard />
       <AboutCard />
       <AboutCard /> 
