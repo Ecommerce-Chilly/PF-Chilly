@@ -8,7 +8,6 @@ import {
   putDiscount,
 } from "../../../redux/actions/actions.js";
 import { useParams } from "react-router-dom";
-import "./ChangeComponent.css";
 const { validate } = require("./utils");
 
 function ChangeComponent() {
@@ -88,7 +87,7 @@ function ChangeComponent() {
   }
 
   return (
-    <div className="form-container">
+    <div className="w-2/3 m-auto mb-9">
       {productDetails.length > 0 ? (
         <form
           onSubmit={(e) => {
@@ -96,35 +95,43 @@ function ChangeComponent() {
             e.preventDefault();
             setTimeout(() => history.push("/panel+admin/products"), 3000);
           }}
-          className="form"
+          className="w-2/3 m-auto mt-9"
         >
           <div className="form-header">
-            <h1 className="form-title">Change Product</h1>
+            <h1 className="text-3xl text-slate-800   font-display font-semibold mt-12 ml-50 mb-9">
+              Edit product
+            </h1>
           </div>
-          <label className="form-label">New name of product:</label>
+          <label className="block mb-2 text-sm font-medium text-gray-900">
+            New Product name:
+          </label>
           <input
             type="text"
             name="name"
             value={newProduct.name}
             onChange={handleChange}
-            placeholder="Write the name here..."
-            className="form-input"
+            placeholder="Type name here"
+            className="bg-gray-50 border  text-gray-900 text-sm rounded-lg  focus:border-blue-500 block w-full p-2.5  border-gray-600 placeholder-gray-400 mb-6 "
           ></input>
-          {errors.name && <p className="danger">{errors.name}</p>}
-          <label className="form-label">New Price:</label>
+          {errors.name && <p className="text-red-400 mb-4">{errors.name}</p>}
+          <label className="block mb-2 text-sm font-medium text-gray-900">
+            New Price:
+          </label>
           <input
             type="number"
             name="price"
             value={newProduct.price}
             onChange={handleChange}
-            placeholder="Price at here"
-            className="form-input"
+            placeholder="Set a price"
+            className="bg-gray-50 border  text-gray-900 text-sm rounded-lg  focus:border-blue-500 block w-full p-2.5  border-gray-600 placeholder-gray-400 mb-6 "
           ></input>
-          {errors.price && <p className="danger">{errors.price}</p>}
-          <label className="form-label">Have new Brand?</label>
+          {errors.price && <p className="text-red-400 mb-4">{errors.price}</p>}
+          <label className="block mb-2 text-sm font-medium text-gray-900">
+            New brand:
+          </label>
           <select
             name="brand"
-            className="form-input"
+            className="bg-gray-50 border  text-gray-900 text-sm rounded-lg  focus:border-blue-500 block w-full p-2.5  border-gray-600 placeholder-gray-400 mb-6 "
             onChange={handleChange}
             value={newProduct.brand}
           >
@@ -195,63 +202,73 @@ function ChangeComponent() {
             <option>XFX</option>
             <option>ZOTAC</option>
           </select>
-          {errors.brand && <p className="danger">{errors.brand}</p>}
-
-          {msg ? <h2 className="sucessMsg">{`${msg}`}</h2> : <></>}
+          {errors.brand && <p className="text-red-400 mb-4">{errors.brand}</p>}
 
           {newProduct.brand === "" ? (
             <>
-              <label className="form-label">Have new Model?</label>
+              <label className="block mb-2 text-sm font-medium text-gray-900">
+                New model:
+              </label>
               <input
-                className="form-input"
+                className="bg-gray-50 border  text-gray-900 text-sm rounded-lg  focus:border-blue-500 block w-full p-2.5  border-gray-600 placeholder-gray-400 mb-6 "
                 disabled
                 placeholder="Before insert a brand"
               ></input>
             </>
           ) : newProduct.brand.length ? (
             <>
-              <label className="form-label">Have new Model?</label>
+              <label className="block mb-2 text-sm font-medium text-gray-900">
+                New model:
+              </label>
               <input
-                className="form-input"
+                className="bg-gray-50 border  text-gray-900 text-sm rounded-lg  focus:border-blue-500 block w-full p-2.5  border-gray-600 placeholder-gray-400 mb-6 "
                 name="model"
                 value={newProduct.model}
                 onChange={handleChange}
                 placeholder="Insert model"
               ></input>
-              {errors.model && <p className="danger">{errors.model}</p>}
+              {errors.model && (
+                <p className="text-red-400 mb-4">{errors.model}</p>
+              )}
             </>
           ) : (
             <></>
           )}
-          <label className="form-label">New image of product:</label>
+          <label className="block mb-2 text-sm font-medium text-gray-900">
+            New Product Img (URL):
+          </label>
           <input
             type="text"
             name="image"
             value={newProduct.image}
             onChange={handleChange}
             placeholder="Image Product at here"
-            className="form-input"
+            className="bg-gray-50 border  text-gray-900 text-sm rounded-lg  focus:border-blue-500 block w-full p-2.5  border-gray-600 placeholder-gray-400 mb-6 "
           ></input>
 
-          <label className="form-label">Details:</label>
+          <label className="block mb-2 text-sm font-medium text-gray-900">
+            New Product details:
+          </label>
           <input
             type="text"
             name="brand"
             onChange={handleDetailChange}
-            placeholder="brand"
-            className="form-input"
+            placeholder="Type brand here"
+            className="bg-gray-50 border  text-gray-900 text-sm rounded-lg  focus:border-blue-500 block w-full p-2.5  border-gray-600 placeholder-gray-400 mb-6 "
           ></input>
           <input
             type="text"
             name="cosito"
             onChange={handleDetailChange}
-            placeholder="cosito"
-            className="form-input"
+            placeholder="Type cosito here"
+            className="bg-gray-50 border  text-gray-900 text-sm rounded-lg  focus:border-blue-500 block w-full p-2.5  border-gray-600 placeholder-gray-400 mb-6 "
           ></input>
-          <label className="form-label">Category:</label>
+          <label className="block mb-2 text-sm font-medium text-gray-900">
+            New Product category:
+          </label>
           <select
             name="category"
-            className="form-input"
+            className="bg-gray-50 border  text-gray-900 text-sm rounded-lg  focus:border-blue-500 block w-full p-2.5  border-gray-600 placeholder-gray-400 mb-6 "
             onChange={handleChange}
             value={newProduct.category}
           >
@@ -268,29 +285,39 @@ function ChangeComponent() {
             <option>ram</option>
             <option>storage</option>
           </select>
-          {errors.category && <p className="danger">{errors.category}</p>}
-          <label className="form-label">Stock:</label>
+          {errors.category && (
+            <p className="text-red-400 mb-4">{errors.category}</p>
+          )}
+          <label className="block mb-2 text-sm font-medium text-gray-900">
+            New Product stock:
+          </label>
           <input
             type="text"
             name="quantity"
             value={newProduct.quantity}
             onChange={handleChange}
             placeholder="Quantity of product"
-            className="form-input"
+            className="bg-gray-50 border  text-gray-900 text-sm rounded-lg  focus:border-blue-500 block w-full p-2.5  border-gray-600 placeholder-gray-400 mb-6 "
           ></input>
-          {errors.quantity && <p className="danger">{errors.quantity}</p>}
+          {errors.quantity && (
+            <p className="text-red-400 mb-4">{errors.quantity}</p>
+          )}
           {productDetails[0].discountName ? (
             <>
-              <label className="form-label">Discount:</label>
+              <label className="block mb-2 text-sm font-medium text-gray-900">
+                New Product discount:
+              </label>
               <input
                 type="text"
                 name="discount"
                 value={newProduct.discount}
                 onChange={handleChange}
                 placeholder="Discount at here :D"
-                className="form-input"
+                className="bg-gray-50 border  text-gray-900 text-sm rounded-lg  focus:border-blue-500 block w-full p-2.5  border-gray-600 placeholder-gray-400 mb-6 "
               ></input>
-              {errors.discount && <p className="danger">{errors.discount}</p>}
+              {errors.discount && (
+                <p className="text-red-400 mb-4">{errors.discount}</p>
+              )}
             </>
           ) : (
             <></>
@@ -298,24 +325,30 @@ function ChangeComponent() {
 
           {newProduct.discount ? (
             <>
-              <label className="form-label">Description of discount:</label>
+              <label className="block mb-2 text-sm font-medium text-gray-900">
+                New Discount description:
+              </label>
               <input
                 type="text"
                 name="description"
                 value={discountt.description}
                 onChange={handleDiscount}
                 placeholder="Description of discount"
+                className="bg-gray-50 border  text-gray-900 text-sm rounded-lg  focus:border-blue-500 block w-full p-2.5  border-gray-600 placeholder-gray-400 mb-6"
               ></input>
-              <label className="form-label">Percent discount:</label>
+              <label className="block mb-2 text-sm font-medium text-gray-900">
+                New Discount percentage:
+              </label>
               <input
                 type="text"
                 name="percent"
                 value={discountt.percent}
                 onChange={handleDiscount}
                 placeholder="Quantity of product"
+                className="bg-gray-50 border  text-gray-900 text-sm rounded-lg  focus:border-blue-500 block w-full p-2.5  border-gray-600 placeholder-gray-400 mb-6"
               ></input>
-              <label className="form-label">
-                State discount(0 = inactive; 1 = active):
+              <label className="block mb-2 text-sm font-medium text-gray-900">
+                New Discount status (0 = inactive; 1 = active):
               </label>
               <input
                 type="number"
@@ -323,23 +356,37 @@ function ChangeComponent() {
                 value={discountt.active}
                 onChange={handleDiscount}
                 placeholder="Quantity of product"
+                className="bg-gray-50 border  text-gray-900 text-sm rounded-lg  focus:border-blue-500 block w-full p-2.5  border-gray-600 placeholder-gray-400 mb-6"
               ></input>
             </>
           ) : (
             <></>
           )}
-
-          {!newProduct.name ? (
-            <input type="submit" disabled className="btn-submit"></input>
-          ) : errors.name ||
-            errors.price ||
-            errors.details ||
-            errors.inInventary ||
-            errors.category ? (
-            <input type="submit" disabled className="btn-submit"></input>
-          ) : (
-            <input type="submit" className="btn-submit"></input>
-          )}
+          <div className=" text-center">
+            {!newProduct.name ? (
+              <input
+                type="submit"
+                disabled
+                className=" font-semibold  text-white border-solid bg-blue-900 border-2 border-blue-900 py-2 px-6 focus:outline-none  rounded "
+              ></input>
+            ) : errors.name ||
+              errors.price ||
+              errors.details ||
+              errors.inInventary ||
+              errors.category ? (
+              <input
+                type="submit"
+                disabled
+                className=" font-semibold  text-white border-solid bg-blue-900 border-2 border-blue-900 py-2 px-6 focus:outline-none  rounded "
+              ></input>
+            ) : (
+              <input
+                type="submit"
+                className="cursor-pointer font-semibold  text-white border-solid bg-main border-2 border-main py-2 px-6 focus:outline-none hover:bg-blue-600 rounded hover:border-blue-600"
+              ></input>
+            )}
+          </div>
+          {msg ? <h2>{`${msg}`}</h2> : <></>}
         </form>
       ) : (
         <p>No se cargo correctamente</p>

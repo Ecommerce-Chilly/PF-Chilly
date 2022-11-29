@@ -26,6 +26,10 @@ import {
   ALL_USERS,
   USER_NOT_FOUND,
   UPDATE_CART_QUANTITY,
+  GET_FAVORITES,
+  ADD_FAVORITE,
+  INCREASE_PRODUCT_QUANTITY,
+  DECREASE_PRODUCT_QUANTITY,
 } from "../actions/actions.js";
 
 const initialState = {
@@ -42,6 +46,8 @@ const initialState = {
   userNotFound: "",
   createUserMsg: "",
   quantity: 0,
+  favorites: [],
+  favoriteMsg: "",
 };
 
 const rootReducer = (state = initialState, action) => {
@@ -163,13 +169,11 @@ const rootReducer = (state = initialState, action) => {
     case ADD_TO_CART:
       let prod = state.allProduct.find((e) => e.id === action.payload);
       let foundProd = state.cart.find((e) => e.id === action.payload);
-
       if (foundProd) {
         foundProd.quantity++;
       } else {
         prod.quantity = 1;
       }
-
       return {
         ...state,
         cart: prod.quantity === 1 ? state.cart.concat(prod) : state.cart,
@@ -185,6 +189,15 @@ const rootReducer = (state = initialState, action) => {
         ...state,
         cart: [],
         quantity: 0,
+      };
+    case UPDATE_CART_QUANTITY:
+      let cartQuantity = 0;
+      for (let i = 0; i < state.cart.length; i++) {
+        cartQuantity = cartQuantity + state.cart[i].quantity;
+      }
+      return {
+        ...state,
+        quantity: cartQuantity,
       };
     case ALL_USERS:
       return {
@@ -220,15 +233,37 @@ const rootReducer = (state = initialState, action) => {
         ...state,
         userInfo: [],
       };
-    case UPDATE_CART_QUANTITY:
-      let cartQuantity = 0;
-      for (let i = 0; i < state.cart.length; i++) {
-        cartQuantity = cartQuantity + state.cart[i].quantity;
-      }
-      console.log(cartQuantity);
+    case GET_FAVORITES:
       return {
         ...state,
-        quantity: cartQuantity,
+        favorites: action.payload.products,
+      };
+    case ADD_FAVORITE:
+      return {
+        ...state,
+        favoriteMsg: action.payload,
+      };
+    case INCREASE_PRODUCT_QUANTITY:
+      let product = state.cart.find((e) => e.id === action.payload);
+
+      product.quantity = product.quantity + 1;
+
+      return {
+        ...state,
+        quantity: state.quantity + 1,
+      };
+
+    case DECREASE_PRODUCT_QUANTITY:
+      let product2 = state.cart.find((e) => e.id === action.payload);
+
+      if (product2.quantity > 1) {
+        product2.quantity = product2.quantity - 1;
+      }
+
+      return {
+        ...state,
+        quantity:
+          state.quantity > 1 ? state.quantity - 1 : (state.quantity = 1),
       };
     default:
       return state;

@@ -1,24 +1,33 @@
 .pagination {
   list-style: none;
   display: flex;
-  justify-content: center;
+  justify-content: space-between;
   align-items: center;
-  width: 500px;
+  width: 350px;
   height: 50px;
-  left: 40vw;
+  left: 45.2vw;
   font-size: 20px;
   font-weight: lighter;
   position: absolute;
   top: 145px;
-  color: grey;
+  color: darkgery;
+  font-family: 'Montserrat', sans-serif;
+  font-size: 18px;
 }
-
-.pagination .page-num {
+.page-num2 {
   width: 50px;
   padding: 10px;
   cursor: pointer;
   border-radius: 3px;
   font-weight: 400;
+}
+.page-num {
+  width: 50px;
+  padding: 10px;
+  cursor: pointer;
+  border-radius: 3px;
+  font-weight: 400;
+  font-size: 16px;
 }
 
 .pagination .page-num:hover {
@@ -31,7 +40,7 @@
   text-decoration-style: double;
   text-decoration-color: rgb(48 63 159);
   text-underline-offset: 6px;
-  color: black;
+  color: darkslategrey;
 }
 
 .active:hover {

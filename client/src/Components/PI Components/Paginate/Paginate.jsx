@@ -28,13 +28,13 @@ function Paginate({ products }) {
         breakLabel="..."
         nextLabel="Next"
         onPageChange={handlePageClick}
-        pageRangeDisplayed={2}
-        marginPagesDisplayed={2}
+        pageRangeDisplayed={1}
+        marginPagesDisplayed={1}
         pageCount={pageCount}
         previousLabel="Previous"
         renderOnZeroPageCount={null}
         containerClassName={"pagination"}
-        pageLinkClassName={"page-num"}
+        pageLinkClassName={"page-num2"}
         previousLinkClassName={"page-num"}
         nextLinkClassName={"page-num"}
         activeLinkClassName={"active"}
@@ -43,9 +43,13 @@ function Paginate({ products }) {
         {currentItems.length > 0 && searchProductMsg === "" ? (
           currentItems?.map((el) => <ProductCard key={el.id} {...el} />)
         ) : searchProductMsg.error ? (
-          <p>{searchProductMsg.error}</p>
+          <div className="mx-auto text-3xl font-display font-medium ml-80  min-w-full">
+            <p>{searchProductMsg.error}</p>
+          </div>
         ) : (
-          <div>Products not found</div>
+          <div className="mx-auto text-3xl font-display font-medium ml-80">
+            <h3>No product was found!</h3>
+          </div>
         )}
       </div>
     </div>

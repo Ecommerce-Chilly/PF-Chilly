@@ -39,6 +39,6 @@ GET http://localhost:3001/user
 Content-Type: application/json
 
 { 
-"email":"eltio@gmail.com",
+"email":"eltioss@gmail.com",
 "password":"passs"
 }

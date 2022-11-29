@@ -1,9 +1,9 @@
 const { User } = require("../../db");
 
-const getUser = async (email, password) => {
+const getUser = async ({ email, password }) => {
   try {
-    const usersById = await User.findOne({
-      where: { email: email, password: password },
+    const usersById = await User.findAll({
+      where: { email, password },
     });
     return usersById;
   } catch (error) {
