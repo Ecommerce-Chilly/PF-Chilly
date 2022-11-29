@@ -1,6 +1,5 @@
 import React, { useEffect } from "react";
 import { Route } from "react-router-dom";
-//import PanelAdmin from "../../PanelAdmin/PanelAdmin";
 import Cart from "../../Cart/Cart/Cart";
 import Navbar from "../Navbar/Navbar";
 import Fav from "../../Extras/Fav/Fav";
@@ -9,6 +8,7 @@ import CreateComponent from "../../PanelAdmin/CreateComponent/CreateComponent";
 import ChangeComponent from "../../PanelAdmin/ChangeComponent/ChangeComponent";
 import Products from "../../PanelAdmin/Products/Products";
 import ProductDetail from "../../PanelAdmin/Products/ProductDetail";
+import ProductStoreDetail from "../../PanelAdmin/Products/ProductStoreDetail";
 import Home from "../Pages/Home";
 import Store from "../Pages/Store";
 import BuildYourOwn from "../Pages/BuildYourOwn";
@@ -16,19 +16,23 @@ import SpecialOffers from "../Pages/SpecialOffers";
 import Blog from "../Pages/Blog";
 import AboutUS from "../Pages/AboutUS";
 import Footer from "../Footer/Footer";
-import { getProduct } from "../../../redux/actions/actions.js";
+import Register from "../../Login/Register/Register";
+import { userSpecific } from "../../../redux/actions/actions";
 import { useDispatch } from "react-redux";
-import axios from "axios";
 
 function MainRoute() {
   let dispatch = useDispatch();
 
-  // useEffect(async () => {
-  //   await axios.get("http://localhost:3001/Guillo");
-  // }, []);
+  React.useEffect(() => {
+    const user = window.localStorage.getItem("user");
+
+    if (user) {
+      dispatch(userSpecific(JSON.parse(user)));
+    }
+  }, []);
 
   return (
-    <>
+    <div>
       <div>
         <Navbar />
       </div>
@@ -43,11 +47,18 @@ function MainRoute() {
         <Route exact path="/blog" component={Blog} />
         <Route exact path="/about+us" component={AboutUS} />
 
+        <Route exact path="/register" component={Register} />
+
         <Route exact path="/panel+admin/products" component={Products} />
         <Route
           exact
           path="/panel+admin/products/:id"
           component={ProductDetail}
+        />
+        <Route
+          exact
+          path="/store/products/:id"
+          component={ProductStoreDetail}
         />
         <Route
           exact
@@ -63,7 +74,7 @@ function MainRoute() {
       <div>
         <Footer />
       </div>
-    </>
+    </div>
   );
 }
 

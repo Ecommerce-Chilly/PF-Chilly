@@ -1,4 +1,4 @@
-const { User } = require("../../db")
+const { User } = require("../../db");
 
 const getUser = async (email) => {
   try {
@@ -8,7 +8,7 @@ const getUser = async (email) => {
   } catch (error) {
     throw (error)
   }
-}
+};
 
 const getAllUsers = async () => {
   try {
@@ -18,6 +18,6 @@ const getAllUsers = async () => {
   } catch (error) {
     throw (error)
   }
-}
+};
 
-module.exports = { getUser, getAllUsers }
+module.exports = { getUser, getAllUsers };

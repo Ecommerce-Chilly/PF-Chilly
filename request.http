@@ -9,8 +9,8 @@ POST http://localhost:3001/user
 content-type:application/json
 
 { 
-"email":"rodrigo@gmail.com",
-"password":"pass"
+"email":"eltioss@gmail.com",
+"password":"passs"
 }
 
 ### get users
@@ -33,3 +33,12 @@ GET http://localhost:3001/favorite
 ### DESTROY FAVORITE
 DELETE http://localhost:3001/favorite/1
 
+
+#####
+GET http://localhost:3001/user
+Content-Type: application/json
+
+{ 
+"email":"eltioss@gmail.com",
+"password":"passs"
+}

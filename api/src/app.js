@@ -58,9 +58,9 @@ const { ACCESS_TOKEN } = process.env;
 mercadopago.configure({
   access_token: ACCESS_TOKEN,
 });
-require('./db.js');
+require("./db.js");
 
-app.use(cors())
+app.use(cors());
 app.use(morgan("dev"));
 app.use(cookieParser());
 app.use(bodyParser.json());
@@ -76,7 +76,7 @@ app.use((req, res, next) => {
   next();
 });
 
-app.use('/', routes);
+app.use("/", routes);
 
 //manejador de errores
 app.use((err, req, res, next) => {
