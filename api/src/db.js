@@ -74,7 +74,7 @@ User.hasOne(Data_user);
 Data_user.belongsTo(User);
 
 User.hasOne(Shopping_session);
-Shopping_session.hasOne(User);
+Shopping_session.belongsTo(User);
 
 User.hasMany(Payment_user);
 Payment_user.belongsTo(User);
@@ -95,7 +95,7 @@ Order_items.hasMany(User);
 User.hasMany(Order_items);
 
 User.hasMany(Order_details);
-Order_details.hasOne(User);
+Order_details.belongsTo(User);
 
 User.belongsToMany(Product, { through: "favorites", paranoid: true })
 Product.belongsToMany(User, { through: "favorites", paranoid: true })

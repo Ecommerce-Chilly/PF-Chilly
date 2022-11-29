@@ -3,9 +3,7 @@ const { User } = require("../../db");
 const postUser = async ({
   email,
   password,
-  shoppingSessionId,
-  orderItemId,
-  orderDetailId,
+
 }) => {
   try {
     if (!email || !password) throw new Error("You need to fill all fields");

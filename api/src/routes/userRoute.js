@@ -1,10 +1,18 @@
 const { Router } = require("express");
 const postUser = require("../controllers/user/postUser")
 const { getUser, getAllUsers } = require("../controllers/user/getUser")
+const { deleteUser } = require("../controllers/user/deleteUser")
 const userRoute = Router();
 
 
-
+userRoute.delete('/:id', async (req, res) => {
+  try {
+    const userDelete = await deleteUser(req.params.id);
+    res.status(201).send(userDelete)
+  } catch (error) {
+    res.status(404).send({ error: error.message })
+  }
+})
 
 userRoute.post('/', async (req, res) => {
   try {

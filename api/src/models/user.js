@@ -23,6 +23,7 @@ module.exports = (sequelize) => {
       },
       {
          timestamps: true,
+         paranoid: true,
          indexes: [
             // Create a unique index on email
             {
