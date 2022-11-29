@@ -23,9 +23,11 @@ favoriteRoute.post("/", async (req, res) => {
     res.status(404).send(error);
   }
 });
-favoriteRoute.delete("/", async (req, res) => {
+favoriteRoute.delete("/:userId/:productId", async (req, res) => {
   try {
-    const { userId, productId } = req.body;
+    const { userId, productId } = req.params;
+
+    console.log(userId, productId);
     const msg = await removeFavorites(userId, productId);
     res.send(msg);
   } catch (error) {

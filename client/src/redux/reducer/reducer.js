@@ -30,6 +30,7 @@ import {
   ADD_FAVORITE,
   INCREASE_PRODUCT_QUANTITY,
   DECREASE_PRODUCT_QUANTITY,
+  DELETE_FAVORITE,
 } from "../actions/actions.js";
 
 const initialState = {
@@ -239,6 +240,11 @@ const rootReducer = (state = initialState, action) => {
         favorites: action.payload.products,
       };
     case ADD_FAVORITE:
+      return {
+        ...state,
+        favoriteMsg: action.payload,
+      };
+    case DELETE_FAVORITE:
       return {
         ...state,
         favoriteMsg: action.payload,

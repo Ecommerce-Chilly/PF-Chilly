@@ -1,7 +1,7 @@
 import React from "react";
 import { useDispatch, useSelector } from "react-redux";
 import WorkInProgress from "../../PI Components/WorkInProgress/WorkInProgress";
-import { getFavorites } from "../../../redux/actions/actions";
+import { getFavorites, deleteFavorite } from "../../../redux/actions/actions";
 
 function Fav() {
   let dispatch = useDispatch();
@@ -22,6 +22,19 @@ function Fav() {
           <div>
             <h1>{e.name}</h1>
             <img src={e.image}></img>
+            <button
+              onClick={() => {
+                dispatch(
+                  deleteFavorite({
+                    userId: userInfo[0].id,
+                    productId: e.id,
+                  })
+                );
+                dispatch(getFavorites(userInfo[0].id));
+              }}
+            >
+              X
+            </button>
           </div>
         ))
       ) : (

@@ -28,6 +28,7 @@ export const USER_NOT_FOUND = "USER_NOT_FOUND";
 export const UPDATE_CART_QUANTITY = "UPDATE_CART_QUANTITY";
 export const ADD_FAVORITE = "ADD_FAVORITE";
 export const GET_FAVORITES = "GET_FAVORITES";
+export const DELETE_FAVORITE = "DELETE_FAVORITE";
 export const FAVORITE_MSG = "FAVORITE_MSG";
 export const DECREASE_PRODUCT_QUANTITY = "DECREASE_PRODUCT_QUANTITY";
 export const INCREASE_PRODUCT_QUANTITY = "INCREASE_PRODUCT_QUANTITY";
@@ -293,5 +294,22 @@ export const decreaseProductQuantity = (id) => {
   return {
     type: DECREASE_PRODUCT_QUANTITY,
     payload: id,
+  };
+};
+
+export const deleteFavorite = (ids) => {
+  return async function (dispatch) {
+    try {
+      console.log(ids);
+      let favorite2 = await axios.delete(
+        `http://localhost:3001/favorite/${ids.userId}/${ids.productId}`
+      );
+      return dispatch({ type: DELETE_FAVORITE, payload: favorite2.data });
+    } catch (error) {
+      return dispatch({
+        type: FAVORITE_MSG,
+        payload: error.response.data.error,
+      });
+    }
   };
 };
