@@ -1,7 +1,7 @@
-import React, { useState } from "react";
-import { useDispatch } from "react-redux";
-import { getProductByName } from "../../../redux/actions/actions";
-import { useHistory } from "react-router-dom";
+import React, { useState } from 'react';
+import { useDispatch } from 'react-redux';
+import { getProductByName } from '../../../redux/actions/actions';
+import { useHistory } from 'react-router-dom';
 
 function SearchBar() {
   const dispatch = useDispatch();
@@ -17,14 +17,14 @@ function SearchBar() {
     event.preventDefault();
     if (name) {
       dispatch(getProductByName(name));
-      setName("");
-      history.push("/store")
+      setName('');
+      history.push('/store');
     }
   }
 
   return (
     <>
-      <form className="w-2/6 absolute  left-1/2 transform -translate-x-1/2 ">
+      <form className="w-2/6   left-1/2 transform translate-x-10">
         <label
           for="default-search"
           class="mb-2 text-sm font-medium text-gray-900 sr-only"

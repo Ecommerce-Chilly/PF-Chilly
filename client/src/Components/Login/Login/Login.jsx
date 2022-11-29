@@ -2,6 +2,8 @@ import React, { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { userSpecific, logoutUser } from '../../../redux/actions/actions';
 import { Link } from 'react-router-dom';
+import Swal from 'sweetalert2';
+import './popUp.css';
 
 function Login() {
   const dispatch = useDispatch();
@@ -27,7 +29,27 @@ function Login() {
     e.preventDefault();
     dispatch(logoutUser());
   }
-
+  const confirmLogout = () => {
+    Swal.fire({
+      icon: 'question',
+      text: 'Are you sure you want to log out?',
+      confirmButtonText: 'Ok',
+      showDenyButton: 'true',
+      denyButtonText: 'Cancel',
+      customClass: {
+        container: 'popup-container',
+        popup: 'popup',
+        confirmButton: 'confirm',
+        denyButton: 'deny',
+        cancelButton: 'cancel',
+      },
+    }).then((result) => {
+      /* Read more about isConfirmed, isDenied below */
+      if (result.isConfirmed) {
+        dispatch(logoutUser());
+      }
+    });
+  };
   return (
     <div>
       {!userUnique.length ? (
@@ -137,7 +159,7 @@ function Login() {
           <h2>CreatedAt: {userUnique[0].createdAt} </h2>
           <button onClick={(e) => handleLogout(e)}>Logout</button> */}
 
-          <div class="flex h-screen w-full items-center justify-center m-4">
+          <div class="flex min-h-screen -mt-24 w-full items-center justify-center m-4">
             <div class="w-full rounded-lg p-12 shadow-2xl  md:w-8/12 lg:w-6/12 bg-white">
               <div class="grid grid-cols-1 gap-6 lg:grid-cols-12">
                 <div class="grid-cols-1 lg:col-span-3">
@@ -183,10 +205,10 @@ function Login() {
                     </p>
                   </div>
 
-                  <div class="mt-6 grid grid-cols-2 gap-4">
+                  <div class="w-1/2 mt-9 mx-5">
                     <button
-                      class="w-full rounded-xl border-2 border-blue-500 bg-white px-3 py-2 font-semibold text-blue-500 hover:bg-blue-500 hover:text-white "
-                      onClick={(e) => handleLogout(e)}
+                      class="w-full m-auto rounded-xl border-2 border-main bg-white px-3 py-2 font-semibold text-main hover:bg-main hover:text-white "
+                      onClick={confirmLogout}
                     >
                       Log Out
                     </button>

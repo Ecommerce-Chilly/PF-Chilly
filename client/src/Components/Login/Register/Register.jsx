@@ -48,6 +48,7 @@ function Register() {
                     Your email
                   </label>
                   <input
+                    onChange={handleChange}
                     type="email"
                     name="email"
                     id="email"
@@ -64,6 +65,7 @@ function Register() {
                     Password
                   </label>
                   <input
+                    onChange={handleChange}
                     type="password"
                     name="password"
                     id="password"
