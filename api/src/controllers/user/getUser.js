@@ -1,22 +1,22 @@
 const { User } = require("../../db");
 
-const getUser = async (email) => {
+const getUser = async ({ email, password }) => {
   try {
-    const user = await User.findOne({ where: { email: email } })
-    if (!user) throw ("User not exits")
-    return user
+    const usersById = await User.findAll({
+      where: { email, password },
+    });
+    return usersById;
   } catch (error) {
-    throw (error)
+    console.log(error);
   }
 };
 
 const getAllUsers = async () => {
   try {
-    const allUsers = await User.findAll()
-    if (allUsers.length === 0) throw "There are not users"
-    return allUsers
+    const allUsers = await User.findAll();
+    return allUsers;
   } catch (error) {
-    throw (error)
+    console.log(error);
   }
 };
 
