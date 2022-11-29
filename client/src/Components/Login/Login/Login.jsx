@@ -21,6 +21,10 @@ function Login() {
     });
   };
 
+  const saveInLocalStorage = (user) => {
+    window.localStorage.setItem('user', JSON.stringify(user));
+  };
+
   function dispatchLoginUser(email, password) {
     dispatch(userSpecific(email, password));
   }
@@ -33,9 +37,9 @@ function Login() {
     Swal.fire({
       icon: 'question',
       text: 'Are you sure you want to log out?',
-      confirmButtonText: 'Ok',
+      confirmButtonText: 'Yes',
       showDenyButton: 'true',
-      denyButtonText: 'Cancel',
+      denyButtonText: 'No',
       customClass: {
         container: 'popup-container',
         popup: 'popup',
@@ -47,6 +51,7 @@ function Login() {
       /* Read more about isConfirmed, isDenied below */
       if (result.isConfirmed) {
         dispatch(logoutUser());
+        window.localStorage.removeItem('user');
       }
     });
   };
@@ -126,6 +131,7 @@ function Login() {
                       onClick={(e) => {
                         e.preventDefault();
                         dispatchLoginUser(loginUser);
+                        saveInLocalStorage(loginUser);
                       }}
                     >
                       Sign in
@@ -207,8 +213,10 @@ function Login() {
 
                   <div class="w-1/2 mt-9 mx-5">
                     <button
-                      class="w-full m-auto rounded-xl border-2 border-main bg-white px-3 py-2 font-semibold text-main hover:bg-main hover:text-white "
-                      onClick={confirmLogout}
+                      class="w-full rounded-xl border-2 border-main bg-white px-3 py-2 font-semibold text-main hover:bg-main hover:text-white "
+                      onClick={(e) => {
+                        confirmLogout();
+                      }}
                     >
                       Log Out
                     </button>

@@ -17,8 +17,19 @@ import Blog from "../Pages/Blog";
 import AboutUS from "../Pages/AboutUS";
 import Footer from "../Footer/Footer";
 import Register from "../../Login/Register/Register";
+import { userSpecific } from "../../../redux/actions/actions";
+import { useDispatch } from "react-redux";
 
 function MainRoute() {
+  let dispatch = useDispatch();
+
+  React.useEffect(() => {
+    const user = window.localStorage.getItem("user");
+
+    if (user) {
+      dispatch(userSpecific(JSON.parse(user)));
+    }
+  }, []);
 
   return (
     <div>

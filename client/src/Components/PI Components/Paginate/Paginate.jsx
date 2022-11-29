@@ -1,7 +1,7 @@
-import React, { useEffect, useState } from 'react';
-import { useSelector } from 'react-redux';
-import ReactPaginate from 'react-paginate';
-import ProductCard from '../../PanelAdmin/Products/ProductCard';
+import React, { useEffect, useState } from "react";
+import { useSelector } from "react-redux";
+import ReactPaginate from "react-paginate";
+import ProductCard from "../../PanelAdmin/Products/ProductCard";
 // import "./Paginate.css";
 
 function Paginate({ products }) {
@@ -33,14 +33,14 @@ function Paginate({ products }) {
         pageCount={pageCount}
         previousLabel="Previous"
         renderOnZeroPageCount={null}
-        containerClassName={'pagination'}
-        pageLinkClassName={'page-num2'}
-        previousLinkClassName={'page-num'}
-        nextLinkClassName={'page-num'}
-        activeLinkClassName={'active'}
+        containerClassName={"pagination"}
+        pageLinkClassName={"page-num2"}
+        previousLinkClassName={"page-num"}
+        nextLinkClassName={"page-num"}
+        activeLinkClassName={"active"}
       />
       <div className="flex flex-wrap justify-evenly">
-        {currentItems.length > 0 && searchProductMsg === '' ? (
+        {currentItems.length > 0 && searchProductMsg === "" ? (
           currentItems?.map((el) => <ProductCard key={el.id} {...el} />)
         ) : searchProductMsg.error ? (
           <div className="mx-auto text-3xl font-display font-medium ml-80  min-w-full">
