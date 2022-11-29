@@ -34,7 +34,7 @@ function ProductDetail() {
                       <img
                         alt="ecommerce"
                         class="lg:w-1/2 max-w-lg max-h-quinientos w-full object-contain object-center rounded border border-gray-200"
-                        src={produDetail[0].image.replace('SL75', 'SL700')}
+                        src={produDetail[0].image}
                       />
 
                       <div class="lg:w-1/2 w-full lg:pl-10 lg:py-6 mt-6 lg:mt-0 ">

@@ -6,6 +6,7 @@ import Fav from "../../Extras/Fav/Fav";
 import UserInfo from "../../Login/UserInfo/UserInfo";
 import CreateComponent from "../../PanelAdmin/CreateComponent/CreateComponent";
 import ChangeComponent from "../../PanelAdmin/ChangeComponent/ChangeComponent";
+import ProductsDeleted from "../../PanelAdmin/Products/ProductsDeleted"
 import Products from "../../PanelAdmin/Products/Products";
 import ProductDetail from "../../PanelAdmin/Products/ProductDetail";
 import ProductStoreDetail from "../../PanelAdmin/Products/ProductStoreDetail";
@@ -19,7 +20,6 @@ import Footer from "../Footer/Footer";
 import Register from "../../Login/Register/Register";
 
 function MainRoute() {
-
   return (
     <div>
       <div>
@@ -58,6 +58,11 @@ function MainRoute() {
           exact
           path="/panel+admin/change/product/:id"
           component={ChangeComponent}
+        />
+        <Route
+          exact
+          path="/panel+admin/deleted"
+          component={ProductsDeleted}
         />
       </div>
       <div>

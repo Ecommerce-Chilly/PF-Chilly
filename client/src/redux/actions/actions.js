@@ -4,6 +4,8 @@ export const GET_PRODUCT_BY_ID = "GET_PRODUCT_BY_ID";
 export const CREATE_PRODUCT = "CREATE_PRODUCT";
 export const CREATE_DISCOUNT = "CREATE_DISCOUNT";
 export const PUT_PRODUCT = "PUT_PRODUCT";
+export const PRODUCTS_DELETED = "PRODUCTS_DELETED";
+export const MSG_NOT_PRODUCT_DELETED = "MSG_NOT_PRODUCT_DELETED";
 export const PUT_INVENTORY = "PUT_INVENTORY";
 export const PUT_DISCOUNT = "PUT_DISCOUNT";
 export const DELETE_PRODUCT = "DELETE_PRODUCT";
@@ -25,8 +27,7 @@ export const LOGOUT = "LOGOUT";
 export const ERROR_CREATE_USER = "ERROR_CREATE_USER";
 export const ALL_USERS = "ALL_USERS";
 export const USER_NOT_FOUND = "USER_NOT_FOUND";
-export const UPDATE_CART_QUANTITY = 'UPDATE_CART_QUANTITY';
-
+export const UPDATE_CART_QUANTITY = "UPDATE_CART_QUANTITY";
 
 export const getProduct = () => {
   return async function (dispatch) {
@@ -151,7 +152,7 @@ export const filterbyDetails = (category, details) => {
 
 export const getProductByName = (name) => {
   return async function (dispatch) {
-    if (name === '') {
+    if (name === "") {
       return dispatch({ type: ERROR_MSSG });
     }
     try {
@@ -222,7 +223,10 @@ export const createUser = (newUser) => {
 export const userSpecific = (userFound) => {
   return async function (dispatch) {
     try {
-      let userSpeci = await axios.post("http://localhost:3001/user/tio", userFound);
+      let userSpeci = await axios.post(
+        "http://localhost:3001/user/tio",
+        userFound
+      );
       return dispatch({ type: USER_SPECIFIC, payload: userSpeci.data });
     } catch (error) {
       return dispatch({
@@ -242,5 +246,24 @@ export const logoutUser = () => {
 export const updateCartQuantity = () => {
   return {
     type: UPDATE_CART_QUANTITY,
+  };
+};
+
+export const getProductDeleted = () => {
+  return async function (dispatch) {
+    try {
+      const allProductDelete = await axios.get(
+        "http://localhost:3001/product/deleted"
+      );
+      return dispatch({
+        type: PRODUCTS_DELETED,
+        payload: allProductDelete.data,
+      });
+    } catch (error) {
+      return dispatch({
+        type: MSG_NOT_PRODUCT_DELETED,
+        payload: error.response.data,
+      });
+    }
   };
 };

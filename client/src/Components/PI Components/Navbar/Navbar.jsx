@@ -1,7 +1,7 @@
-import React, { useEffect, useState } from 'react';
-import { useSelector } from 'react-redux';
-import { Link } from 'react-router-dom';
-import SearchBar from '../SearchBar/SearchBar';
+import React, { useEffect, useState } from "react";
+import { useSelector } from "react-redux";
+import { Link } from "react-router-dom";
+import SearchBar from "../SearchBar/SearchBar";
 
 function Navbar() {
   let cart = useSelector((state) => state.cart);
@@ -102,9 +102,9 @@ function Navbar() {
               </Link>
             </li>
             <li>
-              <a href="/blog" className="hover:underline">
+              <Link href="/blog" className="hover:underline">
                 Blog
-              </a>
+              </Link>
             </li>
             <li>
               <Link to="/about+us" className="hover:underline">
@@ -122,6 +122,14 @@ function Navbar() {
                 className="hover:underline"
               >
                 PA - Create Product
+              </Link>
+            </li>
+            <li>
+              <Link
+                to="/panel+admin/deleted"
+                className="hover:underline"
+              >
+                PA - Product Deleted
               </Link>
             </li>
           </ul>

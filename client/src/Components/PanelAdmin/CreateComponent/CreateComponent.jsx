@@ -273,7 +273,7 @@ function CreateComponent() {
           Product stock:
         </label>
         <input
-          type="text"
+          type="number"
           name="quantity"
           value={newProduct.quantity}
           onChange={handleChange}

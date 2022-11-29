@@ -13,9 +13,6 @@ function ProductCard(props) {
     dispatch(deleteProdut(id));
   }
 
-  function dispatchToRestore(id) {
-    dispatch(restoreProduct(id));
-  }
   return (
     <div className="w-72 h-96 mb-11 bg-white rounded-xl shadow-xl border  m-2 relative flex flex-col justify-between">
       {props.categoryName ? (
@@ -51,14 +48,6 @@ function ProductCard(props) {
               }}
             >
               Delete Product
-            </button>
-            <button
-              className="bg-main text-white font-semibold rounded px-3"
-              onClick={() => {
-                dispatchToRestore(props.id);
-              }}
-            >
-              Restore
             </button>
           </div>
         </>

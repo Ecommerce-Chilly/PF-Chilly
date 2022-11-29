@@ -26,15 +26,19 @@ import {
   ALL_USERS,
   USER_NOT_FOUND,
   UPDATE_CART_QUANTITY,
+  PRODUCTS_DELETED,
+  MSG_NOT_PRODUCT_DELETED,
 } from "../actions/actions.js";
 
 const initialState = {
   product: [],
   allProduct: [],
   productDetail: [],
+  productsDeleted: [],
   createProductMsg: "",
   productChangedMsg: "",
   searchProductMsg: "",
+  msgProductDeleted: "",
   categoryDetails: [],
   cart: [],
   users: [],
@@ -94,6 +98,16 @@ const rootReducer = (state = initialState, action) => {
       return {
         ...state,
         productDeletedMsg: action.payload,
+      };
+    case PRODUCTS_DELETED:
+      return {
+        ...state,
+        productsDeleted: state.productsDeleted.concat(action.payload),
+      };
+    case MSG_NOT_PRODUCT_DELETED:
+      return {
+        ...state,
+        msgProductDeleted: action.payload,
       };
     case FAIL_CREATED_MSG:
       return {
@@ -189,7 +203,6 @@ const rootReducer = (state = initialState, action) => {
       for (let i = 0; i < state.cart.length; i++) {
         cartQuantity = cartQuantity + state.cart[i].quantity;
       }
-      console.log(cartQuantity);
       return {
         ...state,
         quantity: cartQuantity,
