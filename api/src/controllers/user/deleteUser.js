@@ -2,14 +2,13 @@ const { User } = require("../../db");
 
 const deleteUser = async (id) => {
     try {
-        if (!id) throw ("Send an id");
         const foundUser = await User.findByPk(id);
         if (!foundUser)
-            throw (`The User with the id ${id} is not exist`);
+            throw (`The User with the id ${id} doesn't exist`);
         await User.destroy({ where: { id: id } });
-        return "User deleted";
+        return "User has been successfully deleted";
     } catch (error) {
-        throw (error);
+        throw new Error(error);
     }
 };
 

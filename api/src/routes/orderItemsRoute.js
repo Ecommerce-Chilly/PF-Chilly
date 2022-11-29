@@ -1,5 +1,5 @@
 const { Router } = require("express");
-const postOrderItems = require("../controllers/postOrderItems")
+const postOrderItems = require("../controllers/orderItems/postOrderItems")
 const orderItemsRoute = Router();
 
 orderItemsRoute.post('/', async (req, res) => {

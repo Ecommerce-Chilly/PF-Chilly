@@ -1,4 +1,4 @@
-const { Order_items, User, Product } = require("../db");
+const { Order_items, User, Product } = require("../../db");
 
 const postOrderItems = async (quantity) => {
     try {
