@@ -1,18 +1,22 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
+import { useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
 import SearchBar from '../SearchBar/SearchBar';
 
 function Navbar() {
+  let cart = useSelector((state) => state.cart);
+  let quantity = useSelector((state) => state.quantity);
+
   return (
     <>
-      <nav class="	bg-white border-gray-200 px-2 sm:px-4 py-5  dark:bg-main static">
+      <nav class="	bg-white border-gray-200 px-2  py-5  dark:bg-main static">
         <div class="container flex flex-wrap items-center justify-between mx-auto">
           <Link to="/home" class="flex items-center">
             <span class="self-center text-4xl font-semibold whitespace-nowrap dark:text-white font-sans">
               Chilly
             </span>
           </Link>
-          <SearchBar/>
+          <SearchBar />
 
           <div class="hidden w-full md:block md:w-auto" id="navbar-default">
             <Link to="/user/favorites" className="inline-block mx-4">
@@ -32,6 +36,16 @@ function Navbar() {
               </svg>
             </Link>
             <Link to="/cart" className="inline-block mx-4">
+              {cart.length === 0 ? (
+                <></>
+              ) : (
+                <div className=" font-display -top-2 font-medium left-3 text-main text-sm text-center relative box-content	">
+                  <p className="w-5 h-5 bg-white z-10 rounded-full border-1 absolute">
+                    {quantity}
+                  </p>
+                </div>
+              )}
+
               <svg
                 xmlns="http://www.w3.org/2000/svg"
                 fill="none"
@@ -88,9 +102,9 @@ function Navbar() {
               </Link>
             </li>
             <li>
-              <a href="/blog" className="hover:underline">
+              <Link to="/blog" className="hover:underline">
                 Blog
-              </a>
+              </Link>
             </li>
             <li>
               <Link to="/about+us" className="hover:underline">
@@ -101,9 +115,12 @@ function Navbar() {
               <Link to="/panel+admin/products" className="hover:underline">
                 PA - Products
               </Link>
-            </li>{' '}
+            </li>
             <li>
-              <Link to="/panel+admin/create/product" className="hover:underline">
+              <Link
+                to="/panel+admin/create/product"
+                className="hover:underline"
+              >
                 PA - Create Product
               </Link>
             </li>

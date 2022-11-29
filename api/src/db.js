@@ -49,6 +49,7 @@ const {
    Payment_user,
    Shopping_session,
    User,
+   Favorites,
    User_role,
 } = sequelize.models;
 
@@ -92,10 +93,10 @@ Administrator.belongsTo(User, { through: User_role, paranoid: true }); //
 User.belongsToMany(Administrator, { through: User_role, paranoid: true }); //
 
 Administrator.belongsTo(User, { through: Clients, paranoid: true }); //
-User.belongsToMany(Administrator, { through: "clients", paranoid: true }); //
+User.belongsToMany(Administrator, { through: Clients, paranoid: true }); //
 
-User.belongsToMany(Product, { through: "favorites", paranoid: true }); //
-Product.belongsToMany(User, { through: "favorites", paranoid: true }); //
+User.belongsToMany(Product, { through: Favorites, paranoid: true }); //
+Product.belongsToMany(User, { through: Favorites, paranoid: true }); //
 
 module.exports = {
    ...sequelize.models,

@@ -4,7 +4,7 @@ require("dotenv").config();
 
 const getProducts = async (category, id, name) => {
   try {
-    if (name && !category && !id) {
+    if (name) {
       const productName = await Product.findAll({
         // Juanra hizo el Op.like
         where: { name: { [Op.iLike]: `%${name}%` } },
@@ -17,7 +17,7 @@ const getProducts = async (category, id, name) => {
         throw (`Product with name ${name} does not exist`);
       return productName;
     }
-    else if (id && !category && !name) {
+    if (id) {
       const product = await Product.findByPk(id, {
         include: {
           model: Inventory,
@@ -27,16 +27,7 @@ const getProducts = async (category, id, name) => {
       if (!product) throw (`Product with id ${id} does not exist`);
       return product;
     }
-    else if (category && !name && !id) {
-      const prodGet = await Product.findAll({
-        where: { categoryName: category },
-        include: {
-          model: Inventory,
-          attributes: ["quantity"],
-        },
-      });
-      return prodGet;
-    } else {
+    if (!category && !name && !id) {
       const all = await Product.findAll({
         include: {
           model: Inventory,
@@ -47,6 +38,16 @@ const getProducts = async (category, id, name) => {
       if (all.length === 0)
         throw ("Dont have products in our data base");
       return all;
+    }
+    if (category && !name && !id) {
+      const prodGet = await Product.findAll({
+        where: { categoryName: category },
+        include: {
+          model: Inventory,
+          attributes: ["quantity"],
+        },
+      });
+      return prodGet;
     }
   } catch (error) {
     throw (error);
