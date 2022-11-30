@@ -36,7 +36,6 @@ productRoute.get("/", async (req, res) => {
 productRoute.get('/deleted', async (req, res) => {
   try {
     const products = await getProductsDeleted()
-    if (products.length === 0) throw `There are not products deleted`
     res.send(products)
   } catch (error) {
     res.status(404).send(error)

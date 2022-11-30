@@ -1,12 +1,10 @@
 import React, { useState } from "react";
 import { useDispatch } from "react-redux";
 import { getProductByName } from "../../../redux/actions/actions";
-import { useHistory } from "react-router-dom";
 
 function SearchBar() {
   const dispatch = useDispatch();
   const [name, setName] = useState(0);
-  const history = useHistory();
 
   function handleInput(event) {
     event.preventDefault();
@@ -18,7 +16,6 @@ function SearchBar() {
     if (name) {
       dispatch(getProductByName(name));
       setName("");
-      history.push("/store")
     }
   }
 
