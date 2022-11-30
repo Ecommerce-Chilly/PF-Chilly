@@ -164,9 +164,11 @@ function Login() {
           <h2>Email: {userUnique[0].email} </h2>
           <h2>CreatedAt: {userUnique[0].createdAt} </h2>
           <button onClick={(e) => handleLogout(e)}>Logout</button> */}
-
-          <div class="flex min-h-screen -mt-24 w-full items-center justify-center m-4">
-            <div class="w-full rounded-lg p-12 shadow-2xl  md:w-8/12 lg:w-6/12 bg-white">
+          <h2 className="text-slate-800 text-3xl font-display font-semibold mt-12 ml-60 mb-9">
+            User profile
+          </h2>
+          <div class="flex min-h-screen -mt-36 w-full items-center justify-center m-4">
+            <div class="w-full rounded-lg p-12 shadow-xl  md:w-8/12 lg:w-6/12 bg-white">
               <div class="grid grid-cols-1 gap-6 lg:grid-cols-12">
                 <div class="grid-cols-1 lg:col-span-3">
                   <div class="mx-auto flex h-[90px] w-[90px] items-center justify-center rounded-full bg-blue-100 p-4">
@@ -200,7 +202,7 @@ function Login() {
                   </div>
                 </div>
 
-                <div class="col-span-1 lg:col-span-9">
+                <div class="col-span-1 lg:col-span-9 ">
                   <div class="text-center lg:text-left">
                     <h2 class="text-2xl font-bold text-zinc-700">User info</h2>
                     <p class="mt-2 font-semibold text-zinc-700">
@@ -213,7 +215,7 @@ function Login() {
 
                   <div class="w-1/2 mt-9 mx-5">
                     <button
-                      class="w-full rounded-xl border-2 border-main bg-white px-3 py-2 font-semibold text-main hover:bg-main hover:text-white "
+                      class="w-full rounded border-2 border-main bg-white px-3 py-2 font-semibold text-main hover:bg-main hover:text-white "
                       onClick={(e) => {
                         confirmLogout();
                       }}

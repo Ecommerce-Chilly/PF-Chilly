@@ -4,6 +4,7 @@ import { useHistory } from 'react-router-dom';
 import {
   createProduct,
   createDiscount,
+  clearProdMsg,
 } from '../../../redux/actions/actions.js';
 import Swal from 'sweetalert2';
 
@@ -84,6 +85,8 @@ function CreateComponent() {
           denyButton: 'deny',
           cancelButton: 'cancel',
         },
+      }).then((r) => {
+        dispatch(clearProdMsg());
       });
     } else if (msg.statusText) {
       Swal.fire({

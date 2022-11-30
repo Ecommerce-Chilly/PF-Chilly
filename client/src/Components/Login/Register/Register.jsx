@@ -1,14 +1,14 @@
-import React, { useState } from "react";
-import { useDispatch, useSelector } from "react-redux";
-import { createUser } from "../../../redux/actions/actions";
-import { useHistory, Link } from "react-router-dom";
+import React, { useState } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { createUser } from '../../../redux/actions/actions';
+import { useHistory, Link } from 'react-router-dom';
 
 function Register() {
   const dispatch = useDispatch();
   const history = useHistory();
   const [newUser, setNewUser] = useState({
-    email: "",
-    password: "",
+    email: '',
+    password: '',
   });
   const errorMsg = useSelector((state) => state.createUserMsg);
 
@@ -74,7 +74,6 @@ function Register() {
                     required=""
                   />
                 </div>
-
                 <div class="flex items-start">
                   <div class="flex items-center h-5">
                     <input
@@ -87,7 +86,7 @@ function Register() {
                   </div>
                   <div class="ml-3 text-sm">
                     <label for="terms" class="font-light text-gray-500 ">
-                      I accept the{" "}
+                      I accept the{' '}
                       <a
                         class="font-medium text-main hover:underline "
                         href="#"
@@ -109,7 +108,7 @@ function Register() {
                   <></>
                 )}
                 <p class="text-sm font-light text-gray-500 ">
-                  Already have an account?{" "}
+                  Already have an account?{' '}
                   <Link
                     to="user/info"
                     class="font-medium text-main hover:underline "

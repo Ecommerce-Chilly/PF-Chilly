@@ -31,24 +31,25 @@ import {
   INCREASE_PRODUCT_QUANTITY,
   DECREASE_PRODUCT_QUANTITY,
   DELETE_FAVORITE,
-} from "../actions/actions.js";
+  CLEAR_PROD_MSG,
+} from '../actions/actions.js';
 
 const initialState = {
   product: [],
   allProduct: [],
   productDetail: [],
-  createProductMsg: "",
-  productChangedMsg: "",
-  searchProductMsg: "",
+  createProductMsg: '',
+  productChangedMsg: '',
+  searchProductMsg: '',
   categoryDetails: [],
   cart: [],
   users: [],
   userInfo: [],
-  userNotFound: "",
-  createUserMsg: "",
+  userNotFound: '',
+  createUserMsg: '',
   quantity: 0,
   favorites: [],
-  favoriteMsg: "",
+  favoriteMsg: '',
 };
 
 const rootReducer = (state = initialState, action) => {
@@ -58,9 +59,9 @@ const rootReducer = (state = initialState, action) => {
         ...state,
         product: action.payload,
         allProduct: action.payload,
-        createProductMsg: "",
-        searchProductMsg: "",
-        productChangedMsg: "",
+        createProductMsg: '',
+        searchProductMsg: '',
+        productChangedMsg: '',
       };
 
     case GET_PRODUCT_BY_ID:
@@ -122,12 +123,12 @@ const rootReducer = (state = initialState, action) => {
       let temporal = state.allProduct;
       let filtered = temporal.filter((e) => e.categoryName === action.payload);
 
-      if (action.payload === "") {
+      if (action.payload === '') {
         filtered = state.allProduct;
       }
       return {
         ...state,
-        searchProductMsg: "",
+        searchProductMsg: '',
         product: filtered,
       };
     case FILTER_BY_DETAILS:
@@ -137,7 +138,7 @@ const rootReducer = (state = initialState, action) => {
         (e) => e.categoryName === action.payload[0]
       );
 
-      if (action.payload[0] === "") {
+      if (action.payload[0] === '') {
         filtered2 = state.allProduct;
       }
 
@@ -148,7 +149,7 @@ const rootReducer = (state = initialState, action) => {
       }
       return {
         ...state,
-        searchProductMsg: "",
+        searchProductMsg: '',
         product: filtered2,
       };
     case ERROR_MSSG:
@@ -204,14 +205,14 @@ const rootReducer = (state = initialState, action) => {
       return {
         ...state,
         users: action.payload,
-        createUserMsg: "",
+        createUserMsg: '',
       };
 
     case CREATE_USER:
       return {
         ...state,
         createUserMsg: action.payload,
-        userNotFound: "",
+        userNotFound: '',
       };
     case ERROR_CREATE_USER:
       return {
@@ -222,7 +223,7 @@ const rootReducer = (state = initialState, action) => {
       return {
         ...state,
         userInfo: action.payload,
-        createUserMsg: "",
+        createUserMsg: '',
       };
     case USER_NOT_FOUND:
       return {
@@ -270,6 +271,12 @@ const rootReducer = (state = initialState, action) => {
         ...state,
         quantity:
           state.quantity > 1 ? state.quantity - 1 : (state.quantity = 1),
+      };
+    case CLEAR_PROD_MSG:
+      return {
+        ...state,
+        createProductMsg: '',
+        productChangedMsg: '',
       };
     default:
       return state;

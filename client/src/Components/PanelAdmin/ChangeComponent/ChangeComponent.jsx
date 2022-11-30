@@ -6,6 +6,7 @@ import {
   getProductById,
   putInventory,
   putDiscount,
+  clearProdMsg,
 } from '../../../redux/actions/actions.js';
 import { useParams } from 'react-router-dom';
 import Swal from 'sweetalert2';
@@ -86,15 +87,51 @@ function ChangeComponent() {
       dispatch(putDiscount(discountt));
     }
   }
-
+  const creationStatusEdit = () => {
+    if (msg === 'Sending incomplete information!') {
+      Swal.fire({
+        icon: 'error',
+        text: msg,
+        confirmButtonText: 'Retry',
+        customClass: {
+          container: 'popup-container',
+          popup: 'popup',
+          confirmButton: 'confirm',
+          denyButton: 'deny',
+          cancelButton: 'cancel',
+        },
+      }).then((r) => {
+        dispatch(clearProdMsg());
+      });
+    } else if (msg === 'Product successfully modified') {
+      Swal.fire({
+        icon: 'success',
+        text: msg,
+        confirmButtonText: 'Great!',
+        customClass: {
+          container: 'popup-container',
+          popup: 'popup',
+          confirmButton: 'confirm',
+          denyButton: 'deny',
+          cancelButton: 'cancel',
+        },
+      }).then((r) => {
+        if (r.isConfirmed) {
+          dispatch(clearProdMsg());
+          history.push('/panel+admin/products');
+        }
+      });
+    }
+  };
   return (
     <div className="w-2/3 m-auto mb-9">
       {productDetails.length > 0 ? (
         <form
           onSubmit={(e) => {
-            dispatchDataToChange(productDetails[0].id, newProduct, discountt);
             e.preventDefault();
-            setTimeout(() => history.push('/panel+admin/products'), 3000);
+            dispatchDataToChange(productDetails[0].id, newProduct, discountt);
+
+            //setTimeout(() => history.push('/panel+admin/products'), 3000);
           }}
           className="w-2/3 m-auto mt-9"
         >
@@ -369,6 +406,7 @@ function ChangeComponent() {
                 type="submit"
                 disabled
                 className=" font-semibold  text-white border-solid bg-blue-900 border-2 border-blue-900 py-2 px-6 focus:outline-none  rounded "
+                onClick={creationStatus()}
               ></input>
             ) : errors.name ||
               errors.price ||
@@ -379,15 +417,17 @@ function ChangeComponent() {
                 type="submit"
                 disabled
                 className=" font-semibold  text-white border-solid bg-blue-900 border-2 border-blue-900 py-2 px-6 focus:outline-none  rounded "
+                onClick={creationStatusEdit()}
               ></input>
             ) : (
               <input
                 type="submit"
                 className="cursor-pointer font-semibold  text-white border-solid bg-main border-2 border-main py-2 px-6 focus:outline-none hover:bg-blue-600 rounded hover:border-blue-600"
+                onClick={creationStatusEdit()}
               ></input>
             )}
           </div>
-          {msg ? <h2>{`${msg}`}</h2> : <></>}
+          {/* {msg ? <h2>{`${msg}`}</h2> : <></>} */}
         </form>
       ) : (
         <p>No se cargo correctamente</p>

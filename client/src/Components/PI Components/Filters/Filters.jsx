@@ -1,17 +1,16 @@
-import React, { useEffect, useState } from "react";
-import { useDispatch, useSelector } from "react-redux";
+import React, { useEffect, useState } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 import {
   getCategoryDetails,
   filter1,
   filterbyDetails,
   getProduct,
-} from "../../../redux/actions/actions.js";
-import store from "../../../redux/store/store";
-import SearchBar from "../SearchBar/SearchBar";
+} from '../../../redux/actions/actions.js';
+import store from '../../../redux/store/store';
 
 function Filters() {
   let [details, setDetails] = useState({});
-  let [category, setCategory] = useState("");
+  let [category, setCategory] = useState('');
   let [inputs, setInputs] = useState([]);
   let dispatch = useDispatch();
   let categoryDetails = useSelector((state) => state.categoryDetails);
@@ -28,7 +27,7 @@ function Filters() {
       let categoryDetail = store.getState().categoryDetails;
       for (const element in categoryDetail) {
         console.log(element);
-        if (element !== "name") {
+        if (element !== 'name') {
           setInputs((oldArray) => [...oldArray, element]);
         }
       }
@@ -51,10 +50,10 @@ function Filters() {
           <button
             onClick={(event) => {
               handleClearFilters(event);
-              setCategory("");
+              setCategory('');
               setInputs([]);
             }}
-            className=" absolute left-40 ml-1 top-40 z-10 border-solid border-main rounded border-2 px-2.5"
+            className=" absolute left-40 ml-1 top-44 z-10 border-solid border-main rounded border-2 px-2.5"
           >
             Reset
           </button>
