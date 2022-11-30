@@ -1,8 +1,15 @@
-const { User } = require("../../db")
+const { User, Order_items } = require("../../db")
 
 const getUser = async (id) => {
   try {
-    const usersById = await User.findAll({ where: { id: id } })
+    const usersById = await User.findAll({
+      where: { id: id },
+      include: {
+        model: Order_items,
+        attributes: ['id']
+      }
+    },
+    )
     return usersById
   } catch (error) {
     console.log(error)

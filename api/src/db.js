@@ -86,7 +86,7 @@ Payment_details.hasOne(Order_details);
 Order_details.hasOne(Payment_details);
 
 Product.hasOne(Order_items);
-Order_items.hasOne(Product);
+Order_items.belongsTo(Product);
 
 Product.hasOne(Cart_item);
 Cart_item.hasOne(Product);
