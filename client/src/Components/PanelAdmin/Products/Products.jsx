@@ -11,7 +11,7 @@ function Products() {
 
   useEffect(() => {
     dispatch(getProduct());
-  }, [dispatch]);
+  }, []);
 
   return (
     <div className="flex ">

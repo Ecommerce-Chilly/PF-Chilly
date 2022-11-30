@@ -1,5 +1,5 @@
-import React from "react";
-import WorkInProgress from "../WorkInProgress/WorkInProgress";
+import React from 'react';
+import WorkInProgress from '../WorkInProgress/WorkInProgress';
 
 function AboutUS() {
   return (

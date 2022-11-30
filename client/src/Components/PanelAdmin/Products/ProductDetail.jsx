@@ -1,7 +1,7 @@
-import React, { useEffect } from 'react';
-import { Link, useParams } from 'react-router-dom';
-import { getProductById } from '../../../redux/actions/actions.js';
-import { useDispatch, useSelector } from 'react-redux';
+import React, { useEffect } from "react";
+import { Link, useParams } from "react-router-dom";
+import { getProductById } from "../../../redux/actions/actions.js";
+import { useDispatch, useSelector } from "react-redux";
 
 function ProductDetail() {
   const { id } = useParams();
@@ -34,7 +34,7 @@ function ProductDetail() {
                       <img
                         alt="ecommerce"
                         class="lg:w-1/2 max-w-lg max-h-quinientos w-full object-contain object-center rounded border border-gray-200"
-                        src={produDetail[0].image}
+                        src={produDetail[0].image.replace("SL75", "SL700")}
                       />
 
                       <div class="lg:w-1/2 w-full lg:pl-10 lg:py-6 mt-6 lg:mt-0 ">
@@ -48,22 +48,22 @@ function ProductDetail() {
                         <div class="leading-relaxed font-mono">
                           <p className="my-3">
                             <span className="font-mono font-bold">
-                              {' '}
-                              Brand:{' '}
-                            </span>{' '}
+                              {" "}
+                              Brand:{" "}
+                            </span>{" "}
                             {produDetail[0].brand}
                           </p>
                           <p className="my-3">
                             <span className="font-mono font-bold">
-                              {' '}
-                              Model:{' '}
-                            </span>{' '}
+                              {" "}
+                              Model:{" "}
+                            </span>{" "}
                             {produDetail[0].model}
                           </p>
                           <p className="my-3">
                             <span className="font-mono font-bold">
-                              Category:{' '}
-                            </span>{' '}
+                              Category:{" "}
+                            </span>{" "}
                             {produDetail[0].categoryName}
                           </p>
                           <p className="my-3">

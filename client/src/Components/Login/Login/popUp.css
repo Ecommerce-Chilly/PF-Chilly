@@ -1,0 +1,24 @@
+.popup {
+  background-color: white !important;
+  border-radius: 16px !important;
+  font-family: 'Montserrat';
+  font-weight: 600;
+}
+
+.deny,
+.confirm,
+.cancel {
+  border-radius: 0.25rem !important;
+  width: 150px !important;
+}
+
+.confirm {
+  background-color: #303f9f !important;
+}
+
+.deny,
+.cancel {
+  background-color: white !important;
+  border: 2px solid #303f9f !important;
+  color: #303f9f !important;
+}

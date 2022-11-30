@@ -1,12 +1,13 @@
-import React, { useEffect } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
-import { Link } from 'react-router-dom';
-import { deleteP, clearCart } from '../../../redux/actions/actions';
-import CartItem from '../CartItem/CartItem';
+import React, { useEffect, useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { Link } from "react-router-dom";
+import { deleteP, clearCart } from "../../../redux/actions/actions";
+import CartItem from "../CartItem/CartItem";
 
 function Cart() {
   const cart = useSelector((state) => state.cart);
   const dispatch = useDispatch();
+  let [variable, setVariable] = useState(0);
 
   let totalPrice = 0;
 
@@ -16,6 +17,10 @@ function Cart() {
 
   const deleteProduct = (id) => {
     dispatch(deleteP(id));
+  };
+
+  const changeVariable = (num) => {
+    setVariable(num);
   };
 
   const cCart = () => {
@@ -36,6 +41,7 @@ function Cart() {
               quantity={e.quantity}
               price={e.price}
               id={e.id}
+              changeVariable={changeVariable}
             />
           </div>
         ))

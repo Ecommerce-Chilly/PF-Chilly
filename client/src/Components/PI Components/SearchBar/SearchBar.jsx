@@ -21,7 +21,7 @@ function SearchBar() {
 
   return (
     <>
-      <form className="w-2/6 absolute  left-1/2 transform -translate-x-1/2 ">
+      <form className="w-2/6   left-1/2 transform translate-x-10">
         <label
           for="default-search"
           class="mb-2 text-sm font-medium text-gray-900 sr-only"

@@ -4,8 +4,6 @@ export const GET_PRODUCT_BY_ID = "GET_PRODUCT_BY_ID";
 export const CREATE_PRODUCT = "CREATE_PRODUCT";
 export const CREATE_DISCOUNT = "CREATE_DISCOUNT";
 export const PUT_PRODUCT = "PUT_PRODUCT";
-export const PRODUCTS_DELETED = "PRODUCTS_DELETED";
-export const MSG_NOT_PRODUCT_DELETED = "MSG_NOT_PRODUCT_DELETED";
 export const PUT_INVENTORY = "PUT_INVENTORY";
 export const PUT_DISCOUNT = "PUT_DISCOUNT";
 export const DELETE_PRODUCT = "DELETE_PRODUCT";
@@ -28,6 +26,16 @@ export const ERROR_CREATE_USER = "ERROR_CREATE_USER";
 export const ALL_USERS = "ALL_USERS";
 export const USER_NOT_FOUND = "USER_NOT_FOUND";
 export const UPDATE_CART_QUANTITY = "UPDATE_CART_QUANTITY";
+export const ADD_FAVORITE = "ADD_FAVORITE";
+export const GET_FAVORITES = "GET_FAVORITES";
+export const DELETE_FAVORITE = "DELETE_FAVORITE";
+export const FAVORITE_MSG = "FAVORITE_MSG";
+export const DECREASE_PRODUCT_QUANTITY = "DECREASE_PRODUCT_QUANTITY";
+export const INCREASE_PRODUCT_QUANTITY = "INCREASE_PRODUCT_QUANTITY";
+export const CLEAR_PROD_MSG = "CLEAR_PROD_MSG";
+export const PRODUCTS_DELETED = "PRODUCTS_DELETED";
+export const MSG_NOT_PRODUCT_DELETED = "MSG_NOT_PRODUCT_DELETED";
+export const ORDER_BY_PRICE = "ORDER_BY_PRICE";
 
 export const getProduct = () => {
   return async function (dispatch) {
@@ -249,6 +257,73 @@ export const updateCartQuantity = () => {
   };
 };
 
+export const addFavorite = (ids) => {
+  return async function (dispatch) {
+    try {
+      let favorite = await axios.post("http://localhost:3001/favorite", ids);
+      return dispatch({ type: ADD_FAVORITE, payload: favorite.data });
+    } catch (error) {
+      return dispatch({
+        type: FAVORITE_MSG,
+        payload: error.response.data.error,
+      });
+    }
+  };
+};
+
+export const getFavorites = (userId) => {
+  return async function (dispatch) {
+    try {
+      let favorites = await axios.get(
+        `http://localhost:3001/favorite/${userId}`
+      );
+      return dispatch({ type: GET_FAVORITES, payload: favorites.data });
+    } catch (error) {
+      return dispatch({
+        type: FAVORITE_MSG,
+        payload: error.response.data.error,
+      });
+    }
+  };
+};
+
+export const increaseProductQuantity = (id) => {
+  return {
+    type: INCREASE_PRODUCT_QUANTITY,
+    payload: id,
+  };
+};
+
+export const decreaseProductQuantity = (id) => {
+  return {
+    type: DECREASE_PRODUCT_QUANTITY,
+    payload: id,
+  };
+};
+
+export const deleteFavorite = (ids) => {
+  return async function (dispatch) {
+    try {
+      console.log(ids);
+      let favorite2 = await axios.delete(
+        `http://localhost:3001/favorite/${ids.userId}/${ids.productId}`
+      );
+      return dispatch({ type: DELETE_FAVORITE, payload: favorite2.data });
+    } catch (error) {
+      return dispatch({
+        type: FAVORITE_MSG,
+        payload: error.response.data.error,
+      });
+    }
+  };
+};
+
+export const clearProdMsg = () => {
+  return {
+    type: CLEAR_PROD_MSG,
+  };
+};
+
 export const getProductDeleted = () => {
   return async function (dispatch) {
     try {
@@ -267,3 +342,10 @@ export const getProductDeleted = () => {
     }
   };
 };
+
+export function orderByPrice(payload) {
+  return {
+    type: ORDER_BY_PRICE,
+    payload: payload,
+  };
+}
