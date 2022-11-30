@@ -10,7 +10,12 @@ import { Auth0Provider } from "@auth0/auth0-react";
 ReactDOM.render(
   <Provider store={store}>
     <BrowserRouter>
-    <Auth0Provider domain='dev-r6cdo8stlhgup2wx.us.auth0.com' clientId= 'B25HIG5uEk2dTfKdwH4AnevOmXrXLHp6' redirectUri ={window.location.origin} >
+    <Auth0Provider domain='dev-r6cdo8stlhgup2wx.us.auth0.com' 
+    clientId= 'B25HIG5uEk2dTfKdwH4AnevOmXrXLHp6' 
+    redirectUri ={window.location.origin} 
+    audience = 'https://dev-r6cdo8stlhgup2wx.us.auth0.com/api/v2/'
+    scope='read:client_grants'
+   >
       <App />
       </Auth0Provider>
     </BrowserRouter>

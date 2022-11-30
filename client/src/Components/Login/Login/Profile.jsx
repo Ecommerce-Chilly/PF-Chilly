@@ -12,7 +12,7 @@ const Profile = ()=>{
           try {
             const accessToken = await getAccessTokenSilently({
               audience: `https://${domain}/api/v1/`,
-              scope: "read:client_grants",
+              scope: "read:client_grants create: create_product",
             });
             console.log(accessToken)
             const userDetailsByIdUrl = `https://${domain}/api/v1/users/${user.sub}`;
