@@ -368,7 +368,6 @@ module.exports = {
     fontFamily: {
       sans: [
         '"Josefin Sans"',
-
         'ui-sans-serif',
         'system-ui',
         '-apple-system',
@@ -393,6 +392,7 @@ module.exports = {
         'serif',
       ],
       mono: [
+        'Inter',
         'ui-monospace',
         'SFMono-Regular',
         'Menlo',
@@ -402,7 +402,7 @@ module.exports = {
         '"Courier New"',
         'monospace',
       ],
-      display: ['Inter'],
+      display: ['Montserrat'],
     },
     fontSize: {
       xs: ['0.75rem', { lineHeight: '1rem' }],
@@ -646,6 +646,11 @@ module.exports = {
       ...theme('spacing'),
       full: '100%',
       screen: '100vh',
+      quarter: '25%',
+      mid: '50%',
+      seventy: '75%',
+      full: '100%',
+      quinientos: '500px',
       min: 'min-content',
       max: 'max-content',
       fit: 'fit-content',
@@ -681,6 +686,9 @@ module.exports = {
     },
     minWidth: {
       0: '0px',
+      quarter: '25%',
+      mid: '50%',
+      seventy: '75%',
       full: '100%',
       min: 'min-content',
       max: 'max-content',

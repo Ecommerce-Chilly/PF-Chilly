@@ -1,9 +1,12 @@
-import React from 'react'
+import React from 'react';
+import WorkInProgress from '../WorkInProgress/WorkInProgress';
 
 function SpecialOffers() {
   return (
-    <div>SpecialOffers</div>
-  )
+    <div>
+      <WorkInProgress />
+    </div>
+  );
 }
 
-export default SpecialOffers
+export default SpecialOffers;

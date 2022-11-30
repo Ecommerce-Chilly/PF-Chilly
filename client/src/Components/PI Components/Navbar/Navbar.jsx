@@ -1,46 +1,23 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
+import { useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
 import SearchBar from '../SearchBar/SearchBar';
 import Login from '../../Login/Login/Login';
 
 function Navbar() {
+  let cart = useSelector((state) => state.cart);
+  let quantity = useSelector((state) => state.quantity);
+
   return (
     <>
-      <nav class="	bg-main border-gray-200 px-2 sm:px-4 py-5  dark:bg-main static">
+      <nav class="	bg-white border-gray-200 px-2  py-5  dark:bg-main static">
         <div class="container flex flex-wrap items-center justify-between mx-auto">
-          <a href="#" class="flex items-center">
-            <span class="self-center text-4xl font-semibold whitespace-nowrap text-white font-sans">
+          <Link to="/home" class="flex items-center">
+            <span class="self-center text-4xl font-semibold whitespace-nowrap dark:text-white font-sans">
               Chilly
             </span>
-          </a>
-          <SearchBar></SearchBar>
-          {/* <div class="absolute  left-1/2 transform -translate-x-1/2  ">
-            <div class=" flex items-center w-full h-10 rounded-lg focus-within:shadow-lg bg-white overflow-hidden">
-              <div class="grid place-items-center h-full w-12 text-gray-300">
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  class="h-6 w-6"
-                  fill="none"
-                  viewBox="0 0 24 24"
-                  stroke="currentColor"
-                >
-                  <path
-                    stroke-linecap="round"
-                    stroke-linejoin="round"
-                    stroke-width="2"
-                    d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"
-                  />
-                </svg>
-              </div>
-
-              <input
-                class="peer h-full w-full outline-none text-sm text-gray-700 pr-2"
-                type="text"
-                id="search"
-                placeholder="Search something.."
-              />
-            </div>
-          </div> */}
+          </Link>
+          <SearchBar />
 
           <div class="hidden w-full md:block md:w-auto" id="navbar-default">
             <Link to="/user/favorites" className="inline-block mx-4">
@@ -60,6 +37,16 @@ function Navbar() {
               </svg>
             </Link>
             <Link to="/cart" className="inline-block mx-4">
+              {cart.length === 0 ? (
+                <></>
+              ) : (
+                <div className=" font-display -top-2 font-medium left-3 text-main text-sm text-center relative box-content	">
+                  <p className="w-5 h-5 bg-white z-10 rounded-full border-1 absolute">
+                    {quantity}
+                  </p>
+                </div>
+              )}
+
               <svg
                 xmlns="http://www.w3.org/2000/svg"
                 fill="none"
@@ -98,44 +85,47 @@ function Navbar() {
         <div class="container flex  mx-auto mt-6">
           <ul class="flex justify-between w-5/6 mx-auto uppercase font-sans underline-offset-4  font-light text-white">
             <li>
-              <a href="/home" className="hover:underline">
+              <Link to="/home" className="hover:underline">
                 Home
-              </a>
+              </Link>
             </li>
             <li>
-              <a href="/store" className="hover:underline">
+              <Link to="/store" className="hover:underline">
                 Store
-              </a>
+              </Link>
             </li>
             <li>
-              <a href="/build+your+own" className="hover:underline">
+              <Link to="/build+your+own" className="hover:underline">
                 Build Your Own
-              </a>
+              </Link>
             </li>
             <li>
-              <a href="/special+offers" className="hover:underline">
+              <Link to="/special+offers" className="hover:underline">
                 Special Offers
-              </a>
+              </Link>
             </li>
             <li>
-              <a href="/blog" className="hover:underline">
+              <Link to="/blog" className="hover:underline">
                 Blog
-              </a>
+              </Link>
             </li>
             <li>
-              <a href="/about+us" className="hover:underline">
+              <Link to="/about+us" className="hover:underline">
                 About Us
-              </a>
+              </Link>
             </li>
             <li>
-              <a href="/panel+admin/products" className="hover:underline">
+              <Link to="/panel+admin/products" className="hover:underline">
                 PA - Products
-              </a>
-            </li>{' '}
+              </Link>
+            </li>
             <li>
-              <a href="/panel+admin/create/product" className="hover:underline">
+              <Link
+                to="/panel+admin/create/product"
+                className="hover:underline"
+              >
                 PA - Create Product
-              </a>
+              </Link>
             </li>
           </ul>
         </div>

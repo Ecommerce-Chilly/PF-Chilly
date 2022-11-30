@@ -1,5 +1,5 @@
-const { Product } = require("../db");
-const { getProducts } = require("./getProducts");
+const { Product } = require("../../db");
+const { getProducts } = require("../product/getProducts");
 const getDetailsCategory = async (category) => {
   try {
     const productsCategory = await getProducts(category, null, null);
@@ -23,7 +23,7 @@ const getDetailsCategory = async (category) => {
     });
     return details;
   } catch (error) {
-    throw new Error(error);
+    throw (error);
   }
 };
 module.exports = { getDetailsCategory };

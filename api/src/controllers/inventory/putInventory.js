@@ -1,16 +1,16 @@
-const { Inventory } = require("../db");
+const { Inventory } = require("../../db");
 
 const putInventory = async (id, quantity) => {
   try {
-    if (!id) throw new Error("Send all data");
+    if (!id) throw ("Send all data");
     const invFound = await Inventory.findByPk(id);
-    if (!invFound) throw new Error("Inventory not found");
+    if (!invFound) throw ("Inventory not found");
     if (quantity) invFound.quantity = quantity;
     if (!quantity) invFound.quantity -= 1;
     await invFound.save();
     return invFound;
   } catch (error) {
-    throw new Error(error);
+    throw (error);
   }
 };
 module.exports = { putInventory };
