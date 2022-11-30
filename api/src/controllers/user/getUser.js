@@ -2,7 +2,7 @@ const { User, Order_items } = require("../../db")
 
 const getUser = async (id) => {
   try {
-    if (!id) throw ("no id was found")
+    if (!id) throw "no id was found"
     const usersById = await User.findByPk(id, {
       include: {
         model: Order_items,
@@ -10,7 +10,7 @@ const getUser = async (id) => {
       }
     },
     )
-    if (!usersById) throw new Error("User not found")
+    if (!usersById) throw "User not found"
     return usersById
   } catch (error) {
     console.log(error)
