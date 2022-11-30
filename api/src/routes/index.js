@@ -10,6 +10,7 @@ const mercadoPago = require("./mercadoPago");
 const favoriteRoute = require("./favoriteRoute");
 const router = Router();
 
+
 router.use("/Guillo", async (req, res, next) => {
   // await defaultDiscount()
   await hardCodeoInfo();
