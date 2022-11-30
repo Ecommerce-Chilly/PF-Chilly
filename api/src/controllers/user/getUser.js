@@ -1,8 +1,16 @@
-const { User } = require("../../db")
+const { User, Order_items } = require("../../db")
 
 const getUser = async (id) => {
   try {
-    const usersById = await User.findAll({ where: { id: id } })
+    if (!id) throw "no id was found"
+    const usersById = await User.findByPk(id, {
+      include: {
+        model: Order_items,
+        attributes: ['id', 'quantity']
+      }
+    },
+    )
+    if (!usersById) throw "User not found"
     return usersById
   } catch (error) {
     console.log(error)
@@ -12,6 +20,7 @@ const getUser = async (id) => {
 const getAllUsers = async () => {
   try {
     const allUsers = await User.findAll()
+    if (allUsers.length === 0) throw "no users logged in the Data Base"
     return allUsers
   } catch (error) {
     console.log(error)

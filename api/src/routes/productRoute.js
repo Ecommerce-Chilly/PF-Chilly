@@ -18,6 +18,7 @@ productRoute.delete("/:id", async (req, res) => {
   try {
     let { id } = req.params;
     id = Number(id);
+    if (isNaN(id)) return res.status(406).send({ error: "Not Acceptable, id is not a number" })
     const message = await deleteProduct(id);
     res.send({ message });
   } catch (error) {
