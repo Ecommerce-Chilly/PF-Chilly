@@ -14,7 +14,7 @@ const postProduct = async ({
   quantity,
 }) => {
   if (!name || !price || !details || !category || !quantity) {
-    throw Error("Sending incomplete information!");
+    throw ("Sending incomplete information!");
   } else {
     let discountDB
     const invCreate = await postInvetory(quantity);

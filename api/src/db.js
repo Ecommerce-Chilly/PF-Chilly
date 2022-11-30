@@ -18,9 +18,7 @@ const modelDefiners = [];
 fs.readdirSync(path.join(__dirname, "/models"))
   .filter(
     (file) =>
-      file.indexOf(".") !== 0 &&
-      file !== basename &&
-      file.slice(-3) === ".js"
+      file.indexOf(".") !== 0 && file !== basename && file.slice(-3) === ".js"
   )
   .forEach((file) => {
     modelDefiners.push(require(path.join(__dirname, "/models", file)));
@@ -97,8 +95,8 @@ User.hasMany(Order_items);
 User.hasMany(Order_details);
 Order_details.belongsTo(User);
 
-User.belongsToMany(Product, { through: "favorites", paranoid: true })
-Product.belongsToMany(User, { through: "favorites", paranoid: true })
+User.belongsToMany(Product, { through: "favorites", paranoid: true });
+Product.belongsToMany(User, { through: "favorites", paranoid: true });
 module.exports = {
   ...sequelize.models,
   conn: sequelize,
