@@ -91,7 +91,7 @@ Order_items.hasOne(Product);
 Product.hasOne(Cart_item);
 Cart_item.hasOne(Product);
 
-Order_items.hasMany(User);
+Order_items.belongsTo(User);
 User.hasMany(Order_items);
 
 User.hasMany(Order_details);
