@@ -25,10 +25,13 @@ userRoute.post('/', async (req, res) => {
 
 userRoute.get('/:id', async (req, res) => {
   try {
-    const user = await getUser(req.params.id)
-    res.status(200).send(user)
+    let { id } = req.params;
+    id = Number(id);
+    if (isNaN(id)) return res.status(406).send({ error: "Not Acceptable, id is not a number" })
+    const user = await getUser(id)
+    return res.status(200).send(user)
   } catch (error) {
-    res.status(404).send({ error: error.message })
+    return res.status(404).send({ error: error.message })
   }
 })
 
