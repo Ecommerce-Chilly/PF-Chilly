@@ -1,15 +1,15 @@
 const { User, Product } = require("../../db");
 
 const getFavorites = async (userId) => {
-  const user = await User.findByPk(userId, {
-    include: {
-      model: Product,
-      attributes: ['name', 'image'],
-    }
+   const user = await User.findOne({
+     where:{userId:userId},
+     include: {
+        model: Product,
+        attributes: ["name", "image"],
+     },
+   });
+   if (!user) throw `User does not exist`;
+   return user;
+};
 
-  })
-  if (!user) throw `User does not exist`
-  return user
-}
-
-module.exports = { getFavorites }
+module.exports = { getFavorites };

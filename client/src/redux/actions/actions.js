@@ -19,6 +19,7 @@ export const RESTORE_PRODUCT = "RESTORE_PRODUCT";
 export const ADD_TO_CART = "ADD_TO_CART";
 export const DELETE_CART_PRODUCT = "DELETE_CART_PRODUCT";
 export const CLEAR_CART = "CLEAR_CART";
+//falta getUser
 export const CREATE_USER = "CREATE_USER";
 export const USER_SPECIFIC = "USER_SPECIFIC";
 export const LOGOUT = "LOGOUT";
