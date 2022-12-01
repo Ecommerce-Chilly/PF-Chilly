@@ -11,9 +11,17 @@
   border-radius: 0.25rem !important;
   width: 150px !important;
 }
-
+.deny:focus-visible,
+.confirm:focus-visible .cancel:focus-visible {
+  box-shadow: #303f9f !important;
+}
+.deny:focus,
+.confirm:focus .cancel:focus {
+  box-shadow: none !important;
+}
 .confirm {
   background-color: #303f9f !important;
+  border: 1.5px solid #303f9f !important;
 }
 
 .deny,

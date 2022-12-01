@@ -33,6 +33,8 @@ export const FAVORITE_MSG = 'FAVORITE_MSG';
 export const DECREASE_PRODUCT_QUANTITY = 'DECREASE_PRODUCT_QUANTITY';
 export const INCREASE_PRODUCT_QUANTITY = 'INCREASE_PRODUCT_QUANTITY';
 export const CLEAR_PROD_MSG = 'CLEAR_PROD_MSG';
+export const CLEAR_FAV_MSG = 'CLEAR_FAV_MSG';
+export const CLEAR_FAV_STATE = 'CLEAR_FAV_STATE';
 
 export const getProduct = () => {
   return async function (dispatch) {
@@ -318,5 +320,15 @@ export const deleteFavorite = (ids) => {
 export const clearProdMsg = () => {
   return {
     type: CLEAR_PROD_MSG,
+  };
+};
+export const clearFavMsg = () => {
+  return {
+    type: CLEAR_FAV_MSG,
+  };
+};
+export const clearFavSate = () => {
+  return {
+    type: CLEAR_FAV_STATE,
   };
 };
