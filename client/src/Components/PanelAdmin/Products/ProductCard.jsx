@@ -1,5 +1,8 @@
-import React, { useState } from "react";
-import { deleteProdut } from "../../../redux/actions/actions.js";
+import React, { useState, useEffect } from "react";
+import {
+  deleteProdut,
+  getProductDeleted,
+} from "../../../redux/actions/actions.js";
 import { useDispatch } from "react-redux";
 import { Link } from "react-router-dom";
 import "./ProductCard.css";
@@ -7,6 +10,10 @@ import "./ProductCard.css";
 function ProductCard(props) {
   const dispatch = useDispatch();
   const [open, setOpen] = useState(false);
+
+  useEffect(() => {
+    dispatch(getProductDeleted());
+  }, [dispatch]);
 
   function dispatchToDeleteProduct(id) {
     dispatch(deleteProdut(id));

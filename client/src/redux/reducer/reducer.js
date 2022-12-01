@@ -34,8 +34,10 @@ import {
   CLEAR_PROD_MSG,
   PRODUCTS_DELETED,
   MSG_NOT_PRODUCT_DELETED,
-  ORDER_BY_PRICE,  CLEAR_FAV_MSG,
+  ORDER_BY_PRICE,
+  CLEAR_FAV_MSG,
   CLEAR_FAV_STATE,
+  CLEAR_DELETED_PRODUCTS,
 } from "../actions/actions.js";
 
 const initialState = {
@@ -113,7 +115,7 @@ const rootReducer = (state = initialState, action) => {
     case PRODUCTS_DELETED:
       return {
         ...state,
-        productsDeleted: state.productsDeleted.concat(action.payload),
+        productsDeleted: action.payload,
       };
     case MSG_NOT_PRODUCT_DELETED:
       return {
@@ -320,12 +322,20 @@ const rootReducer = (state = initialState, action) => {
     case CLEAR_FAV_MSG:
       return {
         ...state,
-        favoriteMsg: '',
+        favoriteMsg: "",
       };
     case CLEAR_FAV_STATE:
       return {
         ...state,
         favorites: [],
+      };
+    case CLEAR_DELETED_PRODUCTS:
+      let detedProduct = state.productsDeleted.filter(
+        (e) => e.id !== action.payload
+      );
+      return {
+        ...state,
+        productsDeleted: detedProduct,
       };
     default:
       return state;

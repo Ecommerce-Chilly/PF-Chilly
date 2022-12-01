@@ -1,5 +1,8 @@
 import React, { useState } from "react";
-import { restoreProduct } from "../../../redux/actions/actions.js";
+import {
+  restoreProduct,
+  clearDeleted,
+} from "../../../redux/actions/actions.js";
 import { useDispatch } from "react-redux";
 import "./ProductCard.css";
 
@@ -9,6 +12,7 @@ function ProductCard(props) {
 
   function dispatchToRestore(id) {
     dispatch(restoreProduct(id));
+    dispatch(clearDeleted(id));
     setOpen(!open);
   }
 

@@ -1,43 +1,44 @@
-import axios from 'axios';
-export const GET_ALL_PRODUCTS = 'GET_ALL_PRODUCTS';
-export const GET_PRODUCT_BY_ID = 'GET_PRODUCT_BY_ID';
-export const CREATE_PRODUCT = 'CREATE_PRODUCT';
-export const CREATE_DISCOUNT = 'CREATE_DISCOUNT';
-export const PUT_PRODUCT = 'PUT_PRODUCT';
-export const PUT_INVENTORY = 'PUT_INVENTORY';
-export const PUT_DISCOUNT = 'PUT_DISCOUNT';
-export const DELETE_PRODUCT = 'DELETE_PRODUCT';
-export const FAIL_CREATED_MSG = 'FAIL_CREATED_MSG';
-export const GET_CATEGORY_DETAILS = 'GET_CATEGORY_DETAILS';
-export const FILTER1 = 'FILTER1';
-export const FILTER_BY_DETAILS = 'FILTER_BY_DETAILS';
-export const GET_PRODUCT_BY_NAME = 'GET_PRODUCT_BY_NAME';
-export const ERROR_MSSG = 'ERROR_MSSG';
-export const EUSEBIO = 'EUSEBIO';
-export const ERROR_PUT_PRODUCT = 'ERROR_PUT_PRODUCT';
-export const RESTORE_PRODUCT = 'RESTORE_PRODUCT';
-export const ADD_TO_CART = 'ADD_TO_CART';
-export const DELETE_CART_PRODUCT = 'DELETE_CART_PRODUCT';
-export const CLEAR_CART = 'CLEAR_CART';
-export const CREATE_USER = 'CREATE_USER';
-export const USER_SPECIFIC = 'USER_SPECIFIC';
-export const LOGOUT = 'LOGOUT';
-export const ERROR_CREATE_USER = 'ERROR_CREATE_USER';
-export const ALL_USERS = 'ALL_USERS';
-export const USER_NOT_FOUND = 'USER_NOT_FOUND';
-export const UPDATE_CART_QUANTITY = 'UPDATE_CART_QUANTITY';
-export const ADD_FAVORITE = 'ADD_FAVORITE';
-export const GET_FAVORITES = 'GET_FAVORITES';
-export const DELETE_FAVORITE = 'DELETE_FAVORITE';
-export const FAVORITE_MSG = 'FAVORITE_MSG';
-export const DECREASE_PRODUCT_QUANTITY = 'DECREASE_PRODUCT_QUANTITY';
-export const INCREASE_PRODUCT_QUANTITY = 'INCREASE_PRODUCT_QUANTITY';
-export const CLEAR_PROD_MSG = 'CLEAR_PROD_MSG';
-export const CLEAR_FAV_MSG = 'CLEAR_FAV_MSG';
-export const CLEAR_FAV_STATE = 'CLEAR_FAV_STATE';
+import axios from "axios";
+export const GET_ALL_PRODUCTS = "GET_ALL_PRODUCTS";
+export const GET_PRODUCT_BY_ID = "GET_PRODUCT_BY_ID";
+export const CREATE_PRODUCT = "CREATE_PRODUCT";
+export const CREATE_DISCOUNT = "CREATE_DISCOUNT";
+export const PUT_PRODUCT = "PUT_PRODUCT";
+export const PUT_INVENTORY = "PUT_INVENTORY";
+export const PUT_DISCOUNT = "PUT_DISCOUNT";
+export const DELETE_PRODUCT = "DELETE_PRODUCT";
+export const FAIL_CREATED_MSG = "FAIL_CREATED_MSG";
+export const GET_CATEGORY_DETAILS = "GET_CATEGORY_DETAILS";
+export const FILTER1 = "FILTER1";
+export const FILTER_BY_DETAILS = "FILTER_BY_DETAILS";
+export const GET_PRODUCT_BY_NAME = "GET_PRODUCT_BY_NAME";
+export const ERROR_MSSG = "ERROR_MSSG";
+export const EUSEBIO = "EUSEBIO";
+export const ERROR_PUT_PRODUCT = "ERROR_PUT_PRODUCT";
+export const RESTORE_PRODUCT = "RESTORE_PRODUCT";
+export const ADD_TO_CART = "ADD_TO_CART";
+export const DELETE_CART_PRODUCT = "DELETE_CART_PRODUCT";
+export const CLEAR_CART = "CLEAR_CART";
+export const CREATE_USER = "CREATE_USER";
+export const USER_SPECIFIC = "USER_SPECIFIC";
+export const LOGOUT = "LOGOUT";
+export const ERROR_CREATE_USER = "ERROR_CREATE_USER";
+export const ALL_USERS = "ALL_USERS";
+export const USER_NOT_FOUND = "USER_NOT_FOUND";
+export const UPDATE_CART_QUANTITY = "UPDATE_CART_QUANTITY";
+export const ADD_FAVORITE = "ADD_FAVORITE";
+export const GET_FAVORITES = "GET_FAVORITES";
+export const DELETE_FAVORITE = "DELETE_FAVORITE";
+export const FAVORITE_MSG = "FAVORITE_MSG";
+export const DECREASE_PRODUCT_QUANTITY = "DECREASE_PRODUCT_QUANTITY";
+export const INCREASE_PRODUCT_QUANTITY = "INCREASE_PRODUCT_QUANTITY";
+export const CLEAR_PROD_MSG = "CLEAR_PROD_MSG";
+export const CLEAR_FAV_MSG = "CLEAR_FAV_MSG";
+export const CLEAR_FAV_STATE = "CLEAR_FAV_STATE";
 export const PRODUCTS_DELETED = "PRODUCTS_DELETED";
 export const MSG_NOT_PRODUCT_DELETED = "MSG_NOT_PRODUCT_DELETED";
 export const ORDER_BY_PRICE = "ORDER_BY_PRICE";
+export const CLEAR_DELETED_PRODUCTS = "CLEAR_DELETED_PRODUCTS";
 
 export const getProduct = () => {
   return async function (dispatch) {
@@ -360,5 +361,12 @@ export const clearFavMsg = () => {
 export const clearFavSate = () => {
   return {
     type: CLEAR_FAV_STATE,
+  };
+};
+
+export const clearDeleted = (payload) => {
+  return {
+    type: CLEAR_DELETED_PRODUCTS,
+    payload: payload,
   };
 };
