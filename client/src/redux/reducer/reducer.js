@@ -32,16 +32,11 @@ import {
   DECREASE_PRODUCT_QUANTITY,
   DELETE_FAVORITE,
   CLEAR_PROD_MSG,
-<<<<<<< HEAD
   PRODUCTS_DELETED,
   MSG_NOT_PRODUCT_DELETED,
-  ORDER_BY_PRICE,
-} from "../actions/actions.js";
-=======
-  CLEAR_FAV_MSG,
+  ORDER_BY_PRICE,  CLEAR_FAV_MSG,
   CLEAR_FAV_STATE,
-} from '../actions/actions.js';
->>>>>>> ac52118dd4233a31db187f265d9254051b2d89f3
+} from "../actions/actions.js";
 
 const initialState = {
   product: [],
