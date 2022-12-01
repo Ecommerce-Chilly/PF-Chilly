@@ -18,6 +18,7 @@ const create = async function (discount, el, datos = [], categoryDB) {
   datos.forEach((elem) => {
     details[0][elem] = el[elem];
   });
+  if (el.price === 0) el.price = 50
   const proCreate = await Product.create({
     name: el.title,
     image: el.img,

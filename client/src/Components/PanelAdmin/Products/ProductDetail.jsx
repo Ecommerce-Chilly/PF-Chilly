@@ -1,7 +1,7 @@
-import React, { useEffect } from 'react';
-import { Link, useParams } from 'react-router-dom';
-import { getProductById } from '../../../redux/actions/actions.js';
-import { useDispatch, useSelector } from 'react-redux';
+import React, { useEffect } from "react";
+import { Link, useParams } from "react-router-dom";
+import { getProductById } from "../../../redux/actions/actions.js";
+import { useDispatch, useSelector } from "react-redux";
 
 function ProductDetail() {
   const { id } = useParams();
@@ -19,9 +19,9 @@ function ProductDetail() {
           <div key={produDetail[0].id} className="flex row">
             <div>
               <div>
-                <section class="text-gray-700 body-font overflow-hidden bg-white">
-                  <div class="container px-5 py-24 mx-auto">
-                    <div class=" mx-auto flex flex-wrap relative">
+                <section className="text-gray-700 body-font overflow-hidden bg-white">
+                  <div className="container px-5 py-24 mx-auto">
+                    <div className=" mx-auto flex flex-wrap relative">
                       <Link
                         to={`/panel+admin/products`}
                         className="inline h-10 absolute -top-12 -left-6"
@@ -33,37 +33,37 @@ function ProductDetail() {
 
                       <img
                         alt="ecommerce"
-                        class="lg:w-1/2 max-w-lg max-h-quinientos w-full object-contain object-center rounded border border-gray-200"
-                        src={produDetail[0].image.replace('SL75', 'SL700')}
+                        className="lg:w-1/2 max-w-lg max-h-quinientos w-full object-contain object-center rounded border border-gray-200"
+                        src={produDetail[0].image.replace("SL75", "SL700")}
                       />
 
-                      <div class="lg:w-1/2 w-full lg:pl-10 lg:py-6 mt-6 lg:mt-0 ">
-                        <h2 class="text-sm font-mono title-font text-gray-500 tracking-widest mb-7">
+                      <div className="lg:w-1/2 w-full lg:pl-10 lg:py-6 mt-6 lg:mt-0 ">
+                        <h2 className="text-sm font-mono title-font text-gray-500 tracking-widest mb-7">
                           {produDetail[0].brand}
                         </h2>
-                        <h1 class="text-gray-900 text-3xl font-display title-font font-medium mb-1 ">
+                        <h1 className="text-gray-900 text-3xl font-display title-font font-medium mb-1 ">
                           {produDetail[0].name}
                         </h1>
 
-                        <div class="leading-relaxed font-mono">
+                        <div className="leading-relaxed font-mono">
                           <p className="my-3">
                             <span className="font-mono font-bold">
-                              {' '}
-                              Brand:{' '}
-                            </span>{' '}
+                              {" "}
+                              Brand:{" "}
+                            </span>{" "}
                             {produDetail[0].brand}
                           </p>
                           <p className="my-3">
                             <span className="font-mono font-bold">
-                              {' '}
-                              Model:{' '}
-                            </span>{' '}
+                              {" "}
+                              Model:{" "}
+                            </span>{" "}
                             {produDetail[0].model}
                           </p>
                           <p className="my-3">
                             <span className="font-mono font-bold">
-                              Category:{' '}
-                            </span>{' '}
+                              Category:{" "}
+                            </span>{" "}
                             {produDetail[0].categoryName}
                           </p>
                           <p className="my-3">
@@ -72,8 +72,8 @@ function ProductDetail() {
                           </p>
                         </div>
 
-                        <div class="flex">
-                          <span class="title-font font-medium text-3xl text-gray-900">
+                        <div className="flex">
+                          <span className="title-font font-medium text-3xl text-gray-900">
                             $
                             {produDetail[0].price == 0
                               ? 50

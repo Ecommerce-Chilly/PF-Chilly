@@ -6,6 +6,7 @@ import Fav from "../../Extras/Fav/Fav";
 import UserInfo from "../../Login/UserInfo/UserInfo";
 import CreateComponent from "../../PanelAdmin/CreateComponent/CreateComponent";
 import ChangeComponent from "../../PanelAdmin/ChangeComponent/ChangeComponent";
+import ProductsDeleted from "../../PanelAdmin/Products/ProductsDeleted"
 import Products from "../../PanelAdmin/Products/Products";
 import ProductDetail from "../../PanelAdmin/Products/ProductDetail";
 import ProductStoreDetail from "../../PanelAdmin/Products/ProductStoreDetail";
@@ -17,8 +18,19 @@ import Blog from "../Pages/Blog";
 import AboutUS from "../Pages/AboutUS";
 import Footer from "../Footer/Footer";
 import Register from "../../Login/Register/Register";
+import { userSpecific } from "../../../redux/actions/actions";
+import { useDispatch } from "react-redux";
 
 function MainRoute() {
+  let dispatch = useDispatch();
+
+  React.useEffect(() => {
+    const user = window.localStorage.getItem("user");
+
+    if (user) {
+      dispatch(userSpecific(JSON.parse(user)));
+    }
+  }, []);
 
   return (
     <div>
@@ -58,6 +70,11 @@ function MainRoute() {
           exact
           path="/panel+admin/change/product/:id"
           component={ChangeComponent}
+        />
+        <Route
+          exact
+          path="/panel+admin/deleted"
+          component={ProductsDeleted}
         />
       </div>
       <div>
