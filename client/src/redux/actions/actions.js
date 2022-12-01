@@ -39,6 +39,7 @@ export const ERROR_MSSG = "ERROR_MSSG";
 export const EUSEBIO = "EUSEBIO";
 export const ERROR_PUT_PRODUCT = "ERROR_PUT_PRODUCT";
 export const ERROR_CREATE_USER = "ERROR_CREATE_USER";
+export const PAY = "PAY";
 
 //! PRODUCTS ACTIONS --------------------------------------------------------------------
 export const getProduct = () => {
@@ -375,5 +376,17 @@ export const clearDeleted = (payload) => {
   return {
     type: CLEAR_DELETED_PRODUCTS,
     payload: payload,
+  };
+};
+
+export const pay = (payData) => {
+  return async function (dispatch) {
+    try {
+      console.log(payData);
+      let payLink = await axios.post("http://localhost:3001/payment/", payData);
+      return dispatch({ type: PAY, payload: payLink.data });
+    } catch (error) {
+      console.log(error);
+    }
   };
 };

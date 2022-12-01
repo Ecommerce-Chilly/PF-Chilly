@@ -38,6 +38,7 @@ import {
   CLEAR_FAV_STATE,
   FAIL_CREATED_MSG,
   CLEAR_DELETED_PRODUCTS,
+  PAY,
 } from "../actions/actions.js";
 
 const initialState = {
@@ -58,6 +59,7 @@ const initialState = {
   favorites: [],
   favoriteMsg: "",
   msgProductDeleted: "",
+  paymentLink: "",
 };
 
 const rootReducer = (state = initialState, action) => {
@@ -340,6 +342,11 @@ const rootReducer = (state = initialState, action) => {
       return {
         ...state,
         favoriteMsg: "",
+      };
+    case PAY:
+      return {
+        ...state,
+        paymentLink: action.payload["init_point"],
       };
     default:
       return state;
