@@ -6,11 +6,11 @@ const userRoute = Router();
 
 userRoute.get("/", async (req, res) => {
   try {
-    let { id } = req.query;
+    let { id, email } = req.query;
     if (id) {
       id = Number(id);
       if (isNaN(id)) return res.status(406).send({ error: "Not Acceptable, id is not a number" })
-      const user = await getUser(id)
+      const user = await getUser(id, email)
       return res.status(200).send(user)
     }
     const users = await getUser()

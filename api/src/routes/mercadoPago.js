@@ -4,7 +4,7 @@ const PaymentServices = require('../services/mercadoPago')
 const mercadoPago = Router()
 const paymentInstace = new PaymentController(new PaymentServices())
 
-mercadoPago.get('/', async (req, res) => {
+mercadoPago.post('/', async (req, res) => {
   paymentInstace.getPaymentLink(req, res)
 })
 

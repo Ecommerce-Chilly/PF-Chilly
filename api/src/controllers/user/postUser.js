@@ -2,18 +2,15 @@ const { User } = require("../../db");
 
 const postUser = async ({
   email,
-  password,
-
 }) => {
   try {
-    if (!email || !password) throw "You need to fill all fields";
+    if (!email) throw "You need to fill all fields";
 
-    const userExist = await User.findOne({ where: { email, password } });
+    const userExist = await User.findOne({ where: { email } });
     if (userExist) throw "User exist";
     else {
-      const userCreate = await User.create({
+      await User.create({
         email,
-        password,
       });
       return "User created";
     }

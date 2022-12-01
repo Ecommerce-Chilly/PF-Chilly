@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { Route } from "react-router-dom";
 import Cart from "../../Cart/Cart/Cart";
 import Navbar from "../Navbar/Navbar";
@@ -22,10 +22,9 @@ import { useDispatch } from "react-redux";
 
 function MainRoute() {
   let dispatch = useDispatch();
-
   React.useEffect(() => {
-    const user = window.localStorage.getItem("user");
-
+    const user = window.localStorage.getItem("email");
+    console.log(user);
     if (user) {
       dispatch(userSpecific(JSON.parse(user)));
     }
