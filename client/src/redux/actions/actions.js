@@ -363,7 +363,6 @@ export const clearProdMsg = () => {
     type: CLEAR_PROD_MSG,
   };
 };
-<<<<<<< HEAD
 
 export const getProductDeleted = () => {
   return async function (dispatch) {
@@ -390,7 +389,7 @@ export function orderByPrice(payload) {
     payload: payload,
   };
 }
-=======
+
 export const clearFavMsg = () => {
   return {
     type: CLEAR_FAV_MSG,
@@ -401,4 +400,3 @@ export const clearFavSate = () => {
     type: CLEAR_FAV_STATE,
   };
 };
->>>>>>> ac52118dd4233a31db187f265d9254051b2d89f3
