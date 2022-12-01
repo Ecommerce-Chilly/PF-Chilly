@@ -1,20 +1,24 @@
-import React from 'react';
-import {
-  deleteProdut,
-  restoreProduct,
-} from '../../../redux/actions/actions.js';
-import { useDispatch } from 'react-redux';
-import { Link } from 'react-router-dom';
+import React, { useState } from "react";
+import { deleteProdut } from "../../../redux/actions/actions.js";
+import { useDispatch } from "react-redux";
+import { Link } from "react-router-dom";
+import "./ProductCard.css";
 
 function ProductCard(props) {
   const dispatch = useDispatch();
+  const [open, setOpen] = useState(false);
 
   function dispatchToDeleteProduct(id) {
     dispatch(deleteProdut(id));
+    setOpen(!open);
   }
 
   return (
-    <div className="w-72 h-96 mb-11 bg-white rounded-xl shadow-xl border  m-2 relative flex flex-col justify-between">
+    <div
+      className={`w-72 h-96 mb-11 bg-white rounded-xl shadow-xl border  m-2 relative flex flex-col justify-between ${
+        open && "joder"
+      }`}
+    >
       {props.categoryName ? (
         <>
           <Link
@@ -31,7 +35,7 @@ function ProductCard(props) {
 
                 <img
                   className="m-auto h-40"
-                  src={props.image.replace('SL75', 'SL500')}
+                  src={props.image.replace("SL75", "SL500")}
                   alt={props.name}
                 />
                 <p>Brand: {props.brand}</p>
@@ -64,7 +68,7 @@ function ProductCard(props) {
             </h2>
             <img
               className="m-auto h-40"
-              src={props.image.replace('SL75', 'SL500')}
+              src={props.image.replace("SL75", "SL500")}
               alt={props.name}
             />
             <p className="text-2xl font-display text-slate-700">
