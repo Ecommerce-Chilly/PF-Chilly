@@ -32,10 +32,16 @@ import {
   DECREASE_PRODUCT_QUANTITY,
   DELETE_FAVORITE,
   CLEAR_PROD_MSG,
+<<<<<<< HEAD
   PRODUCTS_DELETED,
   MSG_NOT_PRODUCT_DELETED,
   ORDER_BY_PRICE,
 } from "../actions/actions.js";
+=======
+  CLEAR_FAV_MSG,
+  CLEAR_FAV_STATE,
+} from '../actions/actions.js';
+>>>>>>> ac52118dd4233a31db187f265d9254051b2d89f3
 
 const initialState = {
   product: [],
@@ -282,11 +288,13 @@ const rootReducer = (state = initialState, action) => {
       if (product2.quantity > 1) {
         product2.quantity = product2.quantity - 1;
       }
-
+      let cartQuantity1 = 0;
+      for (let i = 0; i < state.cart.length; i++) {
+        cartQuantity1 = cartQuantity1 + state.cart[i].quantity;
+      }
       return {
         ...state,
-        quantity:
-          state.quantity > 1 ? state.quantity - 1 : (state.quantity = 1),
+        quantity: cartQuantity1,
       };
     case CLEAR_PROD_MSG:
       return {
@@ -312,6 +320,17 @@ const rootReducer = (state = initialState, action) => {
       return {
         ...state,
         state: orderByPrice,
+      };
+
+    case CLEAR_FAV_MSG:
+      return {
+        ...state,
+        favoriteMsg: '',
+      };
+    case CLEAR_FAV_STATE:
+      return {
+        ...state,
+        favorites: [],
       };
     default:
       return state;

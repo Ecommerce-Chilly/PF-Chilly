@@ -1,6 +1,10 @@
 import React, { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { userSpecific, logoutUser } from '../../../redux/actions/actions';
+import {
+  userSpecific,
+  logoutUser,
+  clearFavSate,
+} from '../../../redux/actions/actions';
 import { Link } from 'react-router-dom';
 import Swal from 'sweetalert2';
 import './popUp.css';
@@ -51,6 +55,7 @@ function Login() {
       /* Read more about isConfirmed, isDenied below */
       if (result.isConfirmed) {
         dispatch(logoutUser());
+        dispatch(clearFavSate());
         window.localStorage.removeItem('user');
       }
     });
