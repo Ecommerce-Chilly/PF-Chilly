@@ -20,7 +20,7 @@ class PaymentService {
       back_urls: {
         failure: "/failure",
         pending: "/pending",
-        success: "/home",
+        success: "localhost:3001/home",
       },
     };
     const payment = await axios.post(url, body, {
