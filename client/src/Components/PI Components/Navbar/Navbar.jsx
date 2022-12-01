@@ -9,16 +9,16 @@ function Navbar() {
 
   return (
     <>
-      <nav class="	bg-white border-gray-200 px-2  py-5  dark:bg-main static">
-        <div class="container flex flex-wrap items-center justify-between mx-auto">
-          <Link to="/home" class="flex items-center">
-            <span class="self-center text-4xl font-semibold whitespace-nowrap dark:text-white font-sans">
+      <nav className="	bg-white border-gray-200 px-2  py-5  dark:bg-main static">
+        <div className="container flex flex-wrap items-center justify-between mx-auto">
+          <Link to="/home" className="flex items-center">
+            <span className="self-center text-4xl font-semibold whitespace-nowrap dark:text-white font-sans">
               Chilly
             </span>
           </Link>
           <SearchBar />
 
-          <div class="hidden w-full md:block md:w-auto" id="navbar-default">
+          <div className="hidden w-full md:block md:w-auto" id="navbar-default">
             <Link to="/user/favorites" className="inline-block mx-4">
               <svg
                 xmlns="http://www.w3.org/2000/svg"
@@ -79,8 +79,8 @@ function Navbar() {
             </Link>
           </div>
         </div>
-        <div class="container flex  mx-auto mt-6">
-          <ul class="flex justify-between w-5/6 mx-auto uppercase font-sans underline-offset-4  font-light text-white">
+        <div className="container flex  mx-auto mt-6">
+          <ul className="flex justify-between w-5/6 mx-auto uppercase font-sans underline-offset-4  font-light text-white">
             <li>
               <Link to="/home" className="hover:underline">
                 Home
