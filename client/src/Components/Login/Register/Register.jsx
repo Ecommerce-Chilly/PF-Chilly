@@ -41,41 +41,33 @@ function Register() {
                 }}
               >
                 <div>
-                  <label
-                    for="email"
-                    class="block mb-2 text-sm font-medium text-gray-900 "
-                  >
+                  <label class="block mb-2 text-sm font-medium text-gray-900 ">
                     Your email
                   </label>
                   <input
-                    onChange={(e) => handleChange(e)}
-                    type="email"
+                    onChange={handleChange}
+                    type="text"
                     name="email"
                     id="email"
                     class="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-main focus:border-main block w-full p-2.5 "
                     placeholder="name@company.com"
-                    required=""
                   />
                 </div>
                 <div>
-                  <label
-                    for="password"
-                    class="block mb-2 text-sm font-medium text-gray-900 "
-                  >
+                  <label class="block mb-2 text-sm font-medium text-gray-900 ">
                     Password
                   </label>
                   <input
-                    onChange={(e) => handleChange(e)}
+                    onChange={handleChange}
                     type="password"
                     name="password"
                     id="password"
                     placeholder="••••••••"
                     class="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-main focus:border-main block w-full p-2.5 "
-                    required=""
                   />
                 </div>
 
-                <div class="flex items-start">
+                {/* <div class="flex items-start">
                   <div class="flex items-center h-5">
                     <input
                       id="terms"
@@ -96,7 +88,7 @@ function Register() {
                       </a>
                     </label>
                   </div>
-                </div>
+                </div> */}
                 <button
                   type="submit"
                   class="w-full text-white bg-main hover:bg-blue-600 focus:ring-4 focus:outline-none focus:ring-main font-medium rounded-lg text-sm px-5 py-2.5 text-center "
