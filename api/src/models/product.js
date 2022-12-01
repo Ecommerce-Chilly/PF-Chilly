@@ -29,7 +29,7 @@ module.exports = (sequelize) => {
       },
       image: {
         type: DataTypes.STRING,
-        defaultValue: "no hay imagen bro coloca la imagen cinthia",
+        defaultValue: "https://www.gastroactitud.com/wp-content/uploads/2018/12/OstrasAmlie.jpg",
       },
       details: {
         type: DataTypes.ARRAY(DataTypes.JSON),

@@ -27,7 +27,7 @@ function Register() {
     <div>
       <section class="bg-gray-50 ">
         <div class="flex flex-col items-center justify-center px-6 py-8 mx-auto md:h-screen lg:py-0">
-          <div class="w-full bg-white rounded-lg shadow dark:border md:mt-0 sm:max-w-md xl:p-0 ">
+          <div class="w-full bg-white rounded-lg shadow dark:border md:mt-0 sm:max-w-md xl:p-0">
             <div class="p-6 space-y-4 md:space-y-6 sm:p-8">
               <h1 class="text-xl font-bold leading-tight tracking-tight text-gray-900 md:text-2xl ">
                 Create an account
@@ -41,12 +41,11 @@ function Register() {
                 }}
               >
                 <div>
-                  <label
-                    class="block mb-2 text-sm font-medium text-gray-900 "
-                  >
+                  <label class="block mb-2 text-sm font-medium text-gray-900 ">
                     Your email
                   </label>
-                  <input onChange={handleChange}
+                  <input
+                    onChange={handleChange}
                     type="text"
                     name="email"
                     id="email"
@@ -55,12 +54,11 @@ function Register() {
                   />
                 </div>
                 <div>
-                  <label
-                    class="block mb-2 text-sm font-medium text-gray-900 "
-                  >
+                  <label class="block mb-2 text-sm font-medium text-gray-900 ">
                     Password
                   </label>
-                  <input onChange={handleChange}
+                  <input
+                    onChange={handleChange}
                     type="password"
                     name="password"
                     id="password"

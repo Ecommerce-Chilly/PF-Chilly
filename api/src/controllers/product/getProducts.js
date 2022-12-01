@@ -4,7 +4,7 @@ require("dotenv").config();
 
 const getProducts = async (category, id, name) => {
   try {
-    if (name) {
+    if (!category && name && !id) {
       const productName = await Product.findAll({
         // Juanra hizo el Op.like
         where: { name: { [Op.iLike]: `%${name}%` } },
@@ -14,17 +14,17 @@ const getProducts = async (category, id, name) => {
         },
       });
       if (productName.length === 0)
-        throw (`Product with name ${name} does not exist`);
+        throw `Product with name ${name} does not exist`;
       return productName;
     }
-    if (id) {
+    if (!category && !name && id) {
       const product = await Product.findByPk(id, {
         include: {
           model: Inventory,
           attributes: ["quantity"],
         },
       });
-      if (!product) throw (`Product with id ${id} does not exist`);
+      if (!product) throw `Product with id ${id} does not exist`;
       return product;
     }
     if (!category && !name && !id) {
@@ -33,10 +33,8 @@ const getProducts = async (category, id, name) => {
           model: Inventory,
           attributes: ["quantity"],
         },
-
       });
-      if (all.length === 0)
-        throw ("Dont have products in our data base");
+      if (all.length === 0) throw "Dont have products in our data base";
       return all;
     }
     if (category && !name && !id) {
@@ -50,7 +48,7 @@ const getProducts = async (category, id, name) => {
       return prodGet;
     }
   } catch (error) {
-    throw (error);
+    throw error;
   }
 };
 const getProductsDeleted = async () => {
@@ -61,12 +59,12 @@ const getProductsDeleted = async () => {
         model: Inventory,
         attributes: ["quantity"],
       },
-      paranoid: false
-    })
-    if (products.length === 0) throw `There are not products deleted`
-    return products
+      paranoid: false,
+    });
+    if (products.length === 0) throw `No products removed`;
+    return products;
   } catch (error) {
-    throw error
+    throw error;
   }
-}
+};
 module.exports = { getProducts, getProductsDeleted };

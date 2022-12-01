@@ -2,32 +2,45 @@ import axios from "axios";
 export const GET_ALL_PRODUCTS = "GET_ALL_PRODUCTS";
 export const GET_PRODUCT_BY_ID = "GET_PRODUCT_BY_ID";
 export const CREATE_PRODUCT = "CREATE_PRODUCT";
-export const CREATE_DISCOUNT = "CREATE_DISCOUNT";
 export const PUT_PRODUCT = "PUT_PRODUCT";
-export const PUT_INVENTORY = "PUT_INVENTORY";
-export const PUT_DISCOUNT = "PUT_DISCOUNT";
+export const GET_PRODUCT_BY_NAME = "GET_PRODUCT_BY_NAME";
 export const DELETE_PRODUCT = "DELETE_PRODUCT";
-export const FAIL_CREATED_MSG = "FAIL_CREATED_MSG";
+export const RESTORE_PRODUCT = "RESTORE_PRODUCT";
+export const PRODUCTS_DELETED = "PRODUCTS_DELETED";
+export const CREATE_DISCOUNT = "CREATE_DISCOUNT";
+export const PUT_DISCOUNT = "PUT_DISCOUNT";
+export const PUT_INVENTORY = "PUT_INVENTORY";
 export const GET_CATEGORY_DETAILS = "GET_CATEGORY_DETAILS";
 export const FILTER1 = "FILTER1";
 export const FILTER_BY_DETAILS = "FILTER_BY_DETAILS";
-export const GET_PRODUCT_BY_NAME = "GET_PRODUCT_BY_NAME";
-export const ERROR_MSSG = "ERROR_MSSG";
-export const EUSEBIO = "EUSEBIO";
-export const ERROR_PUT_PRODUCT = "ERROR_PUT_PRODUCT";
-export const RESTORE_PRODUCT = "RESTORE_PRODUCT";
+export const ORDER_BY_PRICE = "ORDER_BY_PRICE";
 export const ADD_TO_CART = "ADD_TO_CART";
 export const DELETE_CART_PRODUCT = "DELETE_CART_PRODUCT";
 export const CLEAR_CART = "CLEAR_CART";
+export const DECREASE_PRODUCT_QUANTITY = "DECREASE_PRODUCT_QUANTITY";
+export const INCREASE_PRODUCT_QUANTITY = "INCREASE_PRODUCT_QUANTITY";
 export const CREATE_USER = "CREATE_USER";
 export const USER_SPECIFIC = "USER_SPECIFIC";
 export const LOGOUT = "LOGOUT";
-export const ERROR_CREATE_USER = "ERROR_CREATE_USER";
 export const ALL_USERS = "ALL_USERS";
 export const USER_NOT_FOUND = "USER_NOT_FOUND";
-export const UPDATE_CART_QUANTITY = 'UPDATE_CART_QUANTITY';
+export const UPDATE_CART_QUANTITY = "UPDATE_CART_QUANTITY";
+export const ADD_FAVORITE = "ADD_FAVORITE";
+export const GET_FAVORITES = "GET_FAVORITES";
+export const DELETE_FAVORITE = "DELETE_FAVORITE";
+export const FAVORITE_MSG = "FAVORITE_MSG";
+export const CLEAR_PROD_MSG = "CLEAR_PROD_MSG";
+export const CLEAR_FAV_MSG = "CLEAR_FAV_MSG";
+export const CLEAR_FAV_STATE = "CLEAR_FAV_STATE";
+export const MSG_NOT_PRODUCT_DELETED = "MSG_NOT_PRODUCT_DELETED";
+export const CLEAR_DELETED_PRODUCTS = "CLEAR_DELETED_PRODUCTS";
+export const FAIL_CREATED_MSG = "FAIL_CREATED_MSG";
+export const ERROR_MSSG = "ERROR_MSSG";
+export const EUSEBIO = "EUSEBIO";
+export const ERROR_PUT_PRODUCT = "ERROR_PUT_PRODUCT";
+export const ERROR_CREATE_USER = "ERROR_CREATE_USER";
 
-
+//! PRODUCTS ACTIONS --------------------------------------------------------------------
 export const getProduct = () => {
   return async function (dispatch) {
     let product = await axios.get("http://localhost:3001/product");
@@ -60,19 +73,22 @@ export const createProduct = (product) => {
   };
 };
 
-export const createDiscount = (product) => {
+export const getProductByName = (name) => {
   return async function (dispatch) {
+    if (name === "") {
+      return dispatch({ type: ERROR_MSSG });
+    }
     try {
-      const createDiscount = await axios.post(
-        "http://localhost:3001/discount",
-        product
+      let productByName = await axios.get(
+        `http://localhost:3001/product?name=${name}`
       );
-      return dispatch({ type: CREATE_DISCOUNT, payload: createDiscount.data });
-    } catch (error) {
+
       return dispatch({
-        type: FAIL_CREATED_MSG,
-        payload: error.response.error.data,
+        type: GET_PRODUCT_BY_NAME,
+        payload: productByName.data,
       });
+    } catch (error) {
+      return dispatch({ type: ERROR_MSSG, payload: error.response.data });
     }
   };
 };
@@ -94,13 +110,58 @@ export const putProductById = (id, product) => {
   };
 };
 
-export const putInventory = (id, product) => {
+export const deleteProdut = (id) => {
   return async function (dispatch) {
-    const putInventory = await axios.put(
-      `http://localhost:3001/inventory/${id}`,
-      product
+    const deleteProduct = await axios.delete(
+      `http://localhost:3001/product/${id}`
     );
-    return dispatch({ type: PUT_INVENTORY, payload: putInventory.data });
+    return dispatch({ type: DELETE_PRODUCT, payload: deleteProduct.data });
+  };
+};
+
+export const restoreProduct = (id) => {
+  return async function (dispatch) {
+    let restoreProduct = await axios.put(
+      `http://localhost:3001/product/restore/${id}`
+    );
+    return dispatch({ type: RESTORE_PRODUCT, payload: restoreProduct.data });
+  };
+};
+
+export const getProductDeleted = () => {
+  return async function (dispatch) {
+    try {
+      const allProductDelete = await axios.get(
+        "http://localhost:3001/product/deleted"
+      );
+      return dispatch({
+        type: PRODUCTS_DELETED,
+        payload: allProductDelete.data,
+      });
+    } catch (error) {
+      return dispatch({
+        type: MSG_NOT_PRODUCT_DELETED,
+        payload: error.response.data,
+      });
+    }
+  };
+};
+
+//!DISCOUNTS ACTIONS --------------------------------------------------------------------
+export const createDiscount = (product) => {
+  return async function (dispatch) {
+    try {
+      const createDiscount = await axios.post(
+        "http://localhost:3001/discount",
+        product
+      );
+      return dispatch({ type: CREATE_DISCOUNT, payload: createDiscount.data });
+    } catch (error) {
+      return dispatch({
+        type: FAIL_CREATED_MSG,
+        payload: error.response.error.data,
+      });
+    }
   };
 };
 
@@ -114,15 +175,18 @@ export const putDiscount = (product) => {
   };
 };
 
-export const deleteProdut = (id) => {
+//!INVENTORY ACTIONS --------------------------------------------------------------------
+export const putInventory = (id, product) => {
   return async function (dispatch) {
-    const deleteProduct = await axios.delete(
-      `http://localhost:3001/product/${id}`
+    const putInventory = await axios.put(
+      `http://localhost:3001/inventory/${id}`,
+      product
     );
-    return dispatch({ type: DELETE_PRODUCT, payload: deleteProduct.data });
+    return dispatch({ type: PUT_INVENTORY, payload: putInventory.data });
   };
 };
 
+//! PRODUCT CATEGORY DETAILS && FILTERS ACTIONS -----------------------------------------
 export const getCategoryDetails = (category) => {
   return async function (dispatch) {
     const categoryDetails = await axios.get(
@@ -149,35 +213,7 @@ export const filterbyDetails = (category, details) => {
   };
 };
 
-export const getProductByName = (name) => {
-  return async function (dispatch) {
-    if (name === '') {
-      return dispatch({ type: ERROR_MSSG });
-    }
-    try {
-      let productByName = await axios.get(
-        `http://localhost:3001/product?name=${name}`
-      );
-
-      return dispatch({
-        type: GET_PRODUCT_BY_NAME,
-        payload: productByName.data,
-      });
-    } catch (error) {
-      return dispatch({ type: ERROR_MSSG, payload: error.response.data });
-    }
-  };
-};
-
-export const restoreProduct = (id) => {
-  return async function (dispatch) {
-    let restoreProduct = await axios.put(
-      `http://localhost:3001/product/restore/${id}`
-    );
-    return dispatch({ type: RESTORE_PRODUCT, payload: restoreProduct.data });
-  };
-};
-
+//! CART ACTIONS --------------------------------------------------------------------
 export const addToCart = (id) => {
   return {
     type: ADD_TO_CART,
@@ -192,12 +228,40 @@ export const deleteP = (id) => {
   };
 };
 
+export const updateCartQuantity = () => {
+  return {
+    type: UPDATE_CART_QUANTITY,
+  };
+};
+
 export const clearCart = () => {
   return {
     type: CLEAR_CART,
   };
 };
 
+export const increaseProductQuantity = (id) => {
+  return {
+    type: INCREASE_PRODUCT_QUANTITY,
+    payload: id,
+  };
+};
+
+export const decreaseProductQuantity = (id) => {
+  return {
+    type: DECREASE_PRODUCT_QUANTITY,
+    payload: id,
+  };
+};
+
+export function orderByPrice(payload) {
+  return {
+    type: ORDER_BY_PRICE,
+    payload: payload,
+  };
+}
+
+//! USERS ACTIONS --------------------------------------------------------------------
 export const getAllUsers = () => {
   return async function (dispatch) {
     let allUsers = await axios.get("http://localhost:3001/user");
@@ -222,7 +286,10 @@ export const createUser = (newUser) => {
 export const userSpecific = (userFound) => {
   return async function (dispatch) {
     try {
-      let userSpeci = await axios.post("http://localhost:3001/user/tio", userFound);
+      let userSpeci = await axios.post(
+        "http://localhost:3001/user/tio",
+        userFound
+      );
       return dispatch({ type: USER_SPECIFIC, payload: userSpeci.data });
     } catch (error) {
       return dispatch({
@@ -239,8 +306,74 @@ export const logoutUser = () => {
   };
 };
 
-export const updateCartQuantity = () => {
+//! FAVOURITES ACTIONS --------------------------------------------------------------------
+export const addFavorite = (ids) => {
+  return async function (dispatch) {
+    try {
+      let favorite = await axios.post("http://localhost:3001/favorite", ids);
+      return dispatch({ type: ADD_FAVORITE, payload: favorite.data });
+    } catch (error) {
+      return dispatch({
+        type: FAVORITE_MSG,
+        payload: error.response.data.error,
+      });
+    }
+  };
+};
+
+export const getFavorites = (userId) => {
+  return async function (dispatch) {
+    try {
+      let favorites = await axios.get(
+        `http://localhost:3001/favorite/${userId}`
+      );
+      return dispatch({ type: GET_FAVORITES, payload: favorites.data });
+    } catch (error) {
+      return dispatch({
+        type: FAVORITE_MSG,
+        payload: error.response.data.error,
+      });
+    }
+  };
+};
+
+export const deleteFavorite = (ids) => {
+  return async function (dispatch) {
+    try {
+      console.log(ids);
+      let favorite2 = await axios.delete(
+        `http://localhost:3001/favorite/${ids.userId}/${ids.productId}`
+      );
+      return dispatch({ type: DELETE_FAVORITE, payload: favorite2.data });
+    } catch (error) {
+      return dispatch({
+        type: FAVORITE_MSG,
+        payload: error.response.data.error,
+      });
+    }
+  };
+};
+
+//! CLEAR MSG ACTIONS --------------------------------------------------------------------
+export const clearProdMsg = () => {
   return {
-    type: UPDATE_CART_QUANTITY,
+    type: CLEAR_PROD_MSG,
+  };
+};
+
+export const clearFavMsg = () => {
+  return {
+    type: CLEAR_FAV_MSG,
+  };
+};
+export const clearFavSate = () => {
+  return {
+    type: CLEAR_FAV_STATE,
+  };
+};
+export const clearDeleted = (payload) => {
+  return {
+    type: CLEAR_DELETED_PRODUCTS,
+    payload: payload,
   };
 };

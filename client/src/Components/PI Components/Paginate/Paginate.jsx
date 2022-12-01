@@ -42,7 +42,7 @@ function Paginate({ products }) {
       <div className="flex flex-wrap justify-evenly">
         {currentItems.length > 0 && searchProductMsg === '' ? (
           currentItems?.map((el) => <ProductCard key={el.id} {...el} />)
-        ) : searchProductMsg.error ? (
+        ) : searchProductMsg.error && currentItems.length === 0 ? (
           <div className="mx-auto text-3xl font-display font-medium ml-80  min-w-full">
             <p>{searchProductMsg.error}</p>
           </div>
