@@ -61,7 +61,7 @@ const getProductsDeleted = async () => {
       },
       paranoid: false,
     });
-    if (products.length === 0) throw `There are not products deleted`;
+    if (products.length === 0) throw `No products removed`;
     return products;
   } catch (error) {
     throw error;

@@ -8,7 +8,7 @@ const deleteProduct = async (id) => {
       throw (`The product with the id ${id} is not exist`);
     // await Inventory.destroy({ where: { id: foundProduct.inventoryId } });
     await Product.destroy({ where: { id: id } });
-    return "Product delete";
+    return "Product deleted";
   } catch (error) {
     throw (error);
   }
