@@ -35,13 +35,14 @@ export const INCREASE_PRODUCT_QUANTITY = 'INCREASE_PRODUCT_QUANTITY';
 export const CLEAR_PROD_MSG = 'CLEAR_PROD_MSG';
 export const CLEAR_FAV_MSG = 'CLEAR_FAV_MSG';
 export const CLEAR_FAV_STATE = 'CLEAR_FAV_STATE';
-export const PRODUCTS_DELETED = "PRODUCTS_DELETED";
-export const MSG_NOT_PRODUCT_DELETED = "MSG_NOT_PRODUCT_DELETED";
-export const ORDER_BY_PRICE = "ORDER_BY_PRICE";
+export const PRODUCTS_DELETED = 'PRODUCTS_DELETED';
+export const MSG_NOT_PRODUCT_DELETED = 'MSG_NOT_PRODUCT_DELETED';
+export const ORDER_BY_PRICE = 'ORDER_BY_PRICE';
+export const CLEAR_DELETED_PRODUCTS = 'CLEAR_DELETED_PRODUCTS';
 
 export const getProduct = () => {
   return async function (dispatch) {
-    let product = await axios.get("http://localhost:3001/product");
+    let product = await axios.get('http://localhost:3001/product');
     return dispatch({ type: GET_ALL_PRODUCTS, payload: product.data });
   };
 };
@@ -61,7 +62,7 @@ export const createProduct = (product) => {
   return async function (dispatch) {
     try {
       const createProdu = await axios.post(
-        "http://localhost:3001/product",
+        'http://localhost:3001/product',
         product
       );
       return dispatch({ type: CREATE_PRODUCT, payload: createProdu });
@@ -75,7 +76,7 @@ export const createDiscount = (product) => {
   return async function (dispatch) {
     try {
       const createDiscount = await axios.post(
-        "http://localhost:3001/discount",
+        'http://localhost:3001/discount',
         product
       );
       return dispatch({ type: CREATE_DISCOUNT, payload: createDiscount.data });
@@ -118,7 +119,7 @@ export const putInventory = (id, product) => {
 export const putDiscount = (product) => {
   return async function (dispatch) {
     const putInventory = await axios.put(
-      "http://localhost:3001/discount/",
+      'http://localhost:3001/discount/',
       product
     );
     return dispatch({ type: PUT_DISCOUNT, payload: putInventory.data });
@@ -162,7 +163,7 @@ export const filterbyDetails = (category, details) => {
 
 export const getProductByName = (name) => {
   return async function (dispatch) {
-    if (name === "") {
+    if (name === '') {
       return dispatch({ type: ERROR_MSSG });
     }
     try {
@@ -211,7 +212,7 @@ export const clearCart = () => {
 
 export const getAllUsers = () => {
   return async function (dispatch) {
-    let allUsers = await axios.get("http://localhost:3001/user");
+    let allUsers = await axios.get('http://localhost:3001/user');
     return dispatch({ type: ALL_USERS, payload: allUsers.data });
   };
 };
@@ -219,7 +220,7 @@ export const getAllUsers = () => {
 export const createUser = (newUser) => {
   return async function (dispatch) {
     try {
-      let createUser = await axios.post("http://localhost:3001/user", newUser);
+      let createUser = await axios.post('http://localhost:3001/user', newUser);
       return dispatch({ type: CREATE_USER, payload: createUser.data });
     } catch (error) {
       return dispatch({
@@ -234,7 +235,7 @@ export const userSpecific = (userFound) => {
   return async function (dispatch) {
     try {
       let userSpeci = await axios.post(
-        "http://localhost:3001/user/tio",
+        'http://localhost:3001/user/tio',
         userFound
       );
       return dispatch({ type: USER_SPECIFIC, payload: userSpeci.data });
@@ -262,7 +263,7 @@ export const updateCartQuantity = () => {
 export const addFavorite = (ids) => {
   return async function (dispatch) {
     try {
-      let favorite = await axios.post("http://localhost:3001/favorite", ids);
+      let favorite = await axios.post('http://localhost:3001/favorite', ids);
       return dispatch({ type: ADD_FAVORITE, payload: favorite.data });
     } catch (error) {
       return dispatch({
@@ -330,7 +331,7 @@ export const getProductDeleted = () => {
   return async function (dispatch) {
     try {
       const allProductDelete = await axios.get(
-        "http://localhost:3001/product/deleted"
+        'http://localhost:3001/product/deleted'
       );
       return dispatch({
         type: PRODUCTS_DELETED,
@@ -360,5 +361,11 @@ export const clearFavMsg = () => {
 export const clearFavSate = () => {
   return {
     type: CLEAR_FAV_STATE,
+  };
+};
+export const clearDeleted = (payload) => {
+  return {
+    type: CLEAR_DELETED_PRODUCTS,
+    payload: payload,
   };
 };

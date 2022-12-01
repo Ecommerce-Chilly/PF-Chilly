@@ -10,7 +10,7 @@
   font-weight: lighter;
   position: absolute;
   top: 160px;
-  color: darkgery;
+  color: rgb(66, 66, 66);
   font-family: 'Montserrat', sans-serif;
   font-size: 18px;
 }
@@ -40,7 +40,7 @@
   text-decoration-style: double;
   text-decoration-color: rgb(48 63 159);
   text-underline-offset: 6px;
-  color: darkslategrey;
+  color: rgb(29, 29, 29);
 }
 
 .active:hover {

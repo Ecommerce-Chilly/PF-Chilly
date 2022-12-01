@@ -12,7 +12,7 @@ function FavCards(props) {
   let dispatch = useDispatch();
 
   return (
-    <div className="w-72 h-96 mb-11 bg-white rounded-xl shadow-xl border  m-2  flex flex-col justify-between">
+    <div className="w-72 h-96 mb-11 bg-white rounded-xl shadow-xl border text-center m-2  flex flex-col justify-between">
       <>
         <Link
           to={`/store/products/${props.id}`}
