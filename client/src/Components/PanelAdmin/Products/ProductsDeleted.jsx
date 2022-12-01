@@ -1,7 +1,7 @@
-import React, { useEffect } from "react";
-import { useDispatch, useSelector } from "react-redux";
-import { getProductDeleted } from "../../../redux/actions/actions";
-import ProductCardToDelete from "../../PanelAdmin/Products/ProductCardToDelete";
+import React, { useEffect } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { getProductDeleted } from '../../../redux/actions/actions';
+import ProductCardToDelete from '../../PanelAdmin/Products/ProductCardToDelete';
 
 function ProductsDeleted() {
   const dispatch = useDispatch();
@@ -17,7 +17,7 @@ function ProductsDeleted() {
   return (
     <div className="flex ">
       <div className="w-full text-center flex mt-20">
-        <div className="flex flex-wrap justify-evenly">
+        <div className="flex flex-wrap justify-evenly ">
           {productDeleted.length > 0 ? (
             productDeleted?.map((el) => (
               <ProductCardToDelete key={el.id} {...el} />

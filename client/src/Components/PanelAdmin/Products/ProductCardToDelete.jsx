@@ -1,7 +1,7 @@
-import React from "react";
-import { restoreProduct } from "../../../redux/actions/actions.js";
-import { useDispatch } from "react-redux";
-import { Link } from "react-router-dom";
+import React from 'react';
+import { restoreProduct } from '../../../redux/actions/actions.js';
+import { useDispatch } from 'react-redux';
+import { Link } from 'react-router-dom';
 
 function ProductCard(props) {
   const dispatch = useDispatch();
@@ -21,7 +21,7 @@ function ProductCard(props) {
 
           <img
             className="m-auto h-40"
-            src={props.image.replace("SL75", "SL500")}
+            src={props.image.replace('SL75', 'SL500')}
             alt={props.name}
           />
           <p>Brand: {props.brand}</p>
@@ -31,7 +31,7 @@ function ProductCard(props) {
       </div>
       <div className="flex justify-evenly mb-6">
         <button
-          className="bg-main text-white font-semibold rounded px-3"
+          className="bg-main text-white font-semibold rounded px-3 h-9"
           onClick={() => {
             dispatchToRestore(props.id);
           }}
