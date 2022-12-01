@@ -881,6 +881,10 @@ video {
   height: 90px;
 }
 
+.h-9 {
+  height: 2.25rem;
+}
+
 .h-10 {
   height: 2.5rem;
 }
@@ -1226,12 +1230,6 @@ video {
 .bg-blue-700 {
   --tw-bg-opacity: 1;
   background-color: rgb(29 78 216 / var(--tw-bg-opacity));
-}
-
-.from-neutral-400 {
-  --tw-gradient-from: #a3a3a3;
-  --tw-gradient-to: rgb(163 163 163 / 0);
-  --tw-gradient-stops: var(--tw-gradient-from), var(--tw-gradient-to);
 }
 
 .bg-contain {

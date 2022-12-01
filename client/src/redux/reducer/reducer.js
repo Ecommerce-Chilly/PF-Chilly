@@ -116,6 +116,7 @@ const rootReducer = (state = initialState, action) => {
       return {
         ...state,
         productsDeleted: action.payload,
+        productsDeleted: action.payload,
       };
     case MSG_NOT_PRODUCT_DELETED:
       return {
