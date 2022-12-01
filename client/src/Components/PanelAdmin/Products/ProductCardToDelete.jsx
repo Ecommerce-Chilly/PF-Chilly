@@ -1,16 +1,23 @@
-import React from "react";
+import React, { useState } from "react";
 import { restoreProduct } from "../../../redux/actions/actions.js";
 import { useDispatch } from "react-redux";
-import { Link } from "react-router-dom";
+import "./ProductCard.css";
 
 function ProductCard(props) {
+  const [open, setOpen] = useState(false);
   const dispatch = useDispatch();
 
   function dispatchToRestore(id) {
     dispatch(restoreProduct(id));
+    setOpen(!open);
   }
+
   return (
-    <div className="w-72 h-96 mb-11 bg-white rounded-xl shadow-xl border  m-2 relative flex flex-col justify-between">
+    <div
+      className={`w-72 h-96 mb-11 bg-white rounded-xl shadow-xl border  m-2 relative flex flex-col justify-between ${
+        open && "joder"
+      }`}
+    >
       <div>
         <div className="text-slate-800">
           <h2 className="font-semibold tracking-wide     text-slate-700 font-display">
