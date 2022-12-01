@@ -3,10 +3,12 @@ const morgan = require("morgan");
 const cookieParser = require("cookie-parser");
 const bodyParser = require("body-parser");
 const app = express();
-const routes = require("./routes/index.js");
-const cors = require("cors");
-const dotenv = require("dotenv");
-dotenv.config();
+const routes = require('./routes/index.js');
+const cors = require('cors');
+const dotenv = require('dotenv')
+dotenv.config()
+
+
 // SDK de Mercado Pago
 const mercadopago = require("mercadopago");
 // Agrega credenciales

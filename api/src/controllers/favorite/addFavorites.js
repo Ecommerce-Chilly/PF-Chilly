@@ -6,7 +6,7 @@ const addFavorites = async (userId, productId) => {
   const product = await Product.findByPk(productId)
   if (!product) throw `Product does not exist`
   user.addProduct(product)
-  return `Product add to favorites`
+  return `Product added to favorites`
 }
 
 module.exports = { addFavorites }

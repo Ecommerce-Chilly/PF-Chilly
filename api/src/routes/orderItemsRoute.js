@@ -1,6 +1,17 @@
 const { Router } = require("express");
-const postOrderItems = require("../controllers/postOrderItems")
+const { deleteOrderItems } = require("../controllers/orderItems/deleteOrderItems")
+const { getOrderItems, getAllOrders } = require("../controllers/orderItems/getOrderItems");
+const postOrderItems = require("../controllers/orderItems/postOrderItems")
 const orderItemsRoute = Router();
+
+orderItemsRoute.delete('/:id', async (req, res) => {
+  try {
+    const orderItemsDelete = await deleteOrderItems(req.params.id);
+    res.status(201).send(orderItemsDelete)
+  } catch (error) {
+    res.status(404).send({ error: error.message })
+  }
+})
 
 orderItemsRoute.post('/', async (req, res) => {
   try {
@@ -11,23 +22,23 @@ orderItemsRoute.post('/', async (req, res) => {
   }
 })
 
-// favoritesRoute.get('/:id', async (req, res) => {
-//     try {
-//         const favorite = await getFavorite(req.params.id)
-//         res.status(200).send(favorite)
-//     } catch (error) {
-//         res.status(404).send({ error: error.message })
-//     }
-// })
+orderItemsRoute.get('/:id', async (req, res) => {
+  try {
+    const orderItems = await getOrderItems(req.params.id)
+    res.status(200).send(orderItems)
+  } catch (error) {
+    res.status(404).send({ error: error.message })
+  }
+})
 
-// favoritesRoute.get('/', async (req, res) => {
-//     try {
-//         const favorite = await getAllFavorites()
-//         res.status(200).send(favorite)
+orderItemsRoute.get('/', async (req, res) => {
+  try {
+    const orderItems = await getAllOrders(req.params.id)
+    res.status(200).send(orderItems)
+  } catch (error) {
+    res.status(404).send({ error: error.message })
+  }
+})
 
-//     } catch (error) {
-//         res.status(404).send({ error: error.message })
-//     }
-// })
 
 module.exports = orderItemsRoute
