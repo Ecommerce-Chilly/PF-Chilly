@@ -5,7 +5,6 @@ import App from './App';
 import store from './redux/store/store';
 import { Provider } from 'react-redux';
 import { BrowserRouter } from 'react-router-dom';
-import { Auth0Provider } from '@auth0/auth0-react'; 
 import reportWebVitals from './reportWebVitals';
 import { Auth0Provider } from "@auth0/auth0-react";
 ReactDOM.render(
