@@ -14,6 +14,8 @@ function ChangeComponent() {
   const { id } = useParams();
   const dispatch = useDispatch();
   const productDetails = useSelector((state) => state.productDetail);
+  let token = localStorage.getItem("token");
+  token = JSON.parse(token);
   const msg = useSelector((state) => state.productChangedMsg);
   const history = useHistory();
 
@@ -79,10 +81,10 @@ function ChangeComponent() {
   };
 
   function dispatchDataToChange(id, newProduct, discountt) {
-    dispatch(putProductById(id, newProduct));
-    dispatch(putInventory(id, newProduct));
+    dispatch(putProductById(id, newProduct, token));
+    dispatch(putInventory(id, newProduct, token));
     if (newProduct.discount) {
-      dispatch(putDiscount(discountt));
+      dispatch(putDiscount(discountt, token));
     }
   }
 

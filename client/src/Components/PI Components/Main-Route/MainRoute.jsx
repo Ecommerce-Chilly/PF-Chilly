@@ -24,9 +24,10 @@ function MainRoute() {
   let dispatch = useDispatch();
   React.useEffect(() => {
     const user = window.localStorage.getItem("email");
-    console.log(user);
+    let token = localStorage.getItem("token");
+    token = JSON.parse(token);
     if (user) {
-      dispatch(userSpecific(JSON.parse(user)));
+      dispatch(userSpecific(JSON.parse(user), token));
     }
   }, []);
 

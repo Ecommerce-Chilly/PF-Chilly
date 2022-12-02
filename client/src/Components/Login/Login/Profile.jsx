@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
-import { useAuth0 } from "@auth0/auth0-react";
+import { LocalStorageCache, useAuth0 } from "@auth0/auth0-react";
 import * as actions from "../../../redux/actions/actions";
 import { useDispatch } from "react-redux";
 const Profile = () => {
@@ -33,15 +33,9 @@ const Profile = () => {
     const postDb = async () => {
       await getUserMetadata();
       localStorage.setItem("email", JSON.stringify(user.email));
-      dispatch(actions.createUser({ email: user.email }));
       const token = await getAccessTokenSilently();
-      const msg = await axios("http://localhost:3001/api/private-scoped", {
-        headers: {
-          authorization: `Bearer ${token}`
-        },
-      });
-      console.log(msg);
-      console.log(user);
+      dispatch(actions.createUser({ email: user.email }, token));
+      localStorage.setItem("token", JSON.stringify(token));
     };
     postDb();
   }, [getAccessTokenSilently, user?.sub]);

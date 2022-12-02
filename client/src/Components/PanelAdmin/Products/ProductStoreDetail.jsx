@@ -11,6 +11,8 @@ import { useDispatch, useSelector } from "react-redux";
 function ProductDetail() {
   const { id } = useParams();
   const dispatch = useDispatch();
+  let token = localStorage.getItem("token");
+  token = JSON.parse(token);
   const produDetail = useSelector((state) => state.productDetail);
   const failMsg = useSelector((state) => state.searchProductMsg);
   const favoriteMsg = useSelector((state) => state.favoriteMsg);
@@ -79,10 +81,13 @@ function ProductDetail() {
                           <button
                             onClick={() => {
                               dispatch(
-                                addFavorite({
-                                  userId: userInfo[0].id,
-                                  productId: produDetail[0].id,
-                                })
+                                addFavorite(
+                                  {
+                                    userId: userInfo[0].id,
+                                    productId: produDetail[0].id,
+                                  },
+                                  token
+                                )
                               );
                               console.log(favoriteMsg);
                             }}

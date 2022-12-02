@@ -51,12 +51,16 @@ export const getProductById = (id) => {
   };
 };
 
-export const createProduct = (product) => {
+export const createProduct = (product, token) => {
   return async function (dispatch) {
     try {
       const createProdu = await axios.post(
         "http://localhost:3001/product",
-        product
+        product, {
+        headers: {
+          authorization: `Bearer ${token}`,
+        },
+      }
       );
       return dispatch({ type: CREATE_PRODUCT, payload: createProdu });
     } catch (error) {
@@ -65,12 +69,16 @@ export const createProduct = (product) => {
   };
 };
 
-export const createDiscount = (product) => {
+export const createDiscount = (product, token) => {
   return async function (dispatch) {
     try {
       const createDiscount = await axios.post(
         "http://localhost:3001/discount",
-        product
+        product, {
+        headers: {
+          authorization: `Bearer ${token}`,
+        },
+      }
       );
       return dispatch({ type: CREATE_DISCOUNT, payload: createDiscount.data });
     } catch (error) {
@@ -82,12 +90,16 @@ export const createDiscount = (product) => {
   };
 };
 
-export const putProductById = (id, product) => {
+export const putProductById = (id, product, token) => {
   return async function (dispatch) {
     try {
       const putProduct = await axios.put(
         `http://localhost:3001/product/${id}`,
-        product
+        product, {
+        headers: {
+          authorization: `Bearer ${token}`,
+        },
+      }
       );
       return dispatch({ type: PUT_PRODUCT, payload: putProduct.data });
     } catch (error) {
@@ -99,30 +111,42 @@ export const putProductById = (id, product) => {
   };
 };
 
-export const putInventory = (id, product) => {
+export const putInventory = (id, product, token) => {
   return async function (dispatch) {
     const putInventory = await axios.put(
       `http://localhost:3001/inventory/${id}`,
-      product
+      product, {
+      headers: {
+        authorization: `Bearer ${token}`,
+      },
+    }
     );
     return dispatch({ type: PUT_INVENTORY, payload: putInventory.data });
   };
 };
 
-export const putDiscount = (product) => {
+export const putDiscount = (product, token) => {
   return async function (dispatch) {
     const putInventory = await axios.put(
       "http://localhost:3001/discount/",
-      product
+      product, {
+      headers: {
+        authorization: `Bearer ${token}`,
+      },
+    }
     );
     return dispatch({ type: PUT_DISCOUNT, payload: putInventory.data });
   };
 };
 
-export const deleteProdut = (id) => {
+export const deleteProdut = (id, token) => {
   return async function (dispatch) {
     const deleteProduct = await axios.delete(
-      `http://localhost:3001/product/${id}`
+      `http://localhost:3001/product/${id}`, {
+      headers: {
+        authorization: `Bearer ${token}`,
+      },
+    }
     );
     return dispatch({ type: DELETE_PRODUCT, payload: deleteProduct.data });
   };
@@ -177,7 +201,11 @@ export const getProductByName = (name) => {
 export const restoreProduct = (id) => {
   return async function (dispatch) {
     let restoreProduct = await axios.put(
-      `http://localhost:3001/product/restore/${id}`
+      `http://localhost:3001/product/restore/${id}`, {
+      headers: {
+        authorization: `Bearer ${token}`,
+      },
+    }
     );
     return dispatch({ type: RESTORE_PRODUCT, payload: restoreProduct.data });
   };
@@ -205,15 +233,24 @@ export const clearCart = () => {
 
 export const getAllUsers = () => {
   return async function (dispatch) {
-    let allUsers = await axios.get("http://localhost:3001/user");
+    let allUsers = await axios.get("http://localhost:3001/user", {
+      headers: {
+        authorization: `Bearer ${token}`,
+      },
+    });
     return dispatch({ type: ALL_USERS, payload: allUsers.data });
   };
 };
 
-export const createUser = (newUser) => {
+export const createUser = (newUser, token) => {
+  console.log(token);
   return async function (dispatch) {
     try {
-      let createUser = await axios.post("http://localhost:3001/user", newUser);
+      let createUser = await axios.post("http://localhost:3001/user", newUser, {
+        headers: {
+          authorization: `Bearer ${token}`,
+        },
+      });
       return dispatch({ type: CREATE_USER, payload: createUser.data });
     } catch (error) {
       return dispatch({
@@ -224,11 +261,16 @@ export const createUser = (newUser) => {
   };
 };
 
-export const userSpecific = (userFound) => {
+export const userSpecific = (userFound, token) => {
+  console.log(token);
   return async function (dispatch) {
     try {
       let userSpeci = await axios.get(
-        `http://localhost:3001/user?email=${userFound}`);
+        `http://localhost:3001/user?email=${userFound}`, {
+        headers: {
+          authorization: `Bearer ${token}`,
+        },
+      });
       return dispatch({ type: USER_SPECIFIC, payload: userSpeci.data });
     } catch (error) {
       return dispatch({
@@ -251,10 +293,14 @@ export const updateCartQuantity = () => {
   };
 };
 
-export const addFavorite = (ids) => {
+export const addFavorite = (ids, token) => {
   return async function (dispatch) {
     try {
-      let favorite = await axios.post("http://localhost:3001/favorite", ids);
+      let favorite = await axios.post("http://localhost:3001/favorite", ids, {
+        headers: {
+          authorization: `Bearer ${token}`,
+        },
+      });
       return dispatch({ type: ADD_FAVORITE, payload: favorite.data });
     } catch (error) {
       return dispatch({
@@ -265,11 +311,15 @@ export const addFavorite = (ids) => {
   };
 };
 
-export const getFavorites = (userId) => {
+export const getFavorites = (userId, token) => {
   return async function (dispatch) {
     try {
       let favorites = await axios.get(
-        `http://localhost:3001/favorite/${userId}`
+        `http://localhost:3001/favorite/${userId}`, {
+        headers: {
+          authorization: `Bearer ${token}`,
+        },
+      }
       );
       return dispatch({ type: GET_FAVORITES, payload: favorites.data });
     } catch (error) {
@@ -295,12 +345,16 @@ export const decreaseProductQuantity = (id) => {
   };
 };
 
-export const deleteFavorite = (ids) => {
+export const deleteFavorite = (ids, token) => {
   return async function (dispatch) {
     try {
       console.log(ids);
       let favorite2 = await axios.delete(
-        `http://localhost:3001/favorite/${ids.userId}/${ids.productId}`
+        `http://localhost:3001/favorite/${ids.userId}/${ids.productId}`, {
+        headers: {
+          authorization: `Bearer ${token}`,
+        },
+      }
       );
       return dispatch({ type: DELETE_FAVORITE, payload: favorite2.data });
     } catch (error) {

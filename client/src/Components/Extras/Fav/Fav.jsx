@@ -7,11 +7,13 @@ function Fav() {
   let dispatch = useDispatch();
   let userInfo = useSelector((state) => state.userInfo);
   let favorites = useSelector((state) => state.favorites);
+  let token = localStorage.getItem("token");
+  token = JSON.parse(token);
 
   React.useEffect(() => {
     console.log(userInfo[0]?.id);
     if (userInfo[0]) {
-      dispatch(getFavorites(userInfo[0].id));
+      dispatch(getFavorites(userInfo[0].id, token));
     }
   }, []);
 
@@ -28,9 +30,10 @@ function Fav() {
                   deleteFavorite({
                     userId: userInfo[0].id,
                     productId: e.id,
+                    token,
                   })
                 );
-                dispatch(getFavorites(userInfo[0].id));
+                dispatch(getFavorites(userInfo[0].id, token));
               }}
             >
               X
