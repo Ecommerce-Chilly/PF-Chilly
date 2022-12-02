@@ -41,7 +41,6 @@ export const ORDER_BY_PRICE = 'ORDER_BY_PRICE';
 export const CLEAR_DELETED_PRODUCTS = 'CLEAR_DELETED_PRODUCTS';
 export const USER_ADMIN = 'USER_ADMIN';
 
-//! PRODUCTS ACTIONS --------------------------------------------------------------------
 export const getProduct = () => {
   return async function (dispatch) {
     let product = await axios.get('http://localhost:3001/product');
@@ -81,9 +80,6 @@ export const createProduct = (product, token) => {
 
 export const createDiscount = (product, token) => {
   return async function (dispatch) {
-    if (name === '') {
-      return dispatch({ type: ERROR_MSSG });
-    }
     try {
       const createDiscount = await axios.post(
         'http://localhost:3001/discount',
@@ -94,13 +90,12 @@ export const createDiscount = (product, token) => {
           },
         }
       );
-
-      return dispatch({
-        type: GET_PRODUCT_BY_NAME,
-        payload: productByName.data,
-      });
+      return dispatch({ type: CREATE_DISCOUNT, payload: createDiscount.data });
     } catch (error) {
-      return dispatch({ type: ERROR_MSSG, payload: error.response.data });
+      return dispatch({
+        type: FAIL_CREATED_MSG,
+        payload: error.response.error.data,
+      });
     }
   };
 };
@@ -138,44 +133,7 @@ export const putInventory = (id, product, token) => {
         },
       }
     );
-    return dispatch({ type: RESTORE_PRODUCT, payload: restoreProduct.data });
-  };
-};
-
-export const getProductDeleted = () => {
-  return async function (dispatch) {
-    try {
-      const allProductDelete = await axios.get(
-        'http://localhost:3001/product/deleted'
-      );
-      return dispatch({
-        type: PRODUCTS_DELETED,
-        payload: allProductDelete.data,
-      });
-    } catch (error) {
-      return dispatch({
-        type: MSG_NOT_PRODUCT_DELETED,
-        payload: error.response.data,
-      });
-    }
-  };
-};
-
-//!DISCOUNTS ACTIONS --------------------------------------------------------------------
-export const createDiscount = (product) => {
-  return async function (dispatch) {
-    try {
-      const createDiscount = await axios.post(
-        'http://localhost:3001/discount',
-        product
-      );
-      return dispatch({ type: CREATE_DISCOUNT, payload: createDiscount.data });
-    } catch (error) {
-      return dispatch({
-        type: FAIL_CREATED_MSG,
-        payload: error.response.error.data,
-      });
-    }
+    return dispatch({ type: PUT_INVENTORY, payload: putInventory.data });
   };
 };
 
@@ -204,11 +162,10 @@ export const deleteProdut = (id, token) => {
         },
       }
     );
-    return dispatch({ type: PUT_INVENTORY, payload: putInventory.data });
+    return dispatch({ type: DELETE_PRODUCT, payload: deleteProduct.data });
   };
 };
 
-//! PRODUCT CATEGORY DETAILS && FILTERS ACTIONS -----------------------------------------
 export const getCategoryDetails = (category) => {
   return async function (dispatch) {
     const categoryDetails = await axios.get(
@@ -280,12 +237,6 @@ export const deleteP = (id) => {
   return {
     type: DELETE_CART_PRODUCT,
     payload: id,
-  };
-};
-
-export const updateCartQuantity = () => {
-  return {
-    type: UPDATE_CART_QUANTITY,
   };
 };
 
@@ -432,7 +383,6 @@ export const deleteFavorite = (ids, token) => {
   };
 };
 
-//! CLEAR MSG ACTIONS --------------------------------------------------------------------
 export const clearProdMsg = () => {
   return {
     type: CLEAR_PROD_MSG,
