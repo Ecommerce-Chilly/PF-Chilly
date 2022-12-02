@@ -1,7 +1,7 @@
-import React, { useEffect, useState } from "react";
-import { useAuth0 } from "@auth0/auth0-react";
-import * as actions from "../../../redux/actions/actions";
-import { useDispatch } from "react-redux";
+import React, { useEffect, useState } from 'react';
+import { useAuth0 } from '@auth0/auth0-react';
+import * as actions from '../../../redux/actions/actions';
+import { useDispatch } from 'react-redux';
 const Profile = () => {
   const dispatch = useDispatch();
   const { user, isAuthenticated, getAccessTokenSilently } = useAuth0();
@@ -9,12 +9,12 @@ const Profile = () => {
 
   useEffect(() => {
     const getUserMetadata = async () => {
-      const domain = "dev-r6cdo8stlhgup2wx.us.auth0.com";
+      const domain = 'dev-r6cdo8stlhgup2wx.us.auth0.com';
 
       try {
         const accessToken = await getAccessTokenSilently({
           audience: `https://${domain}/api/v1/`,
-          scope: "read:client_grants",
+          scope: 'read:client_grants',
         });
         const userDetailsByIdUrl = `https://${domain}/api/v1/users/${user.sub}`;
         const metadataResponse = await fetch(userDetailsByIdUrl, {
@@ -31,7 +31,7 @@ const Profile = () => {
     };
     const postDb = async () => {
       await getUserMetadata();
-      localStorage.setItem("email", JSON.stringify(user.email));
+      localStorage.setItem('email', JSON.stringify(user.email));
       dispatch(actions.createUser({ email: user.email }));
       dispatch(actions.userSpecific(user.email));
     };
@@ -48,7 +48,7 @@ const Profile = () => {
         {userMetadata ? (
           <pre>{JSON.stringify(userMetadata, null, 2)}</pre>
         ) : (
-          "No user metadata defined"
+          'No user metadata defined'
         )}
       </div>
     )
