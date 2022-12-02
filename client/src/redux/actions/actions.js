@@ -40,6 +40,7 @@ export const EUSEBIO = "EUSEBIO";
 export const ERROR_PUT_PRODUCT = "ERROR_PUT_PRODUCT";
 export const ERROR_CREATE_USER = "ERROR_CREATE_USER";
 export const PAY = "PAY";
+export const CLEAR_PAYLINK = "CLEAR_PAYLINK";
 
 //! PRODUCTS ACTIONS --------------------------------------------------------------------
 export const getProduct = () => {
@@ -288,7 +289,8 @@ export const userSpecific = (userFound) => {
   return async function (dispatch) {
     try {
       let userSpeci = await axios.get(
-        `http://localhost:3001/user?email=${userFound}`);
+        `http://localhost:3001/user?email=${userFound}`
+      );
       return dispatch({ type: USER_SPECIFIC, payload: userSpeci.data });
     } catch (error) {
       return dispatch({
@@ -386,5 +388,11 @@ export const pay = (payData) => {
     } catch (error) {
       console.log(error);
     }
+  };
+};
+
+export const clearPaylink = () => {
+  return {
+    type: CLEAR_PAYLINK,
   };
 };

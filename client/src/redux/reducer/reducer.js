@@ -39,6 +39,7 @@ import {
   FAIL_CREATED_MSG,
   CLEAR_DELETED_PRODUCTS,
   PAY,
+  CLEAR_PAYLINK,
 } from "../actions/actions.js";
 
 const initialState = {
@@ -347,6 +348,11 @@ const rootReducer = (state = initialState, action) => {
       return {
         ...state,
         paymentLink: action.payload["init_point"],
+      };
+    case CLEAR_PAYLINK:
+      return {
+        ...state,
+        paymentLink: "",
       };
     default:
       return state;

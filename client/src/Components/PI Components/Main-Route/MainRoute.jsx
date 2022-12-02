@@ -6,7 +6,7 @@ import Fav from "../../Extras/Fav/Fav";
 import UserInfo from "../../Login/UserInfo/UserInfo";
 import CreateComponent from "../../PanelAdmin/CreateComponent/CreateComponent";
 import ChangeComponent from "../../PanelAdmin/ChangeComponent/ChangeComponent";
-import ProductsDeleted from "../../PanelAdmin/Products/ProductsDeleted"
+import ProductsDeleted from "../../PanelAdmin/Products/ProductsDeleted";
 import Products from "../../PanelAdmin/Products/Products";
 import ProductDetail from "../../PanelAdmin/Products/ProductDetail";
 import ProductStoreDetail from "../../PanelAdmin/Products/ProductStoreDetail";
@@ -20,6 +20,7 @@ import Footer from "../Footer/Footer";
 import Register from "../../Login/Register/Register";
 import { userSpecific } from "../../../redux/actions/actions";
 import { useDispatch } from "react-redux";
+import Pagoexitoso from "../../Cart/Cart/Pagoexistoso";
 
 function MainRoute() {
   let dispatch = useDispatch();
@@ -70,10 +71,11 @@ function MainRoute() {
           path="/panel+admin/change/product/:id"
           component={ChangeComponent}
         />
+        <Route exact path="/panel+admin/deleted" component={ProductsDeleted} />
         <Route
           exact
-          path="/panel+admin/deleted"
-          component={ProductsDeleted}
+          path="/pagoexitosisimojodermecagoento"
+          component={Pagoexitoso}
         />
       </div>
       <div>

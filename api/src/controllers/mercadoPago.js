@@ -15,7 +15,7 @@ class PaymentController {
           picture_url: e.image,
           category_id: e.categoryName,
           quantity: e.quantity,
-          unit_price: Math.ceil(e.price),
+          unit_price: 1,
         };
       });
 
