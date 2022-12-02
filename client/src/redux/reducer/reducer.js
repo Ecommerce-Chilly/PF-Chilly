@@ -39,6 +39,8 @@ import {
   CLEAR_FAV_STATE,
   CLEAR_DELETED_PRODUCTS,
   USER_ADMIN,
+  PAY,
+  CLEAR_PAYLINK,
 } from '../actions/actions.js';
 
 const initialState = {
@@ -52,7 +54,7 @@ const initialState = {
   categoryDetails: [],
   cart: [],
   users: [],
-  userInfo: [],
+  userInfo: {},
   userNotFound: '',
   createUserMsg: '',
   quantity: 0,
@@ -60,6 +62,7 @@ const initialState = {
   favoriteMsg: '',
   msgProductDeleted: '',
   admin: false,
+  paymentLink: '',
 };
 
 const rootReducer = (state = initialState, action) => {
@@ -173,17 +176,21 @@ const rootReducer = (state = initialState, action) => {
         searchProductMsg: '',
         product: filtered2,
       };
-    case ERROR_MSSG:
-      return {
-        ...state,
-        searchProductMsg: action.payload,
-      };
-    case ERROR_PUT_PRODUCT:
-      return {
-        ...state,
-        productChangedMsg: action.payload,
-      };
-    case EUSEBIO:
+    case ORDER_BY_PRICE:
+      const orderByPrice =
+        action.payload === 'Asc'
+          ? state.product.sort((a, b) => {
+              if (a.price - b.price < 0) return 1;
+              else return -1;
+            })
+          : action.payload === 'Dsc'
+          ? state.product.sort((a, b) => {
+              if (a.price - b.price > 0) return 1;
+              else return -1;
+            })
+          : action.payload === 'default'
+          ? state.allProduct
+          : 'joder';
       return {
         ...state,
         searchProductMsg: action.payload,
@@ -337,7 +344,34 @@ const rootReducer = (state = initialState, action) => {
       );
       return {
         ...state,
-        productsDeleted: detedProduct,
+        msgProductDeleted: action.payload,
+      };
+    case USER_NOT_FOUND:
+      return {
+        ...state,
+        userNotFound: action.payload,
+      };
+    //! CLEAR MSG REDUCERS
+    case CLEAR_PROD_MSG:
+      return {
+        ...state,
+        createProductMsg: '',
+        productChangedMsg: '',
+      };
+    case CLEAR_FAV_MSG:
+      return {
+        ...state,
+        favoriteMsg: '',
+      };
+    case PAY:
+      return {
+        ...state,
+        paymentLink: action.payload['init_point'],
+      };
+    case CLEAR_PAYLINK:
+      return {
+        ...state,
+        paymentLink: '',
       };
     case USER_ADMIN:
       return {

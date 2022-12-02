@@ -1,13 +1,19 @@
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
-import { deleteP, clearCart, pay } from "../../../redux/actions/actions";
+import {
+  deleteP,
+  clearCart,
+  pay,
+  clearPaylink,
+} from "../../../redux/actions/actions";
 import CartItem from "../CartItem/CartItem";
 import Swal from "sweetalert2";
 
 function Cart() {
   const cart = useSelector((state) => state.cart);
   const paymentLink = useSelector((state) => state.paymentLink);
+  const token = localStorage.getItem("token");
   const dispatch = useDispatch();
   let [variable, setVariable] = useState(0);
 
@@ -16,6 +22,10 @@ function Cart() {
   for (let i = 0; i < cart.length; i++) {
     totalPrice = totalPrice + cart[i].price * cart[i].quantity;
   }
+
+  React.useEffect(() => {
+    dispatch(clearPaylink());
+  }, [cart, variable]);
 
   const deleteProduct = (id) => {
     dispatch(deleteP(id));
@@ -128,7 +138,10 @@ function Cart() {
                   <button
                     onClick={() => {
                       dispatch(
-                        pay({ email: "josemaelgordito@gmail.com", items: cart })
+                        pay(
+                          { email: "josemaelgordito@gmail.com", items: cart },
+                          JSON.parse(token)
+                        )
                       );
                       console.log("Juanra ripeo");
                     }}
@@ -139,9 +152,7 @@ function Cart() {
                 </Link>
               ) : (
                 <button className=" flex font-semibold  text-white border-solid bg-main border-2 border-main py-2 px-6 focus:outline-none hover:bg-blue-600 rounded hover:border-blue-600">
-                  <a href={paymentLink} target="_blank">
-                    PAY
-                  </a>
+                  <a href={paymentLink}>PAY</a>
                 </button>
               )}
             </div>

@@ -1,16 +1,16 @@
-import React, { useState, useEffect } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
-import { useHistory } from 'react-router-dom';
+import React, { useState, useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { useHistory } from "react-router-dom";
 import {
   putProductById,
   getProductById,
   putInventory,
   putDiscount,
   clearProdMsg,
-} from '../../../redux/actions/actions.js';
-import { useParams } from 'react-router-dom';
-import Swal from 'sweetalert2';
-const { validate } = require('./utils');
+} from "../../../redux/actions/actions.js";
+import { useParams } from "react-router-dom";
+import Swal from "sweetalert2";
+const { validate } = require("./utils");
 
 function ChangeComponent() {
   const { id } = useParams();
@@ -26,25 +26,25 @@ function ChangeComponent() {
   }, [dispatch, id]);
 
   const [newProduct, setNewProduct] = useState({
-    name: productDetails.length > 0 ? productDetails[0].name : '',
-    price: productDetails.length > 0 ? productDetails[0].price : '',
-    brand: productDetails.length > 0 ? productDetails[0].brand : '',
-    model: productDetails.length > 0 ? productDetails[0].model : '',
-    image: productDetails.length > 0 ? productDetails[0].image : '',
-    quantity: '',
-    category: productDetails.length > 0 ? productDetails[0].categoryName : '',
+    name: productDetails.length > 0 ? productDetails[0].name : "",
+    price: productDetails.length > 0 ? productDetails[0].price : "",
+    brand: productDetails.length > 0 ? productDetails[0].brand : "",
+    model: productDetails.length > 0 ? productDetails[0].model : "",
+    image: productDetails.length > 0 ? productDetails[0].image : "",
+    quantity: "",
+    category: productDetails.length > 0 ? productDetails[0].categoryName : "",
     details: [],
     discount:
       productDetails.length > 0
         ? productDetails[0].discountName
           ? productDetails[0].discountName
-          : ''
-        : '',
+          : ""
+        : "",
   });
   const [errors, setErrors] = useState({});
   const [discountt, setDiscountt] = useState({
     name: `${newProduct.discount}`,
-    description: '',
+    description: "",
     percent: 0,
     active: 0,
   });
@@ -67,7 +67,7 @@ function ChangeComponent() {
         [e.target.name]: e.target.value,
       })
     );
-    if (e.target.name === 'discount') {
+    if (e.target.name === "discount") {
       setDiscountt({
         ...discountt,
         name: e.target.value,
@@ -90,37 +90,38 @@ function ChangeComponent() {
     }
   }
   const creationStatusEdit = () => {
-    if (msg === 'Sending incomplete information!') {
+    console.log(msg);
+    if (msg === "Sending incomplete information!") {
       Swal.fire({
-        icon: 'error',
+        icon: "error",
         text: msg,
-        confirmButtonText: 'Retry',
+        confirmButtonText: "Retry",
         customClass: {
-          container: 'popup-container',
-          popup: 'popup',
-          confirmButton: 'confirm',
-          denyButton: 'deny',
-          cancelButton: 'cancel',
+          container: "popup-container",
+          popup: "popup",
+          confirmButton: "confirm",
+          denyButton: "deny",
+          cancelButton: "cancel",
         },
       }).then((r) => {
         dispatch(clearProdMsg());
       });
-    } else if (msg === 'Product successfully modified') {
+    } else if (msg === "Product successfully modified") {
       Swal.fire({
-        icon: 'success',
+        icon: "success",
         text: msg,
-        confirmButtonText: 'Great!',
+        confirmButtonText: "Great!",
         customClass: {
-          container: 'popup-container',
-          popup: 'popup',
-          confirmButton: 'confirm',
-          denyButton: 'deny',
-          cancelButton: 'cancel',
+          container: "popup-container",
+          popup: "popup",
+          confirmButton: "confirm",
+          denyButton: "deny",
+          cancelButton: "cancel",
         },
       }).then((r) => {
         if (r.isConfirmed) {
           dispatch(clearProdMsg());
-          history.push('/panel+admin/products');
+          history.push("/panel+admin/products");
         }
       });
     }
@@ -244,7 +245,7 @@ function ChangeComponent() {
           </select>
           {errors.brand && <p className="text-red-400 mb-4">{errors.brand}</p>}
 
-          {newProduct.brand === '' ? (
+          {newProduct.brand === "" ? (
             <>
               <label className="block mb-2 text-sm font-medium text-gray-900">
                 New model:

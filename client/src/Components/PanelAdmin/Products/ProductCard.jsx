@@ -36,7 +36,7 @@ function ProductCard(props) {
     }).then((result) => {
       /* Read more about isConfirmed, isDenied below */
       if (result.isConfirmed) {
-        dispatchToDeleteProduct(id, token);
+        dispatchToDeleteProduct(id);
       }
     });
   };

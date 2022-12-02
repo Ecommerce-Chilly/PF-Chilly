@@ -3,7 +3,6 @@ const axios = require("axios");
 class PaymentService {
   async createPayment(variable) {
     const url = "https://api.mercadopago.com/checkout/preferences";
-    console.log(variable);
     // [
     //   {
     //     title: "Dummy Title",
@@ -20,7 +19,7 @@ class PaymentService {
       back_urls: {
         failure: "/failure",
         pending: "/pending",
-        success: "localhost:3001/home",
+        success: "localhost:3000/pagoexitosisimojodermecagoento",
       },
     };
     const payment = await axios.post(url, body, {

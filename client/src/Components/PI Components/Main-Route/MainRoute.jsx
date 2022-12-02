@@ -26,6 +26,8 @@ import {
 } from "../../../redux/actions/actions";
 import { useDispatch } from "react-redux";
 import Ejemplo from "../../Login/Login/Ejemplo";
+import Pagoexitoso from "../../Cart/Cart/Pagoexistoso";
+
 function MainRoute() {
   let dispatch = useDispatch();
   const createdAndSearch = async (user, token) => {
@@ -85,6 +87,11 @@ function MainRoute() {
           component={ChangeComponent}
         />
         <Route exact path="/panel+admin/deleted" component={ProductsDeleted} />
+        <Route
+          exact
+          path="/pagoexitosisimojodermecagoento"
+          component={Pagoexitoso}
+        />
       </div>
       <div>
         <Footer />

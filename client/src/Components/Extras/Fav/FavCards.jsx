@@ -37,14 +37,14 @@ function FavCards(props) {
               dispatch(
                 deleteFavorite(
                   {
-                    userId: userInfo[0].id,
+                    userId: userInfo.id,
                     productId: props.id,
                   },
                   token
                 )
               );
               dispatch(clearFavMsg());
-              dispatch(getFavorites(userInfo[0].id, token));
+              dispatch(getFavorites(userInfo.id, token));
             }}
             className="text-main font-semibold rounded px-3 py-1"
           >
