@@ -75,6 +75,7 @@ function CreateComponent() {
   }
 
   const creationStatus = () => {
+    console.log(msg);
     if (msg.error) {
       Swal.fire({
         icon: "error",

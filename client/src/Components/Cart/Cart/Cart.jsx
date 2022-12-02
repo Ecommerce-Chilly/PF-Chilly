@@ -13,6 +13,7 @@ import Swal from "sweetalert2";
 function Cart() {
   const cart = useSelector((state) => state.cart);
   const paymentLink = useSelector((state) => state.paymentLink);
+  const token = localStorage.getItem("token");
   const dispatch = useDispatch();
   let [variable, setVariable] = useState(0);
 
@@ -137,7 +138,10 @@ function Cart() {
                   <button
                     onClick={() => {
                       dispatch(
-                        pay({ email: "josemaelgordito@gmail.com", items: cart })
+                        pay(
+                          { email: "josemaelgordito@gmail.com", items: cart },
+                          JSON.parse(token)
+                        )
                       );
                       console.log("Juanra ripeo");
                     }}

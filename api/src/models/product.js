@@ -29,7 +29,7 @@ module.exports = (sequelize) => {
       },
       image: {
         type: DataTypes.STRING,
-        defaultValue: "https://www.gastroactitud.com/wp-content/uploads/2018/12/OstrasAmlie.jpg",
+        defaultValue: "https://www.rastanley.com.au/img/products/NoImageLarge.png",
       },
       details: {
         type: DataTypes.ARRAY(DataTypes.JSON),
