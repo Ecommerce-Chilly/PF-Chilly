@@ -19,7 +19,7 @@ import Footer from "../Footer/Footer";
 import Register from "../../Login/Register/Register";
 import { userSpecific } from "../../../redux/actions/actions";
 import { useDispatch } from "react-redux";
-
+import Ejemplo from "../../Login/Login/Ejemplo";
 function MainRoute() {
   let dispatch = useDispatch();
   React.useEffect(() => {
@@ -36,6 +36,7 @@ function MainRoute() {
         <Navbar />
       </div>
       <div>
+        <Route exact path="/ejemplo" component={Ejemplo} />
         <Route exact path="/cart" component={Cart} />
         <Route exact path="/user/favorites" component={Fav} />
         <Route exact path="/user/info" component={UserInfo} />
