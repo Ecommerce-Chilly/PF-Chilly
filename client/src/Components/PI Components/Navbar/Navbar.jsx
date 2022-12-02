@@ -124,6 +124,14 @@ function Navbar() {
                 PA - Create Product
               </Link>
             </li>
+            <li>
+              <Link
+                to="/panel+admin/deleted"
+                className="hover:underline"
+              >
+                PA - Product Deleted
+              </Link>
+            </li>
           </ul>
         </div>
       </nav>

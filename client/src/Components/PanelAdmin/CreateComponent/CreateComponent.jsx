@@ -4,7 +4,10 @@ import { useHistory } from "react-router-dom";
 import {
   createProduct,
   createDiscount,
+  clearProdMsg,
 } from "../../../redux/actions/actions.js";
+import Swal from "sweetalert2";
+
 const { validate } = require("../ChangeComponent/utils");
 
 function CreateComponent() {
@@ -71,6 +74,42 @@ function CreateComponent() {
     dispatch(createDiscount(newProduct, token));
   }
 
+  const creationStatus = () => {
+    if (msg.error) {
+      Swal.fire({
+        icon: "error",
+        text: msg.error,
+        confirmButtonText: "Retry",
+        customClass: {
+          container: "popup-container",
+          popup: "popup",
+          confirmButton: "confirm",
+          denyButton: "deny",
+          cancelButton: "cancel",
+        },
+      }).then((r) => {
+        dispatch(clearProdMsg());
+      });
+    } else if (msg.statusText) {
+      Swal.fire({
+        icon: "success",
+        text: msg.statusText,
+        confirmButtonText: "Great!",
+        customClass: {
+          container: "popup-container",
+          popup: "popup",
+          confirmButton: "confirm",
+          denyButton: "deny",
+          cancelButton: "cancel",
+        },
+      }).then((r) => {
+        if (r.isConfirmed) {
+          history.push("/panel+admin/products");
+        }
+      });
+    }
+  };
+
   return (
     <div className="w-2/3 m-auto mb-9">
       <form
@@ -78,7 +117,8 @@ function CreateComponent() {
           e.preventDefault();
           dispatchDataToCreate(newProduct);
           dispatchDataToDiscount(discountt);
-          setTimeout(() => history.push("/panel+admin/products"), 3000);
+
+          //setTimeout(() => history.push('/panel+admin/products'), 3000);
         }}
         className="w-2/3 m-auto mt-9"
       >
@@ -275,7 +315,7 @@ function CreateComponent() {
           Product stock:
         </label>
         <input
-          type="text"
+          type="number"
           name="quantity"
           value={newProduct.quantity}
           onChange={handleChange}
@@ -347,6 +387,7 @@ function CreateComponent() {
               type="submit"
               disabled
               className=" font-semibold  text-white border-solid bg-blue-900 border-2 border-blue-900 py-2 px-6 focus:outline-none  rounded "
+              onClick={creationStatus()}
             ></input>
           ) : errors.name ||
             errors.price ||
@@ -357,16 +398,18 @@ function CreateComponent() {
               type="submit"
               disabled
               className=" font-semibold  text-white border-solid bg-blue-900 border-2 border-blue-900 py-2 px-6 focus:outline-none  rounded "
+              onClick={creationStatus()}
             ></input>
           ) : (
             <input
               type="submit"
               className="cursor-pointer font-semibold  text-white border-solid bg-main border-2 border-main py-2 px-6 focus:outline-none hover:bg-blue-600 rounded hover:border-blue-600"
+              onClick={creationStatus()}
             ></input>
           )}
         </div>
       </form>
-      {msg.error ? (
+      {/* {msg.error ? (
         <div className="absolute rounded-lg text-slate-800 font-display  ">
           <h2 className="fixed top-1/2 left-auto ml-60 text-2xl py-16 bg-red-400 rounded-lg px-8 ">
             {msg.error}
@@ -380,7 +423,7 @@ function CreateComponent() {
         </div>
       ) : (
         <></>
-      )}
+      )} */}
     </div>
   );
 }

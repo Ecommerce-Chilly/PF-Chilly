@@ -1,17 +1,17 @@
-import React, { useEffect, useState } from "react";
-import { useDispatch, useSelector } from "react-redux";
+import React, { useEffect, useState } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 import {
   getCategoryDetails,
   filter1,
   filterbyDetails,
   getProduct,
-} from "../../../redux/actions/actions.js";
-import store from "../../../redux/store/store";
-import SearchBar from "../SearchBar/SearchBar";
+  orderByPrice,
+} from '../../../redux/actions/actions.js';
+import store from '../../../redux/store/store';
 
 function Filters() {
   let [details, setDetails] = useState({});
-  let [category, setCategory] = useState("");
+  let [category, setCategory] = useState('');
   let [inputs, setInputs] = useState([]);
   let dispatch = useDispatch();
   let categoryDetails = useSelector((state) => state.categoryDetails);
@@ -28,7 +28,7 @@ function Filters() {
       let categoryDetail = store.getState().categoryDetails;
       for (const element in categoryDetail) {
         console.log(element);
-        if (element !== "name") {
+        if (element !== 'name') {
           setInputs((oldArray) => [...oldArray, element]);
         }
       }
@@ -41,24 +41,51 @@ function Filters() {
     dispatch(getProduct());
   }
 
+  function handleFilterByPrice(event) {
+    event.preventDefault();
+    dispatch(orderByPrice(event.target.value));
+  }
+
   return (
     <>
       <div className="bg-slate-200 w-60 pl-5 pt-8 h-full min-h-screen">
-        <h3 className="text-2xl uppercase font-medium mb-4 text-slate-800">
-          Category
+        <h3 className="text-2xl uppercase font-medium mb-4 text-slate-800 font-display">
+          Filters
         </h3>
+        <div className="mb-7">
+          <h2 className="mb-2 font-medium uppercase text-sm text-slate-800 font-display">
+            Sort by price
+          </h2>
+          <select
+            onChange={(event) => handleFilterByPrice(event)}
+            className="border-solid border-black bg-white rounded w-11/12 h-7 text-slate-800"
+          >
+            <option key="default" value="default">
+              Price
+            </option>
+            <option key="Asc" value="Asc">
+              Ascending
+            </option>
+            <option key="Dsc" value="Dsc">
+              Descending
+            </option>
+          </select>
+        </div>
         <div>
           <button
             onClick={(event) => {
               handleClearFilters(event);
-              setCategory("");
+              setCategory('');
               setInputs([]);
             }}
-            className=" absolute left-40 ml-1 top-40 z-10 border-solid border-main rounded border-2 px-2.5"
+            className=" absolute left-40 ml-1 top-44 z-10 border-solid border-main rounded border-2 px-2.5"
           >
             Reset
           </button>
         </div>
+        <h3 className="mb-2 font-medium uppercase text-sm text-slate-800 font-display">
+          Category
+        </h3>
         <select
           className="border-solid border-black bg-white rounded w-11/12 h-7 text-slate-800"
           value={category}

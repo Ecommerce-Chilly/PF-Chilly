@@ -31,24 +31,33 @@ import {
   INCREASE_PRODUCT_QUANTITY,
   DECREASE_PRODUCT_QUANTITY,
   DELETE_FAVORITE,
-} from "../actions/actions.js";
+  CLEAR_PROD_MSG,
+  PRODUCTS_DELETED,
+  MSG_NOT_PRODUCT_DELETED,
+  ORDER_BY_PRICE,
+  CLEAR_FAV_MSG,
+  CLEAR_FAV_STATE,
+  CLEAR_DELETED_PRODUCTS,
+} from '../actions/actions.js';
 
 const initialState = {
   product: [],
   allProduct: [],
   productDetail: [],
-  createProductMsg: "",
-  productChangedMsg: "",
-  searchProductMsg: "",
+  productsDeleted: [],
+  createProductMsg: '',
+  productChangedMsg: '',
+  searchProductMsg: '',
   categoryDetails: [],
   cart: [],
   users: [],
   userInfo: [],
-  userNotFound: "",
-  createUserMsg: "",
+  userNotFound: '',
+  createUserMsg: '',
   quantity: 0,
   favorites: [],
-  favoriteMsg: "",
+  favoriteMsg: '',
+  msgProductDeleted: '',
 };
 
 const rootReducer = (state = initialState, action) => {
@@ -58,9 +67,9 @@ const rootReducer = (state = initialState, action) => {
         ...state,
         product: action.payload,
         allProduct: action.payload,
-        createProductMsg: "",
-        searchProductMsg: "",
-        productChangedMsg: "",
+        createProductMsg: '',
+        searchProductMsg: '',
+        productChangedMsg: '',
       };
 
     case GET_PRODUCT_BY_ID:
@@ -72,6 +81,7 @@ const rootReducer = (state = initialState, action) => {
       return {
         ...state,
         product: action.payload,
+        searchProductMsg: '',
       };
 
     case CREATE_PRODUCT:
@@ -102,6 +112,16 @@ const rootReducer = (state = initialState, action) => {
         ...state,
         productDeletedMsg: action.payload,
       };
+    case PRODUCTS_DELETED:
+      return {
+        ...state,
+        productsDeleted: action.payload,
+      };
+    case MSG_NOT_PRODUCT_DELETED:
+      return {
+        ...state,
+        msgProductDeleted: action.payload,
+      };
     case FAIL_CREATED_MSG:
       return {
         ...state,
@@ -122,12 +142,12 @@ const rootReducer = (state = initialState, action) => {
       let temporal = state.allProduct;
       let filtered = temporal.filter((e) => e.categoryName === action.payload);
 
-      if (action.payload === "") {
+      if (action.payload === '') {
         filtered = state.allProduct;
       }
       return {
         ...state,
-        searchProductMsg: "",
+        searchProductMsg: '',
         product: filtered,
       };
     case FILTER_BY_DETAILS:
@@ -137,7 +157,7 @@ const rootReducer = (state = initialState, action) => {
         (e) => e.categoryName === action.payload[0]
       );
 
-      if (action.payload[0] === "") {
+      if (action.payload[0] === '') {
         filtered2 = state.allProduct;
       }
 
@@ -148,7 +168,7 @@ const rootReducer = (state = initialState, action) => {
       }
       return {
         ...state,
-        searchProductMsg: "",
+        searchProductMsg: '',
         product: filtered2,
       };
     case ERROR_MSSG:
@@ -204,14 +224,14 @@ const rootReducer = (state = initialState, action) => {
       return {
         ...state,
         users: action.payload,
-        createUserMsg: "",
+        createUserMsg: '',
       };
 
     case CREATE_USER:
       return {
         ...state,
         createUserMsg: action.payload,
-        userNotFound: "",
+        userNotFound: '',
       };
     case ERROR_CREATE_USER:
       return {
@@ -222,7 +242,7 @@ const rootReducer = (state = initialState, action) => {
       return {
         ...state,
         userInfo: action.payload,
-        createUserMsg: "",
+        createUserMsg: '',
       };
     case USER_NOT_FOUND:
       return {
@@ -265,11 +285,57 @@ const rootReducer = (state = initialState, action) => {
       if (product2.quantity > 1) {
         product2.quantity = product2.quantity - 1;
       }
-
+      let cartQuantity1 = 0;
+      for (let i = 0; i < state.cart.length; i++) {
+        cartQuantity1 = cartQuantity1 + state.cart[i].quantity;
+      }
       return {
         ...state,
-        quantity:
-          state.quantity > 1 ? state.quantity - 1 : (state.quantity = 1),
+        quantity: cartQuantity1,
+      };
+    case CLEAR_PROD_MSG:
+      return {
+        ...state,
+        createProductMsg: '',
+        productChangedMsg: '',
+      };
+    case ORDER_BY_PRICE:
+      const orderByPrice =
+        action.payload === 'Asc'
+          ? state.product.sort((a, b) => {
+              if (a.price - b.price < 0) return 1;
+              else return -1;
+            })
+          : action.payload === 'Dsc'
+          ? state.product.sort((a, b) => {
+              if (a.price - b.price > 0) return 1;
+              else return -1;
+            })
+          : action.payload === 'default'
+          ? state.allProduct
+          : 'joder';
+      return {
+        ...state,
+        state: orderByPrice,
+      };
+
+    case CLEAR_FAV_MSG:
+      return {
+        ...state,
+        favoriteMsg: '',
+      };
+    case CLEAR_FAV_STATE:
+      return {
+        ...state,
+        favorites: [],
+      };
+    case CLEAR_DELETED_PRODUCTS:
+      let detedProduct = state.productsDeleted.filter(
+        (e) => e.id !== action.payload
+      );
+      return {
+        ...state,
+        productsDeleted: detedProduct,
       };
     default:
       return state;
