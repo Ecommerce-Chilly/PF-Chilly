@@ -202,19 +202,11 @@
 // }
 // export default Login;
 
-<<<<<<< HEAD
-import React from 'react';
-import { useAuth0 } from '@auth0/auth0-react';
-import LoginButton from './LoginButton';
-import LogoutButton from './LogoutButton';
-import Profile from './Profile';
-=======
 import React from "react";
 import { useAuth0 } from "@auth0/auth0-react";
 import LoginButton from "./LoginButton";
 import LogoutButton from "./LogoutButton";
 import Profile from "./Profile";
->>>>>>> 85bba6c8235dc352a4a1435fb752194aef41d203
 
 function Login() {
   const { isAuthenticated, isLoading } = useAuth0();
