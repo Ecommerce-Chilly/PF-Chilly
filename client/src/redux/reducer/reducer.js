@@ -38,6 +38,7 @@ import {
   CLEAR_FAV_MSG,
   CLEAR_FAV_STATE,
   CLEAR_DELETED_PRODUCTS,
+  USER_ADMIN
 } from '../actions/actions.js';
 
 const initialState = {
@@ -58,6 +59,7 @@ const initialState = {
   favorites: [],
   favoriteMsg: '',
   msgProductDeleted: '',
+  admin: false
 };
 
 const rootReducer = (state = initialState, action) => {
@@ -303,17 +305,17 @@ const rootReducer = (state = initialState, action) => {
       const orderByPrice =
         action.payload === 'Asc'
           ? state.product.sort((a, b) => {
-              if (a.price - b.price < 0) return 1;
-              else return -1;
-            })
+            if (a.price - b.price < 0) return 1;
+            else return -1;
+          })
           : action.payload === 'Dsc'
-          ? state.product.sort((a, b) => {
+            ? state.product.sort((a, b) => {
               if (a.price - b.price > 0) return 1;
               else return -1;
             })
-          : action.payload === 'default'
-          ? state.allProduct
-          : 'joder';
+            : action.payload === 'default'
+              ? state.allProduct
+              : 'joder';
       return {
         ...state,
         state: orderByPrice,
@@ -337,6 +339,11 @@ const rootReducer = (state = initialState, action) => {
         ...state,
         productsDeleted: detedProduct,
       };
+    case USER_ADMIN:
+      return {
+        ...state,
+        admin: action.payload
+      }
     default:
       return state;
   }

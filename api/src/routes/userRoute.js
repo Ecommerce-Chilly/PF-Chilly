@@ -7,14 +7,8 @@ const { checkJwt, checkScopes } = require('../middleware/oAuth')
 const userRoute = Router();
 userRoute.get("/", checkJwt, async (req, res) => {
   try {
-    let { id, email } = req.query;
-    if (id) {
-      id = Number(id);
-      if (isNaN(id)) return res.status(406).send({ error: "Not Acceptable, id is not a number" })
-      const user = await getUser(id, email)
-      return res.status(200).send(user)
-    }
-    const users = await getUser()
+    let { email } = req.query;
+    const users = await getUser(email)
     return res.send(users)
   } catch (error) {
     return res.status(404).send({ error: error })
@@ -32,18 +26,20 @@ userRoute.delete('/:id', checkJwt, async (req, res) => {
 
 userRoute.post('/', checkJwt, async (req, res) => {
   try {
+    const { email } = req.body
+    console.log(email);
     const userCreate = await postUser(req.body);
     res.status(201).send(userCreate);
   } catch (error) {
     res.status(404).send({ error: error });
   }
 });
-userRoute.put('/admin', checkJwt, checkScopes, async (req, res) => {
+userRoute.get('/admin', checkJwt, checkScopes, async (req, res) => {
   try {
     const msg = await userAdmin(req.query)
     res.send(msg)
   } catch (error) {
-    res.status(400).send(false)
+    res.status(400).send(error)
   }
 })
 

@@ -1,23 +1,25 @@
-import React, { useEffect } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
-import { getProductDeleted } from '../../../redux/actions/actions';
-import ProductCardToDelete from '../../PanelAdmin/Products/ProductCardToDelete';
-import { Link } from 'react-router-dom';
+import React, { useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { getProductDeleted } from "../../../redux/actions/actions";
+import ProductCardToDelete from "../../PanelAdmin/Products/ProductCardToDelete";
+import { Link } from "react-router-dom";
 
 function ProductsDeleted() {
   const dispatch = useDispatch();
+  let token = localStorage.getItem("token");
+  token = JSON.parse(token);
   const productDeleted = useSelector((state) => state.productsDeleted);
   const msgErrorDelet = useSelector((state) => state.msgProductDeleted);
 
   useEffect(() => {
-    dispatch(getProductDeleted());
+    dispatch(getProductDeleted(token));
   }, [dispatch]);
 
   console.log(productDeleted);
 
   return (
     <div>
-      {' '}
+      {" "}
       <h1 className="text-slate-800 text-3xl font-display font-semibold mt-12 ml-60 mb-9">
         Deleted products:
       </h1>

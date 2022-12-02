@@ -39,6 +39,7 @@ export const PRODUCTS_DELETED = 'PRODUCTS_DELETED';
 export const MSG_NOT_PRODUCT_DELETED = 'MSG_NOT_PRODUCT_DELETED';
 export const ORDER_BY_PRICE = 'ORDER_BY_PRICE';
 export const CLEAR_DELETED_PRODUCTS = 'CLEAR_DELETED_PRODUCTS';
+export const USER_ADMIN = 'USER_ADMIN';
 
 export const getProduct = () => {
   return async function (dispatch) {
@@ -205,7 +206,7 @@ export const getProductByName = (name) => {
   };
 };
 
-export const restoreProduct = (id) => {
+export const restoreProduct = (id, token) => {
   return async function (dispatch) {
     let restoreProduct = await axios.put(
       `http://localhost:3001/product/restore/${id}`, {
@@ -238,7 +239,7 @@ export const clearCart = () => {
   };
 };
 
-export const getAllUsers = () => {
+export const getAllUsers = (token) => {
   return async function (dispatch) {
     let allUsers = await axios.get("http://localhost:3001/user", {
       headers: {
@@ -250,7 +251,6 @@ export const getAllUsers = () => {
 };
 
 export const createUser = (newUser, token) => {
-  console.log(token);
   return async function (dispatch) {
     try {
       let createUser = await axios.post("http://localhost:3001/user", newUser, {
@@ -269,7 +269,6 @@ export const createUser = (newUser, token) => {
 };
 
 export const userSpecific = (userFound, token) => {
-  console.log(token);
   return async function (dispatch) {
     try {
       let userSpeci = await axios.get(
@@ -379,11 +378,15 @@ export const clearProdMsg = () => {
   };
 };
 
-export const getProductDeleted = () => {
+export const getProductDeleted = (token) => {
   return async function (dispatch) {
     try {
       const allProductDelete = await axios.get(
-        'http://localhost:3001/product/deleted'
+        'http://localhost:3001/product/deleted', {
+        headers: {
+          authorization: `Bearer ${token}`,
+        },
+      }
       );
       return dispatch({
         type: PRODUCTS_DELETED,
@@ -421,3 +424,22 @@ export const clearDeleted = (payload) => {
     payload: payload,
   };
 };
+export const userAdmin = (user, token) => {
+  return async function (dispatch) {
+    axios.get(`http://localhost:3001/user/admin?email=${user}`, {
+      headers: {
+        authorization: `Bearer ${token}`,
+      },
+    }).then(data => {
+      return dispatch({
+        type: USER_ADMIN,
+        payload: data.data
+      }).catch(error => {
+        return dispatch({
+          type: USER_NOT_FOUND,
+          payload: error.response.data.error,
+        })
+      })
+    })
+  }
+}
