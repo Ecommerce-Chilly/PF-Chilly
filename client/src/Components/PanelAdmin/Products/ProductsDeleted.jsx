@@ -15,7 +15,6 @@ function ProductsDeleted() {
     dispatch(getProductDeleted(token));
   }, [dispatch]);
 
-  console.log(productDeleted);
 
   return (
     <div>

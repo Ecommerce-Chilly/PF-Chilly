@@ -20,7 +20,6 @@ router.use("/Guillo", async (req, res, next) => {
 });
 
 router.use("/product", productRoute);
-// router.use("/category", categoryRoute);
 router.use("/discount", discountsRoute);
 router.use("/inventory", inventoryRoute);
 router.use("/categoryDetails", detailsCategoryRoute);

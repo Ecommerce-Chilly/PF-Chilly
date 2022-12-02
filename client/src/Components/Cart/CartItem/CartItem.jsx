@@ -1,10 +1,10 @@
-import React from 'react';
-import { useDispatch, useSelector } from 'react-redux';
+import React from "react";
+import { useDispatch, useSelector } from "react-redux";
 import {
   deleteP,
   increaseProductQuantity,
   decreaseProductQuantity,
-} from '../../../redux/actions/actions';
+} from "../../../redux/actions/actions";
 
 function CartItem({ name, quantity, price, image, id, changeVariable }) {
   const dispatch = useDispatch();
@@ -15,7 +15,6 @@ function CartItem({ name, quantity, price, image, id, changeVariable }) {
 
   React.useEffect(() => {
     changeVariable(storeQuantity);
-    console.log('Juanra ripeo');
   }, [storeQuantity]);
 
   return (
@@ -23,7 +22,7 @@ function CartItem({ name, quantity, price, image, id, changeVariable }) {
       <div class="flex justify-between items-center h-52 w-full">
         <div class="flex  items-center   h-full w-3/4  mr-4 ">
           <div className="h-full w-60 ">
-            <img src={image.replace('SL75', 'SL500')} class=" h-full m-auto" />
+            <img src={image.replace("SL75", "SL500")} class=" h-full m-auto" />
           </div>
           <div class="flex flex-col ml-3 w-3/5">
             <span class="md:text-md font-medium">{name}</span>
