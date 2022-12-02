@@ -52,7 +52,7 @@ const initialState = {
   categoryDetails: [],
   cart: [],
   users: [],
-  userInfo: [],
+  userInfo: {},
   userNotFound: '',
   createUserMsg: '',
   quantity: 0,

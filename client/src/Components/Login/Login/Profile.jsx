@@ -35,10 +35,6 @@ const Profile = () => {
       localStorage.setItem("email", JSON.stringify(user.email));
       const token = await getAccessTokenSilently();
       localStorage.setItem("token", JSON.stringify(token));
-    };
-    postDb();
-    return () => {
-      console.log("hola pa");
       async function create() {
         const token = await getAccessTokenSilently();
         await dispatch(actions.createUser({ email: user.email }, token));
@@ -47,6 +43,7 @@ const Profile = () => {
       }
       create();
     };
+    postDb();
   }, [getAccessTokenSilently, user?.sub]);
 
   return (
