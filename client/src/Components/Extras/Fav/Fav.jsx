@@ -10,10 +10,11 @@ function Fav() {
   const userInfo = useSelector((state) => state.userInfo);
   const favorites = useSelector((state) => state.favorites);
   const favoriteMsg = useSelector((state) => state.favoriteMsg);
-
+ let token = localStorage.getItem("token");
+  token = JSON.parse(token);
   React.useEffect(() => {
     if (userInfo[0]) {
-      dispatch(getFavorites(userInfo[0].id));
+      dispatch(getFavorites(userInfo[0].id, token));
     }
     return () => {
       dispatch(clearFavMsg());

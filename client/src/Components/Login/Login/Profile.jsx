@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
-import { useAuth0 } from '@auth0/auth0-react';
+import axios from 'axios';
+import { LocalStorageCache, useAuth0 } from '@auth0/auth0-react';
 import * as actions from '../../../redux/actions/actions';
 import { useDispatch } from 'react-redux';
 const Profile = () => {
@@ -32,10 +33,20 @@ const Profile = () => {
     const postDb = async () => {
       await getUserMetadata();
       localStorage.setItem('email', JSON.stringify(user.email));
-      dispatch(actions.createUser({ email: user.email }));
-      dispatch(actions.userSpecific(user.email));
+      const token = await getAccessTokenSilently();
+      localStorage.setItem('token', JSON.stringify(token));
     };
     postDb();
+    return () => {
+      console.log('hola pa');
+      async function create() {
+        const token = await getAccessTokenSilently();
+        await dispatch(actions.createUser({ email: user.email }, token));
+        await dispatch(actions.userSpecific(user.email, token));
+        await dispatch(actions.userAdmin(user.email, token));
+      }
+      create();
+    };
   }, [getAccessTokenSilently, user?.sub]);
 
   return (

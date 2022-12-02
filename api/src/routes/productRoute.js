@@ -8,17 +8,8 @@ const { putProducts } = require('../controllers/product/putProducts');
 const { deleteProduct } = require('../controllers/product/deleteProduct');
 const { restoreProduct } = require('../controllers/product/restoreProduct');
 const productRoute = Router();
-const { auth, requiredScopes } = require('express-oauth2-jwt-bearer');
-const checkJwt = auth({
-  audience: 'https://chillydev-arg/api/v1/',
-  issuerBaseURL: `https://dev-r6cdo8stlhgup2wx.us.auth0.com/`,
-});
-const scopes = requiredScopes(
-  'create: create_product',
-  'delete: delete_product',
-  'update: update_product'
-);
-productRoute.post('/', checkJwt, scopes, async (req, res) => {
+const { checkJwt, checkScopes } = require('../middleware/oAuth');
+productRoute.post('/', checkJwt, checkScopes, async (req, res) => {
   try {
     const productCreate = await postProduct(req.body);
     res.status(201).send(productCreate);
@@ -26,7 +17,7 @@ productRoute.post('/', checkJwt, scopes, async (req, res) => {
     res.status(400).send({ error: error });
   }
 });
-productRoute.delete('/:id', checkJwt, scopes, async (req, res) => {
+productRoute.delete('/:id', checkJwt, checkScopes, async (req, res) => {
   try {
     let { id } = req.params;
     id = Number(id);
@@ -49,7 +40,7 @@ productRoute.get('/', async (req, res) => {
     res.status(400).send({ error: error });
   }
 });
-productRoute.get('/deleted', checkJwt, scopes, async (req, res) => {
+productRoute.get('/deleted', checkJwt, checkScopes, async (req, res) => {
   try {
     const products = await getProductsDeleted();
     res.send(products);
@@ -68,7 +59,7 @@ productRoute.get('/:id', async (req, res) => {
     res.status(400).send({ error: error });
   }
 });
-productRoute.put('/:id', checkJwt, scopes, async (req, res) => {
+productRoute.put('/:id', checkJwt, checkScopes, async (req, res) => {
   try {
     let { id } = req.params;
     id = Number(id);
@@ -79,7 +70,7 @@ productRoute.put('/:id', checkJwt, scopes, async (req, res) => {
     res.status(400).send({ error: error });
   }
 });
-productRoute.put('/restore/:id', checkJwt, scopes, async (req, res) => {
+productRoute.put('/restore/:id', checkJwt, checkScopes, async (req, res) => {
   try {
     let { id } = req.params;
     id = Number(id);

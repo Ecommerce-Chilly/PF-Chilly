@@ -1,14 +1,16 @@
-import React from 'react';
-import { Link } from 'react-router-dom';
+import React from "react";
+import { Link } from "react-router-dom";
 import {
   getFavorites,
   deleteFavorite,
   clearFavMsg,
-} from '../../../redux/actions/actions';
-import { useDispatch, useSelector } from 'react-redux';
+} from "../../../redux/actions/actions";
+import { useDispatch, useSelector } from "react-redux";
 
 function FavCards(props) {
   let userInfo = useSelector((state) => state.userInfo);
+  let token = localStorage.getItem("token");
+  token = JSON.parse(token);
   let dispatch = useDispatch();
 
   return (
@@ -25,7 +27,7 @@ function FavCards(props) {
           </h2>
           <img
             className="m-auto h-40"
-            src={props.image.replace('SL75', 'SL500')}
+            src={props.image.replace("SL75", "SL500")}
             alt={props.name}
           />
         </Link>
@@ -33,13 +35,16 @@ function FavCards(props) {
           <button
             onClick={() => {
               dispatch(
-                deleteFavorite({
-                  userId: userInfo[0].id,
-                  productId: props.id,
-                })
+                deleteFavorite(
+                  {
+                    userId: userInfo[0].id,
+                    productId: props.id,
+                  },
+                  token
+                )
               );
               dispatch(clearFavMsg());
-              dispatch(getFavorites(userInfo[0].id));
+              dispatch(getFavorites(userInfo[0].id, token));
             }}
             className="text-main font-semibold rounded px-3 py-1"
           >
