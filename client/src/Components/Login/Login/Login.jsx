@@ -212,12 +212,7 @@ import './popUp.css';
 function Login() {
   const { isAuthenticated, isLoading } = useAuth0();
   if (isLoading) return <h1>Loading...</h1>;
-  return (
-    <div>
-      {isAuthenticated ? <LogoutButton /> : <LoginButton />}
-      <Profile />
-    </div>
-  );
+  return <div>{isAuthenticated ? <Profile /> : <LoginButton />}</div>;
 }
 
 export default Login;

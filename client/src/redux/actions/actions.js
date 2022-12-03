@@ -43,6 +43,7 @@ export const PAY = 'PAY';
 export const CLEAR_PAYLINK = 'CLEAR_PAYLINK';
 export const USER_ADMIN = 'USER_ADMIN';
 
+//! PRODUCTS ACTIONS --------------------------------------------------------------------
 export const getProduct = () => {
   return async function (dispatch) {
     let product = await axios.get('http://localhost:3001/product');
@@ -82,16 +83,20 @@ export const createProduct = (product, token) => {
 
 export const getProductByName = (name) => {
   return async function (dispatch) {
+    if (name === '') {
+      return dispatch({ type: ERROR_MSSG });
+    }
     try {
       let productByName = await axios.get(
         `http://localhost:3001/product?name=${name}`
       );
-      return dispatch({ type: CREATE_DISCOUNT, payload: createDiscount.data });
-    } catch (error) {
+
       return dispatch({
-        type: FAIL_CREATED_MSG,
-        payload: error.response.error.data,
+        type: GET_PRODUCT_BY_NAME,
+        payload: productByName.data,
       });
+    } catch (error) {
+      return dispatch({ type: ERROR_MSSG, payload: error.response.data });
     }
   };
 };
@@ -267,6 +272,12 @@ export const deleteP = (id) => {
   };
 };
 
+export const updateCartQuantity = () => {
+  return {
+    type: UPDATE_CART_QUANTITY,
+  };
+};
+
 export const clearCart = () => {
   return {
     type: CLEAR_CART,
@@ -432,6 +443,7 @@ export const deleteFavorite = (ids, token) => {
   };
 };
 
+//! CLEAR MSG ACTIONS --------------------------------------------------------------------
 export const clearProdMsg = () => {
   return {
     type: CLEAR_PROD_MSG,

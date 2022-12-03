@@ -15,6 +15,7 @@ function Filters() {
   let [inputs, setInputs] = useState([]);
   let dispatch = useDispatch();
   let categoryDetails = useSelector((state) => state.categoryDetails);
+  let admin = useSelector((state) => state.admin);
 
   useEffect(() => {
     dispatch(filterbyDetails(category, details));

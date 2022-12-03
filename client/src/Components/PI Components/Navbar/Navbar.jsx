@@ -1,15 +1,16 @@
-import React, { useEffect, useState } from "react";
-import { useSelector } from "react-redux";
-import { Link } from "react-router-dom";
-import SearchBar from "../SearchBar/SearchBar";
+import React, { useEffect, useState } from 'react';
+import { useSelector } from 'react-redux';
+import { Link } from 'react-router-dom';
+import SearchBar from '../SearchBar/SearchBar';
+import AdminNavbar from './AdminNavbar';
 
 function Navbar() {
   let cart = useSelector((state) => state.cart);
   let quantity = useSelector((state) => state.quantity);
-
+  let admin = useSelector((state) => state.admin);
   return (
     <>
-      <nav class="	bg-white border-gray-200 px-2  py-5  dark:bg-main static">
+      <nav class="	 border-gray-200 px-2  py-5  dark:bg-main static">
         <div class="container flex flex-wrap items-center justify-between mx-auto">
           <Link to="/home" class="flex items-center">
             <span class="self-center text-4xl font-semibold whitespace-nowrap dark:text-white font-sans">
@@ -18,7 +19,7 @@ function Navbar() {
           </Link>
           <SearchBar />
 
-          <div class="hidden w-full md:block md:w-auto" id="navbar-default">
+          <div class="w-auto" id="navbar-default">
             <Link to="/user/favorites" className="inline-block mx-4">
               <svg
                 xmlns="http://www.w3.org/2000/svg"
@@ -79,7 +80,7 @@ function Navbar() {
             </Link>
           </div>
         </div>
-        <div class="container flex  mx-auto mt-6">
+        <div class="container flex w-2/3 mx-auto mt-6">
           <ul class="flex justify-between w-5/6 mx-auto uppercase font-sans underline-offset-4  font-light text-white">
             <li>
               <Link to="/home" className="hover:underline">
@@ -111,30 +112,10 @@ function Navbar() {
                 About Us
               </Link>
             </li>
-            <li>
-              <Link to="/panel+admin/products" className="hover:underline">
-                PA - Products
-              </Link>
-            </li>
-            <li>
-              <Link
-                to="/panel+admin/create/product"
-                className="hover:underline"
-              >
-                PA - Create Product
-              </Link>
-            </li>
-            <li>
-              <Link
-                to="/panel+admin/deleted"
-                className="hover:underline"
-              >
-                PA - Product Deleted
-              </Link>
-            </li>
           </ul>
         </div>
       </nav>
+      {/* {admin === true ? <AdminNavbar></AdminNavbar> : <></>} */}
       {/* <nav className="bg-white px-2 sm:px-4 py-2.5 dark:bg-gray-900 w-full z-20 top-0 left-0 border-b border-gray-200 dark:border-gray-600">
        
       </nav> */}

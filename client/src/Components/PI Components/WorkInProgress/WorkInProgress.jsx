@@ -6,7 +6,7 @@ export default function WorkInProgress() {
       <section class="bg-white">
         <div class="py-8 px-4 mx-auto max-w-screen-md text-center lg:py-16 lg:px-12">
           <svg
-            class="mx-auto mb-4 w-10 h-10 text-gray-400"
+            class="mx-auto mb-4 w-20 h-20 text-gray-400"
             xmlns="http://www.w3.org/2000/svg"
             viewBox="0 0 512 512"
           >
