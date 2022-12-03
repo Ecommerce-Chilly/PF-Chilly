@@ -1,14 +1,14 @@
-import React, { useState } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
-import { createUser } from '../../../redux/actions/actions';
-import { useHistory, Link } from 'react-router-dom';
+import React, { useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { createUser } from "../../../redux/actions/actions";
+import { useHistory, Link } from "react-router-dom";
 
 function Register() {
   const dispatch = useDispatch();
   const history = useHistory();
   const [newUser, setNewUser] = useState({
-    email: '',
-    password: '',
+    email: "",
+    password: "",
   });
   const errorMsg = useSelector((state) => state.createUserMsg);
 
@@ -100,8 +100,8 @@ function Register() {
                 ) : (
                   <></>
                 )}
-                <p className="text-sm font-light text-gray-500 ">
-                  Already have an account?{' '}
+                <p class="text-sm font-light text-gray-500 ">
+                  Already have an account?{" "}
                   <Link
                     to="user/info"
                     className="font-medium text-main hover:underline "

@@ -38,26 +38,31 @@ import {
   CLEAR_FAV_STATE,
   FAIL_CREATED_MSG,
   CLEAR_DELETED_PRODUCTS,
-} from "../actions/actions.js";
+  USER_ADMIN,
+  PAY,
+  CLEAR_PAYLINK,
+} from '../actions/actions.js';
 
 const initialState = {
   product: [],
   allProduct: [],
   productDetail: [],
   productsDeleted: [],
-  createProductMsg: "",
-  productChangedMsg: "",
-  searchProductMsg: "",
+  createProductMsg: '',
+  productChangedMsg: '',
+  searchProductMsg: '',
   categoryDetails: [],
   cart: [],
   users: [],
-  userInfo: [],
-  userNotFound: "",
-  createUserMsg: "",
+  userInfo: {},
+  userNotFound: '',
+  createUserMsg: '',
   quantity: 0,
   favorites: [],
-  favoriteMsg: "",
-  msgProductDeleted: "",
+  favoriteMsg: '',
+  msgProductDeleted: '',
+  admin: false,
+  paymentLink: '',
 };
 
 const rootReducer = (state = initialState, action) => {
@@ -68,9 +73,9 @@ const rootReducer = (state = initialState, action) => {
         ...state,
         product: action.payload,
         allProduct: action.payload,
-        createProductMsg: "",
-        searchProductMsg: "",
-        productChangedMsg: "",
+        createProductMsg: '',
+        searchProductMsg: '',
+        productChangedMsg: '',
       };
     case GET_PRODUCT_BY_ID:
       return {
@@ -81,7 +86,7 @@ const rootReducer = (state = initialState, action) => {
       return {
         ...state,
         product: action.payload,
-        searchProductMsg: "",
+        searchProductMsg: '',
       };
 
     case CREATE_PRODUCT:
@@ -142,12 +147,12 @@ const rootReducer = (state = initialState, action) => {
       let temporal = state.allProduct;
       let filtered = temporal.filter((e) => e.categoryName === action.payload);
 
-      if (action.payload === "") {
+      if (action.payload === '') {
         filtered = state.allProduct;
       }
       return {
         ...state,
-        searchProductMsg: "",
+        searchProductMsg: '',
         product: filtered,
       };
     case FILTER_BY_DETAILS:
@@ -157,7 +162,7 @@ const rootReducer = (state = initialState, action) => {
         (e) => e.categoryName === action.payload[0]
       );
 
-      if (action.payload[0] === "") {
+      if (action.payload[0] === '') {
         filtered2 = state.allProduct;
       }
 
@@ -168,24 +173,24 @@ const rootReducer = (state = initialState, action) => {
       }
       return {
         ...state,
-        searchProductMsg: "",
+        searchProductMsg: '',
         product: filtered2,
       };
     case ORDER_BY_PRICE:
       const orderByPrice =
-        action.payload === "Asc"
+        action.payload === 'Asc'
           ? state.product.sort((a, b) => {
               if (a.price - b.price < 0) return 1;
               else return -1;
             })
-          : action.payload === "Dsc"
+          : action.payload === 'Dsc'
           ? state.product.sort((a, b) => {
               if (a.price - b.price > 0) return 1;
               else return -1;
             })
-          : action.payload === "default"
+          : action.payload === 'default'
           ? state.allProduct
-          : "joder";
+          : 'joder';
       return {
         ...state,
         state: orderByPrice,
@@ -253,19 +258,19 @@ const rootReducer = (state = initialState, action) => {
       return {
         ...state,
         users: action.payload,
-        createUserMsg: "",
+        createUserMsg: '',
       };
     case USER_SPECIFIC:
       return {
         ...state,
         userInfo: action.payload,
-        createUserMsg: "",
+        createUserMsg: '',
       };
     case CREATE_USER:
       return {
         ...state,
         createUserMsg: action.payload,
-        userNotFound: "",
+        userNotFound: '',
       };
     case LOGOUT:
       return {
@@ -333,13 +338,28 @@ const rootReducer = (state = initialState, action) => {
     case CLEAR_PROD_MSG:
       return {
         ...state,
-        createProductMsg: "",
-        productChangedMsg: "",
+        createProductMsg: '',
+        productChangedMsg: '',
       };
     case CLEAR_FAV_MSG:
       return {
         ...state,
-        favoriteMsg: "",
+        favoriteMsg: '',
+      };
+    case PAY:
+      return {
+        ...state,
+        paymentLink: action.payload['init_point'],
+      };
+    case CLEAR_PAYLINK:
+      return {
+        ...state,
+        paymentLink: '',
+      };
+    case USER_ADMIN:
+      return {
+        ...state,
+        admin: action.payload,
       };
     default:
       return state;

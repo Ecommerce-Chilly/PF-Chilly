@@ -1,7 +1,11 @@
 import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
-import { getFavorites, clearFavMsg } from '../../../redux/actions/actions';
+import {
+  getFavorites,
+  clearFavMsg,
+  userSpecific,
+} from '../../../redux/actions/actions';
 
 import FavCards from './FavCards';
 
@@ -10,11 +14,10 @@ function Fav() {
   const userInfo = useSelector((state) => state.userInfo);
   const favorites = useSelector((state) => state.favorites);
   const favoriteMsg = useSelector((state) => state.favoriteMsg);
-
+  let token = localStorage.getItem('token');
+  token = JSON.parse(token);
   React.useEffect(() => {
-    if (userInfo[0]) {
-      dispatch(getFavorites(userInfo[0].id));
-    }
+    dispatch(getFavorites(userInfo.id, token));
     return () => {
       dispatch(clearFavMsg());
     };
@@ -25,7 +28,7 @@ function Fav() {
       <h2 className="text-slate-800 text-3xl font-display font-semibold mt-12 ml-60 mb-9">
         Your Favourites:
       </h2>
-      {!userInfo[0] ? (
+      {!userInfo.id ? (
         <div className="text-center w-96m-auto ">
           <svg
             version="1.1"
@@ -35,6 +38,7 @@ function Fav() {
             y="0px"
             viewBox="0 0 58 58"
             className="w-72 m-auto"
+            fill="rgb(56,56,56)"
           >
             <g>
               <g>
@@ -84,6 +88,8 @@ function Fav() {
                 x="0px"
                 y="0px"
                 viewBox="0 0 58 58"
+                className="w-72 m-auto"
+                fill="rgb(56,56,56)"
               >
                 <g>
                   <g>
