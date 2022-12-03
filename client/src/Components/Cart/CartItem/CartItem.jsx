@@ -22,11 +22,7 @@ function CartItem({ name, quantity, price, image, id, changeVariable }) {
       <div className="flex justify-between items-center h-52 w-full">
         <div className="flex  items-center   h-full w-3/4  mr-4 ">
           <div className="h-full w-60 ">
-<<<<<<< HEAD
-            <img src={image.replace("SL75", "SL500")} className=" h-full m-auto" />
-=======
             <img src={image.replace("SL75", "SL500")} class=" h-full m-auto" />
->>>>>>> ee52f6b0d324e90b1e5a66ab31ce88c49efbf372
           </div>
           <div className="flex flex-col ml-3 w-3/5">
             <span className="md:text-md font-medium">{name}</span>

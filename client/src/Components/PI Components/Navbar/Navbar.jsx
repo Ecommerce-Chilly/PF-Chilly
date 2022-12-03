@@ -10,27 +10,16 @@ function Navbar() {
   let admin = useSelector((state) => state.admin);
   return (
     <>
-<<<<<<< HEAD
-      <nav className="	bg-white border-gray-200 px-2  py-5  dark:bg-main static">
-        <div className="container flex flex-wrap items-center justify-between mx-auto">
-          <Link to="/home" className="flex items-center">
-            <span className="self-center text-4xl font-semibold whitespace-nowrap dark:text-white font-sans">
-=======
       <nav class="	 border-gray-200 px-2  py-5  dark:bg-main static">
         <div class="container flex flex-wrap items-center justify-between mx-auto">
           <Link to="/home" class="flex items-center">
             <span class="self-center text-4xl font-semibold whitespace-nowrap dark:text-white font-sans">
->>>>>>> fca5522335929c2e30dbf3f31c981a8ff4041f6f
               Chilly
             </span>
           </Link>
           <SearchBar />
 
-<<<<<<< HEAD
-          <div className="hidden w-full md:block md:w-auto" id="navbar-default">
-=======
           <div class="w-auto" id="navbar-default">
->>>>>>> fca5522335929c2e30dbf3f31c981a8ff4041f6f
             <Link to="/user/favorites" className="inline-block mx-4">
               <svg
                 xmlns="http://www.w3.org/2000/svg"
@@ -91,13 +80,8 @@ function Navbar() {
             </Link>
           </div>
         </div>
-<<<<<<< HEAD
-        <div className="container flex  mx-auto mt-6">
-          <ul className="flex justify-between w-5/6 mx-auto uppercase font-sans underline-offset-4  font-light text-white">
-=======
         <div class="container flex w-2/3 mx-auto mt-6">
           <ul class="flex justify-between w-5/6 mx-auto uppercase font-sans underline-offset-4  font-light text-white">
->>>>>>> fca5522335929c2e30dbf3f31c981a8ff4041f6f
             <li>
               <Link to="/home" className="hover:underline">
                 Home
