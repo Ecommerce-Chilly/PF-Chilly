@@ -39,11 +39,18 @@ import {
   FAIL_CREATED_MSG,
   CLEAR_DELETED_PRODUCTS,
 <<<<<<< HEAD
+<<<<<<< HEAD
 } from "../actions/actions.js";
 =======
   USER_ADMIN
 } from '../actions/actions.js';
 >>>>>>> 2b91b46eb79a4a9dfc23ec4a05bba443433b7f53
+=======
+  USER_ADMIN,
+  PAY,
+  CLEAR_PAYLINK,
+} from "../actions/actions.js";
+>>>>>>> ee52f6b0d324e90b1e5a66ab31ce88c49efbf372
 
 const initialState = {
   product: [],
@@ -56,11 +63,12 @@ const initialState = {
   categoryDetails: [],
   cart: [],
   users: [],
-  userInfo: [],
-  userNotFound: "",
-  createUserMsg: "",
+  userInfo: {},
+  userNotFound: '',
+  createUserMsg: '',
   quantity: 0,
   favorites: [],
+<<<<<<< HEAD
 <<<<<<< HEAD
   favoriteMsg: "",
   msgProductDeleted: "",
@@ -69,6 +77,12 @@ const initialState = {
   msgProductDeleted: '',
   admin: false
 >>>>>>> 2b91b46eb79a4a9dfc23ec4a05bba443433b7f53
+=======
+  favoriteMsg: '',
+  msgProductDeleted: '',
+  admin: false,
+  paymentLink: "",
+>>>>>>> ee52f6b0d324e90b1e5a66ab31ce88c49efbf372
 };
 
 const rootReducer = (state = initialState, action) => {
@@ -186,17 +200,17 @@ const rootReducer = (state = initialState, action) => {
       const orderByPrice =
         action.payload === "Asc"
           ? state.product.sort((a, b) => {
-              if (a.price - b.price < 0) return 1;
-              else return -1;
-            })
+            if (a.price - b.price < 0) return 1;
+            else return -1;
+          })
           : action.payload === "Dsc"
-          ? state.product.sort((a, b) => {
+            ? state.product.sort((a, b) => {
               if (a.price - b.price > 0) return 1;
               else return -1;
             })
-          : action.payload === "default"
-          ? state.allProduct
-          : "joder";
+            : action.payload === "default"
+              ? state.allProduct
+              : "joder";
       return {
         ...state,
         state: orderByPrice,
@@ -267,6 +281,7 @@ const rootReducer = (state = initialState, action) => {
         createUserMsg: "",
       };
 <<<<<<< HEAD
+<<<<<<< HEAD
     case USER_SPECIFIC:
 =======
     case ORDER_BY_PRICE:
@@ -285,6 +300,9 @@ const rootReducer = (state = initialState, action) => {
               ? state.allProduct
               : 'joder';
 >>>>>>> 2b91b46eb79a4a9dfc23ec4a05bba443433b7f53
+=======
+    case USER_SPECIFIC:
+>>>>>>> ee52f6b0d324e90b1e5a66ab31ce88c49efbf372
       return {
         ...state,
         userInfo: action.payload,
@@ -369,6 +387,16 @@ const rootReducer = (state = initialState, action) => {
       return {
         ...state,
         favoriteMsg: "",
+      };
+    case PAY:
+      return {
+        ...state,
+        paymentLink: action.payload["init_point"],
+      };
+    case CLEAR_PAYLINK:
+      return {
+        ...state,
+        paymentLink: "",
       };
     case USER_ADMIN:
       return {

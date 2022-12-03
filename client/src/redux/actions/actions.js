@@ -1,4 +1,7 @@
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> ee52f6b0d324e90b1e5a66ab31ce88c49efbf372
 import axios from "axios";
 export const GET_ALL_PRODUCTS = "GET_ALL_PRODUCTS";
 export const GET_PRODUCT_BY_ID = "GET_PRODUCT_BY_ID";
@@ -40,6 +43,7 @@ export const ERROR_MSSG = "ERROR_MSSG";
 export const EUSEBIO = "EUSEBIO";
 export const ERROR_PUT_PRODUCT = "ERROR_PUT_PRODUCT";
 export const ERROR_CREATE_USER = "ERROR_CREATE_USER";
+<<<<<<< HEAD
 =======
 import axios from 'axios';
 export const GET_ALL_PRODUCTS = 'GET_ALL_PRODUCTS';
@@ -84,6 +88,11 @@ export const ORDER_BY_PRICE = 'ORDER_BY_PRICE';
 export const CLEAR_DELETED_PRODUCTS = 'CLEAR_DELETED_PRODUCTS';
 export const USER_ADMIN = 'USER_ADMIN';
 >>>>>>> 2b91b46eb79a4a9dfc23ec4a05bba443433b7f53
+=======
+export const PAY = "PAY";
+export const CLEAR_PAYLINK = "CLEAR_PAYLINK";
+export const USER_ADMIN = "USER_ADMIN";
+>>>>>>> ee52f6b0d324e90b1e5a66ab31ce88c49efbf372
 
 //! PRODUCTS ACTIONS --------------------------------------------------------------------
 export const getProduct = () => {
@@ -110,14 +119,20 @@ export const createProduct = (product, token) => {
       const createProdu = await axios.post(
         "http://localhost:3001/product",
 <<<<<<< HEAD
+<<<<<<< HEAD
         product
 =======
+=======
+>>>>>>> ee52f6b0d324e90b1e5a66ab31ce88c49efbf372
         product, {
         headers: {
           authorization: `Bearer ${token}`,
         },
       }
+<<<<<<< HEAD
 >>>>>>> 2b91b46eb79a4a9dfc23ec4a05bba443433b7f53
+=======
+>>>>>>> ee52f6b0d324e90b1e5a66ab31ce88c49efbf372
       );
       return dispatch({ type: CREATE_PRODUCT, payload: createProdu });
     } catch (error) {
@@ -127,15 +142,20 @@ export const createProduct = (product, token) => {
 };
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 export const getProductByName = (name) => {
 =======
 export const createDiscount = (product, token) => {
 >>>>>>> 2b91b46eb79a4a9dfc23ec4a05bba443433b7f53
+=======
+export const getProductByName = (name) => {
+>>>>>>> ee52f6b0d324e90b1e5a66ab31ce88c49efbf372
   return async function (dispatch) {
     if (name === "") {
       return dispatch({ type: ERROR_MSSG });
     }
     try {
+<<<<<<< HEAD
 <<<<<<< HEAD
       let productByName = await axios.get(
         `http://localhost:3001/product?name=${name}`
@@ -148,6 +168,10 @@ export const createDiscount = (product, token) => {
         },
       }
 >>>>>>> 2b91b46eb79a4a9dfc23ec4a05bba443433b7f53
+=======
+      let productByName = await axios.get(
+        `http://localhost:3001/product?name=${name}`
+>>>>>>> ee52f6b0d324e90b1e5a66ab31ce88c49efbf372
       );
 
       return dispatch({
@@ -175,6 +199,7 @@ export const putProductById = (id, product, token) => {
     } catch (error) {
       return dispatch({
         type: ERROR_PUT_PRODUCT,
+<<<<<<< HEAD
         payload: error.response.data.error,
       });
     }
@@ -213,12 +238,15 @@ export const getProductDeleted = () => {
     } catch (error) {
       return dispatch({
         type: MSG_NOT_PRODUCT_DELETED,
+=======
+>>>>>>> ee52f6b0d324e90b1e5a66ab31ce88c49efbf372
         payload: error.response.data,
       });
     }
   };
 };
 
+<<<<<<< HEAD
 //!DISCOUNTS ACTIONS --------------------------------------------------------------------
 export const createDiscount = (product) => {
   return async function (dispatch) {
@@ -282,6 +310,8 @@ export const putDiscount = (product, token) => {
   };
 };
 
+=======
+>>>>>>> ee52f6b0d324e90b1e5a66ab31ce88c49efbf372
 export const deleteProdut = (id, token) => {
   return async function (dispatch) {
     const deleteProduct = await axios.delete(
@@ -295,7 +325,98 @@ export const deleteProdut = (id, token) => {
   };
 };
 
+<<<<<<< HEAD
 >>>>>>> 2b91b46eb79a4a9dfc23ec4a05bba443433b7f53
+=======
+export const restoreProduct = (id, token) => {
+  return async function (dispatch) {
+    let restoreProduct = await axios.put(
+      `http://localhost:3001/product/restore/${id}`, {}, {
+      headers: {
+        authorization: `Bearer ${token}`,
+      },
+    }
+    );
+    return dispatch({ type: RESTORE_PRODUCT, payload: restoreProduct.data });
+  };
+};
+
+export const getProductDeleted = (token) => {
+  return async function (dispatch) {
+    try {
+      const allProductDelete = await axios.get(
+        "http://localhost:3001/product/deleted", {
+        headers: {
+          authorization: `Bearer ${token}`,
+        },
+      }
+      );
+      return dispatch({
+        type: PRODUCTS_DELETED,
+        payload: allProductDelete.data,
+      });
+    } catch (error) {
+      return dispatch({
+        type: MSG_NOT_PRODUCT_DELETED,
+        payload: error.response.data,
+      });
+    }
+  };
+};
+
+//!DISCOUNTS ACTIONS --------------------------------------------------------------------
+export const createDiscount = (product, token) => {
+  return async function (dispatch) {
+    try {
+      const createDiscount = await axios.post(
+        "http://localhost:3001/discount",
+        product, {
+        headers: {
+          authorization: `Bearer ${token}`,
+        },
+      }
+      );
+      return dispatch({ type: CREATE_DISCOUNT, payload: createDiscount.data });
+    } catch (error) {
+      return dispatch({
+        type: FAIL_CREATED_MSG,
+        payload: error.response.error.data,
+      });
+    }
+  };
+};
+
+export const putDiscount = (product, token) => {
+  return async function (dispatch) {
+    const putInventory = await axios.put(
+      "http://localhost:3001/discount/",
+      product, {
+      headers: {
+        authorization: `Bearer ${token}`,
+      },
+    }
+    );
+    return dispatch({ type: PUT_DISCOUNT, payload: putInventory.data });
+  };
+};
+
+//!INVENTORY ACTIONS --------------------------------------------------------------------
+export const putInventory = (id, product, token) => {
+  return async function (dispatch) {
+    const putInventory = await axios.put(
+      `http://localhost:3001/inventory/${id}`,
+      product, {
+      headers: {
+        authorization: `Bearer ${token}`,
+      },
+    }
+    );
+    return dispatch({ type: PUT_INVENTORY, payload: putInventory.data });
+  };
+};
+
+//! PRODUCT CATEGORY DETAILS && FILTERS ACTIONS -----------------------------------------
+>>>>>>> ee52f6b0d324e90b1e5a66ab31ce88c49efbf372
 export const getCategoryDetails = (category) => {
   return async function (dispatch) {
     const categoryDetails = await axios.get(
@@ -322,6 +443,7 @@ export const filterbyDetails = (category, details) => {
   };
 };
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 //! CART ACTIONS --------------------------------------------------------------------
 =======
@@ -359,6 +481,9 @@ export const restoreProduct = (id, token) => {
 };
 
 >>>>>>> 2b91b46eb79a4a9dfc23ec4a05bba443433b7f53
+=======
+//! CART ACTIONS --------------------------------------------------------------------
+>>>>>>> ee52f6b0d324e90b1e5a66ab31ce88c49efbf372
 export const addToCart = (id) => {
   return {
     type: ADD_TO_CART,
@@ -386,6 +511,9 @@ export const clearCart = () => {
 };
 
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> ee52f6b0d324e90b1e5a66ab31ce88c49efbf372
 export const increaseProductQuantity = (id) => {
   return {
     type: INCREASE_PRODUCT_QUANTITY,
@@ -408,10 +536,13 @@ export function orderByPrice(payload) {
 }
 
 //! USERS ACTIONS --------------------------------------------------------------------
+<<<<<<< HEAD
 export const getAllUsers = () => {
   return async function (dispatch) {
     let allUsers = await axios.get("http://localhost:3001/user");
 =======
+=======
+>>>>>>> ee52f6b0d324e90b1e5a66ab31ce88c49efbf372
 export const getAllUsers = (token) => {
   return async function (dispatch) {
     let allUsers = await axios.get("http://localhost:3001/user", {
@@ -419,7 +550,10 @@ export const getAllUsers = (token) => {
         authorization: `Bearer ${token}`,
       },
     });
+<<<<<<< HEAD
 >>>>>>> 2b91b46eb79a4a9dfc23ec4a05bba443433b7f53
+=======
+>>>>>>> ee52f6b0d324e90b1e5a66ab31ce88c49efbf372
     return dispatch({ type: ALL_USERS, payload: allUsers.data });
   };
 };
@@ -428,14 +562,20 @@ export const createUser = (newUser, token) => {
   return async function (dispatch) {
     try {
 <<<<<<< HEAD
+<<<<<<< HEAD
       let createUser = await axios.post("http://localhost:3001/user", newUser);
 =======
+=======
+>>>>>>> ee52f6b0d324e90b1e5a66ab31ce88c49efbf372
       let createUser = await axios.post("http://localhost:3001/user", newUser, {
         headers: {
           authorization: `Bearer ${token}`,
         },
       });
+<<<<<<< HEAD
 >>>>>>> 2b91b46eb79a4a9dfc23ec4a05bba443433b7f53
+=======
+>>>>>>> ee52f6b0d324e90b1e5a66ab31ce88c49efbf372
       return dispatch({ type: CREATE_USER, payload: createUser.data });
     } catch (error) {
       return dispatch({
@@ -450,18 +590,26 @@ export const userSpecific = (userFound, token) => {
   return async function (dispatch) {
     try {
 <<<<<<< HEAD
+<<<<<<< HEAD
       let userSpeci = await axios.post(
         "http://localhost:3001/user/tio",
         userFound
       );
 =======
+=======
+>>>>>>> ee52f6b0d324e90b1e5a66ab31ce88c49efbf372
       let userSpeci = await axios.get(
         `http://localhost:3001/user?email=${userFound}`, {
         headers: {
           authorization: `Bearer ${token}`,
         },
+<<<<<<< HEAD
       });
 >>>>>>> 2b91b46eb79a4a9dfc23ec4a05bba443433b7f53
+=======
+      }
+      );
+>>>>>>> ee52f6b0d324e90b1e5a66ab31ce88c49efbf372
       return dispatch({ type: USER_SPECIFIC, payload: userSpeci.data });
     } catch (error) {
       return dispatch({
@@ -477,6 +625,7 @@ export const logoutUser = () => {
     type: LOGOUT,
   };
 };
+<<<<<<< HEAD
 
 <<<<<<< HEAD
 //! FAVOURITES ACTIONS --------------------------------------------------------------------
@@ -491,6 +640,28 @@ export const updateCartQuantity = () => {
   };
 };
 
+=======
+export const userAdmin = (user, token) => {
+  return async function (dispatch) {
+    axios.get(`http://localhost:3001/user/admin?email=${user}`, {
+      headers: {
+        authorization: `Bearer ${token}`,
+      },
+    }).then(data => {
+      return dispatch({
+        type: USER_ADMIN,
+        payload: data.data
+      }).catch(error => {
+        return dispatch({
+          type: USER_NOT_FOUND,
+          payload: error.response.data.error,
+        })
+      })
+    })
+  }
+}
+//! FAVOURITES ACTIONS --------------------------------------------------------------------
+>>>>>>> ee52f6b0d324e90b1e5a66ab31ce88c49efbf372
 export const addFavorite = (ids, token) => {
   return async function (dispatch) {
     try {
@@ -499,7 +670,10 @@ export const addFavorite = (ids, token) => {
           authorization: `Bearer ${token}`,
         },
       });
+<<<<<<< HEAD
 >>>>>>> 2b91b46eb79a4a9dfc23ec4a05bba443433b7f53
+=======
+>>>>>>> ee52f6b0d324e90b1e5a66ab31ce88c49efbf372
       return dispatch({ type: ADD_FAVORITE, payload: favorite.data });
     } catch (error) {
       return dispatch({
@@ -531,6 +705,7 @@ export const getFavorites = (userId, token) => {
 };
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 export const deleteFavorite = (ids) => {
 =======
 export const increaseProductQuantity = (id) => {
@@ -549,9 +724,11 @@ export const decreaseProductQuantity = (id) => {
 
 export const deleteFavorite = (ids, token) => {
 >>>>>>> 2b91b46eb79a4a9dfc23ec4a05bba443433b7f53
+=======
+export const deleteFavorite = (ids, token) => {
+>>>>>>> ee52f6b0d324e90b1e5a66ab31ce88c49efbf372
   return async function (dispatch) {
     try {
-      console.log(ids);
       let favorite2 = await axios.delete(
         `http://localhost:3001/favorite/${ids.userId}/${ids.productId}`, {
         headers: {
@@ -576,6 +753,7 @@ export const clearProdMsg = () => {
   };
 };
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 =======
 export const getProductDeleted = (token) => {
@@ -609,6 +787,8 @@ export function orderByPrice(payload) {
 }
 
 >>>>>>> 2b91b46eb79a4a9dfc23ec4a05bba443433b7f53
+=======
+>>>>>>> ee52f6b0d324e90b1e5a66ab31ce88c49efbf372
 export const clearFavMsg = () => {
   return {
     type: CLEAR_FAV_MSG,
@@ -625,22 +805,25 @@ export const clearDeleted = (payload) => {
     payload: payload,
   };
 };
-export const userAdmin = (user, token) => {
+
+export const pay = (payData, token) => {
   return async function (dispatch) {
-    axios.get(`http://localhost:3001/user/admin?email=${user}`, {
-      headers: {
-        authorization: `Bearer ${token}`,
-      },
-    }).then(data => {
-      return dispatch({
-        type: USER_ADMIN,
-        payload: data.data
-      }).catch(error => {
-        return dispatch({
-          type: USER_NOT_FOUND,
-          payload: error.response.data.error,
-        })
-      })
-    })
-  }
-}
+    try {
+
+      let payLink = await axios.post("http://localhost:3001/payment/", payData, {
+        headers: {
+          authorization: `Bearer ${token}`,
+        },
+      });
+      return dispatch({ type: PAY, payload: payLink.data });
+    } catch (error) {
+      console.log(error);
+    }
+  };
+};
+
+export const clearPaylink = () => {
+  return {
+    type: CLEAR_PAYLINK,
+  };
+};

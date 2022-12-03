@@ -23,8 +23,8 @@ function ProductDetail() {
   const favs = useSelector((state) => state.favorites);
 
   useEffect(() => {
-    if (userInfo[0]) {
-      dispatch(getFavorites(userInfo[0].id));
+    if (userInfo) {
+      dispatch(getFavorites(userInfo.id, token));
     }
   }, [favoriteMsg]);
 
@@ -101,7 +101,7 @@ function ProductDetail() {
                                 dispatch(
                                   deleteFavorite(
                                     {
-                                      userId: userInfo[0].id,
+                                      userId: userInfo.id,
                                       productId: produDetail[0].id,
                                     },
                                     token
@@ -127,7 +127,7 @@ function ProductDetail() {
                                 dispatch(
                                   addFavorite(
                                     {
-                                      userId: userInfo[0].id,
+                                      userId: userInfo.id,
                                       productId: produDetail[0].id,
                                     },
                                     token
