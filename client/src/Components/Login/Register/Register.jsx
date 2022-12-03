@@ -1,14 +1,14 @@
-import React, { useState } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
-import { createUser } from '../../../redux/actions/actions';
-import { useHistory, Link } from 'react-router-dom';
+import React, { useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { createUser } from "../../../redux/actions/actions";
+import { useHistory, Link } from "react-router-dom";
 
 function Register() {
   const dispatch = useDispatch();
   const history = useHistory();
   const [newUser, setNewUser] = useState({
-    email: '',
-    password: '',
+    email: "",
+    password: "",
   });
   const errorMsg = useSelector((state) => state.createUserMsg);
 
@@ -67,8 +67,13 @@ function Register() {
                   />
                 </div>
 
+<<<<<<< HEAD
                 {/* <div className="flex items-start">
                   <div className="flex items-center h-5">
+=======
+                {/* <div class="flex items-start">
+                  <div class="flex items-center h-5">
+>>>>>>> 2b91b46eb79a4a9dfc23ec4a05bba443433b7f53
                     <input
                       id="terms"
                       aria-describedby="terms"
@@ -100,8 +105,13 @@ function Register() {
                 ) : (
                   <></>
                 )}
+<<<<<<< HEAD
                 <p className="text-sm font-light text-gray-500 ">
                   Already have an account?{' '}
+=======
+                <p class="text-sm font-light text-gray-500 ">
+                  Already have an account?{" "}
+>>>>>>> 2b91b46eb79a4a9dfc23ec4a05bba443433b7f53
                   <Link
                     to="user/info"
                     className="font-medium text-main hover:underline "

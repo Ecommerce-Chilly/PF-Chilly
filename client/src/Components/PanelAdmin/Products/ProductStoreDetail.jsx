@@ -1,5 +1,5 @@
-import React, { useEffect, useState } from 'react';
-import { Link, useParams } from 'react-router-dom';
+import React, { useEffect, useState } from "react";
+import { Link, useParams } from "react-router-dom";
 import {
   getProductById,
   addToCart,
@@ -8,12 +8,14 @@ import {
   getFavorites,
   deleteFavorite,
   clearFavMsg,
-} from '../../../redux/actions/actions.js';
-import { useDispatch, useSelector } from 'react-redux';
+} from "../../../redux/actions/actions.js";
+import { useDispatch, useSelector } from "react-redux";
 
 function ProductDetail() {
   const { id } = useParams();
   const dispatch = useDispatch();
+  let token = localStorage.getItem("token");
+  token = JSON.parse(token);
   const produDetail = useSelector((state) => state.productDetail);
   const failMsg = useSelector((state) => state.searchProductMsg);
   const favoriteMsg = useSelector((state) => state.favoriteMsg);
@@ -61,7 +63,7 @@ function ProductDetail() {
                       <img
                         alt="ecommerce"
                         className="lg:w-1/2 max-w-lg max-h-quinientos w-full object-contain object-center rounded border border-gray-200"
-                        src={produDetail[0].image.replace('SL75', 'SL700')}
+                        src={produDetail[0].image.replace("SL75", "SL700")}
                       />
                       <div className="lg:w-1/2 w-full lg:pl-10 lg:py-6 mt-6 lg:mt-0">
                         <h2 className="text-sm font-mono  title-font text-gray-500 tracking-widest mb-7">
@@ -81,7 +83,7 @@ function ProductDetail() {
 
                         <div className="flex">
                           <span className="title-font font-medium text-4xl text-gray-900">
-                            ${' '}
+                            ${" "}
                             {produDetail[0].price == 0
                               ? 50
                               : produDetail[0].price}
@@ -97,10 +99,13 @@ function ProductDetail() {
                             <button
                               onClick={() => {
                                 dispatch(
-                                  deleteFavorite({
-                                    userId: userInfo[0].id,
-                                    productId: produDetail[0].id,
-                                  })
+                                  deleteFavorite(
+                                    {
+                                      userId: userInfo[0].id,
+                                      productId: produDetail[0].id,
+                                    },
+                                    token
+                                  )
                                 );
                               }}
                               className="rounded-full w-10 h-10 bg-gray-200 p-0 border-0 inline-flex items-center justify-center text-gray-500 ml-4"
@@ -120,10 +125,13 @@ function ProductDetail() {
                             <button
                               onClick={() => {
                                 dispatch(
-                                  addFavorite({
-                                    userId: userInfo[0].id,
-                                    productId: produDetail[0].id,
-                                  })
+                                  addFavorite(
+                                    {
+                                      userId: userInfo[0].id,
+                                      productId: produDetail[0].id,
+                                    },
+                                    token
+                                  )
                                 );
                               }}
                               className="rounded-full w-10 h-10 bg-gray-200 p-0 border-0 inline-flex items-center justify-center text-gray-500 ml-4"

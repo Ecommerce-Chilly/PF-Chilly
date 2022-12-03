@@ -38,7 +38,12 @@ import {
   CLEAR_FAV_STATE,
   FAIL_CREATED_MSG,
   CLEAR_DELETED_PRODUCTS,
+<<<<<<< HEAD
 } from "../actions/actions.js";
+=======
+  USER_ADMIN
+} from '../actions/actions.js';
+>>>>>>> 2b91b46eb79a4a9dfc23ec4a05bba443433b7f53
 
 const initialState = {
   product: [],
@@ -56,8 +61,14 @@ const initialState = {
   createUserMsg: "",
   quantity: 0,
   favorites: [],
+<<<<<<< HEAD
   favoriteMsg: "",
   msgProductDeleted: "",
+=======
+  favoriteMsg: '',
+  msgProductDeleted: '',
+  admin: false
+>>>>>>> 2b91b46eb79a4a9dfc23ec4a05bba443433b7f53
 };
 
 const rootReducer = (state = initialState, action) => {
@@ -255,7 +266,25 @@ const rootReducer = (state = initialState, action) => {
         users: action.payload,
         createUserMsg: "",
       };
+<<<<<<< HEAD
     case USER_SPECIFIC:
+=======
+    case ORDER_BY_PRICE:
+      const orderByPrice =
+        action.payload === 'Asc'
+          ? state.product.sort((a, b) => {
+            if (a.price - b.price < 0) return 1;
+            else return -1;
+          })
+          : action.payload === 'Dsc'
+            ? state.product.sort((a, b) => {
+              if (a.price - b.price > 0) return 1;
+              else return -1;
+            })
+            : action.payload === 'default'
+              ? state.allProduct
+              : 'joder';
+>>>>>>> 2b91b46eb79a4a9dfc23ec4a05bba443433b7f53
       return {
         ...state,
         userInfo: action.payload,
@@ -341,6 +370,11 @@ const rootReducer = (state = initialState, action) => {
         ...state,
         favoriteMsg: "",
       };
+    case USER_ADMIN:
+      return {
+        ...state,
+        admin: action.payload
+      }
     default:
       return state;
   }

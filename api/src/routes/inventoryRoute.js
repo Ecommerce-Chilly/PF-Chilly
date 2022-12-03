@@ -1,9 +1,10 @@
 const { Router } = require("express");
 const postInventory = require("../controllers/inventory/postInventory");
 const { putInventory } = require("../controllers/inventory/putInventory");
+const { checkJwt, checkScopes } = require('../middleware/oAuth')
 const inventoryRoutes = Router();
 
-inventoryRoutes.post("/", async (req, res) => {
+inventoryRoutes.post("/", checkJwt, checkScopes, async (req, res) => {
   try {
     const { quantity } = req.body;
     if (!quantity) return res.status(404).send("Send a quantity of products ");
@@ -14,7 +15,7 @@ inventoryRoutes.post("/", async (req, res) => {
     res.status(404).send(error);
   }
 });
-inventoryRoutes.put("/:id", async (req, res) => {
+inventoryRoutes.put("/:id", checkJwt, checkScopes, async (req, res) => {
   try {
     const { id } = req.params;
     const { quantity } = req.body;
