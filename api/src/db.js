@@ -97,6 +97,7 @@ Order_details.belongsTo(User);
 
 User.belongsToMany(Product, { through: "favorites", paranoid: true });
 Product.belongsToMany(User, { through: "favorites", paranoid: true });
+
 module.exports = {
   ...sequelize.models,
   conn: sequelize,

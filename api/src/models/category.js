@@ -11,5 +11,9 @@ module.exports = (sequelize) => {
       type: DataTypes.STRING,
       validate: { isAlphanumeric: true },
     },
-  });
+  },
+  {
+    timestamps: true,
+  }
+ );
 };

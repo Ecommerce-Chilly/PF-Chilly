@@ -8,7 +8,6 @@ const cors = require('cors');
 const dotenv = require('dotenv')
 dotenv.config()
 
-
 // SDK de Mercado Pago
 const mercadopago = require("mercadopago");
 // Agrega credenciales

@@ -5,6 +5,7 @@ const { deleteUser } = require("../controllers/user/deleteUser")
 const { userAdmin } = require('../controllers/user/userAdmin')
 const { checkJwt, checkScopes } = require('../middleware/oAuth')
 const userRoute = Router();
+
 userRoute.get("/", checkJwt, async (req, res) => {
   try {
     let { email } = req.query;
@@ -34,6 +35,7 @@ userRoute.post('/', checkJwt, async (req, res) => {
     res.status(404).send({ error: error });
   }
 });
+
 userRoute.get('/admin', checkJwt, checkScopes, async (req, res) => {
   try {
     const msg = await userAdmin(req.query)

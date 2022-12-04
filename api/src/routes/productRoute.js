@@ -9,6 +9,7 @@ const { deleteProduct } = require('../controllers/product/deleteProduct');
 const { restoreProduct } = require('../controllers/product/restoreProduct');
 const productRoute = Router();
 const { checkJwt, checkScopes } = require('../middleware/oAuth');
+
 productRoute.post('/', checkJwt, checkScopes, async (req, res) => {
   try {
     const productCreate = await postProduct(req.body);
@@ -17,6 +18,7 @@ productRoute.post('/', checkJwt, checkScopes, async (req, res) => {
     res.status(400).send({ error: error });
   }
 });
+
 productRoute.delete('/:id', checkJwt, checkScopes, async (req, res) => {
   try {
     let { id } = req.params;
@@ -31,6 +33,7 @@ productRoute.delete('/:id', checkJwt, checkScopes, async (req, res) => {
     res.status(404).send({ error: error });
   }
 });
+
 productRoute.get('/', async (req, res) => {
   try {
     const { category, name } = req.query;
@@ -40,6 +43,7 @@ productRoute.get('/', async (req, res) => {
     res.status(400).send({ error: error });
   }
 });
+
 productRoute.get('/deleted', checkJwt, checkScopes, async (req, res) => {
   try {
     const products = await getProductsDeleted();
@@ -48,6 +52,7 @@ productRoute.get('/deleted', checkJwt, checkScopes, async (req, res) => {
     res.status(404).send(error);
   }
 });
+
 productRoute.get('/:id', async (req, res) => {
   try {
     let { id } = req.params;
@@ -59,6 +64,7 @@ productRoute.get('/:id', async (req, res) => {
     res.status(400).send({ error: error });
   }
 });
+
 productRoute.put('/:id', checkJwt, checkScopes, async (req, res) => {
   try {
     let { id } = req.params;
@@ -70,6 +76,7 @@ productRoute.put('/:id', checkJwt, checkScopes, async (req, res) => {
     res.status(400).send({ error: error });
   }
 });
+
 productRoute.put('/restore/:id', checkJwt, checkScopes, async (req, res) => {
   try {
     let { id } = req.params;
@@ -80,4 +87,5 @@ productRoute.put('/restore/:id', checkJwt, checkScopes, async (req, res) => {
     res.status(400).send({ error: error });
   }
 });
+
 module.exports = productRoute;

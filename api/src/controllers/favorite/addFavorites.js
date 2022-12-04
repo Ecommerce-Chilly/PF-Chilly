@@ -9,4 +9,4 @@ const addFavorites = async (userId, productId) => {
   return `Product added to favorites`
 }
 
-module.exports = { addFavorites }
+module.exports = { addFavorites };

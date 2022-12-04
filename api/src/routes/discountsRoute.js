@@ -20,4 +20,5 @@ discountsRoute.put("/", checkJwt, checkScopes, async (req, res) => {
     res.status(400).send({ error: error });
   }
 });
+
 module.exports = discountsRoute;

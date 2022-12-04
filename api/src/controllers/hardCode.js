@@ -12,6 +12,7 @@ const ram = require("../dataApi/ram.json");
 const storage = require("../dataApi/storage.json");
 const postInventory = require("./inventory/postInventory");
 const { defaultDiscount } = require('./discounts/defaultDiscount')
+
 const create = async function (discount, el, datos = [], categoryDB) {
   const invCreate = await postInventory(12);
   const details = [{}];
