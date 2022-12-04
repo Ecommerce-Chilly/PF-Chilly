@@ -40,12 +40,12 @@ const Profile = ()=>{
             <img src={user.picture} alt={user.name} />
             <h2>{user.name}</h2>
             <p>{user.email}</p>
-            <h3>User Metadata</h3>
-            {userMetadata ? (
-            <pre>{JSON.stringify(userMetadata, null, 2)}</pre>
-            ) : (
-                "No user metadata defined"
-            )}
+            {/* <h3>User Metadata</h3> */}
+            {/* {userMetadata ? ( */}
+            {/* // <pre>{JSON.stringify(userMetadata, null, 2)}</pre> */}
+            {/* // ) : ( */}
+                {/* // "No user metadata defined" */}
+            {/* )} */}
         </div>
     ))
 }

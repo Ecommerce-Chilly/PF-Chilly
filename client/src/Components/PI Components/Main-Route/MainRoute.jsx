@@ -20,7 +20,7 @@ import Footer from "../Footer/Footer";
 import Register from "../../Login/Register/Register";
 import { userSpecific } from "../../../redux/actions/actions";
 import { useDispatch } from "react-redux";
-
+import Payment from "../../Cart/Payment/Payment";
 
 function MainRoute() {
   let dispatch = useDispatch();
@@ -41,6 +41,7 @@ function MainRoute() {
       </div>
       <div>
         <Route exact path="/cart" component={Cart} />
+        <Route exact path="/cart/payment" component={Payment} />
         <Route exact path="/user/favorites" component={Fav} />
         <Route exact path="/user/info" component={UserInfo} />
         <Route exact path="/home" component={Home} />

@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 import SearchBar from "../SearchBar/SearchBar";
+import Login from "../../Login/Login/Login"
 
 function Navbar() {
   let cart = useSelector((state) => state.cart);
@@ -9,7 +10,7 @@ function Navbar() {
 
   return (
     <>
-      <nav class="	bg-white border-gray-200 px-2  py-5  dark:bg-main static">
+      <nav class="	bg-main border-gray-200 px-2  py-5  dark:bg-main static">
         <div class="container flex flex-wrap items-center justify-between mx-auto">
           <Link to="/home" class="flex items-center">
             <span class="self-center text-4xl font-semibold whitespace-nowrap dark:text-white font-sans">
@@ -62,7 +63,7 @@ function Navbar() {
               </svg>
             </Link>
             <Link to="/user/info" className="inline-block mx-4">
-              <Login />
+              {/* <Login /> */}
               <svg
                 xmlns="http://www.w3.org/2000/svg"
                 fill="none"

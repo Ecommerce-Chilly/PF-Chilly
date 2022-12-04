@@ -5,6 +5,7 @@ import { deleteP, clearCart } from '../../../redux/actions/actions';
 import CartItem from '../CartItem/CartItem';
 import Swal from 'sweetalert2';
 
+
 function Cart() {
   const cart = useSelector((state) => state.cart);
   const dispatch = useDispatch();
@@ -122,7 +123,8 @@ function Cart() {
               >
                 Clear Cart
               </button>
-              <Link to="#" className="">
+
+              <Link to="/payment" className="">
                 <button className=" flex font-semibold  text-white border-solid bg-main border-2 border-main py-2 px-6 focus:outline-none hover:bg-blue-600 rounded hover:border-blue-600">
                   Check Out
                 </button>

@@ -1,5 +1,5 @@
 import React from 'react'
-import Frequestions from './Frequestions'
+import Accordeon from './Accordeon'
 import AboutCard from './AboutCard'
 
 function AboutUS() {
@@ -15,7 +15,7 @@ function AboutUS() {
       <AboutCard />
       <AboutCard />
       </div>
-     <Frequestions />
+     <Accordeon />
       </div>
 
 
