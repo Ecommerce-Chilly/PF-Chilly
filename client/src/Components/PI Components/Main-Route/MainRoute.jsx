@@ -21,6 +21,7 @@ import Register from "../../Login/Register/Register";
 import Pagoexitoso from "../../Cart/Cart/Pagoexitoso"
 import { userSpecific } from "../../../redux/actions/actions";
 import { useDispatch } from "react-redux";
+import PanelAdmin from '../../PanelAdmin/PanelAdmin';
 
 function MainRoute() {
   let dispatch = useDispatch();
@@ -51,6 +52,7 @@ function MainRoute() {
 
         <Route exact path="/register" component={Register} />
 
+        <Route exact path="/panel+admin" component={PanelAdmin} />
         <Route exact path="/panel+admin/products" component={Products} />
         <Route
           exact
