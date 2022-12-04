@@ -1,11 +1,11 @@
-const { Router } = require('express');
-const PaymentController = require('../controllers/mercadoPago');
-const PaymentServices = require('../services/mercadoPago');
+const { Router } = require("express");
+const PaymentController = require("../controllers/mercadoPago");
+const PaymentServices = require("../services/mercadoPago");
 const mercadoPago = Router();
 const paymentInstace = new PaymentController(new PaymentServices());
-const { checkJwt } = require('../middleware/oAuth');
+const { checkJwt } = require("../middleware/oAuth");
 
-mercadoPago.post('/', checkJwt, async (req, res) => {
+mercadoPago.post("/", checkJwt, async (req, res) => {
   paymentInstace.getPaymentLink(req, res);
 });
 

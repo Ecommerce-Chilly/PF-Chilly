@@ -6,7 +6,11 @@ export default function WorkInProgress() {
       <section className="bg-white">
         <div className="py-8 px-4 mx-auto max-w-screen-md text-center lg:py-16 lg:px-12">
           <svg
+<<<<<<< HEAD
             class="mx-auto mb-4 w-20 h-20 text-gray-400"
+=======
+            className="mx-auto mb-4 w-10 h-10 text-gray-400"
+>>>>>>> be96be470b49b95c086606de1cf56be12cf55095
             xmlns="http://www.w3.org/2000/svg"
             viewBox="0 0 512 512"
           >
