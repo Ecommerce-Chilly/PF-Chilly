@@ -1,9 +1,13 @@
 {
   "dependencies": {
+    "@stripe/react-stripe-js": "^1.15.0",
+    "@stripe/stripe-js": "^1.45.0",
+    "bootswatch": "^5.2.2",
     "pg": "^8.8.0",
     "react": "^18.2.0",
     "react-accessible-accordion": "^5.0.0",
     "react-dom": "^18.2.0",
+    "react-icons": "^4.7.1",
     "tailwindcss": "^1.9.6"
   }
 }
