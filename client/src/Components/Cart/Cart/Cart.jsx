@@ -152,9 +152,11 @@ function Cart() {
                   </button>
                 </Link>
               ) : (
-                <button className=" flex font-semibold  text-white border-solid bg-main border-2 border-main py-2 px-6 focus:outline-none hover:bg-blue-600 rounded hover:border-blue-600">
-                  <a href={paymentLink}>PAY</a>
+                <a href={paymentLink} className="text-center">
+                <button className=" flex font-semibold  text-white border-solid bg-main border-2 border-main py-2 px-12  focus:outline-none hover:bg-blue-600 rounded hover:border-blue-600 ">
+                  Pay!
                 </button>
+              </a>
               )}
             </div>
           </div>
