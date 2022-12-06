@@ -39,7 +39,7 @@ const postProduct = async ({
     await invCreate.setProduct(proCreate);
     await proCreate.setInventory(invCreate);
 
-    return proCreate;
+    return 'Product was create';
   }
 };
 
