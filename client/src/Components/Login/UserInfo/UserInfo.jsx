@@ -1,9 +1,12 @@
-import React from 'react'
+import React from 'react';
+import Login from '../Login/Login';
 
 function UserInfo() {
   return (
-    <div>UserInfo</div>
-  )
+    <>
+      <Login />
+    </>
+  );
 }
 
-export default UserInfo
+export default UserInfo;

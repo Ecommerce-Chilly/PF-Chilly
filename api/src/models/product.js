@@ -1,5 +1,4 @@
 const { DataTypes } = require("sequelize");
-
 module.exports = (sequelize) => {
   sequelize.define(
     "product",
@@ -19,17 +18,26 @@ module.exports = (sequelize) => {
         allowNull: false,
         defaultValue: 50.0,
       },
+      brand: {
+        type: DataTypes.STRING,
+        // validate: {
+        //   isAlph: true,
+        // },
+      },
+      model: {
+        type: DataTypes.STRING,
+      },
       image: {
         type: DataTypes.STRING,
-        defaultValue: "no hay imagen bro coloca la imagen cinthia",
+        defaultValue: "https://www.rastanley.com.au/img/products/NoImageLarge.png",
       },
       details: {
-        type: DataTypes.ARRAY(DataTypes.STRING),
+        type: DataTypes.ARRAY(DataTypes.JSON),
         allowNull: false,
       },
     },
     {
-      timestamps: false,
+      paranoid: true,
     }
   );
 };
