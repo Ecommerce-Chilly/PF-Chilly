@@ -13,7 +13,6 @@ function ProductsDeleted() {
     dispatch(getProductDeleted());
   }, [dispatch]);
 
-  console.log(productDeleted);
 
   return (
     <div>

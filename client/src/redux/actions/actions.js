@@ -1,48 +1,50 @@
-import axios from 'axios';
-export const GET_ALL_PRODUCTS = 'GET_ALL_PRODUCTS';
-export const GET_PRODUCT_BY_ID = 'GET_PRODUCT_BY_ID';
-export const CREATE_PRODUCT = 'CREATE_PRODUCT';
-export const CREATE_DISCOUNT = 'CREATE_DISCOUNT';
-export const PUT_PRODUCT = 'PUT_PRODUCT';
-export const PUT_INVENTORY = 'PUT_INVENTORY';
-export const PUT_DISCOUNT = 'PUT_DISCOUNT';
-export const DELETE_PRODUCT = 'DELETE_PRODUCT';
-export const FAIL_CREATED_MSG = 'FAIL_CREATED_MSG';
-export const GET_CATEGORY_DETAILS = 'GET_CATEGORY_DETAILS';
-export const FILTER1 = 'FILTER1';
-export const FILTER_BY_DETAILS = 'FILTER_BY_DETAILS';
-export const GET_PRODUCT_BY_NAME = 'GET_PRODUCT_BY_NAME';
-export const ERROR_MSSG = 'ERROR_MSSG';
-export const EUSEBIO = 'EUSEBIO';
-export const ERROR_PUT_PRODUCT = 'ERROR_PUT_PRODUCT';
-export const RESTORE_PRODUCT = 'RESTORE_PRODUCT';
-export const ADD_TO_CART = 'ADD_TO_CART';
-export const DELETE_CART_PRODUCT = 'DELETE_CART_PRODUCT';
-export const CLEAR_CART = 'CLEAR_CART';
-export const CREATE_USER = 'CREATE_USER';
-export const USER_SPECIFIC = 'USER_SPECIFIC';
-export const LOGOUT = 'LOGOUT';
-export const ERROR_CREATE_USER = 'ERROR_CREATE_USER';
-export const ALL_USERS = 'ALL_USERS';
-export const USER_NOT_FOUND = 'USER_NOT_FOUND';
-export const UPDATE_CART_QUANTITY = 'UPDATE_CART_QUANTITY';
-export const ADD_FAVORITE = 'ADD_FAVORITE';
-export const GET_FAVORITES = 'GET_FAVORITES';
-export const DELETE_FAVORITE = 'DELETE_FAVORITE';
-export const FAVORITE_MSG = 'FAVORITE_MSG';
-export const DECREASE_PRODUCT_QUANTITY = 'DECREASE_PRODUCT_QUANTITY';
-export const INCREASE_PRODUCT_QUANTITY = 'INCREASE_PRODUCT_QUANTITY';
-export const CLEAR_PROD_MSG = 'CLEAR_PROD_MSG';
-export const CLEAR_FAV_MSG = 'CLEAR_FAV_MSG';
-export const CLEAR_FAV_STATE = 'CLEAR_FAV_STATE';
-export const PRODUCTS_DELETED = 'PRODUCTS_DELETED';
-export const MSG_NOT_PRODUCT_DELETED = 'MSG_NOT_PRODUCT_DELETED';
-export const ORDER_BY_PRICE = 'ORDER_BY_PRICE';
-export const CLEAR_DELETED_PRODUCTS = 'CLEAR_DELETED_PRODUCTS';
+import axios from "axios";
+export const GET_ALL_PRODUCTS = "GET_ALL_PRODUCTS";
+export const GET_PRODUCT_BY_ID = "GET_PRODUCT_BY_ID";
+export const CREATE_PRODUCT = "CREATE_PRODUCT";
+export const PUT_PRODUCT = "PUT_PRODUCT";
+export const GET_PRODUCT_BY_NAME = "GET_PRODUCT_BY_NAME";
+export const DELETE_PRODUCT = "DELETE_PRODUCT";
+export const RESTORE_PRODUCT = "RESTORE_PRODUCT";
+export const PRODUCTS_DELETED = "PRODUCTS_DELETED";
+export const CREATE_DISCOUNT = "CREATE_DISCOUNT";
+export const PUT_DISCOUNT = "PUT_DISCOUNT";
+export const PUT_INVENTORY = "PUT_INVENTORY";
+export const GET_CATEGORY_DETAILS = "GET_CATEGORY_DETAILS";
+export const FILTER1 = "FILTER1";
+export const FILTER_BY_DETAILS = "FILTER_BY_DETAILS";
+export const ORDER_BY_PRICE = "ORDER_BY_PRICE";
+export const ADD_TO_CART = "ADD_TO_CART";
+export const DELETE_CART_PRODUCT = "DELETE_CART_PRODUCT";
+export const CLEAR_CART = "CLEAR_CART";
+export const DECREASE_PRODUCT_QUANTITY = "DECREASE_PRODUCT_QUANTITY";
+export const INCREASE_PRODUCT_QUANTITY = "INCREASE_PRODUCT_QUANTITY";
+export const CREATE_USER = "CREATE_USER";
+export const USER_SPECIFIC = "USER_SPECIFIC";
+export const LOGOUT = "LOGOUT";
+export const ALL_USERS = "ALL_USERS";
+export const USER_NOT_FOUND = "USER_NOT_FOUND";
+export const UPDATE_CART_QUANTITY = "UPDATE_CART_QUANTITY";
+export const ADD_FAVORITE = "ADD_FAVORITE";
+export const GET_FAVORITES = "GET_FAVORITES";
+export const DELETE_FAVORITE = "DELETE_FAVORITE";
+export const FAVORITE_MSG = "FAVORITE_MSG";
+export const CLEAR_PROD_MSG = "CLEAR_PROD_MSG";
+export const CLEAR_FAV_MSG = "CLEAR_FAV_MSG";
+export const CLEAR_FAV_STATE = "CLEAR_FAV_STATE";
+export const MSG_NOT_PRODUCT_DELETED = "MSG_NOT_PRODUCT_DELETED";
+export const CLEAR_DELETED_PRODUCTS = "CLEAR_DELETED_PRODUCTS";
+export const FAIL_CREATED_MSG = "FAIL_CREATED_MSG";
+export const ERROR_MSSG = "ERROR_MSSG";
+export const EUSEBIO = "EUSEBIO";
+export const ERROR_PUT_PRODUCT = "ERROR_PUT_PRODUCT";
+export const ERROR_CREATE_USER = "ERROR_CREATE_USER";
+export const PAY = "PAY";
 
+//! PRODUCTS ACTIONS --------------------------------------------------------------------
 export const getProduct = () => {
   return async function (dispatch) {
-    let product = await axios.get('http://localhost:3001/product');
+    let product = await axios.get("http://localhost:3001/product");
     return dispatch({ type: GET_ALL_PRODUCTS, payload: product.data });
   };
 };
@@ -63,11 +65,15 @@ export const createProduct = (product, token) => {
     try {
       const createProdu = await axios.post(
         "http://localhost:3001/product",
+<<<<<<< HEAD
         product, {
         headers: {
           authorization: `Bearer ${token}`,
         },
       }
+=======
+        product
+>>>>>>> f860e4b98399a789a276228d77fbcadd32c4d545
       );
       return dispatch({ type: CREATE_PRODUCT, payload: createProdu });
     } catch (error) {
@@ -76,9 +82,17 @@ export const createProduct = (product, token) => {
   };
 };
 
+<<<<<<< HEAD
 export const createDiscount = (product, token) => {
+=======
+export const getProductByName = (name) => {
+>>>>>>> f860e4b98399a789a276228d77fbcadd32c4d545
   return async function (dispatch) {
+    if (name === "") {
+      return dispatch({ type: ERROR_MSSG });
+    }
     try {
+<<<<<<< HEAD
       const createDiscount = await axios.post(
         "http://localhost:3001/discount",
         product, {
@@ -86,13 +100,18 @@ export const createDiscount = (product, token) => {
           authorization: `Bearer ${token}`,
         },
       }
+=======
+      let productByName = await axios.get(
+        `http://localhost:3001/product?name=${name}`
+>>>>>>> f860e4b98399a789a276228d77fbcadd32c4d545
       );
-      return dispatch({ type: CREATE_DISCOUNT, payload: createDiscount.data });
-    } catch (error) {
+
       return dispatch({
-        type: FAIL_CREATED_MSG,
-        payload: error.response.error.data,
+        type: GET_PRODUCT_BY_NAME,
+        payload: productByName.data,
       });
+    } catch (error) {
+      return dispatch({ type: ERROR_MSSG, payload: error.response.data });
     }
   };
 };
@@ -118,7 +137,77 @@ export const putProductById = (id, product, token) => {
   };
 };
 
+<<<<<<< HEAD
 export const putInventory = (id, product, token) => {
+=======
+export const deleteProdut = (id) => {
+  return async function (dispatch) {
+    const deleteProduct = await axios.delete(
+      `http://localhost:3001/product/${id}`
+    );
+    return dispatch({ type: DELETE_PRODUCT, payload: deleteProduct.data });
+  };
+};
+
+export const restoreProduct = (id) => {
+  return async function (dispatch) {
+    let restoreProduct = await axios.put(
+      `http://localhost:3001/product/restore/${id}`
+    );
+    return dispatch({ type: RESTORE_PRODUCT, payload: restoreProduct.data });
+  };
+};
+
+export const getProductDeleted = () => {
+  return async function (dispatch) {
+    try {
+      const allProductDelete = await axios.get(
+        "http://localhost:3001/product/deleted"
+      );
+      return dispatch({
+        type: PRODUCTS_DELETED,
+        payload: allProductDelete.data,
+      });
+    } catch (error) {
+      return dispatch({
+        type: MSG_NOT_PRODUCT_DELETED,
+        payload: error.response.data,
+      });
+    }
+  };
+};
+
+//!DISCOUNTS ACTIONS --------------------------------------------------------------------
+export const createDiscount = (product) => {
+  return async function (dispatch) {
+    try {
+      const createDiscount = await axios.post(
+        "http://localhost:3001/discount",
+        product
+      );
+      return dispatch({ type: CREATE_DISCOUNT, payload: createDiscount.data });
+    } catch (error) {
+      return dispatch({
+        type: FAIL_CREATED_MSG,
+        payload: error.response.error.data,
+      });
+    }
+  };
+};
+
+export const putDiscount = (product) => {
+  return async function (dispatch) {
+    const putInventory = await axios.put(
+      "http://localhost:3001/discount/",
+      product
+    );
+    return dispatch({ type: PUT_DISCOUNT, payload: putInventory.data });
+  };
+};
+
+//!INVENTORY ACTIONS --------------------------------------------------------------------
+export const putInventory = (id, product) => {
+>>>>>>> f860e4b98399a789a276228d77fbcadd32c4d545
   return async function (dispatch) {
     const putInventory = await axios.put(
       `http://localhost:3001/inventory/${id}`,
@@ -132,6 +221,7 @@ export const putInventory = (id, product, token) => {
   };
 };
 
+<<<<<<< HEAD
 export const putDiscount = (product, token) => {
   return async function (dispatch) {
     const putInventory = await axios.put(
@@ -159,6 +249,9 @@ export const deleteProdut = (id, token) => {
   };
 };
 
+=======
+//! PRODUCT CATEGORY DETAILS && FILTERS ACTIONS -----------------------------------------
+>>>>>>> f860e4b98399a789a276228d77fbcadd32c4d545
 export const getCategoryDetails = (category) => {
   return async function (dispatch) {
     const categoryDetails = await axios.get(
@@ -185,6 +278,7 @@ export const filterbyDetails = (category, details) => {
   };
 };
 
+<<<<<<< HEAD
 export const getProductByName = (name) => {
   return async function (dispatch) {
     if (name === '') {
@@ -218,6 +312,9 @@ export const restoreProduct = (id) => {
   };
 };
 
+=======
+//! CART ACTIONS --------------------------------------------------------------------
+>>>>>>> f860e4b98399a789a276228d77fbcadd32c4d545
 export const addToCart = (id) => {
   return {
     type: ADD_TO_CART,
@@ -232,19 +329,51 @@ export const deleteP = (id) => {
   };
 };
 
+export const updateCartQuantity = () => {
+  return {
+    type: UPDATE_CART_QUANTITY,
+  };
+};
+
 export const clearCart = () => {
   return {
     type: CLEAR_CART,
   };
 };
 
+export const increaseProductQuantity = (id) => {
+  return {
+    type: INCREASE_PRODUCT_QUANTITY,
+    payload: id,
+  };
+};
+
+export const decreaseProductQuantity = (id) => {
+  return {
+    type: DECREASE_PRODUCT_QUANTITY,
+    payload: id,
+  };
+};
+
+export function orderByPrice(payload) {
+  return {
+    type: ORDER_BY_PRICE,
+    payload: payload,
+  };
+}
+
+//! USERS ACTIONS --------------------------------------------------------------------
 export const getAllUsers = () => {
   return async function (dispatch) {
+<<<<<<< HEAD
     let allUsers = await axios.get("http://localhost:3001/user", {
       headers: {
         authorization: `Bearer ${token}`,
       },
     });
+=======
+    let allUsers = await axios.get("http://localhost:3001/user");
+>>>>>>> f860e4b98399a789a276228d77fbcadd32c4d545
     return dispatch({ type: ALL_USERS, payload: allUsers.data });
   };
 };
@@ -253,11 +382,15 @@ export const createUser = (newUser, token) => {
   console.log(token);
   return async function (dispatch) {
     try {
+<<<<<<< HEAD
       let createUser = await axios.post("http://localhost:3001/user", newUser, {
         headers: {
           authorization: `Bearer ${token}`,
         },
       });
+=======
+      let createUser = await axios.post("http://localhost:3001/user", newUser);
+>>>>>>> f860e4b98399a789a276228d77fbcadd32c4d545
       return dispatch({ type: CREATE_USER, payload: createUser.data });
     } catch (error) {
       return dispatch({
@@ -273,11 +406,15 @@ export const userSpecific = (userFound, token) => {
   return async function (dispatch) {
     try {
       let userSpeci = await axios.get(
+<<<<<<< HEAD
         `http://localhost:3001/user?email=${userFound}`, {
         headers: {
           authorization: `Bearer ${token}`,
         },
       });
+=======
+        `http://localhost:3001/user?email=${userFound}`);
+>>>>>>> f860e4b98399a789a276228d77fbcadd32c4d545
       return dispatch({ type: USER_SPECIFIC, payload: userSpeci.data });
     } catch (error) {
       return dispatch({
@@ -294,6 +431,7 @@ export const logoutUser = () => {
   };
 };
 
+<<<<<<< HEAD
 export const updateCartQuantity = () => {
   return {
     type: UPDATE_CART_QUANTITY,
@@ -308,6 +446,13 @@ export const addFavorite = (ids, token) => {
           authorization: `Bearer ${token}`,
         },
       });
+=======
+//! FAVOURITES ACTIONS --------------------------------------------------------------------
+export const addFavorite = (ids) => {
+  return async function (dispatch) {
+    try {
+      let favorite = await axios.post("http://localhost:3001/favorite", ids);
+>>>>>>> f860e4b98399a789a276228d77fbcadd32c4d545
       return dispatch({ type: ADD_FAVORITE, payload: favorite.data });
     } catch (error) {
       return dispatch({
@@ -338,6 +483,7 @@ export const getFavorites = (userId, token) => {
   };
 };
 
+<<<<<<< HEAD
 export const increaseProductQuantity = (id) => {
   return {
     type: INCREASE_PRODUCT_QUANTITY,
@@ -353,6 +499,9 @@ export const decreaseProductQuantity = (id) => {
 };
 
 export const deleteFavorite = (ids, token) => {
+=======
+export const deleteFavorite = (ids) => {
+>>>>>>> f860e4b98399a789a276228d77fbcadd32c4d545
   return async function (dispatch) {
     try {
       console.log(ids);
@@ -373,37 +522,12 @@ export const deleteFavorite = (ids, token) => {
   };
 };
 
+//! CLEAR MSG ACTIONS --------------------------------------------------------------------
 export const clearProdMsg = () => {
   return {
     type: CLEAR_PROD_MSG,
   };
 };
-
-export const getProductDeleted = () => {
-  return async function (dispatch) {
-    try {
-      const allProductDelete = await axios.get(
-        'http://localhost:3001/product/deleted'
-      );
-      return dispatch({
-        type: PRODUCTS_DELETED,
-        payload: allProductDelete.data,
-      });
-    } catch (error) {
-      return dispatch({
-        type: MSG_NOT_PRODUCT_DELETED,
-        payload: error.response.data,
-      });
-    }
-  };
-};
-
-export function orderByPrice(payload) {
-  return {
-    type: ORDER_BY_PRICE,
-    payload: payload,
-  };
-}
 
 export const clearFavMsg = () => {
   return {
@@ -419,5 +543,17 @@ export const clearDeleted = (payload) => {
   return {
     type: CLEAR_DELETED_PRODUCTS,
     payload: payload,
+  };
+};
+
+export const pay = (payData) => {
+  return async function (dispatch) {
+    try {
+      console.log(payData);
+      let payLink = await axios.post("http://localhost:3001/payment/", payData);
+      return dispatch({ type: PAY, payload: payLink.data });
+    } catch (error) {
+      console.log(error);
+    }
   };
 };

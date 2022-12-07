@@ -33,9 +33,14 @@ const Profile = () => {
     const postDb = async () => {
       await getUserMetadata();
       localStorage.setItem("email", JSON.stringify(user.email));
+<<<<<<< HEAD
       const token = await getAccessTokenSilently();
       dispatch(actions.createUser({ email: user.email }, token));
       localStorage.setItem("token", JSON.stringify(token));
+=======
+      dispatch(actions.createUser({ email: user.email }));
+      dispatch(actions.userSpecific(user.email));
+>>>>>>> f860e4b98399a789a276228d77fbcadd32c4d545
     };
     postDb();
   }, [getAccessTokenSilently, user?.sub]);

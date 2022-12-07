@@ -5,11 +5,28 @@ class PaymentController {
 
   async getPaymentLink(req, res) {
     try {
-      const payment = await this.subscriptionService.createPayment(req.body);
+      let { items } = req.body;
+      let { email } = req.body;
+      console.log(items);
+      let cart = items.map((e) => {
+        return {
+          title: e.name,
+          description: e.name,
+          picture_url: e.image,
+          category_id: e.categoryName,
+          quantity: e.quantity,
+          unit_price: Math.ceil(e.price),
+        };
+      });
 
+      console.log(cart);
+      const payment = await this.subscriptionService.createPayment({
+        email: email,
+        items: cart,
+      });
       return res.json(payment);
     } catch (error) {
-      console.log(error);
+      console.log(error.response.data);
 
       return res
         .status(500)
