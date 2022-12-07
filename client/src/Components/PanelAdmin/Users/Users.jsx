@@ -1,9 +1,12 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import { useSelector } from "react-redux";
-
+import { useSelector, useDispatch } from "react-redux";
+import { deleteUser, getAllUsers } from "../../../redux/actions/actions";
 export default function Users() {
+  const dispatch = useDispatch();
+  const token = localStorage.getItem("token");
   const users = useSelector((state) => state.users);
+
   return (
     <div>
       <Link
@@ -17,7 +20,13 @@ export default function Users() {
           <p>{user.name}</p> <img src={user.img} alt={user.name} />{" "}
           <p>{user.email}</p>
           {user.admin === true ? <p>Admin: YES</p> : <p>Admin:NO</p>}
-          <button>Delete User</button>
+          <button
+            onClick={() => {
+              dispatch(deleteUser(JSON.parse(token), user.id));
+            }}
+          >
+            Delete User
+          </button>
         </>
       ))}
     </div>

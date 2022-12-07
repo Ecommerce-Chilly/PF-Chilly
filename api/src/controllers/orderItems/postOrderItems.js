@@ -11,7 +11,7 @@ const postOrderItems = async ({ userId, productId, quantity }) => {
     await newOrderedItem.setUser(foundUser)
     await newOrderedItem.setProduct(foundProduct)
 
-    return newOrderedItem
+    return 'Order added'
 
 
   } catch (error) {

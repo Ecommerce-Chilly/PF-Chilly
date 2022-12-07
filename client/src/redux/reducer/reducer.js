@@ -41,6 +41,8 @@ import {
   USER_ADMIN,
   PAY,
   CLEAR_PAYLINK,
+  DELETE_USER,
+  ADD_ORDER
 } from "../actions/actions.js";
 
 const initialState = {
@@ -63,6 +65,7 @@ const initialState = {
   msgProductDeleted: "",
   admin: false,
   paymentLink: "",
+  msg: ''
 };
 
 const rootReducer = (state = initialState, action) => {
@@ -180,17 +183,17 @@ const rootReducer = (state = initialState, action) => {
       const orderByPrice =
         action.payload === "Asc"
           ? state.product.sort((a, b) => {
-              if (a.price - b.price < 0) return 1;
-              else return -1;
-            })
+            if (a.price - b.price < 0) return 1;
+            else return -1;
+          })
           : action.payload === "Dsc"
-          ? state.product.sort((a, b) => {
+            ? state.product.sort((a, b) => {
               if (a.price - b.price > 0) return 1;
               else return -1;
             })
-          : action.payload === "default"
-          ? state.allProduct
-          : "joder";
+            : action.payload === "default"
+              ? state.allProduct
+              : "joder";
       return {
         ...state,
         state: orderByPrice,
@@ -254,6 +257,11 @@ const rootReducer = (state = initialState, action) => {
         quantity: cartQuantity1,
       };
     //! USERS REDUCERS
+    case DELETE_USER:
+      return {
+        ...state,
+        msg: action.payload
+      }
     case ALL_USERS:
       return {
         ...state,
@@ -361,6 +369,12 @@ const rootReducer = (state = initialState, action) => {
         ...state,
         paymentLink: "",
       };
+    //! ORDER ITEMS
+    case ADD_ORDER:
+      return {
+        ...state,
+        msg: action.payload
+      }
     default:
       return state;
   }

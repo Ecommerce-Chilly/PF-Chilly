@@ -25,6 +25,9 @@ module.exports = (sequelize) => {
       admin: {
         type: DataTypes.BOOLEAN,
         defaultValues: false
+      },
+      clouding: {
+        type: DataTypes.STRING
       }
     },
     {
