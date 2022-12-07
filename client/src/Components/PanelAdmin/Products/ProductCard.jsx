@@ -1,23 +1,52 @@
-import React from 'react';
+import React, { useState } from "react";
 import {
   deleteProdut,
   restoreProduct,
-} from '../../../redux/actions/actions.js';
-import { useDispatch } from 'react-redux';
-import { Link } from 'react-router-dom';
+} from "../../../redux/actions/actions.js";
+import { Link } from "react-router-dom";
+import { useDispatch } from "react-redux";
+import "./ProductCard.css";
+import Swal from "sweetalert2";
 
 function ProductCard(props) {
   const dispatch = useDispatch();
+  let token = localStorage.getItem("token");
+  token = JSON.parse(token);
+  const [open, setOpen] = useState(false);
 
   function dispatchToDeleteProduct(id) {
-    dispatch(deleteProdut(id));
+    dispatch(deleteProdut(id, token));
+    setOpen(!open);
   }
 
-  function dispatchToRestore(id) {
-    dispatch(restoreProduct(id));
-  }
+  const confirmDeleteProd = (id) => {
+    Swal.fire({
+      icon: "question",
+      text: "Are you sure you want to delete this product?",
+      confirmButtonText: "Yes",
+      showDenyButton: "true",
+      denyButtonText: "No",
+      customClass: {
+        container: "popup-container",
+        popup: "popup",
+        confirmButton: "confirm",
+        denyButton: "deny",
+        cancelButton: "cancel",
+      },
+    }).then((result) => {
+      /* Read more about isConfirmed, isDenied below */
+      if (result.isConfirmed) {
+        dispatchToDeleteProduct(id);
+      }
+    });
+  };
+
   return (
-    <div className="w-72 h-96 mb-11 bg-white rounded-xl shadow-xl border  m-2 relative flex flex-col justify-between">
+    <div
+      className={`w-72 h-96 mb-11 bg-white rounded-xl shadow-xl border  m-2 relative flex flex-col justify-between ${
+        open && "joder"
+      }`}
+    >
       {props.categoryName ? (
         <>
           <Link
@@ -34,7 +63,7 @@ function ProductCard(props) {
 
                 <img
                   className="m-auto h-40"
-                  src={props.image.replace('SL75', 'SL500')}
+                  src={props.image.replace("SL75", "SL500")}
                   alt={props.name}
                 />
                 <p>Brand: {props.brand}</p>
@@ -47,18 +76,10 @@ function ProductCard(props) {
             <button
               className="text-main font-semibold rounded px-3 py-1"
               onClick={() => {
-                dispatchToDeleteProduct(props.id);
+                confirmDeleteProd(props.id);
               }}
             >
               Delete Product
-            </button>
-            <button
-              className="bg-main text-white font-semibold rounded px-3"
-              onClick={() => {
-                dispatchToRestore(props.id);
-              }}
-            >
-              Restore
             </button>
           </div>
         </>
@@ -75,7 +96,7 @@ function ProductCard(props) {
             </h2>
             <img
               className="m-auto h-40"
-              src={props.image.replace('SL75', 'SL500')}
+              src={props.image.replace("SL75", "SL500")}
               alt={props.name}
             />
             <p className="text-2xl font-display text-slate-700">

@@ -2,67 +2,82 @@ import {
   GET_ALL_PRODUCTS,
   GET_PRODUCT_BY_ID,
   CREATE_PRODUCT,
-  CREATE_DISCOUNT,
   PUT_PRODUCT,
-  PUT_INVENTORY,
-  FAIL_CREATED_MSG,
-  PUT_DISCOUNT,
   DELETE_PRODUCT,
+  PRODUCTS_DELETED,
+  GET_PRODUCT_BY_NAME,
+  RESTORE_PRODUCT,
+  CREATE_DISCOUNT,
+  PUT_DISCOUNT,
+  PUT_INVENTORY,
   GET_CATEGORY_DETAILS,
   FILTER1,
   FILTER_BY_DETAILS,
-  GET_PRODUCT_BY_NAME,
-  ERROR_MSSG,
-  EUSEBIO,
-  RESTORE_PRODUCT,
-  ERROR_PUT_PRODUCT,
+  ORDER_BY_PRICE,
   ADD_TO_CART,
   DELETE_CART_PRODUCT,
   CLEAR_CART,
+  UPDATE_CART_QUANTITY,
+  INCREASE_PRODUCT_QUANTITY,
+  DECREASE_PRODUCT_QUANTITY,
+  ALL_USERS,
   CREATE_USER,
   USER_SPECIFIC,
   LOGOUT,
-  ERROR_CREATE_USER,
-  ALL_USERS,
-  USER_NOT_FOUND,
-  UPDATE_CART_QUANTITY,
   GET_FAVORITES,
   ADD_FAVORITE,
-  INCREASE_PRODUCT_QUANTITY,
-  DECREASE_PRODUCT_QUANTITY,
   DELETE_FAVORITE,
+  ERROR_MSSG,
+  EUSEBIO,
+  ERROR_PUT_PRODUCT,
+  ERROR_CREATE_USER,
+  USER_NOT_FOUND,
+  CLEAR_PROD_MSG,
+  MSG_NOT_PRODUCT_DELETED,
+  CLEAR_FAV_MSG,
+  CLEAR_FAV_STATE,
+  FAIL_CREATED_MSG,
+  CLEAR_DELETED_PRODUCTS,
+  USER_ADMIN,
+  PAY,
+  CLEAR_PAYLINK,
 } from "../actions/actions.js";
 
 const initialState = {
   product: [],
   allProduct: [],
   productDetail: [],
+  productsDeleted: [],
   createProductMsg: "",
   productChangedMsg: "",
   searchProductMsg: "",
   categoryDetails: [],
   cart: [],
   users: [],
-  userInfo: [],
+  userInfo: {},
   userNotFound: "",
   createUserMsg: "",
   quantity: 0,
   favorites: [],
   favoriteMsg: "",
+  msgProductDeleted: "",
+  admin: false,
+  paymentLink: "",
 };
 
 const rootReducer = (state = initialState, action) => {
   switch (action.type) {
+    //! PRODUCTS REDUCER
     case GET_ALL_PRODUCTS:
       return {
         ...state,
         product: action.payload,
         allProduct: action.payload,
+        productDetail: [],
         createProductMsg: "",
         searchProductMsg: "",
         productChangedMsg: "",
       };
-
     case GET_PRODUCT_BY_ID:
       return {
         ...state,
@@ -72,6 +87,7 @@ const rootReducer = (state = initialState, action) => {
       return {
         ...state,
         product: action.payload,
+        searchProductMsg: "",
       };
 
     case CREATE_PRODUCT:
@@ -79,17 +95,36 @@ const rootReducer = (state = initialState, action) => {
         ...state,
         createProductMsg: action.payload,
       };
-
-    case CREATE_DISCOUNT:
-      return {
-        ...state,
-      };
     case PUT_PRODUCT:
       return {
         ...state,
         productChangedMsg: action.payload,
       };
-    case PUT_INVENTORY:
+    case DELETE_PRODUCT:
+      return {
+        ...state,
+        productDeletedMsg: action.payload,
+      };
+    case RESTORE_PRODUCT:
+      return {
+        ...state,
+        productChangedMsg: action.payload,
+      };
+    case PRODUCTS_DELETED:
+      return {
+        ...state,
+        productsDeleted: action.payload,
+      };
+    case CLEAR_DELETED_PRODUCTS:
+      let detedProduct = state.productsDeleted.filter(
+        (e) => e.id !== action.payload
+      );
+      return {
+        ...state,
+        productsDeleted: detedProduct,
+      };
+    //!DISCOUNTS REDUCER
+    case CREATE_DISCOUNT:
       return {
         ...state,
       };
@@ -97,27 +132,17 @@ const rootReducer = (state = initialState, action) => {
       return {
         ...state,
       };
-    case DELETE_PRODUCT:
+    //!INVENTORY REDUCER
+    case PUT_INVENTORY:
       return {
         ...state,
-        productDeletedMsg: action.payload,
       };
-    case FAIL_CREATED_MSG:
-      return {
-        ...state,
-        createProductMsg: action.payload,
-      };
+    //! PRODUCT CATEGORY DETAILS && FILTERS ACTIONS
     case GET_CATEGORY_DETAILS:
       return {
         ...state,
         categoryDetails: action.payload,
       };
-    case RESTORE_PRODUCT:
-      return {
-        ...state,
-        productChangedMsg: action.payload,
-      };
-
     case FILTER1:
       let temporal = state.allProduct;
       let filtered = temporal.filter((e) => e.categoryName === action.payload);
@@ -151,22 +176,26 @@ const rootReducer = (state = initialState, action) => {
         searchProductMsg: "",
         product: filtered2,
       };
-    case ERROR_MSSG:
+    case ORDER_BY_PRICE:
+      const orderByPrice =
+        action.payload === "Asc"
+          ? state.product.sort((a, b) => {
+              if (a.price - b.price < 0) return 1;
+              else return -1;
+            })
+          : action.payload === "Dsc"
+          ? state.product.sort((a, b) => {
+              if (a.price - b.price > 0) return 1;
+              else return -1;
+            })
+          : action.payload === "default"
+          ? state.allProduct
+          : "joder";
       return {
         ...state,
-        searchProductMsg: action.payload,
+        state: orderByPrice,
       };
-    case ERROR_PUT_PRODUCT:
-      return {
-        ...state,
-        productChangedMsg: action.payload,
-      };
-    case EUSEBIO:
-      return {
-        ...state,
-        searchProductMsg: action.payload,
-      };
-
+    //! CART ACTIONS
     case ADD_TO_CART:
       let prod = state.allProduct.find((e) => e.id === action.payload);
       let foundProd = state.cart.find((e) => e.id === action.payload);
@@ -200,55 +229,6 @@ const rootReducer = (state = initialState, action) => {
         ...state,
         quantity: cartQuantity,
       };
-    case ALL_USERS:
-      return {
-        ...state,
-        users: action.payload,
-        createUserMsg: "",
-      };
-
-    case CREATE_USER:
-      return {
-        ...state,
-        createUserMsg: action.payload,
-        userNotFound: "",
-      };
-    case ERROR_CREATE_USER:
-      return {
-        ...state,
-        createUserMsg: action.payload,
-      };
-    case USER_SPECIFIC:
-      return {
-        ...state,
-        userInfo: action.payload,
-        createUserMsg: "",
-      };
-    case USER_NOT_FOUND:
-      return {
-        ...state,
-        userNotFound: action.payload,
-      };
-    case LOGOUT:
-      return {
-        ...state,
-        userInfo: [],
-      };
-    case GET_FAVORITES:
-      return {
-        ...state,
-        favorites: action.payload.products,
-      };
-    case ADD_FAVORITE:
-      return {
-        ...state,
-        favoriteMsg: action.payload,
-      };
-    case DELETE_FAVORITE:
-      return {
-        ...state,
-        favoriteMsg: action.payload,
-      };
     case INCREASE_PRODUCT_QUANTITY:
       let product = state.cart.find((e) => e.id === action.payload);
 
@@ -265,11 +245,121 @@ const rootReducer = (state = initialState, action) => {
       if (product2.quantity > 1) {
         product2.quantity = product2.quantity - 1;
       }
-
+      let cartQuantity1 = 0;
+      for (let i = 0; i < state.cart.length; i++) {
+        cartQuantity1 = cartQuantity1 + state.cart[i].quantity;
+      }
       return {
         ...state,
-        quantity:
-          state.quantity > 1 ? state.quantity - 1 : (state.quantity = 1),
+        quantity: cartQuantity1,
+      };
+    //! USERS REDUCERS
+    case ALL_USERS:
+      return {
+        ...state,
+        users: action.payload,
+        createUserMsg: "",
+      };
+    case USER_SPECIFIC:
+      return {
+        ...state,
+        userInfo: action.payload,
+        createUserMsg: "",
+      };
+    case USER_ADMIN:
+      return {
+        ...state,
+        admin: action.payload,
+      };
+    case CREATE_USER:
+      return {
+        ...state,
+        createUserMsg: action.payload,
+        userNotFound: "",
+      };
+    case LOGOUT:
+      return {
+        ...state,
+        userInfo: [],
+      };
+    //! FAVOURITES REDUCERS
+    case GET_FAVORITES:
+      return {
+        ...state,
+        favorites: action.payload.products,
+      };
+    case ADD_FAVORITE:
+      return {
+        ...state,
+        favoriteMsg: action.payload,
+      };
+    case DELETE_FAVORITE:
+      return {
+        ...state,
+        favoriteMsg: action.payload,
+      };
+    case CLEAR_FAV_STATE:
+      return {
+        ...state,
+        favorites: [],
+      };
+    //! ERRORS MSG REDUCERS
+    case FAIL_CREATED_MSG:
+      return {
+        ...state,
+        createProductMsg: action.payload,
+      };
+    case ERROR_MSSG:
+      return {
+        ...state,
+        searchProductMsg: action.payload,
+      };
+    case ERROR_PUT_PRODUCT:
+      return {
+        ...state,
+        productChangedMsg: action.payload,
+      };
+    case EUSEBIO:
+      return {
+        ...state,
+        searchProductMsg: action.payload,
+      };
+    case ERROR_CREATE_USER:
+      return {
+        ...state,
+        createUserMsg: action.payload,
+      };
+    case MSG_NOT_PRODUCT_DELETED:
+      return {
+        ...state,
+        msgProductDeleted: action.payload,
+      };
+    case USER_NOT_FOUND:
+      return {
+        ...state,
+        userNotFound: action.payload,
+      };
+    //! CLEAR MSG REDUCERS
+    case CLEAR_PROD_MSG:
+      return {
+        ...state,
+        createProductMsg: "",
+        productChangedMsg: "",
+      };
+    case CLEAR_FAV_MSG:
+      return {
+        ...state,
+        favoriteMsg: "",
+      };
+    case PAY:
+      return {
+        ...state,
+        paymentLink: action.payload["init_point"],
+      };
+    case CLEAR_PAYLINK:
+      return {
+        ...state,
+        paymentLink: "",
       };
     default:
       return state;

@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 
 function Footer() {
   return (
@@ -46,22 +47,22 @@ function Footer() {
       <div className="w-1/2 inline-block">
         <ul className="flex justify-between uppercase font-sans font-light underline-offset-4">
           <li className="hover:underline ">
-            <a href="/home">Home</a>
+            <Link to="/">Home</Link>
           </li>
           <li className="hover:underline">
-            <a href="/store">Store</a>
+            <Link to="/store">Store</Link>
           </li>
           <li className="hover:underline">
-            <a href="/build+your+own">Build</a>
+          <Link to="/build+your+own">Build</Link>
           </li>
           <li className="hover:underline">
-            <a href="/special+offers">Special Offers</a>
+          <Link to="/special+offers">Special Offers</Link>
           </li>
           <li className="hover:underline">
-            <a href="/blog">Blog</a>
+          <Link to="/blog">Blog</Link>
           </li>
           <li className="hover:underline">
-            <a href="/about+us">About Us</a>
+          <Link to="/about+us">About Us</Link>
           </li>
         </ul>
       </div>

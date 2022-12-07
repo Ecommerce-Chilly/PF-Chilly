@@ -1,4 +1,4 @@
-const axios = require("axios")
+const axios = require("axios");
 
 class PaymentService {
   async createPayment(variable) {
@@ -17,16 +17,16 @@ class PaymentService {
       payer_email: variable.email,
       items: variable.items,
       back_urls: {
-        failure: "/failure",
-        pending: "/pending",
-        success: "/success"
-      }
+        failure: "localhost:3000/paymentfailure",
+        pending: "localhost:3000/paymentpending",
+        success: "localhost:3000/paymentsuccess",
+      },
     };
     const payment = await axios.post(url, body, {
       headers: {
         "Content-Type": "application/json",
-        Authorization: `Bearer ${process.env.ACCESS_TOKEN}`
-      }
+        Authorization: `Bearer ${process.env.ACCESS_TOKEN}`,
+      },
     });
 
     return payment.data;

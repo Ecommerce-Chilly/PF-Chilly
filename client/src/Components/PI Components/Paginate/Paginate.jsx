@@ -1,7 +1,8 @@
-import React, { useEffect, useState } from "react";
-import { useSelector } from "react-redux";
-import ReactPaginate from "react-paginate";
-import ProductCard from "../../PanelAdmin/Products/ProductCard";
+import React, { useEffect, useState } from 'react';
+import { useSelector } from 'react-redux';
+import ReactPaginate from 'react-paginate';
+import ProductCard from '../../PanelAdmin/Products/ProductCard';
+import { Link } from 'react-router-dom';
 // import "./Paginate.css";
 
 function Paginate({ products }) {
@@ -24,6 +25,12 @@ function Paginate({ products }) {
 
   return (
     <div className="">
+      <Link
+        to="/panel+admin"
+        className=" absolute font-medium left-64 text-main -ml-4 top-44 z-10 border-solid  px-2.5"
+      >
+        Back to Panel Admin
+      </Link>
       <ReactPaginate
         breakLabel="..."
         nextLabel="Next"
@@ -33,16 +40,16 @@ function Paginate({ products }) {
         pageCount={pageCount}
         previousLabel="Previous"
         renderOnZeroPageCount={null}
-        containerClassName={"pagination"}
-        pageLinkClassName={"page-num2"}
-        previousLinkClassName={"page-num"}
-        nextLinkClassName={"page-num"}
-        activeLinkClassName={"active"}
+        containerClassName={'pagination'}
+        pageLinkClassName={'page-num2'}
+        previousLinkClassName={'page-num'}
+        nextLinkClassName={'page-num'}
+        activeLinkClassName={'active'}
       />
       <div className="flex flex-wrap justify-evenly">
-        {currentItems.length > 0 && searchProductMsg === "" ? (
+        {currentItems.length > 0 && searchProductMsg === '' ? (
           currentItems?.map((el) => <ProductCard key={el.id} {...el} />)
-        ) : searchProductMsg.error ? (
+        ) : searchProductMsg.error && currentItems.length === 0 ? (
           <div className="mx-auto text-3xl font-display font-medium ml-80  min-w-full">
             <p>{searchProductMsg.error}</p>
           </div>

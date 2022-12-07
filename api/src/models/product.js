@@ -29,7 +29,7 @@ module.exports = (sequelize) => {
       },
       image: {
         type: DataTypes.STRING,
-        defaultValue: "no hay imagen bro coloca la imagen cinthia",
+        defaultValue: "https://www.rastanley.com.au/img/products/NoImageLarge.png",
       },
       details: {
         type: DataTypes.ARRAY(DataTypes.JSON),

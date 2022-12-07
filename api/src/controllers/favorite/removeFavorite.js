@@ -6,7 +6,7 @@ const removeFavorites = async (userId, productId) => {
   const product = await Product.findByPk(productId)
   if (!product) throw `Product does not exist`
   user.removeProduct(product)
-  return `Product remove to favorites`
+  return `Product removed from favorites`
 }
 
-module.exports = { removeFavorites }
+module.exports = { removeFavorites };

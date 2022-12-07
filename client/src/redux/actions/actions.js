@@ -1,41 +1,52 @@
-import axios from "axios";
-export const GET_ALL_PRODUCTS = "GET_ALL_PRODUCTS";
-export const GET_PRODUCT_BY_ID = "GET_PRODUCT_BY_ID";
-export const CREATE_PRODUCT = "CREATE_PRODUCT";
-export const CREATE_DISCOUNT = "CREATE_DISCOUNT";
-export const PUT_PRODUCT = "PUT_PRODUCT";
-export const PUT_INVENTORY = "PUT_INVENTORY";
-export const PUT_DISCOUNT = "PUT_DISCOUNT";
-export const DELETE_PRODUCT = "DELETE_PRODUCT";
-export const FAIL_CREATED_MSG = "FAIL_CREATED_MSG";
-export const GET_CATEGORY_DETAILS = "GET_CATEGORY_DETAILS";
-export const FILTER1 = "FILTER1";
-export const FILTER_BY_DETAILS = "FILTER_BY_DETAILS";
-export const GET_PRODUCT_BY_NAME = "GET_PRODUCT_BY_NAME";
-export const ERROR_MSSG = "ERROR_MSSG";
-export const EUSEBIO = "EUSEBIO";
-export const ERROR_PUT_PRODUCT = "ERROR_PUT_PRODUCT";
-export const RESTORE_PRODUCT = "RESTORE_PRODUCT";
-export const ADD_TO_CART = "ADD_TO_CART";
-export const DELETE_CART_PRODUCT = "DELETE_CART_PRODUCT";
-export const CLEAR_CART = "CLEAR_CART";
-export const CREATE_USER = "CREATE_USER";
-export const USER_SPECIFIC = "USER_SPECIFIC";
-export const LOGOUT = "LOGOUT";
-export const ERROR_CREATE_USER = "ERROR_CREATE_USER";
-export const ALL_USERS = "ALL_USERS";
-export const USER_NOT_FOUND = "USER_NOT_FOUND";
-export const UPDATE_CART_QUANTITY = "UPDATE_CART_QUANTITY";
-export const ADD_FAVORITE = "ADD_FAVORITE";
-export const GET_FAVORITES = "GET_FAVORITES";
-export const DELETE_FAVORITE = "DELETE_FAVORITE";
-export const FAVORITE_MSG = "FAVORITE_MSG";
-export const DECREASE_PRODUCT_QUANTITY = "DECREASE_PRODUCT_QUANTITY";
-export const INCREASE_PRODUCT_QUANTITY = "INCREASE_PRODUCT_QUANTITY";
+import axios from 'axios';
+export const GET_ALL_PRODUCTS = 'GET_ALL_PRODUCTS';
+export const GET_PRODUCT_BY_ID = 'GET_PRODUCT_BY_ID';
+export const CREATE_PRODUCT = 'CREATE_PRODUCT';
+export const PUT_PRODUCT = 'PUT_PRODUCT';
+export const GET_PRODUCT_BY_NAME = 'GET_PRODUCT_BY_NAME';
+export const DELETE_PRODUCT = 'DELETE_PRODUCT';
+export const RESTORE_PRODUCT = 'RESTORE_PRODUCT';
+export const PRODUCTS_DELETED = 'PRODUCTS_DELETED';
+export const CREATE_DISCOUNT = 'CREATE_DISCOUNT';
+export const PUT_DISCOUNT = 'PUT_DISCOUNT';
+export const PUT_INVENTORY = 'PUT_INVENTORY';
+export const GET_CATEGORY_DETAILS = 'GET_CATEGORY_DETAILS';
+export const FILTER1 = 'FILTER1';
+export const FILTER_BY_DETAILS = 'FILTER_BY_DETAILS';
+export const ORDER_BY_PRICE = 'ORDER_BY_PRICE';
+export const ADD_TO_CART = 'ADD_TO_CART';
+export const DELETE_CART_PRODUCT = 'DELETE_CART_PRODUCT';
+export const CLEAR_CART = 'CLEAR_CART';
+export const DECREASE_PRODUCT_QUANTITY = 'DECREASE_PRODUCT_QUANTITY';
+export const INCREASE_PRODUCT_QUANTITY = 'INCREASE_PRODUCT_QUANTITY';
+export const CREATE_USER = 'CREATE_USER';
+export const USER_SPECIFIC = 'USER_SPECIFIC';
+export const LOGOUT = 'LOGOUT';
+export const ALL_USERS = 'ALL_USERS';
+export const USER_NOT_FOUND = 'USER_NOT_FOUND';
+export const UPDATE_CART_QUANTITY = 'UPDATE_CART_QUANTITY';
+export const ADD_FAVORITE = 'ADD_FAVORITE';
+export const GET_FAVORITES = 'GET_FAVORITES';
+export const DELETE_FAVORITE = 'DELETE_FAVORITE';
+export const FAVORITE_MSG = 'FAVORITE_MSG';
+export const CLEAR_PROD_MSG = 'CLEAR_PROD_MSG';
+export const CLEAR_FAV_MSG = 'CLEAR_FAV_MSG';
+export const CLEAR_FAV_STATE = 'CLEAR_FAV_STATE';
+export const MSG_NOT_PRODUCT_DELETED = 'MSG_NOT_PRODUCT_DELETED';
+export const CLEAR_DELETED_PRODUCTS = 'CLEAR_DELETED_PRODUCTS';
+export const FAIL_CREATED_MSG = 'FAIL_CREATED_MSG';
+export const ERROR_MSSG = 'ERROR_MSSG';
+export const EUSEBIO = 'EUSEBIO';
+export const ERROR_PUT_PRODUCT = 'ERROR_PUT_PRODUCT';
+export const ERROR_CREATE_USER = 'ERROR_CREATE_USER';
+export const PAY = 'PAY';
+export const CLEAR_PAYLINK = 'CLEAR_PAYLINK';
+export const USER_ADMIN = 'USER_ADMIN';
 
+//! PRODUCTS ACTIONS --------------------------------------------------------------------
 export const getProduct = () => {
   return async function (dispatch) {
-    let product = await axios.get("http://localhost:3001/product");
+    let product = await axios.get('/product');
     return dispatch({ type: GET_ALL_PRODUCTS, payload: product.data });
   };
 };
@@ -43,7 +54,7 @@ export const getProduct = () => {
 export const getProductById = (id) => {
   return async function (dispatch) {
     try {
-      let productById = await axios.get(`http://localhost:3001/product/${id}`);
+      let productById = await axios.get(`/product/${id}`);
       return dispatch({ type: GET_PRODUCT_BY_ID, payload: productById.data });
     } catch (error) {
       return dispatch({ type: EUSEBIO, payload: error.response.data.error });
@@ -51,26 +62,132 @@ export const getProductById = (id) => {
   };
 };
 
-export const createProduct = (product) => {
+export const createProduct = (product, token) => {
   return async function (dispatch) {
     try {
       const createProdu = await axios.post(
-        "http://localhost:3001/product",
-        product
+        '/product',
+        product,
+        {
+          headers: {
+            authorization: `Bearer ${token}`,
+          },
+        }
       );
-      return dispatch({ type: CREATE_PRODUCT, payload: createProdu });
+      return dispatch({ type: CREATE_PRODUCT, payload: createProdu.data });
     } catch (error) {
       return dispatch({ type: FAIL_CREATED_MSG, payload: error.response.data });
     }
   };
 };
 
-export const createDiscount = (product) => {
+export const getProductByName = (name) => {
+  return async function (dispatch) {
+    if (name === '') {
+      return dispatch({ type: ERROR_MSSG });
+    }
+    try {
+      let productByName = await axios.get(
+        `/product?name=${name}`
+      );
+
+      return dispatch({
+        type: GET_PRODUCT_BY_NAME,
+        payload: productByName.data,
+      });
+    } catch (error) {
+      return dispatch({ type: ERROR_MSSG, payload: error.response.data });
+    }
+  };
+};
+
+export const putProductById = (id, product, token) => {
+  return async function (dispatch) {
+    try {
+      const putProduct = await axios.put(
+        `/product/${id}`,
+        product,
+        {
+          headers: {
+            authorization: `Bearer ${token}`,
+          },
+        }
+      );
+      return dispatch({ type: PUT_PRODUCT, payload: putProduct.data });
+    } catch (error) {
+      return dispatch({
+        type: ERROR_PUT_PRODUCT,
+        payload: error.response.data,
+      });
+    }
+  };
+};
+
+export const deleteProdut = (id, token) => {
+  return async function (dispatch) {
+    const deleteProduct = await axios.delete(
+      `/product/${id}`,
+      {
+        headers: {
+          authorization: `Bearer ${token}`,
+        },
+      }
+    );
+    return dispatch({ type: DELETE_PRODUCT, payload: deleteProduct.data });
+  };
+};
+
+export const restoreProduct = (id, token) => {
+  return async function (dispatch) {
+    let restoreProduct = await axios.put(
+      `/product/restore/${id}`,
+      {},
+      {
+        headers: {
+          authorization: `Bearer ${token}`,
+        },
+      }
+    );
+    return dispatch({ type: RESTORE_PRODUCT, payload: restoreProduct.data });
+  };
+};
+
+export const getProductDeleted = (token) => {
+  return async function (dispatch) {
+    try {
+      const allProductDelete = await axios.get(
+        '/product/deleted',
+        {
+          headers: {
+            authorization: `Bearer ${token}`,
+          },
+        }
+      );
+      return dispatch({
+        type: PRODUCTS_DELETED,
+        payload: allProductDelete.data,
+      });
+    } catch (error) {
+      return dispatch({
+        type: MSG_NOT_PRODUCT_DELETED,
+        payload: error.response.data,
+      });
+    }
+  };
+};
+
+//!DISCOUNTS ACTIONS --------------------------------------------------------------------
+export const createDiscount = (product, token) => {
   return async function (dispatch) {
     try {
       const createDiscount = await axios.post(
-        "http://localhost:3001/discount",
-        product
+        '/discount',
+        product,
+        {
+          headers: {
+            authorization: `Bearer ${token}`,
+          },
+        }
       );
       return dispatch({ type: CREATE_DISCOUNT, payload: createDiscount.data });
     } catch (error) {
@@ -82,56 +199,42 @@ export const createDiscount = (product) => {
   };
 };
 
-export const putProductById = (id, product) => {
-  return async function (dispatch) {
-    try {
-      const putProduct = await axios.put(
-        `http://localhost:3001/product/${id}`,
-        product
-      );
-      return dispatch({ type: PUT_PRODUCT, payload: putProduct.data });
-    } catch (error) {
-      return dispatch({
-        type: ERROR_PUT_PRODUCT,
-        payload: error.response.data.error,
-      });
-    }
-  };
-};
-
-export const putInventory = (id, product) => {
+export const putDiscount = (product, token) => {
   return async function (dispatch) {
     const putInventory = await axios.put(
-      `http://localhost:3001/inventory/${id}`,
-      product
-    );
-    return dispatch({ type: PUT_INVENTORY, payload: putInventory.data });
-  };
-};
-
-export const putDiscount = (product) => {
-  return async function (dispatch) {
-    const putInventory = await axios.put(
-      "http://localhost:3001/discount/",
-      product
+      '/discount/',
+      product,
+      {
+        headers: {
+          authorization: `Bearer ${token}`,
+        },
+      }
     );
     return dispatch({ type: PUT_DISCOUNT, payload: putInventory.data });
   };
 };
 
-export const deleteProdut = (id) => {
+//!INVENTORY ACTIONS --------------------------------------------------------------------
+export const putInventory = (id, product, token) => {
   return async function (dispatch) {
-    const deleteProduct = await axios.delete(
-      `http://localhost:3001/product/${id}`
+    const putInventory = await axios.put(
+      `/inventory/${id}`,
+      product,
+      {
+        headers: {
+          authorization: `Bearer ${token}`,
+        },
+      }
     );
-    return dispatch({ type: DELETE_PRODUCT, payload: deleteProduct.data });
+    return dispatch({ type: PUT_INVENTORY, payload: putInventory.data });
   };
 };
 
+//! PRODUCT CATEGORY DETAILS && FILTERS ACTIONS -----------------------------------------
 export const getCategoryDetails = (category) => {
   return async function (dispatch) {
     const categoryDetails = await axios.get(
-      `http://localhost:3001/categoryDetails/${category}`
+      `/categoryDetails/${category}`
     );
     return dispatch({
       type: GET_CATEGORY_DETAILS,
@@ -154,35 +257,7 @@ export const filterbyDetails = (category, details) => {
   };
 };
 
-export const getProductByName = (name) => {
-  return async function (dispatch) {
-    if (name === "") {
-      return dispatch({ type: ERROR_MSSG });
-    }
-    try {
-      let productByName = await axios.get(
-        `http://localhost:3001/product?name=${name}`
-      );
-
-      return dispatch({
-        type: GET_PRODUCT_BY_NAME,
-        payload: productByName.data,
-      });
-    } catch (error) {
-      return dispatch({ type: ERROR_MSSG, payload: error.response.data });
-    }
-  };
-};
-
-export const restoreProduct = (id) => {
-  return async function (dispatch) {
-    let restoreProduct = await axios.put(
-      `http://localhost:3001/product/restore/${id}`
-    );
-    return dispatch({ type: RESTORE_PRODUCT, payload: restoreProduct.data });
-  };
-};
-
+//! CART ACTIONS --------------------------------------------------------------------
 export const addToCart = (id) => {
   return {
     type: ADD_TO_CART,
@@ -197,89 +272,15 @@ export const deleteP = (id) => {
   };
 };
 
-export const clearCart = () => {
-  return {
-    type: CLEAR_CART,
-  };
-};
-
-export const getAllUsers = () => {
-  return async function (dispatch) {
-    let allUsers = await axios.get("http://localhost:3001/user");
-    return dispatch({ type: ALL_USERS, payload: allUsers.data });
-  };
-};
-
-export const createUser = (newUser) => {
-  return async function (dispatch) {
-    try {
-      let createUser = await axios.post("http://localhost:3001/user", newUser);
-      return dispatch({ type: CREATE_USER, payload: createUser.data });
-    } catch (error) {
-      return dispatch({
-        type: ERROR_CREATE_USER,
-        payload: error.response.data.error,
-      });
-    }
-  };
-};
-
-export const userSpecific = (userFound) => {
-  return async function (dispatch) {
-    try {
-      let userSpeci = await axios.post(
-        "http://localhost:3001/user/tio",
-        userFound
-      );
-      return dispatch({ type: USER_SPECIFIC, payload: userSpeci.data });
-    } catch (error) {
-      return dispatch({
-        type: USER_NOT_FOUND,
-        payload: error.response.data.error,
-      });
-    }
-  };
-};
-
-export const logoutUser = () => {
-  return {
-    type: LOGOUT,
-  };
-};
-
 export const updateCartQuantity = () => {
   return {
     type: UPDATE_CART_QUANTITY,
   };
 };
 
-export const addFavorite = (ids) => {
-  return async function (dispatch) {
-    try {
-      let favorite = await axios.post("http://localhost:3001/favorite", ids);
-      return dispatch({ type: ADD_FAVORITE, payload: favorite.data });
-    } catch (error) {
-      return dispatch({
-        type: FAVORITE_MSG,
-        payload: error.response.data.error,
-      });
-    }
-  };
-};
-
-export const getFavorites = (userId) => {
-  return async function (dispatch) {
-    try {
-      let favorites = await axios.get(
-        `http://localhost:3001/favorite/${userId}`
-      );
-      return dispatch({ type: GET_FAVORITES, payload: favorites.data });
-    } catch (error) {
-      return dispatch({
-        type: FAVORITE_MSG,
-        payload: error.response.data.error,
-      });
-    }
+export const clearCart = () => {
+  return {
+    type: CLEAR_CART,
   };
 };
 
@@ -297,12 +298,140 @@ export const decreaseProductQuantity = (id) => {
   };
 };
 
-export const deleteFavorite = (ids) => {
+export function orderByPrice(payload) {
+  return {
+    type: ORDER_BY_PRICE,
+    payload: payload,
+  };
+}
+
+//! USERS ACTIONS --------------------------------------------------------------------
+export const getAllUsers = (token) => {
+  return async function (dispatch) {
+    let allUsers = await axios.get('/user', {
+      headers: {
+        authorization: `Bearer ${token}`,
+      },
+    });
+    return dispatch({ type: ALL_USERS, payload: allUsers.data });
+  };
+};
+
+export const createUser = (newUser, token) => {
   return async function (dispatch) {
     try {
-      console.log(ids);
+      let createUser = await axios.post('/user', newUser, {
+        headers: {
+          authorization: `Bearer ${token}`,
+        },
+      });
+      return dispatch({ type: CREATE_USER, payload: createUser.data });
+    } catch (error) {
+      return dispatch({
+        type: ERROR_CREATE_USER,
+        payload: error.response.data.error,
+      });
+    }
+  };
+};
+
+export const userSpecific = (userFound, token) => {
+  return async function (dispatch) {
+    try {
+      let userSpeci = await axios.get(
+        `/user?email=${userFound}`,
+        {
+          headers: {
+            authorization: `Bearer ${token}`,
+          },
+        }
+      );
+      return dispatch({ type: USER_SPECIFIC, payload: userSpeci.data });
+    } catch (error) {
+      return dispatch({
+        type: USER_NOT_FOUND,
+        payload: error.response.data.error,
+      });
+    }
+  };
+};
+
+export const logoutUser = () => {
+  return {
+    type: LOGOUT,
+  };
+};
+export const userAdmin = (user, token) => {
+  return async function (dispatch) {
+    axios
+      .get(`/user/admin?email=${user}`, {
+        headers: {
+          authorization: `Bearer ${token}`,
+        },
+      })
+      .then((data) => {
+        return dispatch({
+          type: USER_ADMIN,
+          payload: data.data,
+        }).catch((error) => {
+          return dispatch({
+            type: USER_NOT_FOUND,
+            payload: error.response.data.error,
+          });
+        });
+      });
+  };
+};
+//! FAVOURITES ACTIONS --------------------------------------------------------------------
+export const addFavorite = (ids, token) => {
+  return async function (dispatch) {
+    try {
+      let favorite = await axios.post('/favorite', ids, {
+        headers: {
+          authorization: `Bearer ${token}`,
+        },
+      });
+      return dispatch({ type: ADD_FAVORITE, payload: favorite.data });
+    } catch (error) {
+      return dispatch({
+        type: FAVORITE_MSG,
+        payload: error.response.data.error,
+      });
+    }
+  };
+};
+
+export const getFavorites = (userId, token) => {
+  return async function (dispatch) {
+    try {
+      let favorites = await axios.get(
+        `/favorite/${userId}`,
+        {
+          headers: {
+            authorization: `Bearer ${token}`,
+          },
+        }
+      );
+      return dispatch({ type: GET_FAVORITES, payload: favorites.data });
+    } catch (error) {
+      return dispatch({
+        type: FAVORITE_MSG,
+        payload: error.response.data.error,
+      });
+    }
+  };
+};
+
+export const deleteFavorite = (ids, token) => {
+  return async function (dispatch) {
+    try {
       let favorite2 = await axios.delete(
-        `http://localhost:3001/favorite/${ids.userId}/${ids.productId}`
+        `/favorite/${ids.userId}/${ids.productId}`,
+        {
+          headers: {
+            authorization: `Bearer ${token}`,
+          },
+        }
       );
       return dispatch({ type: DELETE_FAVORITE, payload: favorite2.data });
     } catch (error) {
@@ -311,5 +440,54 @@ export const deleteFavorite = (ids) => {
         payload: error.response.data.error,
       });
     }
+  };
+};
+
+//! CLEAR MSG ACTIONS --------------------------------------------------------------------
+export const clearProdMsg = () => {
+  return {
+    type: CLEAR_PROD_MSG,
+  };
+};
+
+export const clearFavMsg = () => {
+  return {
+    type: CLEAR_FAV_MSG,
+  };
+};
+export const clearFavSate = () => {
+  return {
+    type: CLEAR_FAV_STATE,
+  };
+};
+export const clearDeleted = (payload) => {
+  return {
+    type: CLEAR_DELETED_PRODUCTS,
+    payload: payload,
+  };
+};
+
+export const pay = (payData, token) => {
+  return async function (dispatch) {
+    try {
+      let payLink = await axios.post(
+        '/payment/',
+        payData,
+        {
+          headers: {
+            authorization: `Bearer ${token}`,
+          },
+        }
+      );
+      return dispatch({ type: PAY, payload: payLink.data });
+    } catch (error) {
+      console.log(error);
+    }
+  };
+};
+
+export const clearPaylink = () => {
+  return {
+    type: CLEAR_PAYLINK,
   };
 };
