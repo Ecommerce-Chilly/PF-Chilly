@@ -17,9 +17,9 @@ class PaymentService {
       payer_email: variable.email,
       items: variable.items,
       back_urls: {
-        failure: "/failure",
-        pending: "/pending",
-        success: "localhost:3000/pagoexitosisimojodermecagoento",
+        failure: "localhost:3000/paymentfailure",
+        pending: "localhost:3000/paymentpending",
+        success: "localhost:3000/paymentsuccess",
       },
     };
     const payment = await axios.post(url, body, {
