@@ -8,6 +8,7 @@ import {
 } from '../../../redux/actions/actions';
 
 import FavCards from './FavCards';
+import { useAuth0 } from '@auth0/auth0-react';
 
 function Fav() {
   let dispatch = useDispatch();
@@ -22,6 +23,8 @@ function Fav() {
       dispatch(clearFavMsg());
     };
   }, [favoriteMsg]);
+  const { loginWithRedirect } = useAuth0();
+  const { isAuthenticated, isLoading } = useAuth0();
 
   return (
     <div className="min-h-screen">
@@ -67,7 +70,7 @@ function Fav() {
             Please sign in to view your favourites!
           </h2>
           <Link
-            to="/user/info"
+            onClick={() => loginWithRedirect()}
             className=" pt-9 font-semibold text-main py-2 px-6  hover:underline"
           >
             Sign in

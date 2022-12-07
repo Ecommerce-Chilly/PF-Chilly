@@ -1,7 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 
-function Pagoexitoso() {
+function PagoExitoso() {
   return (
     <div>
       <div class="h-full my-20 font-display ">
@@ -39,4 +39,4 @@ function Pagoexitoso() {
   );
 }
 
-export default Pagoexitoso;
+export default PagoExitoso;

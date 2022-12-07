@@ -1,20 +1,20 @@
-import React, { useEffect, useState } from "react";
-import { useDispatch, useSelector } from "react-redux";
-import { Link } from "react-router-dom";
+import React, { useEffect, useState } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { Link } from 'react-router-dom';
 import {
   deleteP,
   clearCart,
   pay,
   clearPaylink,
-} from "../../../redux/actions/actions";
-import CartItem from "../CartItem/CartItem";
-import Swal from "sweetalert2";
+} from '../../../redux/actions/actions';
+import CartItem from '../CartItem/CartItem';
+import Swal from 'sweetalert2';
 
 function Cart() {
   const cart = useSelector((state) => state.cart);
   const paymentLink = useSelector((state) => state.paymentLink);
   const userUnique = useSelector((state) => state.userInfo);
-  const token = localStorage.getItem("token");
+  const token = localStorage.getItem('token');
   const dispatch = useDispatch();
   let [variable, setVariable] = useState(0);
 
@@ -38,17 +38,17 @@ function Cart() {
 
   const confirmClearCart = () => {
     Swal.fire({
-      icon: "question",
-      text: "Are you sure you want to clear your cart?",
-      confirmButtonText: "Yes",
-      showDenyButton: "true",
-      denyButtonText: "No",
+      icon: 'question',
+      text: 'Are you sure you want to clear your cart?',
+      confirmButtonText: 'Yes',
+      showDenyButton: 'true',
+      denyButtonText: 'No',
       customClass: {
-        container: "popup-container",
-        popup: "popup",
-        confirmButton: "confirm",
-        denyButton: "deny",
-        cancelButton: "cancel",
+        container: 'popup-container',
+        popup: 'popup',
+        confirmButton: 'confirm',
+        denyButton: 'deny',
+        cancelButton: 'cancel',
       },
     }).then((result) => {
       /* Read more about isConfirmed, isDenied below */
@@ -152,9 +152,11 @@ function Cart() {
                   </button>
                 </Link>
               ) : (
-                <button className=" flex font-semibold  text-white border-solid bg-main border-2 border-main py-2 px-6 focus:outline-none hover:bg-blue-600 rounded hover:border-blue-600">
-                  <a href={paymentLink}>PAY</a>
-                </button>
+                <a href={paymentLink} className="text-center">
+                  <button className=" flex font-semibold  text-white border-solid bg-main border-2 border-main py-2 px-12  focus:outline-none hover:bg-blue-600 rounded hover:border-blue-600 ">
+                    Pay!
+                  </button>
+                </a>
               )}
             </div>
           </div>

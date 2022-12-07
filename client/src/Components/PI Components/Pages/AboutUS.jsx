@@ -1,10 +1,21 @@
 import React from 'react';
-import WorkInProgress from '../WorkInProgress/WorkInProgress';
+import Accordeon from './Accordeon';
+import AboutCard from './AboutCard';
 
 function AboutUS() {
   return (
     <div>
-      <WorkInProgress />
+      <div class="flex flex-wrap justify-evenly mb-10 ">
+        <AboutCard />
+        <AboutCard />
+        <AboutCard />
+        <AboutCard />
+        <AboutCard />
+        <AboutCard />
+        <AboutCard />
+        <AboutCard />
+      </div>
+      <Accordeon />
     </div>
   );
 }
