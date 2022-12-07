@@ -25,7 +25,7 @@ const LogoutButton = () => {
     }).then((result) => {
       /* Read more about isConfirmed, isDenied below */
       if (result.isConfirmed) {
-        logout({ returnTo: 'http://localhost:3000/home' });
+        logout({ returnTo: 'http://localhost:3000/' });
         dispatch(logoutUser());
         localStorage.removeItem('token');
         localStorage.removeItem('email');

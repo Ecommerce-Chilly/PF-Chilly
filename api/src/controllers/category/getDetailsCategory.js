@@ -1,5 +1,6 @@
-const { Product } = require("../../db");
+// const { Product } = require("../../db");
 const { getProducts } = require("../product/getProducts");
+
 const getDetailsCategory = async (category) => {
   try {
     const productsCategory = await getProducts(category, null, null);

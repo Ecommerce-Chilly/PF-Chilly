@@ -7,7 +7,8 @@ const { checkJwt, checkScopes } = require('../middleware/oAuth')
 // import { addCartItem } from "../controllers/cart/addCartItem";
 const { addShoppingSession } = require("../controllers/shopping/addShoppingSession")
 const userRoute = Router();
-userRoute.get("/", async (req, res) => {
+
+userRoute.get("/", checkJwt, async (req, res) => {
   try {
     let { email } = req.query;
     const users = await getUser(email)
@@ -53,6 +54,7 @@ userRoute.post('/', async (req, res) => {
     res.status(404).send({ error: error });
   }
 });
+
 userRoute.get('/admin', checkJwt, checkScopes, async (req, res) => {
   try {
     const msg = await userAdmin(req.query)

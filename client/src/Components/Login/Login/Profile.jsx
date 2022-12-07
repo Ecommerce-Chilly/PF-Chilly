@@ -91,7 +91,7 @@ const Profile = () => {
               <div className="absolute right-0 text-slate-800 text-center">
                 {admin === true ? (
                   <>
-                    <p>★ ΔΜØŇǤ ỮŞ ඞ ★ </p>
+                    <p>★ ADMIN ★ </p>
                     <Link to="/panel+admin" className="text-main">
                       Panel Admin
                     </Link>

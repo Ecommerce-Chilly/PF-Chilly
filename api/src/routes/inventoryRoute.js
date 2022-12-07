@@ -15,6 +15,7 @@ inventoryRoutes.post("/", checkJwt, checkScopes, async (req, res) => {
     res.status(404).send(error);
   }
 });
+
 inventoryRoutes.put("/:id", checkJwt, checkScopes, async (req, res) => {
   try {
     const { id } = req.params;

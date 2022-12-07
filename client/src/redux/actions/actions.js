@@ -46,7 +46,7 @@ export const USER_ADMIN = 'USER_ADMIN';
 //! PRODUCTS ACTIONS --------------------------------------------------------------------
 export const getProduct = () => {
   return async function (dispatch) {
-    let product = await axios.get('http://localhost:3001/product');
+    let product = await axios.get('/product');
     return dispatch({ type: GET_ALL_PRODUCTS, payload: product.data });
   };
 };
@@ -54,7 +54,7 @@ export const getProduct = () => {
 export const getProductById = (id) => {
   return async function (dispatch) {
     try {
-      let productById = await axios.get(`http://localhost:3001/product/${id}`);
+      let productById = await axios.get(`/product/${id}`);
       return dispatch({ type: GET_PRODUCT_BY_ID, payload: productById.data });
     } catch (error) {
       return dispatch({ type: EUSEBIO, payload: error.response.data.error });
@@ -66,7 +66,7 @@ export const createProduct = (product, token) => {
   return async function (dispatch) {
     try {
       const createProdu = await axios.post(
-        'http://localhost:3001/product',
+        '/product',
         product,
         {
           headers: {
@@ -74,7 +74,7 @@ export const createProduct = (product, token) => {
           },
         }
       );
-      return dispatch({ type: CREATE_PRODUCT, payload: createProdu });
+      return dispatch({ type: CREATE_PRODUCT, payload: createProdu.data });
     } catch (error) {
       return dispatch({ type: FAIL_CREATED_MSG, payload: error.response.data });
     }
@@ -88,7 +88,7 @@ export const getProductByName = (name) => {
     }
     try {
       let productByName = await axios.get(
-        `http://localhost:3001/product?name=${name}`
+        `/product?name=${name}`
       );
 
       return dispatch({
@@ -105,7 +105,7 @@ export const putProductById = (id, product, token) => {
   return async function (dispatch) {
     try {
       const putProduct = await axios.put(
-        `http://localhost:3001/product/${id}`,
+        `/product/${id}`,
         product,
         {
           headers: {
@@ -126,7 +126,7 @@ export const putProductById = (id, product, token) => {
 export const deleteProdut = (id, token) => {
   return async function (dispatch) {
     const deleteProduct = await axios.delete(
-      `http://localhost:3001/product/${id}`,
+      `/product/${id}`,
       {
         headers: {
           authorization: `Bearer ${token}`,
@@ -140,7 +140,7 @@ export const deleteProdut = (id, token) => {
 export const restoreProduct = (id, token) => {
   return async function (dispatch) {
     let restoreProduct = await axios.put(
-      `http://localhost:3001/product/restore/${id}`,
+      `/product/restore/${id}`,
       {},
       {
         headers: {
@@ -156,7 +156,7 @@ export const getProductDeleted = (token) => {
   return async function (dispatch) {
     try {
       const allProductDelete = await axios.get(
-        'http://localhost:3001/product/deleted',
+        '/product/deleted',
         {
           headers: {
             authorization: `Bearer ${token}`,
@@ -181,7 +181,7 @@ export const createDiscount = (product, token) => {
   return async function (dispatch) {
     try {
       const createDiscount = await axios.post(
-        'http://localhost:3001/discount',
+        '/discount',
         product,
         {
           headers: {
@@ -202,7 +202,7 @@ export const createDiscount = (product, token) => {
 export const putDiscount = (product, token) => {
   return async function (dispatch) {
     const putInventory = await axios.put(
-      'http://localhost:3001/discount/',
+      '/discount/',
       product,
       {
         headers: {
@@ -218,7 +218,7 @@ export const putDiscount = (product, token) => {
 export const putInventory = (id, product, token) => {
   return async function (dispatch) {
     const putInventory = await axios.put(
-      `http://localhost:3001/inventory/${id}`,
+      `/inventory/${id}`,
       product,
       {
         headers: {
@@ -234,7 +234,7 @@ export const putInventory = (id, product, token) => {
 export const getCategoryDetails = (category) => {
   return async function (dispatch) {
     const categoryDetails = await axios.get(
-      `http://localhost:3001/categoryDetails/${category}`
+      `/categoryDetails/${category}`
     );
     return dispatch({
       type: GET_CATEGORY_DETAILS,
@@ -308,7 +308,7 @@ export function orderByPrice(payload) {
 //! USERS ACTIONS --------------------------------------------------------------------
 export const getAllUsers = (token) => {
   return async function (dispatch) {
-    let allUsers = await axios.get('http://localhost:3001/user/all', {
+    let allUsers = await axios.get('/user', {
       headers: {
         authorization: `Bearer ${token}`,
       },
@@ -320,7 +320,7 @@ export const getAllUsers = (token) => {
 export const createUser = (newUser, token) => {
   return async function (dispatch) {
     try {
-      let createUser = await axios.post('http://localhost:3001/user', newUser, {
+      let createUser = await axios.post('/user', newUser, {
         headers: {
           authorization: `Bearer ${token}`,
         },
@@ -339,7 +339,7 @@ export const userSpecific = (userFound, token) => {
   return async function (dispatch) {
     try {
       let userSpeci = await axios.get(
-        `http://localhost:3001/user?email=${userFound}`,
+        `/user?email=${userFound}`,
         {
           headers: {
             authorization: `Bearer ${token}`,
@@ -364,7 +364,7 @@ export const logoutUser = () => {
 export const userAdmin = (user, token) => {
   return async function (dispatch) {
     axios
-      .get(`http://localhost:3001/user/admin?email=${user}`, {
+      .get(`/user/admin?email=${user}`, {
         headers: {
           authorization: `Bearer ${token}`,
         },
@@ -386,7 +386,7 @@ export const userAdmin = (user, token) => {
 export const addFavorite = (ids, token) => {
   return async function (dispatch) {
     try {
-      let favorite = await axios.post('http://localhost:3001/favorite', ids, {
+      let favorite = await axios.post('/favorite', ids, {
         headers: {
           authorization: `Bearer ${token}`,
         },
@@ -405,7 +405,7 @@ export const getFavorites = (userId, token) => {
   return async function (dispatch) {
     try {
       let favorites = await axios.get(
-        `http://localhost:3001/favorite/${userId}`,
+        `/favorite/${userId}`,
         {
           headers: {
             authorization: `Bearer ${token}`,
@@ -426,7 +426,7 @@ export const deleteFavorite = (ids, token) => {
   return async function (dispatch) {
     try {
       let favorite2 = await axios.delete(
-        `http://localhost:3001/favorite/${ids.userId}/${ids.productId}`,
+        `/favorite/${ids.userId}/${ids.productId}`,
         {
           headers: {
             authorization: `Bearer ${token}`,
@@ -471,7 +471,7 @@ export const pay = (payData, token) => {
   return async function (dispatch) {
     try {
       let payLink = await axios.post(
-        'http://localhost:3001/payment/',
+        '/payment/',
         payData,
         {
           headers: {

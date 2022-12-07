@@ -1,5 +1,5 @@
 import React, { useEffect } from "react";
-import { Route } from "react-router-dom";
+import { Route, Switch } from "react-router-dom";
 import Cart from "../../Cart/Cart/Cart";
 import Navbar from "../Navbar/Navbar";
 import Fav from "../../Extras/Fav/Fav";
@@ -18,11 +18,13 @@ import Blog from "../Pages/Blog";
 import AboutUS from "../Pages/AboutUS";
 import Footer from "../Footer/Footer";
 import Register from "../../Login/Register/Register";
-import Pagoexitoso from "../../Cart/Cart/Pagoexitoso";
-import PanelAdmin from "../../PanelAdmin/PanelAdmin";
-import Users from "../../PanelAdmin/Users/Users";
+import PagoExitoso from "../../Cart/Cart/PagoExitoso.jsx";
+import PagoFallido from "../../Cart/Cart/PagoFallido.jsx";
+import PagoPendiente from "../../Cart/Cart/PagoPendiente.jsx";
 import { userSpecific } from "../../../redux/actions/actions";
 import { useDispatch } from "react-redux";
+import PanelAdmin from "../../PanelAdmin/PanelAdmin";
+import PageNotFound from "../Pages/PageNotFound";
 
 function MainRoute() {
   let dispatch = useDispatch();
@@ -41,47 +43,53 @@ function MainRoute() {
         <Navbar />
       </div>
       <div>
-        <Route exact path="/cart" component={Cart} />
-        <Route exact path="/user/favorites" component={Fav} />
-        <Route exact path="/user/info" component={UserInfo} />
-        <Route exact path="/home" component={Home} />
-        <Route exact path="/store" component={Store} />
-        <Route exact path="/build+your+own" component={BuildYourOwn} />
-        <Route exact path="/special+offers" component={SpecialOffers} />
-        <Route exact path="/blog" component={Blog} />
-        <Route exact path="/about+us" component={AboutUS} />
-        <Route exact path="/panel+admin" component={PanelAdmin} />
-        <Route exact path="/register" component={Register} />
+        <Switch>
+          <Route exact path="/cart" component={Cart} />
+          <Route exact path="/user/favorites" component={Fav} />
+          <Route exact path="/user/info" component={UserInfo} />
+          <Route exact path="/" component={Home} />
+          <Route exact path="/store" component={Store} />
+          <Route exact path="/build+your+own" component={BuildYourOwn} />
+          <Route exact path="/special+offers" component={SpecialOffers} />
+          <Route exact path="/blog" component={Blog} />
+          <Route exact path="/about+us" component={AboutUS} />
+          <Route exact path="/panel+admin" component={PanelAdmin} />
+          <Route exact path="/register" component={Register} />
 
-        <Route exact path="/panel+admin/products" component={Products} />
-        <Route exact path="/panel+admin/users" component={Users} />
-        <Route
-          exact
-          path="/panel+admin/products/:id"
-          component={ProductDetail}
-        />
-        <Route
-          exact
-          path="/store/products/:id"
-          component={ProductStoreDetail}
-        />
-        <Route
-          exact
-          path="/panel+admin/create/product"
-          component={CreateComponent}
-        />
-        <Route
-          exact
-          path="/panel+admin/change/product/:id"
-          component={ChangeComponent}
-        />
-        <Route exact path="/panel+admin/deleted" component={ProductsDeleted} />
+          <Route exact path="/panel+admin" component={PanelAdmin} />
+          <Route exact path="/panel+admin/products" component={Products} />
+          <Route exact path="/panel+admin/users" component={Users} />
+          <Route
+            exact
+            path="/panel+admin/products/:id"
+            component={ProductDetail}
+          />
+          <Route
+            exact
+            path="/store/products/:id"
+            component={ProductStoreDetail}
+          />
+          <Route
+            exact
+            path="/panel+admin/create/product"
+            component={CreateComponent}
+          />
+          <Route
+            exact
+            path="/panel+admin/change/product/:id"
+            component={ChangeComponent}
+          />
+          <Route
+            exact
+            path="/panel+admin/deleted"
+            component={ProductsDeleted}
+          />
 
-        <Route
-          exact
-          path="/pagoexitosisimojodermecagoento"
-          component={Pagoexitoso}
-        />
+          <Route exact path="/paymentsuccess" component={PagoExitoso} />
+          <Route exact path="/paymentpending" component={PagoPendiente} />
+          <Route exact path="/paymentfailure" component={PagoFallido} />
+          <Route exact path="*" component={PageNotFound} />
+        </Switch>
       </div>
       <div>
         <Footer />

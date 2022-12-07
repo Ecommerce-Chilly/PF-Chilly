@@ -9,4 +9,4 @@ const removeFavorites = async (userId, productId) => {
   return `Product removed from favorites`
 }
 
-module.exports = { removeFavorites }
+module.exports = { removeFavorites };

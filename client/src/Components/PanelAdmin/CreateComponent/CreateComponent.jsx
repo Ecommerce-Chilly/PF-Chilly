@@ -94,10 +94,10 @@ function CreateComponent() {
       }).then((r) => {
         dispatch(clearProdMsg());
       });
-    } else if (msg.statusText) {
+    } else if (msg) {
       Swal.fire({
         icon: 'success',
-        text: msg.statusText,
+        text: msg,
         confirmButtonText: 'Great!',
         customClass: {
           container: 'popup-container',

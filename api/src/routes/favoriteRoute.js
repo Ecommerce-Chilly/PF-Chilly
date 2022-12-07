@@ -24,6 +24,7 @@ favoriteRoute.post("/", checkJwt, async (req, res) => {
     res.status(404).send(error);
   }
 });
+
 favoriteRoute.delete("/:userId/:productId", checkJwt, async (req, res) => {
   try {
     const { userId, productId } = req.params;
@@ -35,4 +36,5 @@ favoriteRoute.delete("/:userId/:productId", checkJwt, async (req, res) => {
     res.status(404).send(error);
   }
 });
+
 module.exports = favoriteRoute;
