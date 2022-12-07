@@ -308,7 +308,7 @@ export function orderByPrice(payload) {
 //! USERS ACTIONS --------------------------------------------------------------------
 export const getAllUsers = (token) => {
   return async function (dispatch) {
-    let allUsers = await axios.get('http://localhost:3001/user', {
+    let allUsers = await axios.get('http://localhost:3001/user/all', {
       headers: {
         authorization: `Bearer ${token}`,
       },

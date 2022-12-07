@@ -72,7 +72,7 @@ User.hasOne(Data_user);
 Data_user.belongsTo(User);
 
 User.hasOne(Shopping_session);
-Shopping_session.belongsTo(User);
+Shopping_session.hasOne(User);
 
 User.hasMany(Payment_user);
 Payment_user.belongsTo(User);

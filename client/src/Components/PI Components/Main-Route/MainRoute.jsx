@@ -18,7 +18,9 @@ import Blog from "../Pages/Blog";
 import AboutUS from "../Pages/AboutUS";
 import Footer from "../Footer/Footer";
 import Register from "../../Login/Register/Register";
-import Pagoexitoso from "../../Cart/Cart/Pagoexitoso"
+import Pagoexitoso from "../../Cart/Cart/Pagoexitoso";
+import PanelAdmin from "../../PanelAdmin/PanelAdmin";
+import Users from "../../PanelAdmin/Users/Users";
 import { userSpecific } from "../../../redux/actions/actions";
 import { useDispatch } from "react-redux";
 
@@ -48,10 +50,11 @@ function MainRoute() {
         <Route exact path="/special+offers" component={SpecialOffers} />
         <Route exact path="/blog" component={Blog} />
         <Route exact path="/about+us" component={AboutUS} />
-
+        <Route exact path="/panel+admin" component={PanelAdmin} />
         <Route exact path="/register" component={Register} />
 
         <Route exact path="/panel+admin/products" component={Products} />
+        <Route exact path="/panel+admin/users" component={Users} />
         <Route
           exact
           path="/panel+admin/products/:id"
