@@ -2,25 +2,21 @@ const { Router } = require("express");
 const postUser = require("../controllers/user/postUser")
 const { getUser } = require("../controllers/user/getUser")
 const { deleteUser } = require("../controllers/user/deleteUser")
+const { userAdmin } = require('../controllers/user/userAdmin')
+const { checkJwt, checkScopes } = require('../middleware/oAuth')
 const userRoute = Router();
 
-userRoute.get("/", async (req, res) => {
+userRoute.get("/", checkJwt, async (req, res) => {
   try {
-    let { id, email } = req.query;
-    if (id) {
-      id = Number(id);
-      if (isNaN(id)) return res.status(406).send({ error: "Not Acceptable, id is not a number" })
-      const user = await getUser(id, email)
-      return res.status(200).send(user)
-    }
-    const users = await getUser()
+    let { email } = req.query;
+    const users = await getUser(email)
     return res.send(users)
   } catch (error) {
     return res.status(404).send({ error: error })
   }
 });
 
-userRoute.delete('/:id', async (req, res) => {
+userRoute.delete('/:id', checkJwt, async (req, res) => {
   try {
     const userDelete = await deleteUser(req.params.id);
     res.status(201).send(userDelete)
@@ -29,8 +25,10 @@ userRoute.delete('/:id', async (req, res) => {
   }
 })
 
-userRoute.post('/', async (req, res) => {
+userRoute.post('/', checkJwt, async (req, res) => {
   try {
+    const { email } = req.body
+    console.log(email);
     const userCreate = await postUser(req.body);
     res.status(201).send(userCreate);
   } catch (error) {
@@ -38,6 +36,14 @@ userRoute.post('/', async (req, res) => {
   }
 });
 
+userRoute.get('/admin', checkJwt, checkScopes, async (req, res) => {
+  try {
+    const msg = await userAdmin(req.query)
+    res.send(msg)
+  } catch (error) {
+    res.status(400).send(error)
+  }
+})
 
 userRoute.post("/tio", async (req, res) => {
   try {

@@ -7,7 +7,6 @@ class PaymentController {
     try {
       let { items } = req.body;
       let { email } = req.body;
-      console.log(items);
       let cart = items.map((e) => {
         return {
           title: e.name,
@@ -18,8 +17,6 @@ class PaymentController {
           unit_price: Math.ceil(e.price),
         };
       });
-
-      console.log(cart);
       const payment = await this.subscriptionService.createPayment({
         email: email,
         items: cart,

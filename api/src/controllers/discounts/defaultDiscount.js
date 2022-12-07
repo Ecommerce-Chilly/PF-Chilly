@@ -5,4 +5,4 @@ const defaultDiscount = async () => {
   return discount
 }
 
-module.exports = { defaultDiscount }
+module.exports = { defaultDiscount };

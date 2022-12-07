@@ -15,6 +15,7 @@ function Filters() {
   let [inputs, setInputs] = useState([]);
   let dispatch = useDispatch();
   let categoryDetails = useSelector((state) => state.categoryDetails);
+  let admin = useSelector((state) => state.admin);
 
   useEffect(() => {
     dispatch(filterbyDetails(category, details));
@@ -64,10 +65,10 @@ function Filters() {
               Price
             </option>
             <option key="Asc" value="Asc">
-              Ascending
+              Descending
             </option>
             <option key="Dsc" value="Dsc">
-              Descending
+              Ascending
             </option>
           </select>
         </div>

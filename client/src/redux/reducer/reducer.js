@@ -38,6 +38,7 @@ import {
   CLEAR_FAV_STATE,
   FAIL_CREATED_MSG,
   CLEAR_DELETED_PRODUCTS,
+  USER_ADMIN,
   PAY,
   CLEAR_PAYLINK,
 } from "../actions/actions.js";
@@ -53,13 +54,14 @@ const initialState = {
   categoryDetails: [],
   cart: [],
   users: [],
-  userInfo: [],
+  userInfo: {},
   userNotFound: "",
   createUserMsg: "",
   quantity: 0,
   favorites: [],
   favoriteMsg: "",
   msgProductDeleted: "",
+  admin: false,
   paymentLink: "",
 };
 
@@ -71,6 +73,7 @@ const rootReducer = (state = initialState, action) => {
         ...state,
         product: action.payload,
         allProduct: action.payload,
+        productDetail: [],
         createProductMsg: "",
         searchProductMsg: "",
         productChangedMsg: "",
@@ -110,7 +113,6 @@ const rootReducer = (state = initialState, action) => {
     case PRODUCTS_DELETED:
       return {
         ...state,
-        productsDeleted: action.payload,
         productsDeleted: action.payload,
       };
     case CLEAR_DELETED_PRODUCTS:
@@ -263,6 +265,11 @@ const rootReducer = (state = initialState, action) => {
         ...state,
         userInfo: action.payload,
         createUserMsg: "",
+      };
+    case USER_ADMIN:
+      return {
+        ...state,
+        admin: action.payload,
       };
     case CREATE_USER:
       return {

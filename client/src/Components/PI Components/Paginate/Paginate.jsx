@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { useSelector } from 'react-redux';
 import ReactPaginate from 'react-paginate';
 import ProductCard from '../../PanelAdmin/Products/ProductCard';
+import { Link } from 'react-router-dom';
 // import "./Paginate.css";
 
 function Paginate({ products }) {
@@ -24,6 +25,12 @@ function Paginate({ products }) {
 
   return (
     <div className="">
+      <Link
+        to="/panel+admin"
+        className=" absolute font-medium left-64 text-main -ml-4 top-44 z-10 border-solid  px-2.5"
+      >
+        Back to Panel Admin
+      </Link>
       <ReactPaginate
         breakLabel="..."
         nextLabel="Next"

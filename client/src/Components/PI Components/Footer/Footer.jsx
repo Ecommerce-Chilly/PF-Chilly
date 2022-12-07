@@ -47,7 +47,7 @@ function Footer() {
       <div className="w-1/2 inline-block">
         <ul className="flex justify-between uppercase font-sans font-light underline-offset-4">
           <li className="hover:underline ">
-            <Link to="/home">Home</Link>
+            <Link to="/">Home</Link>
           </li>
           <li className="hover:underline">
             <Link to="/store">Store</Link>

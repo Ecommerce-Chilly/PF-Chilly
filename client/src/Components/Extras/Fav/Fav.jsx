@@ -1,31 +1,37 @@
 import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
-import { getFavorites, clearFavMsg } from '../../../redux/actions/actions';
+import {
+  getFavorites,
+  clearFavMsg,
+  userSpecific,
+} from '../../../redux/actions/actions';
 
 import FavCards from './FavCards';
+import { useAuth0 } from '@auth0/auth0-react';
 
 function Fav() {
   let dispatch = useDispatch();
   const userInfo = useSelector((state) => state.userInfo);
   const favorites = useSelector((state) => state.favorites);
   const favoriteMsg = useSelector((state) => state.favoriteMsg);
-
+  let token = localStorage.getItem('token');
+  token = JSON.parse(token);
   React.useEffect(() => {
-    if (userInfo[0]) {
-      dispatch(getFavorites(userInfo[0].id));
-    }
+    dispatch(getFavorites(userInfo.id, token));
     return () => {
       dispatch(clearFavMsg());
     };
   }, [favoriteMsg]);
+  const { loginWithRedirect } = useAuth0();
+  const { isAuthenticated, isLoading } = useAuth0();
 
   return (
     <div className="min-h-screen">
       <h2 className="text-slate-800 text-3xl font-display font-semibold mt-12 ml-60 mb-9">
         Your Favourites:
       </h2>
-      {!userInfo[0] ? (
+      {!userInfo.id ? (
         <div className="text-center w-96m-auto ">
           <svg
             version="1.1"
@@ -35,6 +41,7 @@ function Fav() {
             y="0px"
             viewBox="0 0 58 58"
             className="w-72 m-auto"
+            fill="rgb(56,56,56)"
           >
             <g>
               <g>
@@ -63,7 +70,7 @@ function Fav() {
             Please sign in to view your favourites!
           </h2>
           <Link
-            to="/user/info"
+            onClick={() => loginWithRedirect()}
             className=" pt-9 font-semibold text-main py-2 px-6  hover:underline"
           >
             Sign in
@@ -84,6 +91,8 @@ function Fav() {
                 x="0px"
                 y="0px"
                 viewBox="0 0 58 58"
+                className="w-72 m-auto"
+                fill="rgb(56,56,56)"
               >
                 <g>
                   <g>

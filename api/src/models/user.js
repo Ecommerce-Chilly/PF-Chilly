@@ -16,10 +16,10 @@ module.exports = (sequelize) => {
           isEmail: true,
         },
       },
-      //  password: {
-      //     type: DataTypes.STRING,
-      //     allowNull: false,
-      //  },
+      admin: {
+        type: DataTypes.BOOLEAN,
+        defaultValues: false
+      }
     },
     {
       timestamps: true,
