@@ -18,9 +18,9 @@ import Blog from '../Pages/Blog';
 import AboutUS from '../Pages/AboutUS';
 import Footer from '../Footer/Footer';
 import Register from '../../Login/Register/Register';
-import PagoExitoso from '../../Cart/Cart/PagoExitoso';
-import PagoFallido from '../../Cart/Cart/PagoFallido';
-import PagoPendiente from '../../Cart/Cart/PagoPendiente';
+import PagoExitoso from '../../Cart/Cart/PagoExitoso.jsx';
+import PagoFallido from '../../Cart/Cart/PagoFallido.jsx';
+import PagoPendiente from '../../Cart/Cart/PagoPendiente.jsx';
 import { userSpecific } from '../../../redux/actions/actions';
 import { useDispatch } from 'react-redux';
 import PanelAdmin from '../../PanelAdmin/PanelAdmin';
@@ -47,16 +47,17 @@ function MainRoute() {
           <Route exact path="/cart" component={Cart} />
           <Route exact path="/user/favorites" component={Fav} />
           <Route exact path="/user/info" component={UserInfo} />
-          <Route exact path="/home" component={Home} />
+          <Route exact path="/" component={Home} />
           <Route exact path="/store" component={Store} />
           <Route exact path="/build+your+own" component={BuildYourOwn} />
           <Route exact path="/special+offers" component={SpecialOffers} />
           <Route exact path="/blog" component={Blog} />
           <Route exact path="/about+us" component={AboutUS} />
+
           <Route exact path="/register" component={Register} />
+
           <Route exact path="/panel+admin" component={PanelAdmin} />
           <Route exact path="/panel+admin/products" component={Products} />
-
           <Route
             exact
             path="/panel+admin/products/:id"
@@ -82,6 +83,7 @@ function MainRoute() {
             path="/panel+admin/deleted"
             component={ProductsDeleted}
           />
+
           <Route exact path="/paymentsuccess" component={PagoExitoso} />
           <Route exact path="/paymentpending" component={PagoPendiente} />
           <Route exact path="/paymentfailure" component={PagoFallido} />

@@ -17,7 +17,7 @@ function PageNotFound() {
               Sorry, we can't find that page.
             </p>
             <Link
-              to="/home"
+              to="/"
               class="cursor-pointer font-semibold  text-white border-solid bg-main border-2 border-main py-2 px-6 focus:outline-none hover:bg-blue-600 rounded hover:border-blue-600"
             >
               Back to Homepage

@@ -114,7 +114,6 @@ const rootReducer = (state = initialState, action) => {
       return {
         ...state,
         productsDeleted: action.payload,
-        productsDeleted: action.payload,
       };
     case CLEAR_DELETED_PRODUCTS:
       let detedProduct = state.productsDeleted.filter(

@@ -65,10 +65,10 @@ function Filters() {
               Price
             </option>
             <option key="Asc" value="Asc">
-              Ascending
+              Descending
             </option>
             <option key="Dsc" value="Dsc">
-              Descending
+              Ascending
             </option>
           </select>
         </div>
