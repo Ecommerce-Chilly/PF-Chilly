@@ -41,6 +41,10 @@ import {
   USER_ADMIN,
   PAY,
   CLEAR_PAYLINK,
+  ADD_TO_BUILD,
+  DELETE_FROM_BUILD,
+  BYO_TO_CART,
+  CLEAR_BYO,
 } from "../actions/actions.js";
 
 const initialState = {
@@ -63,6 +67,7 @@ const initialState = {
   msgProductDeleted: "",
   admin: false,
   paymentLink: "",
+  build: [],
 };
 
 const rootReducer = (state = initialState, action) => {
@@ -360,6 +365,40 @@ const rootReducer = (state = initialState, action) => {
       return {
         ...state,
         paymentLink: "",
+      };
+    case ADD_TO_BUILD:
+      let toAdd = {};
+      if (typeof action.payload === "number") {
+        toAdd = state.allProduct.find((e) => e.id === action.payload);
+        toAdd.quantity = 1;
+      } else {
+        toAdd["name"] = action.payload;
+      }
+      return {
+        ...state,
+        build: [...state.build, toAdd],
+      };
+    case DELETE_FROM_BUILD:
+      console.log(state.build);
+      let temporal5 = state.build;
+      temporal5.pop();
+
+      return {
+        ...state,
+        build: temporal5,
+      };
+    case BYO_TO_CART:
+      let temporal6 = action.payload;
+      temporal6.shift();
+
+      return {
+        ...state,
+        cart: [...state.cart, ...temporal6],
+      };
+    case CLEAR_BYO:
+      return {
+        ...state,
+        build: [],
       };
     default:
       return state;

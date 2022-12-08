@@ -4,6 +4,7 @@ import {
   deleteP,
   increaseProductQuantity,
   decreaseProductQuantity,
+  updateCartQuantity,
 } from "../../../redux/actions/actions";
 
 function CartItem({ name, quantity, price, image, id, changeVariable }) {
@@ -11,6 +12,7 @@ function CartItem({ name, quantity, price, image, id, changeVariable }) {
   let storeQuantity = useSelector((state) => state.quantity);
   const deleteProduct = (id) => {
     dispatch(deleteP(id));
+    dispatch(updateCartQuantity());
   };
 
   React.useEffect(() => {
