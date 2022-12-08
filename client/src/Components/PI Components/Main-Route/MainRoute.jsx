@@ -18,7 +18,8 @@ import Blog from "../Pages/Blog";
 import AboutUS from "../Pages/AboutUS";
 import Footer from "../Footer/Footer";
 import Register from "../../Login/Register/Register";
-import Pagoexitoso from "../../Cart/Cart/Pagoexitoso"
+import Pagoexitoso from "../../Cart/Cart/Pagoexitoso";
+import PanelAdmin from "../../PanelAdmin/PanelAdmin";
 import { userSpecific } from "../../../redux/actions/actions";
 import { useDispatch } from "react-redux";
 
@@ -62,6 +63,7 @@ function MainRoute() {
           path="/store/products/:id"
           component={ProductStoreDetail}
         />
+        <Route exact path="/panel+admin" component={PanelAdmin} />
         <Route
           exact
           path="/panel+admin/create/product"

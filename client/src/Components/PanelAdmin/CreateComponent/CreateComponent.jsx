@@ -1,16 +1,16 @@
-import React, { useState } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
-import { useHistory } from 'react-router-dom';
+import React, { useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { useHistory } from "react-router-dom";
 import {
   createProduct,
   createDiscount,
   clearProdMsg,
-} from '../../../redux/actions/actions.js';
-import Swal from 'sweetalert2';
-import { Link } from 'react-router-dom';
-import ForbiddenAccess from '../ForbiddenAccess.jsx';
+} from "../../../redux/actions/actions.js";
+import Swal from "sweetalert2";
+import { Link } from "react-router-dom";
+import ForbiddenAccess from "../ForbiddenAccess.jsx";
 
-const { validate } = require('../ChangeComponent/utils');
+const { validate } = require("../ChangeComponent/utils");
 
 function CreateComponent() {
   const admin = useSelector((state) => state.admin);
@@ -18,21 +18,21 @@ function CreateComponent() {
   const msg = useSelector((state) => state.createProductMsg);
   const history = useHistory();
   const [errors, setErrors] = useState({});
-  let token = localStorage.getItem('token');
+  let token = localStorage.getItem("token");
   token = JSON.parse(token);
   const [newProduct, setNewProduct] = useState({
-    name: '',
+    name: "",
     price: 0,
-    brand: '',
-    model: '',
-    quantity: '',
-    category: '',
+    brand: "",
+    model: "",
+    quantity: "",
+    category: "",
     details: [],
-    discount: '',
+    discount: "",
   });
   const [discountt, setDiscountt] = useState({
     name: `${newProduct.discount}`,
-    description: '',
+    description: "",
     percent: 0,
     active: 0,
   });
@@ -55,7 +55,7 @@ function CreateComponent() {
         [e.target.name]: e.target.value,
       })
     );
-    if (e.target.name === 'discount') {
+    if (e.target.name === "discount") {
       setDiscountt({
         ...discountt,
         name: e.target.value,
@@ -78,37 +78,36 @@ function CreateComponent() {
   }
 
   const creationStatus = () => {
-    console.log(msg);
     if (msg.error) {
       Swal.fire({
-        icon: 'error',
+        icon: "error",
         text: msg.error,
-        confirmButtonText: 'Retry',
+        confirmButtonText: "Retry",
         customClass: {
-          container: 'popup-container',
-          popup: 'popup',
-          confirmButton: 'confirm',
-          denyButton: 'deny',
-          cancelButton: 'cancel',
+          container: "popup-container",
+          popup: "popup",
+          confirmButton: "confirm",
+          denyButton: "deny",
+          cancelButton: "cancel",
         },
       }).then((r) => {
         dispatch(clearProdMsg());
       });
     } else if (msg.statusText) {
       Swal.fire({
-        icon: 'success',
-        text: msg.statusText,
-        confirmButtonText: 'Great!',
+        icon: "success",
+        text: `${msg.statusText}`,
+        confirmButtonText: "Great!",
         customClass: {
-          container: 'popup-container',
-          popup: 'popup',
-          confirmButton: 'confirm',
-          denyButton: 'deny',
-          cancelButton: 'cancel',
+          container: "popup-container",
+          popup: "popup",
+          confirmButton: "confirm",
+          denyButton: "deny",
+          cancelButton: "cancel",
         },
       }).then((r) => {
         if (r.isConfirmed) {
-          history.push('/panel+admin/products');
+          history.push("/panel+admin/products");
         }
       });
     }
@@ -237,7 +236,7 @@ function CreateComponent() {
           </select>
           {errors.brand && <p className="text-red-400 mb-4">{errors.brand}</p>}
 
-          {newProduct.brand === '' ? (
+          {newProduct.brand === "" ? (
             <>
               <label className="block mb-2 text-sm font-medium text-gray-900">
                 Product model:
