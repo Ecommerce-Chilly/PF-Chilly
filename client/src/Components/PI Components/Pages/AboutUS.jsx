@@ -1,9 +1,12 @@
-import React from 'react'
+import React from 'react';
+import WorkInProgress from '../WorkInProgress/WorkInProgress';
 
 function AboutUS() {
   return (
-    <div>AboutUS</div>
-  )
+    <div>
+      <WorkInProgress />
+    </div>
+  );
 }
 
-export default AboutUS
+export default AboutUS;
