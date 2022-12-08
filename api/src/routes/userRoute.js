@@ -9,7 +9,7 @@ const { addShoppingSession } = require("../controllers/shopping/addShoppingSessi
 const { cloudinaryUser } = require("../controllers/user/cloudinaryUser");
 const userRoute = Router();
 
-userRoute.get("/", checkJwt, async (req, res) => {
+userRoute.get("/", async (req, res) => {
   try {
     let { email } = req.query;
     const users = await getUser(email)
