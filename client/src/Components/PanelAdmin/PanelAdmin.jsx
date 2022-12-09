@@ -1,20 +1,29 @@
-import React, { useEffect } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
-import { Link } from 'react-router-dom';
-import { getProduct, getProductDeleted } from '../../redux/actions/actions';
-import AdminNavbar from '../PI Components/Navbar/AdminNavbar';
-import ForbiddenAccess from './ForbiddenAccess.jsx';
+import React, { useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { Link } from "react-router-dom";
+import {
+  getAllUsers,
+  getProduct,
+  getProductDeleted,
+} from "../../redux/actions/actions";
+import AdminNavbar from "../PI Components/Navbar/AdminNavbar";
+import ForbiddenAccess from "./ForbiddenAccess.jsx";
 
 function PanelAdmin() {
   const admin = useSelector((state) => state.admin);
   const products = useSelector((state) => state.allProduct);
   const deleted = useSelector((state) => state.productsDeleted);
+  const users = useSelector((state) => state.users);
   const dispatch = useDispatch();
-  let token = localStorage.getItem('token');
+  let token = localStorage.getItem("token");
   token = JSON.parse(token);
   useEffect(() => {
-    dispatch(getProduct());
-    dispatch(getProductDeleted(token));
+    const dispatchActions = async () => {
+      await dispatch(getAllUsers(token));
+      dispatch(getProduct());
+      dispatch(getProductDeleted(token));
+    };
+    dispatchActions();
   }, []);
 
   return (
@@ -85,9 +94,13 @@ function PanelAdmin() {
                     </g>
                   </svg>
                 </div>
-                <p className="text-4xl py-5 font-medium ">87</p>
+                <p className="text-4xl py-5 font-medium ">{users.length}</p>
                 <p className="pb-5">Total Users</p>
-                <Link to="#" href="" className="text-main hover:underline">
+                <Link
+                  to="/panel+admin/users"
+                  href=""
+                  className="text-main hover:underline"
+                >
                   Manage
                 </Link>
               </div>

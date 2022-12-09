@@ -42,7 +42,8 @@ export const ERROR_CREATE_USER = 'ERROR_CREATE_USER';
 export const PAY = 'PAY';
 export const CLEAR_PAYLINK = 'CLEAR_PAYLINK';
 export const USER_ADMIN = 'USER_ADMIN';
-
+export const DELETE_USER = "DELETE_USER";
+export const ADD_ORDER = "ADD_ORDER"
 //! PRODUCTS ACTIONS --------------------------------------------------------------------
 export const getProduct = () => {
   return async function (dispatch) {
@@ -308,7 +309,7 @@ export function orderByPrice(payload) {
 //! USERS ACTIONS --------------------------------------------------------------------
 export const getAllUsers = (token) => {
   return async function (dispatch) {
-    let allUsers = await axios.get('/user', {
+    let allUsers = await axios.get('/user/all', {
       headers: {
         authorization: `Bearer ${token}`,
       },
@@ -316,7 +317,23 @@ export const getAllUsers = (token) => {
     return dispatch({ type: ALL_USERS, payload: allUsers.data });
   };
 };
-
+export const deleteUser = (token, id) => {
+  return async function (dispatch) {
+    try {
+      let msg = await axios.delete(`/user/${id}`, {
+        headers: {
+          authorization: `Bearer ${token}`,
+        },
+      });
+      return dispatch({ type: DELETE_USER, payload: msg.data });
+    } catch (error) {
+      return dispatch({
+        type: USER_NOT_FOUND,
+        payload: error.response.data.error,
+      });
+    }
+  }
+}
 export const createUser = (newUser, token) => {
   return async function (dispatch) {
     try {
@@ -491,3 +508,15 @@ export const clearPaylink = () => {
     type: CLEAR_PAYLINK,
   };
 };
+//! ORDER ITEMS ----------------------------------------------------------------------------
+
+export const addOrder = (userId, productId, quantity, token) => {
+  return async function (dispatch) {
+    let msg = await axios.post('/orderItems', { userId, productId, quantity }, {
+      headers: {
+        authorization: `Bearer ${token}`,
+      },
+    })
+    return dispatch({ type: ADD_ORDER, payload: msg.data });
+  }
+}
