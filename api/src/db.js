@@ -97,7 +97,7 @@ User.hasMany(Order_items);
 
 Cart.belongsTo(User)
 User.hasMany(Cart)
-
+//repe 2 veces
 Cart.hasMany(User)
 User.belongsTo(Cart)
 
