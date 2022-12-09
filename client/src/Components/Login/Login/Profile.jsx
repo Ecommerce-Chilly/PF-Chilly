@@ -1,10 +1,10 @@
-import React, { useEffect, useState } from 'react';
-import axios from 'axios';
-import { LocalStorageCache, useAuth0 } from '@auth0/auth0-react';
-import * as actions from '../../../redux/actions/actions';
-import { useDispatch, useSelector } from 'react-redux';
-import LogoutButton from './LogoutButton';
-import { Link } from 'react-router-dom';
+import React, { useEffect, useState } from "react";
+import axios from "axios";
+import { LocalStorageCache, useAuth0 } from "@auth0/auth0-react";
+import * as actions from "../../../redux/actions/actions";
+import { useDispatch, useSelector } from "react-redux";
+import LogoutButton from "./LogoutButton";
+import { Link } from "react-router-dom";
 const Profile = () => {
   const admin = useSelector((state) => state.admin);
   const dispatch = useDispatch();
@@ -13,12 +13,12 @@ const Profile = () => {
 
   useEffect(() => {
     const getUserMetadata = async () => {
-      const domain = 'dev-r6cdo8stlhgup2wx.us.auth0.com';
+      const domain = "dev-r6cdo8stlhgup2wx.us.auth0.com";
 
       try {
         const accessToken = await getAccessTokenSilently({
           audience: `https://${domain}/api/v1/`,
-          scope: 'read:client_grants',
+          scope: "read:client_grants",
         });
         const userDetailsByIdUrl = `https://${domain}/api/v1/users/${user.sub}`;
         const metadataResponse = await fetch(userDetailsByIdUrl, {
@@ -35,12 +35,17 @@ const Profile = () => {
     };
     const postDb = async () => {
       await getUserMetadata();
-      localStorage.setItem('email', JSON.stringify(user.email));
+      localStorage.setItem("email", JSON.stringify(user.email));
       const token = await getAccessTokenSilently();
-      localStorage.setItem('token', JSON.stringify(token));
+      localStorage.setItem("token", JSON.stringify(token));
       async function create() {
         const token = await getAccessTokenSilently();
-        await dispatch(actions.createUser({ email: user.email }, token));
+        await dispatch(
+          actions.createUser(
+            { email: user.email, img: user.picture, name: user.name },
+            token
+          )
+        );
         await dispatch(actions.userSpecific(user.email, token));
         await dispatch(actions.userAdmin(user.email, token));
       }
@@ -86,7 +91,7 @@ const Profile = () => {
               <div className="absolute right-0 text-slate-800 text-center">
                 {admin === true ? (
                   <>
-                    <p>★ ΔΜØŇǤ ỮŞ ඞ ★ </p>
+                    <p>★ ADMIN ★ </p>
                     <Link to="/panel+admin" className="text-main">
                       Panel Admin
                     </Link>

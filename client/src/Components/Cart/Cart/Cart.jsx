@@ -6,6 +6,7 @@ import {
   clearCart,
   pay,
   clearPaylink,
+  addOrder,
 } from "../../../redux/actions/actions";
 import CartItem from "../CartItem/CartItem";
 import Swal from "sweetalert2";
@@ -35,7 +36,11 @@ function Cart() {
   const changeVariable = (num) => {
     setVariable(num);
   };
-
+  const orderAdd = () => {
+    cart?.map((e) => {
+      dispatch(addOrder(userUnique.id, e.id, e.quantity, JSON.parse(token)));
+    });
+  };
   const confirmClearCart = () => {
     Swal.fire({
       icon: "question",
@@ -64,7 +69,7 @@ function Cart() {
       </h1>
       {cart.length > 0 ? (
         cart?.map((e) => (
-          <div className=" ">
+          <div key={e.name}>
             <CartItem
               image={e.image}
               name={e.name}
@@ -145,6 +150,7 @@ function Cart() {
                           JSON.parse(token)
                         )
                       );
+                      orderAdd();
                     }}
                     className=" flex font-semibold  text-white border-solid bg-main border-2 border-main py-2 px-6 focus:outline-none hover:bg-blue-600 rounded hover:border-blue-600"
                   >
@@ -152,9 +158,11 @@ function Cart() {
                   </button>
                 </Link>
               ) : (
-                <button className=" flex font-semibold  text-white border-solid bg-main border-2 border-main py-2 px-6 focus:outline-none hover:bg-blue-600 rounded hover:border-blue-600">
-                  <a href={paymentLink}>PAY</a>
-                </button>
+                <a href={paymentLink} className="text-center">
+                  <button className=" flex font-semibold  text-white border-solid bg-main border-2 border-main py-2 px-12  focus:outline-none hover:bg-blue-600 rounded hover:border-blue-600 ">
+                    Pay!
+                  </button>
+                </a>
               )}
             </div>
           </div>

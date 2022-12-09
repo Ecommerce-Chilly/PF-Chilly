@@ -4,7 +4,6 @@ const categoryRoute = Router();
 
 categoryRoute.get("/", async (req, res) => {
   try {
-    // console.log('hola');
     const categoryDb = await getCategory();
     res.status(200).send(categoryDb);
   } catch (error) {

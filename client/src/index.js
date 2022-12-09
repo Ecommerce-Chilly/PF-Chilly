@@ -8,6 +8,10 @@ import { BrowserRouter } from 'react-router-dom';
 import { Auth0Provider } from '@auth0/auth0-react';
 import reportWebVitals from './reportWebVitals';
 
+import axios from 'axios';
+axios.defaults.baseURL = 'http://localhost:3001';
+// axios.defaults.baseURL = 'https://pruebachilly-production.up.railway.app/';
+
 ReactDOM.render(
   <Provider store={store}>
     <BrowserRouter>

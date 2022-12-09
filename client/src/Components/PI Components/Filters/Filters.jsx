@@ -1,18 +1,19 @@
-import React, { useEffect, useState } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
+import React, { useEffect, useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
 import {
   getCategoryDetails,
   filter1,
   filterbyDetails,
   getProduct,
   orderByPrice,
-} from '../../../redux/actions/actions.js';
-import store from '../../../redux/store/store';
+} from "../../../redux/actions/actions.js";
+import store from "../../../redux/store/store";
 
 function Filters() {
   let [details, setDetails] = useState({});
-  let [category, setCategory] = useState('');
+  let [category, setCategory] = useState("");
   let [inputs, setInputs] = useState([]);
+  let [filterPrice, setFilterPrice] = useState("");
   let dispatch = useDispatch();
   let categoryDetails = useSelector((state) => state.categoryDetails);
   let admin = useSelector((state) => state.admin);
@@ -29,7 +30,7 @@ function Filters() {
       let categoryDetail = store.getState().categoryDetails;
       for (const element in categoryDetail) {
         console.log(element);
-        if (element !== 'name') {
+        if (element !== "name") {
           setInputs((oldArray) => [...oldArray, element]);
         }
       }
@@ -44,6 +45,7 @@ function Filters() {
 
   function handleFilterByPrice(event) {
     event.preventDefault();
+    setFilterPrice(event.target.value);
     dispatch(orderByPrice(event.target.value));
   }
 
@@ -60,15 +62,16 @@ function Filters() {
           <select
             onChange={(event) => handleFilterByPrice(event)}
             className="border-solid border-black bg-white rounded w-11/12 h-7 text-slate-800"
+            value={filterPrice}
           >
             <option key="default" value="default">
               Price
             </option>
             <option key="Asc" value="Asc">
-              Ascending
+              Descending
             </option>
             <option key="Dsc" value="Dsc">
-              Descending
+              Ascending
             </option>
           </select>
         </div>
@@ -76,8 +79,9 @@ function Filters() {
           <button
             onClick={(event) => {
               handleClearFilters(event);
-              setCategory('');
+              setCategory("");
               setInputs([]);
+              setFilterPrice("");
             }}
             className=" absolute left-40 ml-1 top-44 z-10 border-solid border-main rounded border-2 px-2.5"
           >

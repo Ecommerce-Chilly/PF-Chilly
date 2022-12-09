@@ -11,4 +11,5 @@ const userAdmin = async ({ email }) => {
     throw error
   }
 }
+
 module.exports = { userAdmin }
