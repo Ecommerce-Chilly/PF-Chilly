@@ -9,10 +9,13 @@ import {
 import Swal from 'sweetalert2';
 import { Link } from 'react-router-dom';
 import ForbiddenAccess from '../ForbiddenAccess.jsx';
+import UploadImages from '../../UploadImages.jsx/UploadImages.jsx';
+
 
 const { validate } = require('../ChangeComponent/utils');
 
 function CreateComponent() {
+  
   const admin = useSelector((state) => state.admin);
   const dispatch = useDispatch();
   const msg = useSelector((state) => state.createProductMsg);
@@ -29,6 +32,7 @@ function CreateComponent() {
     category: '',
     details: [],
     discount: '',
+    image:""
   });
   const [discountt, setDiscountt] = useState({
     name: `${newProduct.discount}`,
@@ -69,7 +73,9 @@ function CreateComponent() {
       details: [{ ...newProduct.details[0], [e.target.name]: e.target.value }],
     });
   };
-
+  function catchImage(image){
+    setNewProduct({...newProduct,image:image})
+  }
   function dispatchDataToCreate(newProduct) {
     dispatch(createProduct(newProduct, token));
   }
@@ -120,6 +126,7 @@ function CreateComponent() {
         <form
           onSubmit={(e) => {
             e.preventDefault();
+            console.log(newProduct)
             dispatchDataToCreate(newProduct);
             dispatchDataToDiscount(discountt);
           }}
@@ -267,16 +274,17 @@ function CreateComponent() {
             <></>
           )}
           <label className="block mb-2 text-sm font-medium text-gray-900">
-            Product Img (URL):
+           
           </label>
-          <input
+              <UploadImages catchImage = {catchImage} />
+          {/* <input
             type="text"
             name="image"
             value={newProduct.image}
             onChange={handleChange}
             placeholder="Type Img URL here"
             className="bg-gray-50 border  text-gray-900 text-sm rounded-lg  focus:border-blue-500 block w-full p-2.5  border-gray-600 placeholder-gray-400 mb-6"
-          ></input>
+          ></input> */}
 
           <label className="block mb-2 text-sm font-medium text-gray-900">
             Product details:

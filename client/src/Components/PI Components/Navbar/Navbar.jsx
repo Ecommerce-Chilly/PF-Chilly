@@ -5,6 +5,7 @@ import SearchBar from '../SearchBar/SearchBar';
 import AdminNavbar from './AdminNavbar';
 import { useAuth0 } from '@auth0/auth0-react';
 
+
 function Navbar() {
   let cart = useSelector((state) => state.cart);
   let quantity = useSelector((state) => state.quantity);
@@ -13,10 +14,10 @@ function Navbar() {
   const { isAuthenticated, isLoading } = useAuth0();
   return (
     <>
-      <nav class="	 border-gray-200 px-2  py-5  dark:bg-main static">
+      <nav class="bg-main	 border-gray-200 px-2  py-5  static">
         <div class="container flex flex-wrap items-center justify-between mx-auto">
           <Link to="/" class="flex items-center">
-            <span class="self-center text-4xl font-semibold whitespace-nowrap dark:text-white font-sans">
+            <span class="self-center text-4xl font-semibold whitespace-nowrap text-white font-sans">
               Chilly
             </span>
           </Link>
@@ -108,6 +109,7 @@ function Navbar() {
         <div class="container flex w-2/3 mx-auto mt-6">
           <ul class="flex justify-between w-5/6 mx-auto uppercase font-sans underline-offset-4  font-light text-white">
             <li>
+              
               <Link to="/" className="hover:underline">
                 Home
               </Link>
