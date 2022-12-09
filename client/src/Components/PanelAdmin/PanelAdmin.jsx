@@ -24,7 +24,7 @@ function PanelAdmin() {
       await dispatch(getAllUsers(token));
       dispatch(getProduct());
       dispatch(getProductDeleted(token));
-      dispatch(getAllOrders(token))
+      dispatch(getAllOrders(token));
     };
     dispatchActions();
   }, []);
