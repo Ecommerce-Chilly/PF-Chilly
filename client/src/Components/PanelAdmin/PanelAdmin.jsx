@@ -2,6 +2,7 @@ import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 import {
+  getAllOrders,
   getAllUsers,
   getProduct,
   getProductDeleted,
@@ -23,6 +24,7 @@ function PanelAdmin() {
       await dispatch(getAllUsers(token));
       dispatch(getProduct());
       dispatch(getProductDeleted(token));
+      dispatch(getAllOrders(token))
     };
     dispatchActions();
   }, []);
@@ -157,7 +159,7 @@ function PanelAdmin() {
                     <circle cx="12" cy="27" r="2" />
                   </svg>
                 </div>
-                <p className="text-4xl py-5 font-medium ">0</p>
+                <p className="text-4xl py-5 font-medium ">{orders.length} </p>
                 <p className="pb-5">Total Orders</p>
                 <Link
                   to="/panel+admin/orders"
