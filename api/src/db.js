@@ -51,10 +51,6 @@ const {
   Discount,
   Category,
   Cart,
-<<<<<<< HEAD
-  Cart_item,
-=======
->>>>>>> 184ddd580be7e445068d15f3ab2d92d052008361
   Clients,
   Data_user,
   Order_details,
@@ -88,23 +84,7 @@ User.hasOne(Data_user);
 Data_user.belongsTo(User);
 
 User.hasOne(Shopping_session);
-<<<<<<< HEAD
-Shopping_session.belongsTo(User);
-
-User.hasMany(Payment_user);
-Payment_user.belongsTo(User);
-
-User.hasOne(Cart)
-Cart.belongsTo(User)
-
-Cart.hasMany(Product);
-Product.belongsTo(Cart);
-
-Shopping_session.hasMany(Cart_item);
-Cart_item.hasOne(Shopping_session);
-=======
 Shopping_session.hasOne(User);
->>>>>>> 184ddd580be7e445068d15f3ab2d92d052008361
 
 Payment_details.hasOne(Order_details);
 Order_details.hasOne(Payment_details);
