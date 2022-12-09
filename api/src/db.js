@@ -50,7 +50,7 @@ const {
   Inventory,
   Discount,
   Category,
-  //Cart,
+  Cart,
   Cart_item,
   Clients,
   Data_user,
@@ -90,11 +90,11 @@ Shopping_session.belongsTo(User);
 User.hasMany(Payment_user);
 Payment_user.belongsTo(User);
 
-// User.hasOne(Cart)
-// Cart.belongsTo(User)
+User.hasOne(Cart)
+Cart.belongsTo(User)
 
-// Cart.hasMany(Product);
-// Product.belongsTo(Cart);
+Cart.hasMany(Product);
+Product.belongsTo(Cart);
 
 Shopping_session.hasMany(Cart_item);
 Cart_item.hasOne(Shopping_session);
