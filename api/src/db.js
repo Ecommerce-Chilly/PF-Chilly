@@ -51,6 +51,7 @@ const {
   Discount,
   Category,
   Cart,
+  Cart_items,
   Clients,
   Data_user,
   Order_details,
@@ -95,11 +96,14 @@ Order_items.belongsTo(Product);
 Order_items.belongsTo(User);
 User.hasMany(Order_items);
 
-Cart.belongsTo(User)
-User.hasMany(Cart)
-//repe 2 veces
-Cart.hasMany(User)
-User.belongsTo(Cart)
+User.hasOne(Cart);
+Cart.belongsTo(User);
+
+Cart.hasMany(Cart_items)
+Cart_items.belongsTo(Cart)
+
+Cart_items.hasMany(Product)
+Product.belongsToMany(Cart_items, { through: "Cart-items-Products", paranoid: true });
 
 User.hasMany(Order_details);
 Order_details.belongsTo(User);

@@ -5,7 +5,7 @@ const { getFavorites } = require("../controllers/favorite/getFavorites");
 const { checkJwt } = require('../middleware/oAuth')
 const favoriteRoute = Router();
 
-favoriteRoute.get("/:userId", checkJwt, async (req, res) => {
+favoriteRoute.get("/:userId", async (req, res) => {
   try {
     const { userId } = req.params;
     const fav = await getFavorites(userId);
@@ -15,7 +15,7 @@ favoriteRoute.get("/:userId", checkJwt, async (req, res) => {
   }
 });
 
-favoriteRoute.post("/", checkJwt, async (req, res) => {
+favoriteRoute.post("/", async (req, res) => {
   try {
     const { userId, productId } = req.body;
     const msg = await addFavorites(userId, productId);
@@ -25,7 +25,7 @@ favoriteRoute.post("/", checkJwt, async (req, res) => {
   }
 });
 
-favoriteRoute.delete("/:userId/:productId", checkJwt, async (req, res) => {
+favoriteRoute.delete("/:userId/:productId", async (req, res) => {
   try {
     const { userId, productId } = req.params;
 

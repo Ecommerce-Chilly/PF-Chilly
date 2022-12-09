@@ -18,7 +18,7 @@ userRoute.get("/", async (req, res) => {
     return res.status(404).send({ error: error })
   }
 });
-userRoute.put("/cloud", checkJwt, async (req, res) => {
+userRoute.put("/cloud", async (req, res) => {
   try {
     let { userId, cloudyId } = req.query;
     const msg = await cloudinaryUser(userId, cloudyId)
@@ -37,7 +37,7 @@ userRoute.post('/shop', async (req, res) => {
     return res.status(404).send({ error: error })
   }
 })
-userRoute.get('/all', checkJwt, checkScopes, async (req, res) => {
+userRoute.get('/all', checkScopes, async (req, res) => {
   try {
     const users = await getAllUsers()
     return res.send(users)
@@ -46,7 +46,7 @@ userRoute.get('/all', checkJwt, checkScopes, async (req, res) => {
   }
 })
 
-userRoute.delete('/:id', checkJwt, async (req, res) => {
+userRoute.delete('/:id', async (req, res) => {
   try {
     const userDelete = await deleteUser(req.params.id);
     res.status(201).send(userDelete)
@@ -66,7 +66,7 @@ userRoute.post('/', async (req, res) => {
   }
 });
 
-userRoute.get('/admin', checkJwt, checkScopes, async (req, res) => {
+userRoute.get('/admin', async (req, res) => {
   try {
     const msg = await userAdmin(req.query)
     res.send(msg)

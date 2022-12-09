@@ -1,15 +1,10 @@
-const { Cart, User, Product } = require('../../db')
-const addCart = async ({ userId, productId, quantity }) => {
+const { Cart, User } = require('../../db')
+const addCart = async (userId) => {
   try {
-    if (!userId || !productId || !quantity) throw ("You must fill all fields ");
+    if (!userId) throw (" no user found ");
     const foundUser = await User.findByPk(userId);
-    const product = await Product.findByPk(productId);
-    const cart = await Cart.create({
-      quantity,
-      products: [product]
-    });
+    const cart = await Cart.create();
     await cart.setUser(foundUser)
-    await foundUser.setCart(cart)
     return cart
   } catch (error) {
     throw (error)
