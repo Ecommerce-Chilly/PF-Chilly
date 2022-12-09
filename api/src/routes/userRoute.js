@@ -7,6 +7,7 @@ const { checkJwt, checkScopes } = require('../middleware/oAuth')
 // import { addCartItem } from "../controllers/cart/addCartItem";
 const { addShoppingSession } = require("../controllers/shopping/addShoppingSession");
 const { cloudinaryUser } = require("../controllers/user/cloudinaryUser");
+const { putUser } = require("../controllers/user/putUser");
 const userRoute = Router();
 
 userRoute.get("/", async (req, res) => {
@@ -18,6 +19,15 @@ userRoute.get("/", async (req, res) => {
     return res.status(404).send({ error: error })
   }
 });
+userRoute.put('/', checkJwt, async (req, res) => {
+  try {
+    const msg = await putUser(req.body)
+    return res.send(msg)
+  } catch (error) {
+    return res.status(404).send({ error: error })
+
+  }
+})
 userRoute.put("/cloud", checkJwt, async (req, res) => {
   try {
     let { userId, cloudyId } = req.query;
