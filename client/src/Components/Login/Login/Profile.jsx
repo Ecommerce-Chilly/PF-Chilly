@@ -1,10 +1,10 @@
-import React, { useEffect, useState } from "react";
-import axios from "axios";
-import { LocalStorageCache, useAuth0 } from "@auth0/auth0-react";
-import * as actions from "../../../redux/actions/actions";
-import { useDispatch, useSelector } from "react-redux";
-import LogoutButton from "./LogoutButton";
-import { Link } from "react-router-dom";
+import React, { useEffect, useState } from 'react';
+import axios from 'axios';
+import { LocalStorageCache, useAuth0 } from '@auth0/auth0-react';
+import * as actions from '../../../redux/actions/actions';
+import { useDispatch, useSelector } from 'react-redux';
+import LogoutButton from './LogoutButton';
+import { Link } from 'react-router-dom';
 const Profile = () => {
   const admin = useSelector((state) => state.admin);
   const dispatch = useDispatch();
@@ -13,12 +13,12 @@ const Profile = () => {
 
   useEffect(() => {
     const getUserMetadata = async () => {
-      const domain = "dev-r6cdo8stlhgup2wx.us.auth0.com";
+      const domain = 'dev-r6cdo8stlhgup2wx.us.auth0.com';
 
       try {
         const accessToken = await getAccessTokenSilently({
           audience: `https://${domain}/api/v1/`,
-          scope: "read:client_grants",
+          scope: 'read:client_grants',
         });
         const userDetailsByIdUrl = `https://${domain}/api/v1/users/${user.sub}`;
         const metadataResponse = await fetch(userDetailsByIdUrl, {
@@ -35,9 +35,9 @@ const Profile = () => {
     };
     const postDb = async () => {
       await getUserMetadata();
-      localStorage.setItem("email", JSON.stringify(user.email));
+      localStorage.setItem('email', JSON.stringify(user.email));
       const token = await getAccessTokenSilently();
-      localStorage.setItem("token", JSON.stringify(token));
+      localStorage.setItem('token', JSON.stringify(token));
       async function create() {
         const token = await getAccessTokenSilently();
         await dispatch(
@@ -64,7 +64,7 @@ const Profile = () => {
           <div class="w-full rounded-lg p-12 shadow-xl  md:w-8/12 lg:w-6/12 bg-white border">
             <div class="grid grid-cols-1 gap-6 lg:grid-cols-12 relative">
               <div class="grid-cols-1 lg:col-span-3">
-                <div class="mx-auto flex h-[90px]  items-center justify-center rounded-full  p-4">
+                <div class="mx-auto flex h-[90px]  items-center justify-center rounded-full p-4">
                   <img
                     class=" rounded-full"
                     src={user.picture}

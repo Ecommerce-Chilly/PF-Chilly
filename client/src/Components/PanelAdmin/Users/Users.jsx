@@ -1,10 +1,10 @@
-import React from "react";
-import { Link } from "react-router-dom";
-import { useSelector, useDispatch } from "react-redux";
-import { deleteUser, getAllUsers } from "../../../redux/actions/actions";
+import React from 'react';
+import { Link } from 'react-router-dom';
+import { useSelector, useDispatch } from 'react-redux';
+import { deleteUser, getAllUsers } from '../../../redux/actions/actions';
 export default function Users() {
   const dispatch = useDispatch();
-  const token = localStorage.getItem("token");
+  const token = localStorage.getItem('token');
   const users = useSelector((state) => state.users);
 
   return (
@@ -12,16 +12,24 @@ export default function Users() {
       <div>
         <Link
           to="/panel+admin"
-          className=" absolute font-medium left-64 text-main -ml-4 top-44 z-10 border-solid  px-2.5"
+          className="  font-medium  text-main  border-solid  px-2.5"
         >
           Back to Panel Admin
         </Link>
       </div>
       <div>
         {users?.map((user) => (
-          <div key={user.name}>
-            <p>{user.name}</p> <img src={user.img} alt={user.name} />{" "}
-            <p>{user.email}</p>
+          <div
+            key={user.name}
+            className="w-1/2 mb-11 bg-white rounded-xl shadow-xl border  m-2 relative flex"
+          >
+            <div className="w-1/4 border-2 h-13">
+              <img src={user.img} alt={user.name} />
+            </div>
+            <div>
+              <p>{user.name}</p>
+              <p>{user.email}</p>
+            </div>
             {user.admin === true ? <p>Admin: YES</p> : <p>Admin:NO</p>}
             {user.admin === null ? (
               <button
