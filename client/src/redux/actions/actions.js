@@ -49,6 +49,10 @@ export const ADD_ORDER = "ADD_ORDER";
 export const ALL_ORDERS = "ALL_ORDERS";
 export const ITEM_BUYED = "ITEM_BUYED";
 export const DELETE_ORDER_ITEM = "DELETE_ORDER_ITEM";
+export const ADD_TO_BUILD = "ADD_TO_BUILD";
+export const DELETE_FROM_BUILD = "DELETE_FROM_BUILD";
+export const BYO_TO_CART = "BYO_TO_CART";
+export const CLEAR_BYO = "CLEAR_BYO";
 
 //! PRODUCTS ACTIONS --------------------------------------------------------------------
 export const getProduct = () => {
@@ -489,7 +493,6 @@ export const clearPaylink = () => {
   };
 };
 //! ORDER ITEMS ----------------------------------------------------------------------------
-
 export const deletOrderItem = (id, token) => {
   return async function (dispatch) {
     let deleteOrder = await axios.delete(`/orderItems/${id}`, {
@@ -535,5 +538,31 @@ export const getOrderById = (id, token) => {
       },
     });
     return dispatch({ type: ITEM_BUYED, payload: ordersItem.data });
+  };
+};
+
+export const addToBuild = (payload) => {
+  return {
+    type: ADD_TO_BUILD,
+    payload: payload,
+  };
+};
+
+export const deleteFromBuild = () => {
+  return {
+    type: DELETE_FROM_BUILD,
+  };
+};
+
+export const byoToCart = (byo) => {
+  return {
+    type: BYO_TO_CART,
+    payload: byo,
+  };
+};
+
+export const clearBYO = () => {
+  return {
+    type: CLEAR_BYO,
   };
 };
