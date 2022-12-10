@@ -7,6 +7,8 @@ import {
   PRODUCTS_DELETED,
   GET_PRODUCT_BY_NAME,
   RESTORE_PRODUCT,
+  BRANDS,
+  CATEGORIES,
   CREATE_DISCOUNT,
   PUT_DISCOUNT,
   PUT_INVENTORY,
@@ -41,11 +43,18 @@ import {
   USER_ADMIN,
   PAY,
   CLEAR_PAYLINK,
+  DELETE_USER,
+  ADD_ORDER,
+  ALL_ORDERS,
+  ITEM_BUYED,
+  DELETE_ORDER_ITEM,
 } from "../actions/actions.js";
 
 const initialState = {
   product: [],
   allProduct: [],
+  brands: [],
+  category: [],
   productDetail: [],
   productsDeleted: [],
   createProductMsg: "",
@@ -60,9 +69,11 @@ const initialState = {
   quantity: 0,
   favorites: [],
   favoriteMsg: "",
-  msgProductDeleted: "",
   admin: false,
   paymentLink: "",
+  msg: "",
+  allOrders: "",
+  orderItem: "",
 };
 
 const rootReducer = (state = initialState, action) => {
@@ -122,6 +133,20 @@ const rootReducer = (state = initialState, action) => {
       return {
         ...state,
         productsDeleted: detedProduct,
+      };
+    case BRANDS:
+      const allBrands = state.allProduct.map((e) => e.brand);
+      const allBrands2 = [...new Set(allBrands)];
+      return {
+        ...state,
+        brands: allBrands2,
+      };
+    case CATEGORIES:
+      const allCategory = state.allProduct.map((e) => e.categoryName);
+      const allCategory2 = [...new Set(allCategory)];
+      return {
+        ...state,
+        category: allCategory2,
       };
     //!DISCOUNTS REDUCER
     case CREATE_DISCOUNT:
@@ -189,7 +214,10 @@ const rootReducer = (state = initialState, action) => {
               else return -1;
             })
           : action.payload === "default"
-          ? state.allProduct
+          ? state.product.sort((a, b) => {
+              if (a.id - b.id > 0) return 1;
+              else return -1;
+            })
           : "joder";
       return {
         ...state,
@@ -254,6 +282,11 @@ const rootReducer = (state = initialState, action) => {
         quantity: cartQuantity1,
       };
     //! USERS REDUCERS
+    case DELETE_USER:
+      return {
+        ...state,
+        msg: action.payload,
+      };
     case ALL_USERS:
       return {
         ...state,
@@ -360,6 +393,26 @@ const rootReducer = (state = initialState, action) => {
       return {
         ...state,
         paymentLink: "",
+      };
+    //! ORDER ITEMS
+    case ADD_ORDER:
+      return {
+        ...state,
+        msg: action.payload,
+      };
+    case ALL_ORDERS:
+      return {
+        ...state,
+        allOrders: action.payload,
+      };
+    case ITEM_BUYED:
+      return {
+        ...state,
+        orderItem: action.payload,
+      };
+    case DELETE_ORDER_ITEM:
+      return {
+        ...state,
       };
     default:
       return state;

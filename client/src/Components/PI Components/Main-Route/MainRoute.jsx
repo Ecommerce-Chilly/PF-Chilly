@@ -7,6 +7,8 @@ import UserInfo from '../../Login/UserInfo/UserInfo';
 import CreateComponent from '../../PanelAdmin/CreateComponent/CreateComponent';
 import ChangeComponent from '../../PanelAdmin/ChangeComponent/ChangeComponent';
 import ProductsDeleted from '../../PanelAdmin/Products/ProductsDeleted';
+import Orders from '../../PanelAdmin/Orders/Orders';
+import OrderDetail from '../../PanelAdmin/Orders/OrderDetail';
 import Products from '../../PanelAdmin/Products/Products';
 import ProductDetail from '../../PanelAdmin/Products/ProductDetail';
 import ProductStoreDetail from '../../PanelAdmin/Products/ProductStoreDetail';
@@ -18,12 +20,13 @@ import Blog from '../Pages/Blog';
 import AboutUS from '../Pages/AboutUS';
 import Footer from '../Footer/Footer';
 import Register from '../../Login/Register/Register';
-import PagoExitoso from '../../Cart/Cart/PagoExitoso.jsx';
+import PagoExitoso from '../../Cart/Cart/Pagoexitoso.jsx';
 import PagoFallido from '../../Cart/Cart/PagoFallido.jsx';
 import PagoPendiente from '../../Cart/Cart/PagoPendiente.jsx';
 import { userSpecific } from '../../../redux/actions/actions';
 import { useDispatch } from 'react-redux';
 import PanelAdmin from '../../PanelAdmin/PanelAdmin';
+import Users from '../../PanelAdmin/Users/Users';
 import PageNotFound from '../Pages/PageNotFound';
 
 function MainRoute() {
@@ -53,11 +56,14 @@ function MainRoute() {
           <Route exact path="/special+offers" component={SpecialOffers} />
           <Route exact path="/blog" component={Blog} />
           <Route exact path="/about+us" component={AboutUS} />
-
+          <Route exact path="/panel+admin" component={PanelAdmin} />
           <Route exact path="/register" component={Register} />
 
           <Route exact path="/panel+admin" component={PanelAdmin} />
           <Route exact path="/panel+admin/products" component={Products} />
+          <Route exact path="/panel+admin/users" component={Users} />
+          <Route exact path="/panel+admin/orders" component={Orders} />
+          <Route exact path="/panel+admin/orders/:id" component={OrderDetail} />
           <Route
             exact
             path="/panel+admin/products/:id"

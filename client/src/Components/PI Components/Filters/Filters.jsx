@@ -1,24 +1,27 @@
-import React, { useEffect, useState } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
+import React, { useEffect, useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
 import {
   getCategoryDetails,
   filter1,
   filterbyDetails,
   getProduct,
   orderByPrice,
-} from '../../../redux/actions/actions.js';
-import store from '../../../redux/store/store';
+  allCategories,
+} from "../../../redux/actions/actions.js";
+import store from "../../../redux/store/store";
 
 function Filters() {
   let [details, setDetails] = useState({});
-  let [category, setCategory] = useState('');
+  let [category, setCategory] = useState("");
   let [inputs, setInputs] = useState([]);
+  let [filterPrice, setFilterPrice] = useState("");
   let dispatch = useDispatch();
-  let categoryDetails = useSelector((state) => state.categoryDetails);
-  let admin = useSelector((state) => state.admin);
+  let { categoryDetails } = useSelector((state) => state);
+  let anyMoreCategory = useSelector((state) => state.category);
 
   useEffect(() => {
     dispatch(filterbyDetails(category, details));
+    dispatch(allCategories());
   }, [details, category]);
 
   let dispatchCategory = (e) => {
@@ -29,7 +32,7 @@ function Filters() {
       let categoryDetail = store.getState().categoryDetails;
       for (const element in categoryDetail) {
         console.log(element);
-        if (element !== 'name') {
+        if (element !== "name") {
           setInputs((oldArray) => [...oldArray, element]);
         }
       }
@@ -44,6 +47,7 @@ function Filters() {
 
   function handleFilterByPrice(event) {
     event.preventDefault();
+    setFilterPrice(event.target.value);
     dispatch(orderByPrice(event.target.value));
   }
 
@@ -60,6 +64,7 @@ function Filters() {
           <select
             onChange={(event) => handleFilterByPrice(event)}
             className="border-solid border-black bg-white rounded w-11/12 h-7 text-slate-800"
+            value={filterPrice}
           >
             <option key="default" value="default">
               Price
@@ -76,8 +81,9 @@ function Filters() {
           <button
             onClick={(event) => {
               handleClearFilters(event);
-              setCategory('');
+              setCategory("");
               setInputs([]);
+              setFilterPrice("");
             }}
             className=" absolute left-40 ml-1 top-44 z-10 border-solid border-main rounded border-2 px-2.5"
           >
@@ -95,18 +101,11 @@ function Filters() {
             setCategory(e.target.value);
           }}
         >
-          <option value="">Select category</option>
-          <option value="cases">Cases</option>
-          <option value="motherboards">Motherboards</option>
-          <option value="case_fan">Case Fan</option>
-          <option value="cpu_fan">CPU Fan</option>
-          <option value="gpus">GPUs</option>
-          <option value="keyboards">Keyboards</option>
-          <option value="mouses">Mouses</option>
-          <option value="processors">Processors</option>
-          <option value="power_supply">Power Supply</option>
-          <option value="ram">RAM</option>
-          <option value="storage">Storage</option>
+          {anyMoreCategory?.map((e) => (
+            <option key={e} value={e}>
+              {e[0].toUpperCase() + e.substring(1)}
+            </option>
+          ))}
         </select>
         {inputs.length > 0 &&
           inputs?.map((e) => {

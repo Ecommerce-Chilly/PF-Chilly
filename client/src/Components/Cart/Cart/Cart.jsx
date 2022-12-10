@@ -6,9 +6,16 @@ import {
   clearCart,
   pay,
   clearPaylink,
+<<<<<<< HEAD
 } from '../../../redux/actions/actions';
 import CartItem from '../CartItem/CartItem';
 import Swal from 'sweetalert2';
+=======
+  addOrder,
+} from "../../../redux/actions/actions";
+import CartItem from "../CartItem/CartItem";
+import Swal from "sweetalert2";
+>>>>>>> 43302362882f02a9805d3b3f3635716aa5230a3e
 
 function Cart() {
   const cart = useSelector((state) => state.cart);
@@ -35,7 +42,11 @@ function Cart() {
   const changeVariable = (num) => {
     setVariable(num);
   };
-
+  const orderAdd = () => {
+    cart?.map((e) => {
+      dispatch(addOrder(userUnique.id, e.id, e.quantity, JSON.parse(token)));
+    });
+  };
   const confirmClearCart = () => {
     Swal.fire({
       icon: 'question',
@@ -64,7 +75,7 @@ function Cart() {
       </h1>
       {cart.length > 0 ? (
         cart?.map((e) => (
-          <div className=" ">
+          <div key={e.name}>
             <CartItem
               image={e.image}
               name={e.name}
@@ -145,6 +156,7 @@ function Cart() {
                           JSON.parse(token)
                         )
                       );
+                      orderAdd();
                     }}
                     className=" flex font-semibold  text-white border-solid bg-main border-2 border-main py-2 px-6 focus:outline-none hover:bg-blue-600 rounded hover:border-blue-600"
                   >

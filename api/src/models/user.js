@@ -16,9 +16,18 @@ module.exports = (sequelize) => {
           isEmail: true,
         },
       },
+      name: {
+        type: DataTypes.STRING
+      },
+      img: {
+        type: DataTypes.STRING
+      },
       admin: {
         type: DataTypes.BOOLEAN,
         defaultValues: false
+      },
+      clouding: {
+        type: DataTypes.STRING
       }
     },
     {
