@@ -41,6 +41,7 @@ sequelize.models = Object.fromEntries(capsEntries);
 
 const {
   Product,
+  Article,
   Administrator,
   Inventory,
   Discount,
