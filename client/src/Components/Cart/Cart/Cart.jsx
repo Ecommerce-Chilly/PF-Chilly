@@ -6,16 +6,10 @@ import {
   clearCart,
   pay,
   clearPaylink,
-<<<<<<< HEAD
+  addOrder,
 } from '../../../redux/actions/actions';
 import CartItem from '../CartItem/CartItem';
 import Swal from 'sweetalert2';
-=======
-  addOrder,
-} from "../../../redux/actions/actions";
-import CartItem from "../CartItem/CartItem";
-import Swal from "sweetalert2";
->>>>>>> 43302362882f02a9805d3b3f3635716aa5230a3e
 
 function Cart() {
   const cart = useSelector((state) => state.cart);
