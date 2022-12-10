@@ -6,6 +6,7 @@ import {
   filterbyDetails,
   getProduct,
   orderByPrice,
+  allCategories,
 } from "../../../redux/actions/actions.js";
 import store from "../../../redux/store/store";
 
@@ -15,11 +16,12 @@ function Filters() {
   let [inputs, setInputs] = useState([]);
   let [filterPrice, setFilterPrice] = useState("");
   let dispatch = useDispatch();
-  let categoryDetails = useSelector((state) => state.categoryDetails);
-  let admin = useSelector((state) => state.admin);
+  let { categoryDetails } = useSelector((state) => state);
+  let anyMoreCategory = useSelector((state) => state.category);
 
   useEffect(() => {
     dispatch(filterbyDetails(category, details));
+    dispatch(allCategories());
   }, [details, category]);
 
   let dispatchCategory = (e) => {
@@ -99,18 +101,11 @@ function Filters() {
             setCategory(e.target.value);
           }}
         >
-          <option value="">Select category</option>
-          <option value="cases">Cases</option>
-          <option value="motherboards">Motherboards</option>
-          <option value="case_fan">Case Fan</option>
-          <option value="cpu_fan">CPU Fan</option>
-          <option value="gpus">GPUs</option>
-          <option value="keyboards">Keyboards</option>
-          <option value="mouses">Mouses</option>
-          <option value="processors">Processors</option>
-          <option value="power_supply">Power Supply</option>
-          <option value="ram">RAM</option>
-          <option value="storage">Storage</option>
+          {anyMoreCategory?.map((e) => (
+            <option key={e} value={e}>
+              {e[0].toUpperCase() + e.substring(1)}
+            </option>
+          ))}
         </select>
         {inputs.length > 0 &&
           inputs?.map((e) => {

@@ -7,6 +7,8 @@ export const GET_PRODUCT_BY_NAME = "GET_PRODUCT_BY_NAME";
 export const DELETE_PRODUCT = "DELETE_PRODUCT";
 export const RESTORE_PRODUCT = "RESTORE_PRODUCT";
 export const PRODUCTS_DELETED = "PRODUCTS_DELETED";
+export const BRANDS = "BRANDS";
+export const CATEGORIES = "CATEGORIES";
 export const CREATE_DISCOUNT = "CREATE_DISCOUNT";
 export const PUT_DISCOUNT = "PUT_DISCOUNT";
 export const PUT_INVENTORY = "PUT_INVENTORY";
@@ -162,6 +164,20 @@ export const getProductDeleted = (token) => {
         payload: error.response.data,
       });
     }
+  };
+};
+
+export const allBrands = (payload) => {
+  return {
+    type: BRANDS,
+    payload: payload,
+  };
+};
+
+export const allCategories = (payload) => {
+  return {
+    type: CATEGORIES,
+    payload: payload,
   };
 };
 

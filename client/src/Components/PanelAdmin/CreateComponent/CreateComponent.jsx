@@ -1,10 +1,12 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useHistory } from "react-router-dom";
 import {
   createProduct,
   createDiscount,
   clearProdMsg,
+  allBrands,
+  allCategories,
 } from "../../../redux/actions/actions.js";
 import Swal from "sweetalert2";
 import { Link } from "react-router-dom";
@@ -13,11 +15,15 @@ import ForbiddenAccess from "../ForbiddenAccess.jsx";
 const { validate } = require("../ChangeComponent/utils");
 
 function CreateComponent() {
-  const admin = useSelector((state) => state.admin);
+  const { admin, brands, category } = useSelector((state) => state);
   const dispatch = useDispatch();
   const msg = useSelector((state) => state.createProductMsg);
   const history = useHistory();
   const [errors, setErrors] = useState({});
+  useEffect(() => {
+    dispatch(allBrands());
+    dispatch(allCategories());
+  }, []);
   let token = localStorage.getItem("token");
   token = JSON.parse(token);
   const [newProduct, setNewProduct] = useState({
@@ -71,11 +77,9 @@ function CreateComponent() {
     });
   };
 
-  function dispatchDataToCreate(newProduct) {
+  function dispatchDataToCreateAndDiscount(newProduct, discountt) {
     dispatch(createProduct(newProduct, token));
-  }
-  function dispatchDataToDiscount(newProduct) {
-    dispatch(createDiscount(newProduct, token));
+    dispatch(createDiscount(discountt, token));
   }
 
   const creationStatus = () => {
@@ -120,8 +124,7 @@ function CreateComponent() {
         <form
           onSubmit={(e) => {
             e.preventDefault();
-            dispatchDataToCreate(newProduct);
-            dispatchDataToDiscount(discountt);
+            dispatchDataToCreateAndDiscount(newProduct, discountt);
           }}
           className="w-2/3 m-auto mt-9"
         >
@@ -168,72 +171,11 @@ function CreateComponent() {
             className="bg-gray-50 border  text-gray-900 text-sm rounded-lg  focus:border-blue-500 block w-full p-2.5  border-gray-600 placeholder-gray-400 mb-6"
             onChange={handleChange}
           >
-            <option></option>
-            <option>Alphacool</option>
-            <option>Antec</option>
-            <option>ASUS</option>
-            <option>ASRock</option>
-            <option>Apevia</option>
-            <option>ARCTIC</option>
-            <option>AMD</option>
-            <option>be quiet!</option>
-            <option>Biostar</option>
-            <option>BenQ</option>
-            <option>Corsair</option>
-            <option>Cooler Master</option>
-            <option>Crucial</option>
-            <option>Cryorig</option>
-            <option>Diamond Multimedia</option>
-            <option>DEEPCOOL</option>
-            <option>Dragonwar</option>
-            <option>DIYPC</option>
-            <option>Das Keyboard</option>
-            <option>Dland</option>
-            <option>EagleTec</option>
-            <option>ECS Elitegroup</option>
-            <option>EVGA</option>
-            <option>Fractal Design</option>
-            <option>Gelid Solutions</option>
-            <option>Gigabyte</option>
-            <option>G.Skill</option>
-            <option>Gray Star</option>
-            <option>Happy</option>
-            <option>HIS</option>
-            <option>HUO JI</option>
-            <option>HP</option>
-            <option>Intel</option>
-            <option>Insignia</option>
-            <option>Kingston</option>
-            <option>Kensington</option>
-            <option>Logitech</option>
-            <option>MSI</option>
-            <option>Mushkin</option>
-            <option>Marshal</option>
-            <option>NZXT</option>
-            <option>Noctua</option>
-            <option>Phanteks</option>
-            <option>PowerColor</option>
-            <option>Patriot Memory</option>
-            <option>PNY</option>
-            <option>Qisan</option>
-            <option>Rosewill</option>
-            <option>Redragon</option>
-            <option>Razer</option>
-            <option>SilverStone Technology</option>
-            <option>SAMSUNG</option>
-            <option>Seasonic</option>
-            <option>Supermicro</option>
-            <option>SteelSeries</option>
-            <option>Sapphire Technologys</option>
-            <option>Seagate</option>
-            <option>Thermaltake</option>
-            <option>Thermalright</option>
-            <option>Toshiba</option>
-            <option>VisionTek</option>
-            <option>Western Digital</option>
-            <option>White Label</option>
-            <option>XFX</option>
-            <option>ZOTAC</option>
+            {brands?.map((e) => (
+              <option key={e} value={e}>
+                {e[0].toUpperCase() + e.substring(1)}
+              </option>
+            ))}
           </select>
           {errors.brand && <p className="text-red-400 mb-4">{errors.brand}</p>}
 
@@ -303,18 +245,11 @@ function CreateComponent() {
             className="bg-gray-50 border  text-gray-900 text-sm rounded-lg  focus:border-blue-500 block w-full p-2.5  border-gray-600 placeholder-gray-400 mb-6"
             onChange={handleChange}
           >
-            <option></option>
-            <option>cases</option>
-            <option>case_fan</option>
-            <option>cpu_fan</option>
-            <option>gpus</option>
-            <option>keyboards</option>
-            <option>motherboards</option>
-            <option>mouses</option>
-            <option>processors</option>
-            <option>power_supply</option>
-            <option>ram</option>
-            <option>storage</option>
+            {category?.map((e) => (
+              <option key={e} value={e}>
+                {e[0].toUpperCase() + e.substring(1)}
+              </option>
+            ))}
           </select>
           {errors.category && (
             <p className="text-red-400 mb-4">{errors.category}</p>

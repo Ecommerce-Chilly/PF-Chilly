@@ -7,6 +7,8 @@ import {
   PRODUCTS_DELETED,
   GET_PRODUCT_BY_NAME,
   RESTORE_PRODUCT,
+  BRANDS,
+  CATEGORIES,
   CREATE_DISCOUNT,
   PUT_DISCOUNT,
   PUT_INVENTORY,
@@ -51,6 +53,8 @@ import {
 const initialState = {
   product: [],
   allProduct: [],
+  brands: [],
+  category: [],
   productDetail: [],
   productsDeleted: [],
   createProductMsg: "",
@@ -129,6 +133,20 @@ const rootReducer = (state = initialState, action) => {
       return {
         ...state,
         productsDeleted: detedProduct,
+      };
+    case BRANDS:
+      const allBrands = state.allProduct.map((e) => e.brand);
+      const allBrands2 = [...new Set(allBrands)];
+      return {
+        ...state,
+        brands: allBrands2,
+      };
+    case CATEGORIES:
+      const allCategory = state.allProduct.map((e) => e.categoryName);
+      const allCategory2 = [...new Set(allCategory)];
+      return {
+        ...state,
+        category: allCategory2,
       };
     //!DISCOUNTS REDUCER
     case CREATE_DISCOUNT:
@@ -395,7 +413,7 @@ const rootReducer = (state = initialState, action) => {
     case DELETE_ORDER_ITEM:
       return {
         ...state,
-      }
+      };
     default:
       return state;
   }
