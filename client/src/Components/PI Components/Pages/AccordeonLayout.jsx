@@ -19,22 +19,22 @@ const AccordionLayout = ({
     <>
       <div
         onClick={() => handleSetIndex(index)}
-        className="flex w-3/4 justify-between p-2 mt-2 rounded bg-main"
+        className="flex w-3/4 justify-between p-2 mt-2   bg-white border-b-2 border-slate-400"
       >
         <div className="flex">
-          <div className="text-white font-bold">{title}</div>
+          <div className="text-slate-800 font-bold">{title}</div>
         </div>
         <div className="flex items-center justify-center">
           {activeIndex === index ? (
-            <BsFillArrowDownCircleFill className="w-8 h-8 text-white" />
+            <BsFillArrowDownCircleFill className="w-8 h-8 fill-main  " />
           ) : (
-            <BsFillArrowUpCircleFill className="w-8 h-8 text-white" />
+            <BsFillArrowUpCircleFill className="w-8 h-8 text-main fill-slate-500" />
           )}
         </div>
       </div>
 
       {activeIndex === index && (
-        <div className="shadow-3xl rounded-2xl shadow-cyan-500/50 p-4 mb-6">
+        <div className="shadow-3xl rounded-lg shadow-cyan-500/50 p-4  w-3/4 font-mono text-base">
           {children}
         </div>
       )}

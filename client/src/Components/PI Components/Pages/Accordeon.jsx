@@ -6,12 +6,12 @@ const Accordion = () => {
 
   return (
     <section className="mb-10">
-      <div className="flex flex-col justify-center items-center mb-10 ">
-        <h2 className="text-3xl font-bold underline mb-10">
-          frequently asked questions
+      <div className="flex flex-col justify-center items-center mb-10 font-display text-lg">
+        <h2 className="text-slate-800 text-3xl font-display font-semibold  mb-10">
+          Frequently Asked Questions
         </h2>
         <AccordionLayout
-          title="question 1"
+          title="Lorem ipsum?"
           index={1}
           activeIndex={activeIndex}
           setActiveIndex={setActiveIndex}
@@ -24,7 +24,7 @@ const Accordion = () => {
         </AccordionLayout>
 
         <AccordionLayout
-          title="questions 2"
+          title="Lorem ipsum?"
           index={2}
           activeIndex={activeIndex}
           setActiveIndex={setActiveIndex}
@@ -35,7 +35,7 @@ const Accordion = () => {
           </p>
         </AccordionLayout>
         <AccordionLayout
-          title="questions 3"
+          title="Lorem ipsum?"
           index={3}
           activeIndex={activeIndex}
           setActiveIndex={setActiveIndex}
@@ -47,7 +47,7 @@ const Accordion = () => {
         </AccordionLayout>
 
         <AccordionLayout
-          title="questions 4"
+          title="Lorem ipsum?"
           index={4}
           activeIndex={activeIndex}
           setActiveIndex={setActiveIndex}

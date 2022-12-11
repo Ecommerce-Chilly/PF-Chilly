@@ -1,63 +1,66 @@
-import axios from "axios";
-export const GET_ALL_PRODUCTS = "GET_ALL_PRODUCTS";
-export const GET_PRODUCT_BY_ID = "GET_PRODUCT_BY_ID";
-export const CREATE_PRODUCT = "CREATE_PRODUCT";
-export const PUT_PRODUCT = "PUT_PRODUCT";
-export const GET_PRODUCT_BY_NAME = "GET_PRODUCT_BY_NAME";
-export const DELETE_PRODUCT = "DELETE_PRODUCT";
-export const RESTORE_PRODUCT = "RESTORE_PRODUCT";
-export const PRODUCTS_DELETED = "PRODUCTS_DELETED";
-export const BRANDS = "BRANDS";
-export const CATEGORIES = "CATEGORIES";
-export const CREATE_DISCOUNT = "CREATE_DISCOUNT";
-export const PUT_DISCOUNT = "PUT_DISCOUNT";
-export const PUT_INVENTORY = "PUT_INVENTORY";
-export const GET_CATEGORY_DETAILS = "GET_CATEGORY_DETAILS";
-export const FILTER1 = "FILTER1";
-export const FILTER_BY_DETAILS = "FILTER_BY_DETAILS";
-export const ORDER_BY_PRICE = "ORDER_BY_PRICE";
-export const ADD_TO_CART = "ADD_TO_CART";
-export const DELETE_CART_PRODUCT = "DELETE_CART_PRODUCT";
-export const CLEAR_CART = "CLEAR_CART";
-export const DECREASE_PRODUCT_QUANTITY = "DECREASE_PRODUCT_QUANTITY";
-export const INCREASE_PRODUCT_QUANTITY = "INCREASE_PRODUCT_QUANTITY";
-export const CREATE_USER = "CREATE_USER";
-export const USER_SPECIFIC = "USER_SPECIFIC";
-export const LOGOUT = "LOGOUT";
-export const ALL_USERS = "ALL_USERS";
-export const USER_NOT_FOUND = "USER_NOT_FOUND";
-export const UPDATE_CART_QUANTITY = "UPDATE_CART_QUANTITY";
-export const ADD_FAVORITE = "ADD_FAVORITE";
-export const GET_FAVORITES = "GET_FAVORITES";
-export const DELETE_FAVORITE = "DELETE_FAVORITE";
-export const FAVORITE_MSG = "FAVORITE_MSG";
-export const CLEAR_PROD_MSG = "CLEAR_PROD_MSG";
-export const CLEAR_FAV_MSG = "CLEAR_FAV_MSG";
-export const CLEAR_FAV_STATE = "CLEAR_FAV_STATE";
-export const MSG_NOT_PRODUCT_DELETED = "MSG_NOT_PRODUCT_DELETED";
-export const CLEAR_DELETED_PRODUCTS = "CLEAR_DELETED_PRODUCTS";
-export const FAIL_CREATED_MSG = "FAIL_CREATED_MSG";
-export const ERROR_MSSG = "ERROR_MSSG";
-export const EUSEBIO = "EUSEBIO";
-export const ERROR_PUT_PRODUCT = "ERROR_PUT_PRODUCT";
-export const ERROR_CREATE_USER = "ERROR_CREATE_USER";
-export const PAY = "PAY";
-export const CLEAR_PAYLINK = "CLEAR_PAYLINK";
-export const USER_ADMIN = "USER_ADMIN";
-export const DELETE_USER = "DELETE_USER";
-export const ADD_ORDER = "ADD_ORDER";
-export const ALL_ORDERS = "ALL_ORDERS";
-export const ITEM_BUYED = "ITEM_BUYED";
-export const DELETE_ORDER_ITEM = "DELETE_ORDER_ITEM";
-export const ADD_TO_BUILD = "ADD_TO_BUILD";
-export const DELETE_FROM_BUILD = "DELETE_FROM_BUILD";
-export const BYO_TO_CART = "BYO_TO_CART";
-export const CLEAR_BYO = "CLEAR_BYO";
+import axios from 'axios';
+export const GET_ALL_PRODUCTS = 'GET_ALL_PRODUCTS';
+export const GET_PRODUCT_BY_ID = 'GET_PRODUCT_BY_ID';
+export const CREATE_PRODUCT = 'CREATE_PRODUCT';
+export const PUT_PRODUCT = 'PUT_PRODUCT';
+export const GET_PRODUCT_BY_NAME = 'GET_PRODUCT_BY_NAME';
+export const DELETE_PRODUCT = 'DELETE_PRODUCT';
+export const RESTORE_PRODUCT = 'RESTORE_PRODUCT';
+export const PRODUCTS_DELETED = 'PRODUCTS_DELETED';
+export const BRANDS = 'BRANDS';
+export const CATEGORIES = 'CATEGORIES';
+export const CREATE_DISCOUNT = 'CREATE_DISCOUNT';
+export const PUT_DISCOUNT = 'PUT_DISCOUNT';
+export const PUT_INVENTORY = 'PUT_INVENTORY';
+export const GET_CATEGORY_DETAILS = 'GET_CATEGORY_DETAILS';
+export const FILTER1 = 'FILTER1';
+export const FILTER_BY_DETAILS = 'FILTER_BY_DETAILS';
+export const ORDER_BY_PRICE = 'ORDER_BY_PRICE';
+export const ADD_TO_CART = 'ADD_TO_CART';
+export const DELETE_CART_PRODUCT = 'DELETE_CART_PRODUCT';
+export const CLEAR_CART = 'CLEAR_CART';
+export const DECREASE_PRODUCT_QUANTITY = 'DECREASE_PRODUCT_QUANTITY';
+export const INCREASE_PRODUCT_QUANTITY = 'INCREASE_PRODUCT_QUANTITY';
+export const CREATE_USER = 'CREATE_USER';
+export const USER_SPECIFIC = 'USER_SPECIFIC';
+export const LOGOUT = 'LOGOUT';
+export const ALL_USERS = 'ALL_USERS';
+export const USER_NOT_FOUND = 'USER_NOT_FOUND';
+export const UPDATE_CART_QUANTITY = 'UPDATE_CART_QUANTITY';
+export const ADD_FAVORITE = 'ADD_FAVORITE';
+export const GET_FAVORITES = 'GET_FAVORITES';
+export const DELETE_FAVORITE = 'DELETE_FAVORITE';
+export const FAVORITE_MSG = 'FAVORITE_MSG';
+export const CLEAR_PROD_MSG = 'CLEAR_PROD_MSG';
+export const CLEAR_FAV_MSG = 'CLEAR_FAV_MSG';
+export const CLEAR_FAV_STATE = 'CLEAR_FAV_STATE';
+export const MSG_NOT_PRODUCT_DELETED = 'MSG_NOT_PRODUCT_DELETED';
+export const CLEAR_DELETED_PRODUCTS = 'CLEAR_DELETED_PRODUCTS';
+export const FAIL_CREATED_MSG = 'FAIL_CREATED_MSG';
+export const ERROR_MSSG = 'ERROR_MSSG';
+export const EUSEBIO = 'EUSEBIO';
+export const ERROR_PUT_PRODUCT = 'ERROR_PUT_PRODUCT';
+export const ERROR_CREATE_USER = 'ERROR_CREATE_USER';
+export const PAY = 'PAY';
+export const CLEAR_PAYLINK = 'CLEAR_PAYLINK';
+export const USER_ADMIN = 'USER_ADMIN';
+export const DELETE_USER = 'DELETE_USER';
+export const ADD_ORDER = 'ADD_ORDER';
+export const ALL_ORDERS = 'ALL_ORDERS';
+export const ITEM_BUYED = 'ITEM_BUYED';
+export const DELETE_ORDER_ITEM = 'DELETE_ORDER_ITEM';
+export const ADD_TO_BUILD = 'ADD_TO_BUILD';
+export const DELETE_FROM_BUILD = 'DELETE_FROM_BUILD';
+export const BYO_TO_CART = 'BYO_TO_CART';
+export const CLEAR_BYO = 'CLEAR_BYO';
+export const CLEAR_MSG = 'CLEAR_MSG';
+export const NO_FOOTER = 'NO_FOOTER';
+export const HIDE_FOOTER = 'HIDE_FOOTER';
 
 //! PRODUCTS ACTIONS --------------------------------------------------------------------
 export const getProduct = () => {
   return async function (dispatch) {
-    let product = await axios.get("/product");
+    let product = await axios.get('/product');
     return dispatch({ type: GET_ALL_PRODUCTS, payload: product.data });
   };
 };
@@ -76,7 +79,7 @@ export const getProductById = (id) => {
 export const createProduct = (product, token) => {
   return async function (dispatch) {
     try {
-      const createProdu = await axios.post("/product", product, {
+      const createProdu = await axios.post('/product', product, {
         headers: {
           authorization: `Bearer ${token}`,
         },
@@ -90,7 +93,7 @@ export const createProduct = (product, token) => {
 
 export const getProductByName = (name) => {
   return async function (dispatch) {
-    if (name === "") {
+    if (name === '') {
       return dispatch({ type: ERROR_MSSG });
     }
     try {
@@ -153,7 +156,7 @@ export const restoreProduct = (id, token) => {
 export const getProductDeleted = (token) => {
   return async function (dispatch) {
     try {
-      const allProductDelete = await axios.get("/product/deleted", {
+      const allProductDelete = await axios.get('/product/deleted', {
         headers: {
           authorization: `Bearer ${token}`,
         },
@@ -189,7 +192,7 @@ export const allCategories = (payload) => {
 export const createDiscount = (product, token) => {
   return async function (dispatch) {
     try {
-      const createDiscount = await axios.post("/discount", product, {
+      const createDiscount = await axios.post('/discount', product, {
         headers: {
           authorization: `Bearer ${token}`,
         },
@@ -206,7 +209,7 @@ export const createDiscount = (product, token) => {
 
 export const putDiscount = (product, token) => {
   return async function (dispatch) {
-    const putInventory = await axios.put("/discount/", product, {
+    const putInventory = await axios.put('/discount/', product, {
       headers: {
         authorization: `Bearer ${token}`,
       },
@@ -303,7 +306,7 @@ export function orderByPrice(payload) {
 //! USERS ACTIONS --------------------------------------------------------------------
 export const getAllUsers = (token) => {
   return async function (dispatch) {
-    let allUsers = await axios.get("/user/all", {
+    let allUsers = await axios.get('/user/all', {
       headers: {
         authorization: `Bearer ${token}`,
       },
@@ -331,7 +334,7 @@ export const deleteUser = (token, id) => {
 export const createUser = (newUser, token) => {
   return async function (dispatch) {
     try {
-      let createUser = await axios.post("/user", newUser, {
+      let createUser = await axios.post('/user', newUser, {
         headers: {
           authorization: `Bearer ${token}`,
         },
@@ -390,11 +393,17 @@ export const userAdmin = (user, token) => {
       });
   };
 };
+export const clearMsg = () => {
+  return {
+    type: CLEAR_MSG,
+  };
+};
+
 //! FAVOURITES ACTIONS --------------------------------------------------------------------
 export const addFavorite = (ids, token) => {
   return async function (dispatch) {
     try {
-      let favorite = await axios.post("/favorite", ids, {
+      let favorite = await axios.post('/favorite', ids, {
         headers: {
           authorization: `Bearer ${token}`,
         },
@@ -475,7 +484,7 @@ export const clearDeleted = (payload) => {
 export const pay = (payData, token) => {
   return async function (dispatch) {
     try {
-      let payLink = await axios.post("/payment/", payData, {
+      let payLink = await axios.post('/payment/', payData, {
         headers: {
           authorization: `Bearer ${token}`,
         },
@@ -507,7 +516,7 @@ export const deletOrderItem = (id, token) => {
 export const addOrder = (userId, productId, quantity, token) => {
   return async function (dispatch) {
     let msg = await axios.post(
-      "/orderItems",
+      '/orderItems',
       { userId, productId, quantity },
       {
         headers: {
@@ -521,7 +530,7 @@ export const addOrder = (userId, productId, quantity, token) => {
 
 export const getAllOrders = (token) => {
   return async function (dispatch) {
-    let ordersItems = await axios.get("/orderItems", {
+    let ordersItems = await axios.get('/orderItems', {
       headers: {
         authorization: `Bearer ${token}`,
       },
@@ -564,5 +573,15 @@ export const byoToCart = (byo) => {
 export const clearBYO = () => {
   return {
     type: CLEAR_BYO,
+  };
+};
+export const noFooter = () => {
+  return {
+    type: NO_FOOTER,
+  };
+};
+export const hideFooter = () => {
+  return {
+    type: HIDE_FOOTER,
   };
 };

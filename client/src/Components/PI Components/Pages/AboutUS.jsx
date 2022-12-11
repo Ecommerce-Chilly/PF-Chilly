@@ -5,15 +5,19 @@ import AboutCard from './AboutCard';
 function AboutUS() {
   return (
     <div>
-      <div class="flex flex-wrap justify-evenly mb-10 ">
-        <AboutCard />
-        <AboutCard />
-        <AboutCard />
-        <AboutCard />
-        <AboutCard />
-        <AboutCard />
-        <AboutCard />
-        <AboutCard />
+      <h2 className="text-slate-800 text-3xl font-display font-semibold mt-12 ml-60 mb-9">
+        About us:
+      </h2>
+
+      <div class="flex w-11/12 flex-wrap justify-evenly mb-10 mx-auto">
+        <AboutCard name={'Jose Maria Ceballos'} />
+        <AboutCard name={'Guillermo Duran'} />
+        <AboutCard name={'Jesus Torrecilla'} />
+        <AboutCard name={'Esteban Wonder'} />
+        <AboutCard name={'Cinthia Maldonado'} />
+        <AboutCard name={'Maximiliano Costilla'} />
+        <AboutCard name={'Dante Erio Donalicio'} />
+        <AboutCard name={'Juan Noya'} />
       </div>
       <Accordeon />
     </div>
