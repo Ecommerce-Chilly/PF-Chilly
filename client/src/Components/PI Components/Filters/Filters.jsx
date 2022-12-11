@@ -1,5 +1,5 @@
-import React, { useEffect, useState } from "react";
-import { useDispatch, useSelector } from "react-redux";
+import React, { useEffect, useState } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 import {
   getCategoryDetails,
   filter1,
@@ -7,22 +7,24 @@ import {
   getProduct,
   orderByPrice,
   allCategories,
-} from "../../../redux/actions/actions.js";
-import store from "../../../redux/store/store";
+} from '../../../redux/actions/actions.js';
+import store from '../../../redux/store/store';
 
 function Filters({ setPageNumber }) {
   let [details, setDetails] = useState({});
-  let [category, setCategory] = useState("");
+  let [category, setCategory] = useState('');
   let [inputs, setInputs] = useState([]);
-  let [filterPrice, setFilterPrice] = useState("");
+  let [filterPrice, setFilterPrice] = useState('');
   let dispatch = useDispatch();
   let { categoryDetails } = useSelector((state) => state);
   let anyMoreCategory = useSelector((state) => state.category);
 
   useEffect(() => {
     dispatch(filterbyDetails(category, details));
-    dispatch(allCategories());
   }, [details, category]);
+  useEffect(() => {
+    dispatch(allCategories());
+  }, []);
 
   let dispatchCategory = (e) => {
     setInputs([]);
@@ -80,7 +82,7 @@ function Filters({ setPageNumber }) {
           <button
             onClick={(event) => {
               handleClearFilters(event);
-              setCategory("");
+              setCategory('');
               setInputs([]);
               setFilterPrice("");
               setPageNumber(1);

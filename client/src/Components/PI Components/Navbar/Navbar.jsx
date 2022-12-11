@@ -13,10 +13,10 @@ function Navbar() {
   const { isAuthenticated, isLoading } = useAuth0();
   return (
     <>
-      <nav class="	 border-gray-200 px-2  py-5  dark:bg-main static">
+      <nav class="	 border-gray-200 px-2  py-5 bg-main static">
         <div class="container flex flex-wrap items-center justify-between mx-auto">
           <Link to="/" class="flex items-center">
-            <span class="self-center text-4xl font-semibold whitespace-nowrap dark:text-white font-sans">
+            <span class="self-center text-4xl font-semibold whitespace-nowrap text-white font-sans">
               Chilly
             </span>
           </Link>
@@ -141,7 +141,7 @@ function Navbar() {
         </div>
       </nav>
       {/* {admin === true ? <AdminNavbar></AdminNavbar> : <></>} */}
-      {/* <nav className="bg-white px-2 sm:px-4 py-2.5 dark:bg-gray-900 w-full z-20 top-0 left-0 border-b border-gray-200 dark:border-gray-600">
+      {/* <nav className="bg-white px-2 sm:px-4 py-2.5 bg-gray-900 w-full z-20 top-0 left-0 border-b border-gray-200 border-gray-600">
        
       </nav> */}
     </>
