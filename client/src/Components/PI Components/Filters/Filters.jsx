@@ -10,7 +10,7 @@ import {
 } from "../../../redux/actions/actions.js";
 import store from "../../../redux/store/store";
 
-function Filters() {
+function Filters({ setPageNumber }) {
   let [details, setDetails] = useState({});
   let [category, setCategory] = useState("");
   let [inputs, setInputs] = useState([]);
@@ -31,7 +31,6 @@ function Filters() {
       await dispatch(getCategoryDetails(e.target.value));
       let categoryDetail = store.getState().categoryDetails;
       for (const element in categoryDetail) {
-        console.log(element);
         if (element !== "name") {
           setInputs((oldArray) => [...oldArray, element]);
         }
@@ -84,6 +83,7 @@ function Filters() {
               setCategory("");
               setInputs([]);
               setFilterPrice("");
+              setPageNumber(1);
             }}
             className=" absolute left-40 ml-1 top-44 z-10 border-solid border-main rounded border-2 px-2.5"
           >

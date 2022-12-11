@@ -1,10 +1,10 @@
-import React, { useEffect, useState } from 'react';
-import { useSelector } from 'react-redux';
-import ReactPaginate from 'react-paginate';
-import ProductCard from '../../PanelAdmin/Products/ProductCard';
+import React, { useEffect, useState } from "react";
+import { useSelector } from "react-redux";
+import ReactPaginate from "react-paginate";
+import ProductCard from "../../PanelAdmin/Products/ProductCard";
 // import "./Paginate.css";
 
-function Paginate({ products }) {
+function Paginate({ products, setPageNumber, pageNumber }) {
   const { searchProductMsg } = useSelector((state) => state);
   const [productOffset, setProductOffset] = useState(0);
   const productsPerPage = 25;
@@ -15,6 +15,7 @@ function Paginate({ products }) {
 
   const handlePageClick = (event) => {
     const newOffset = (event.selected * productsPerPage) % products.length;
+    console.log(newOffset);
     setProductOffset(newOffset);
   };
 
@@ -27,20 +28,21 @@ function Paginate({ products }) {
       <ReactPaginate
         breakLabel="..."
         nextLabel="Next"
+        forcePage={pageNumber === 1 ? 0 : setPageNumber(pageNumber - 1)}
         onPageChange={handlePageClick}
         pageRangeDisplayed={1}
         marginPagesDisplayed={1}
         pageCount={pageCount}
         previousLabel="Previous"
         renderOnZeroPageCount={null}
-        containerClassName={'pagination'}
-        pageLinkClassName={'page-num2'}
-        previousLinkClassName={'page-num'}
-        nextLinkClassName={'page-num'}
-        activeLinkClassName={'active'}
+        containerClassName={"pagination"}
+        pageLinkClassName={"page-num2"}
+        previousLinkClassName={"page-num"}
+        nextLinkClassName={"page-num"}
+        activeLinkClassName={"active"}
       />
       <div className="flex flex-wrap justify-evenly">
-        {currentItems.length > 0 && searchProductMsg === '' ? (
+        {currentItems.length > 0 && searchProductMsg === "" ? (
           currentItems?.map((el) => (
             <ProductCard
               key={el.id}
