@@ -60,7 +60,7 @@ const Profile = () => {
         <h2 className="text-slate-800 text-3xl font-display font-semibold mt-12 ml-60 mb-9">
           User profile
         </h2>
-        <div class="flex min-h-screen -mt-36 w-full items-center justify-center m-4">
+        <div class="flex min-h-screen -mt-36  items-center justify-center m-4">
           <div class="w-full rounded-lg p-12 shadow-xl  md:w-8/12 lg:w-6/12 bg-white border">
             <div class="grid grid-cols-1 gap-6 lg:grid-cols-12 relative">
               <div class="grid-cols-1 lg:col-span-3">

@@ -55,6 +55,7 @@ import {
   CLEAR_MSG,
   NO_FOOTER,
   HIDE_FOOTER,
+  CLEAR_MSG_ORDER_ITEM,
 } from '../actions/actions.js';
 
 const initialState = {
@@ -83,6 +84,7 @@ const initialState = {
   orderItem: '',
   build: [],
   footer: 0,
+  msgOrderItem: '',
 };
 
 const rootReducer = (state = initialState, action) => {
@@ -427,6 +429,12 @@ const rootReducer = (state = initialState, action) => {
     case DELETE_ORDER_ITEM:
       return {
         ...state,
+        msgOrderItem: action.payload,
+      };
+    case CLEAR_MSG_ORDER_ITEM:
+      return {
+        ...state,
+        msgOrderItem: '',
       };
     case ADD_TO_BUILD:
       let toAdd = {};
@@ -452,7 +460,7 @@ const rootReducer = (state = initialState, action) => {
     case BYO_TO_CART:
       let temporal6 = action.payload;
       temporal6.shift();
-
+      temporal6 = temporal6.filter((e) => e.id);
       return {
         ...state,
         cart: [...state.cart, ...temporal6],

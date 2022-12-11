@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { Link } from 'react-router-dom';
-import { deletOrderItem } from '../../../redux/actions/actions';
+import { deletOrderItem, clearOrderMsg } from '../../../redux/actions/actions';
 import Swal from 'sweetalert2';
 
 function OrderItem(props) {
@@ -11,6 +11,7 @@ function OrderItem(props) {
   token = JSON.parse(token);
   function dispatchToDeleteOrderItem(id) {
     dispatch(deletOrderItem(id, token));
+    dispatch(clearOrderMsg());
     setOpen(!open);
   }
 

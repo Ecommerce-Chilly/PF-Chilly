@@ -1,5 +1,5 @@
-import React, { useEffect, useState } from "react";
-import { useDispatch, useSelector } from "react-redux";
+import React, { useEffect, useState } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 import {
   getCategoryDetails,
   filter1,
@@ -7,22 +7,24 @@ import {
   getProduct,
   orderByPrice,
   allCategories,
-} from "../../../redux/actions/actions.js";
-import store from "../../../redux/store/store";
+} from '../../../redux/actions/actions.js';
+import store from '../../../redux/store/store';
 
 function Filters() {
   let [details, setDetails] = useState({});
-  let [category, setCategory] = useState("");
+  let [category, setCategory] = useState('');
   let [inputs, setInputs] = useState([]);
-  let [filterPrice, setFilterPrice] = useState("");
+  let [filterPrice, setFilterPrice] = useState('');
   let dispatch = useDispatch();
   let { categoryDetails } = useSelector((state) => state);
   let anyMoreCategory = useSelector((state) => state.category);
 
   useEffect(() => {
     dispatch(filterbyDetails(category, details));
-    dispatch(allCategories());
   }, [details, category]);
+  useEffect(() => {
+    dispatch(allCategories());
+  }, []);
 
   let dispatchCategory = (e) => {
     setInputs([]);
@@ -32,7 +34,7 @@ function Filters() {
       let categoryDetail = store.getState().categoryDetails;
       for (const element in categoryDetail) {
         console.log(element);
-        if (element !== "name") {
+        if (element !== 'name') {
           setInputs((oldArray) => [...oldArray, element]);
         }
       }
@@ -81,9 +83,9 @@ function Filters() {
           <button
             onClick={(event) => {
               handleClearFilters(event);
-              setCategory("");
+              setCategory('');
               setInputs([]);
-              setFilterPrice("");
+              setFilterPrice('');
             }}
             className=" absolute left-40 ml-1 top-44 z-10 border-solid border-main rounded border-2 px-2.5"
           >

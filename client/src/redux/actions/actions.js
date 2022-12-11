@@ -56,6 +56,7 @@ export const CLEAR_BYO = 'CLEAR_BYO';
 export const CLEAR_MSG = 'CLEAR_MSG';
 export const NO_FOOTER = 'NO_FOOTER';
 export const HIDE_FOOTER = 'HIDE_FOOTER';
+export const CLEAR_MSG_ORDER_ITEM = 'CLEAR_MSG_ORDER_ITEM';
 
 //! PRODUCTS ACTIONS --------------------------------------------------------------------
 export const getProduct = () => {
@@ -501,6 +502,12 @@ export const clearPaylink = () => {
     type: CLEAR_PAYLINK,
   };
 };
+export const clearOrderMsg = () => {
+  return {
+    type: CLEAR_MSG_ORDER_ITEM,
+  };
+};
+
 //! ORDER ITEMS ----------------------------------------------------------------------------
 export const deletOrderItem = (id, token) => {
   return async function (dispatch) {

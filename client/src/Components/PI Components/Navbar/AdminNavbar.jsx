@@ -9,6 +9,9 @@ function AdminNavbar() {
           Admin Tools
         </h2>
         <div class=" ">
+          <h3 className="uppercase font-sans font-medium text-base mb-2  mt-2">
+            Products
+          </h3>
           <ul class=" justify-betweenmx-auto uppercase font-sans underline-offset-4  font-regular text-main ">
             <li className="py-2">
               <Link to="/panel+admin/products" className="hover:underline">
@@ -26,6 +29,30 @@ function AdminNavbar() {
             <li className="py-2">
               <Link to="/panel+admin/deleted" className="hover:underline">
                 Deleted Products
+              </Link>
+            </li>
+          </ul>
+        </div>
+        <div class=" ">
+          <h3 className="uppercase font-sans font-medium text-base mb-2  mt-6">
+            Users
+          </h3>
+          <ul class=" justify-betweenmx-auto uppercase font-sans underline-offset-4  font-regular text-main ">
+            <li className="py-2">
+              <Link to="/panel+admin/users" className="hover:underline">
+                Manage Users
+              </Link>
+            </li>
+          </ul>
+        </div>
+        <div class=" ">
+          <h3 className="uppercase font-sans font-medium text-base mb-2  mt-6">
+            Orders
+          </h3>
+          <ul class=" justify-betweenmx-auto uppercase font-sans underline-offset-4  font-regular text-main ">
+            <li className="py-2">
+              <Link to="/panel+admin/orders" className="hover:underline">
+                Manage Orders
               </Link>
             </li>
           </ul>

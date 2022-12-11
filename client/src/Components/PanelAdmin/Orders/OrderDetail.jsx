@@ -58,7 +58,7 @@ function OrderDetail() {
             Object.keys(productDetail).length > 0 && (
               <div
                 key={productDetail[0].id}
-                className="bg-white rounded-xl shadow-xl border  m-2  flex mx-auto justify-between h-44 w-1/2 mb-9"
+                className="bg-white rounded-xl shadow-xl border  m-2  flex mx-auto justify-between h-60 w-1/2 mb-9 "
               >
                 <div className="flex ml-6">
                   <div className="  w-2/3 p-4">
@@ -70,9 +70,13 @@ function OrderDetail() {
                       <span className="font-semibold">Brand: </span>
                       {productDetail[0].brand}
                     </p>
-                    <p>
-                      <span className="font-semibold">Price: </span>$
+                    <p className="mb-2">
+                      <span className="font-semibold">Unit price: </span>$
                       {productDetail[0].price}
+                    </p>
+                    <p>
+                      <span className="font-semibold">Total price: </span>$
+                      {productDetail[0].price * orderItem.quantity}
                     </p>
                   </div>
                   <div className=" w-1/3 h-44 flex">
