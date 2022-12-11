@@ -28,7 +28,7 @@ function Paginate({ products, setPageNumber, pageNumber }) {
       <ReactPaginate
         breakLabel="..."
         nextLabel="Next"
-        forcePage={pageNumber === 1 ? 0 : setPageNumber(pageNumber - 1)}
+        forcePage={pageNumber === 1 ? 0 : setPageNumber(pageNumber + 1)}
         onPageChange={handlePageClick}
         pageRangeDisplayed={1}
         marginPagesDisplayed={1}

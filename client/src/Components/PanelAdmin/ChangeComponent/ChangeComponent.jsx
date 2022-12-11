@@ -15,6 +15,7 @@ import Swal from "sweetalert2";
 const { validate } = require("./utils");
 import { Link } from "react-router-dom";
 import ForbiddenAccess from "../ForbiddenAccess.jsx";
+import UploadImages from "../../UploadImages/UploadImages.jsx";
 
 function ChangeComponent() {
   const { admin, brands, category } = useSelector((state) => state);
@@ -96,6 +97,11 @@ function ChangeComponent() {
       dispatch(putDiscount(discountt, token));
     }
   }
+
+  function catchImage(image) {
+    setNewProduct({ ...newProduct, image: image });
+  }
+
   const creationStatusEdit = () => {
     console.log(msg);
     if (msg === "Sending incomplete information!") {
@@ -241,14 +247,7 @@ function ChangeComponent() {
               <label className="block mb-2 text-sm font-medium text-gray-900">
                 New Product Img (URL):
               </label>
-              <input
-                type="text"
-                name="image"
-                value={newProduct.image}
-                onChange={handleChange}
-                placeholder="Image Product at here"
-                className="bg-gray-50 border  text-gray-900 text-sm rounded-lg  focus:border-blue-500 block w-full p-2.5  border-gray-600 placeholder-gray-400 mb-6 "
-              ></input>
+              <UploadImages catchImage={catchImage} />
 
               <label className="block mb-2 text-sm font-medium text-gray-900">
                 New Product details:
@@ -289,7 +288,7 @@ function ChangeComponent() {
                 New Product stock:
               </label>
               <input
-                type="text"
+                type="number"
                 name="quantity"
                 value={newProduct.quantity}
                 onChange={handleChange}
@@ -337,7 +336,7 @@ function ChangeComponent() {
                     New Discount percentage:
                   </label>
                   <input
-                    type="text"
+                    type="number"
                     name="percent"
                     value={discountt.percent}
                     onChange={handleDiscount}
