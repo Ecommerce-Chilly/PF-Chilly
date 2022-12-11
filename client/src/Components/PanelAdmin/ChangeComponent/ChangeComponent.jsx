@@ -245,7 +245,7 @@ function ChangeComponent() {
                 <></>
               )}
               <label className="block mb-2 text-sm font-medium text-gray-900">
-                New Product Img (URL):
+                New Product Img:
               </label>
               <UploadImages catchImage={catchImage} />
 

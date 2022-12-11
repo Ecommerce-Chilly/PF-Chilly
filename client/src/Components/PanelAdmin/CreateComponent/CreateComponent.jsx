@@ -214,7 +214,7 @@ function CreateComponent() {
             <></>
           )}
           <label className="block mb-2 text-sm font-medium text-gray-900">
-            Product Img (URL):
+            Product Img:
           </label>
 
           <UploadImages catchImage={catchImage} />
