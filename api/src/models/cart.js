@@ -7,6 +7,7 @@ module.exports = (sequelize) => {
                 type: DataTypes.INTEGER,
                 autoIncrement: true,
                 primaryKey: true,
+                unique: true,
                 allowNull: false,
             },
 
@@ -14,6 +15,10 @@ module.exports = (sequelize) => {
         {
             timestamps: true,
             paranoid: true,
+            indexes: [{
+                unique: true,
+                fields: ["userId"]
+            }]
         }
     );
 };

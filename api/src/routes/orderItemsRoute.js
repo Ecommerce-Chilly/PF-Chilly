@@ -5,7 +5,7 @@ const { checkJwt, checkScopes } = require('../middleware/oAuth')
 const postOrderItems = require("../controllers/orderItems/postOrderItems")
 const orderItemsRoute = Router();
 
-orderItemsRoute.delete('/:id', checkJwt, async (req, res) => {
+orderItemsRoute.delete('/:id', async (req, res) => {
   try {
     const orderItemsDelete = await deleteOrderItems(req.params.id);
     res.status(201).send(orderItemsDelete)
@@ -14,7 +14,7 @@ orderItemsRoute.delete('/:id', checkJwt, async (req, res) => {
   }
 })
 
-orderItemsRoute.post('/', checkJwt, async (req, res) => {
+orderItemsRoute.post('/', async (req, res) => {
   try {
     const newOrderItems = await postOrderItems(req.body);
     res.status(201).send(newOrderItems)
@@ -23,7 +23,7 @@ orderItemsRoute.post('/', checkJwt, async (req, res) => {
   }
 })
 
-orderItemsRoute.get('/:id', checkJwt, async (req, res) => {
+orderItemsRoute.get('/:id', async (req, res) => {
   try {
     const orderItems = await getOrderItems(req.params.id)
     res.status(200).send(orderItems)
@@ -32,7 +32,7 @@ orderItemsRoute.get('/:id', checkJwt, async (req, res) => {
   }
 })
 
-orderItemsRoute.get('/', checkJwt, checkScopes, async (req, res) => {
+orderItemsRoute.get('/', async (req, res) => {
   try {
     const orderItems = await getAllOrders(req.params.id)
     res.status(200).send(orderItems)

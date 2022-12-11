@@ -18,6 +18,10 @@ module.exports = (sequelize) => {
         {
             timestamps: true,
             paranoid: true,
+            indexes: [{
+                unique: true,
+                fields: ["cartId", "productId"]
+            }]
         }
     );
 };

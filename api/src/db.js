@@ -97,13 +97,13 @@ Order_items.belongsTo(User);
 User.hasMany(Order_items);
 
 User.hasOne(Cart);
-Cart.belongsTo(User);
+Cart.belongsTo(User, { foreignKey: 'userId' });
 
 Cart.hasMany(Cart_items)
 Cart_items.belongsTo(Cart)
 
-Cart_items.hasMany(Product)
-Product.belongsToMany(Cart_items, { through: "Cart-items-Products", paranoid: true });
+Product.hasOne(Cart_items);
+Cart_items.belongsTo(Product)
 
 User.hasMany(Order_details);
 Order_details.belongsTo(User);
