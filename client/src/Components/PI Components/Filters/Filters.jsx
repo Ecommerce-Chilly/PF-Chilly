@@ -1,5 +1,5 @@
-import React, { useEffect, useState } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
+import React, { useEffect, useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
 import {
   getCategoryDetails,
   filter1,
@@ -7,24 +7,21 @@ import {
   getProduct,
   orderByPrice,
   allCategories,
-} from '../../../redux/actions/actions.js';
-import store from '../../../redux/store/store';
+} from "../../../redux/actions/actions.js";
+import store from "../../../redux/store/store";
 
 function Filters({ setPageNumber }) {
   let [details, setDetails] = useState({});
-  let [category, setCategory] = useState('');
+  let [category, setCategory] = useState("");
   let [inputs, setInputs] = useState([]);
-  let [filterPrice, setFilterPrice] = useState('');
+  let [filterPrice, setFilterPrice] = useState("");
   let dispatch = useDispatch();
   let { categoryDetails } = useSelector((state) => state);
-  let anyMoreCategory = useSelector((state) => state.category);
 
   useEffect(() => {
     dispatch(filterbyDetails(category, details));
   }, [details, category]);
-  useEffect(() => {
-    dispatch(allCategories());
-  }, []);
+  useEffect(() => {}, []);
 
   let dispatchCategory = (e) => {
     setInputs([]);
@@ -82,7 +79,7 @@ function Filters({ setPageNumber }) {
           <button
             onClick={(event) => {
               handleClearFilters(event);
-              setCategory('');
+              setCategory("");
               setInputs([]);
               setFilterPrice("");
               setPageNumber(1);
@@ -103,11 +100,18 @@ function Filters({ setPageNumber }) {
             setCategory(e.target.value);
           }}
         >
-          {anyMoreCategory?.map((e) => (
-            <option key={e} value={e}>
-              {e[0].toUpperCase() + e.substring(1)}
-            </option>
-          ))}
+          <option value="">------</option>
+          <option value="cases">Cases</option>
+          <option value="motherboards">Motherboards</option>
+          <option value="case_fan">Case Fan</option>
+          <option value="cpu_fan">CPU Fan</option>
+          <option value="gpus">GPUs</option>
+          <option value="keyboards">Keyboards</option>
+          <option value="mouses">Mouses</option>
+          <option value="processors">Processors</option>
+          <option value="power_supply">Power Supply</option>
+          <option value="ram">RAM</option>
+          <option value="storage">Storage</option>
         </select>
         {inputs.length > 0 &&
           inputs?.map((e) => {

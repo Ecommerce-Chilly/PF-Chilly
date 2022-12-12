@@ -1,6 +1,6 @@
-import React from 'react';
-import { useDispatch, useSelector } from 'react-redux';
-import { useHistory } from 'react-router-dom';
+import React from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { useHistory } from "react-router-dom";
 import {
   addToBuild,
   deleteFromBuild,
@@ -10,11 +10,11 @@ import {
   noFooter,
   hideFooter,
   getProduct,
-} from '../../../redux/actions/actions';
+} from "../../../redux/actions/actions";
 
-import { useState } from 'react';
-import { useEffect } from 'react';
-import ReactTooltip from 'react-tooltip';
+import { useState } from "react";
+import { useEffect } from "react";
+import ReactTooltip from "react-tooltip";
 
 function BuildYourOwn() {
   let history = useHistory();
@@ -24,19 +24,20 @@ function BuildYourOwn() {
   let dispatch = useDispatch();
   let [i, setI] = useState(-1);
   let categories = [
-    'processors',
-    'motherboards',
-    'cpu_fan',
-    'ram',
-    'gpus',
-    'storage',
-    'power_supply',
-    'cases',
-    'case_fan',
-    'mouses',
-    'keyboards',
+    "processors",
+    "motherboards",
+    "cpu_fan",
+    "ram",
+    "gpus",
+    "storage",
+    "power_supply",
+    "cases",
+    "case_fan",
+    "mouses",
+    "keyboards",
   ];
   let totalPrice = 0;
+  let [firstLetter, setFirstLetter] = useState("");
 
   for (let i = 1; i < byo.length; i++) {
     byo[i].price ? (totalPrice = totalPrice + byo[i].price) : null;
@@ -54,6 +55,14 @@ function BuildYourOwn() {
   useEffect(() => {
     console.log(i);
     console.log(categories[i]);
+    if (byo[0]) {
+      if (byo[0].name === "amd") {
+        setFirstLetter("A");
+      } else {
+        setFirstLetter("L");
+      }
+    }
+    console.log(firstLetter);
   }, [i]);
 
   return (
@@ -107,7 +116,7 @@ function BuildYourOwn() {
                 dispatch(updateCartQuantity());
                 dispatch(clearBYO());
                 setI(-1);
-                history.push('/cart');
+                history.push("/cart");
               }}
               className="w-2/5 h-12 bg-main border-l-2 rounded border-white hover:bg-blue-700"
             >
@@ -2299,57 +2308,57 @@ function BuildYourOwn() {
       </div>
 
       <div>
-        {categories[i] === 'processors' ? (
+        {categories[i] === "processors" ? (
           <h2 className="font-medium font-display text-2xl mb-9 ml-60 mt-9">
             Choose your Processor:
           </h2>
         ) : null}
-        {categories[i] === 'motherboards' ? (
+        {categories[i] === "motherboards" ? (
           <h2 className="font-medium font-display text-2xl mb-9 ml-60 mt-9">
             Choose your Motherboard:
           </h2>
         ) : null}
-        {categories[i] === 'cpu_fan' ? (
+        {categories[i] === "cpu_fan" ? (
           <h2 className="font-medium font-display text-2xl mb-9 ml-60 mt-9">
             Choose your CPU Fan:
           </h2>
         ) : null}
-        {categories[i] === 'ram' ? (
+        {categories[i] === "ram" ? (
           <h2 className="font-medium font-display text-2xl mb-9 ml-60 mt-9">
             Choose your RAM:
           </h2>
         ) : null}
-        {categories[i] === 'gpus' ? (
+        {categories[i] === "gpus" ? (
           <h2 className="font-medium font-display text-2xl mb-9 ml-60 mt-9">
             Choose your Graphic Card:
           </h2>
         ) : null}
-        {categories[i] === 'storage' ? (
+        {categories[i] === "storage" ? (
           <h2 className="font-medium font-display text-2xl mb-9 ml-60 mt-9">
             Choose your Storage:
           </h2>
         ) : null}
-        {categories[i] === 'power_supply' ? (
+        {categories[i] === "power_supply" ? (
           <h2 className="font-medium font-display text-2xl mb-9 ml-60 mt-9">
             Choose your Power Supply Unit:
           </h2>
         ) : null}
-        {categories[i] === 'cases' ? (
+        {categories[i] === "cases" ? (
           <h2 className="font-medium font-display text-2xl mb-9 ml-60 mt-9">
             Choose your Case:
           </h2>
         ) : null}
-        {categories[i] === 'case_fan' ? (
+        {categories[i] === "case_fan" ? (
           <h2 className="font-medium font-display text-2xl mb-9 ml-60 mt-9">
             Choose your Case Fan:
           </h2>
         ) : null}
-        {categories[i] === 'mouses' ? (
+        {categories[i] === "mouses" ? (
           <h2 className="font-medium font-display text-2xl mb-9 ml-60 mt-9">
             Choose your Mouse:
           </h2>
         ) : null}
-        {categories[i] === 'keyboards' ? (
+        {categories[i] === "keyboards" ? (
           <h2 className="font-medium font-display text-2xl mb-9 ml-60 mt-9 ">
             Choose your Keyboard:
           </h2>
@@ -2364,25 +2373,25 @@ function BuildYourOwn() {
             <div className="flex mx-auto justify-between">
               <div
                 onClick={() => {
-                  dispatch(addToBuild('intel'));
+                  dispatch(addToBuild("intel"));
                   setI(i + 1);
                 }}
                 className="cursor-pointer mr-2 shadow-2xl  hover:scale-105 transition duration-300 ease-in-out"
               >
                 <img
-                  src={require('../../../img/intel.png')}
+                  src={require("../../../img/intel.png")}
                   className="rounded"
                 />
               </div>
               <div
                 onClick={() => {
-                  dispatch(addToBuild('amd'));
+                  dispatch(addToBuild("amd"));
                   setI(i + 1);
                 }}
                 className="cursor-pointer ml-2 shadow-2xl  hover:scale-105 transition duration-300 ease-in-out"
               >
                 <img
-                  src={require('../../../img/amd.webp')}
+                  src={require("../../../img/amd.webp")}
                   className="rounded"
                 />
               </div>
@@ -2392,7 +2401,25 @@ function BuildYourOwn() {
 
         {byo[0]
           ? products
-              .filter((e) => e.categoryName === categories[i])
+              .filter((e) => {
+                if (i === 0) {
+                  return (
+                    e.categoryName === categories[i] &&
+                    e.details[0].socketType[0] === firstLetter
+                  );
+                }
+
+                if (byo[1].id) {
+                  if (i === 1) {
+                    return (
+                      e.categoryName === categories[i] &&
+                      e.details[0].socketType === byo[1].details[0].socketType
+                    );
+                  }
+                }
+
+                return e.categoryName === categories[i];
+              })
               .map((component) => (
                 <div
                   key={component.id}
@@ -2410,7 +2437,7 @@ function BuildYourOwn() {
                     </h2>
                     <img
                       className="m-auto h-40"
-                      src={component.image.replace('SL75', 'SL500')}
+                      src={component.image.replace("SL75", "SL500")}
                       alt={component.name}
                     />
                     <p className="text-2xl font-display text-slate-700">
