@@ -3,6 +3,7 @@ const postUser = require("../controllers/user/postUser")
 const { getUser, getAllUsers } = require("../controllers/user/getUser")
 const { deleteUser } = require("../controllers/user/deleteUser")
 const { userAdmin } = require('../controllers/user/userAdmin')
+const { cleanCart } = require("../controllers/cart_items/cleanCart")
 const { checkJwt, checkScopes } = require('../middleware/oAuth')
 // import { addCartItem } from "../controllers/cart/addCartItem";
 const { addShoppingSession } = require("../controllers/shopping/addShoppingSession");
@@ -10,7 +11,7 @@ const { cloudinaryUser } = require("../controllers/user/cloudinaryUser");
 const { putUser } = require("../controllers/user/putUser");
 const userRoute = Router();
 
-userRoute.get("/", async (req, res) => {
+userRoute.get("/", checkJwt, async (req, res) => {
   try {
     let { email } = req.query;
     const users = await getUser(email)
@@ -47,6 +48,7 @@ userRoute.post('/shop', async (req, res) => {
     return res.status(404).send({ error: error })
   }
 })
+
 userRoute.get('/all', checkJwt, checkScopes, async (req, res) => {
   try {
     const users = await getAllUsers()
@@ -56,7 +58,16 @@ userRoute.get('/all', checkJwt, checkScopes, async (req, res) => {
   }
 })
 
-userRoute.delete('/:id', checkJwt, async (req, res) => {
+userRoute.get('/:id', checkJwt, checkScopes, async (req, res) => {
+  try {
+    const users = await getAllUsers(req.body)
+    return res.send(users)
+  } catch (error) {
+    return res.status(404).send({ error: error })
+  }
+})
+
+userRoute.delete('/:id', checkJwt, checkScopes, async (req, res) => {
   try {
     const userDelete = await deleteUser(req.params.id);
     res.status(201).send(userDelete)
@@ -65,7 +76,7 @@ userRoute.delete('/:id', checkJwt, async (req, res) => {
   }
 })
 
-userRoute.post('/', async (req, res) => {
+userRoute.post('/', checkJwt, async (req, res) => {
   try {
     const { email } = req.body
     console.log(email);
@@ -85,7 +96,7 @@ userRoute.get('/admin', checkJwt, checkScopes, async (req, res) => {
   }
 })
 
-userRoute.post("/tio", async (req, res) => {
+userRoute.post("/tio", checkJwt, checkScopes, async (req, res) => {
   try {
     const user = await getUser(req.body);
     if (!user.length) {
@@ -96,5 +107,15 @@ userRoute.post("/tio", async (req, res) => {
     res.status(404).send({ error: error });
   }
 });
+
+userRoute.post("/cleanCart/:id", checkJwt, async (req, res) => {
+  try {
+    const userId = req.params.id;
+    cleanCart(userId)
+    res.status(200).send(userId)
+  } catch (error) {
+    res.status(404).send(error)
+  }
+})
 
 module.exports = userRoute;

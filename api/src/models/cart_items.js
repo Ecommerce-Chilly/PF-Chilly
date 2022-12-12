@@ -1,13 +1,16 @@
 const { DataTypes } = require("sequelize");
 module.exports = (sequelize) => {
     sequelize.define(
-        "cart",
+        "cart_items",
         {
             id: {
                 type: DataTypes.INTEGER,
                 autoIncrement: true,
                 primaryKey: true,
-                unique: true,
+                allowNull: false,
+            },
+            quantity: {
+                type: DataTypes.INTEGER,
                 allowNull: false,
             },
 
@@ -17,7 +20,7 @@ module.exports = (sequelize) => {
             paranoid: true,
             indexes: [{
                 unique: true,
-                fields: ["userId"]
+                fields: ["cartId", "productId"]
             }]
         }
     );

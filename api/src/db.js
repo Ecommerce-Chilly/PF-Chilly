@@ -4,6 +4,7 @@ const fs = require("fs");
 const path = require("path");
 const { DB_USER, DB_PASSWORD, DB_HOST, DB_DEPLOY } = process.env;
 
+//------------------- local db------------------
 
 const sequelize = new Sequelize(
   `postgres://${DB_USER}:${DB_PASSWORD}@${DB_HOST}/chilly`,
@@ -12,12 +13,16 @@ const sequelize = new Sequelize(
     native: false,
   }
 );
+
+//------------------- deployed db----------------
+
 // const sequelize = new Sequelize(DB_DEPLOY,
 //   {
 //     logging: false,
 //     native: false,
 //   }
 // );
+
 const basename = path.basename(__filename);
 
 const modelDefiners = [];
@@ -46,6 +51,7 @@ const {
   Discount,
   Category,
   Cart,
+  Cart_items,
   Clients,
   Data_user,
   Order_details,
@@ -90,11 +96,14 @@ Order_items.belongsTo(Product);
 Order_items.belongsTo(User);
 User.hasMany(Order_items);
 
-Cart.belongsTo(User)
-User.hasMany(Cart)
+User.hasOne(Cart);
+Cart.belongsTo(User, { foreignKey: 'userId' });
 
-Cart.hasMany(User)
-User.belongsTo(Cart)
+Cart.hasMany(Cart_items)
+Cart_items.belongsTo(Cart)
+
+Product.hasOne(Cart_items);
+Cart_items.belongsTo(Product)
 
 User.hasMany(Order_details);
 Order_details.belongsTo(User);

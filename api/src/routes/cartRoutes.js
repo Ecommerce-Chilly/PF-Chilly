@@ -1,32 +1,28 @@
 const { Router } = require("express");
 const { addCart } = require("../controllers/cart/addCart");
-const { addProduct } = require("../controllers/cart/addProduct");
-const { removeProductCart } = require("../controllers/cart/removeProductCart");
+const { getCart, getAllCarts } = require("../controllers/cart/getCart.js")
 
 const cartRouter = Router()
 
 cartRouter.post('/', async (req, res) => {
   try {
     const cart = await addCart(req.body)
-    res.send(cart)
+    res.status(201).send(cart)
   } catch (error) {
-    res.send(error)
+    res.status(404).send(error)
   }
 })
-cartRouter.put('/', async (req, res) => {
+
+
+cartRouter.get('/:id', async (req, res) => {
   try {
-    const cart = await addProduct(req.body)
-    res.send(cart)
+    const cart = await getCart(req.params)
+    res.status(201).send(cart)
   } catch (error) {
-    res.status(400).send(error)
+    res.status(404).send(error)
   }
+
 })
-cartRouter.put('/remove', async (req, res) => {
-  try {
-    const cart = await removeProductCart(req.body)
-    res.send(cart)
-  } catch (error) {
-    res.status(400).send(error)
-  }
-})
+
+
 module.exports = cartRouter

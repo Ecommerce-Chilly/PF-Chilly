@@ -1,18 +1,16 @@
-const { Cart, User, Product } = require('../../db')
-const addCart = async ({ userId, productId, quantity }) => {
+const { Cart, User } = require('../../db')
+const { UniqueConstraintError } = require("sequelize")
+
+const addCart = async ({ userId }) => {
+  if (userId === null) throw (" no user found ");
   try {
-    if (!userId || !productId || !quantity) throw ("You must fill all fields ");
     const foundUser = await User.findByPk(userId);
-    const product = await Product.findByPk(productId);
-    const cart = await Cart.create({
-      quantity,
-      products: [product]
-    });
+    const cart = await Cart.create();
     await cart.setUser(foundUser)
-    await foundUser.setCart(cart)
     return cart
   } catch (error) {
-    throw (error)
+    if (UniqueConstraintError) throw ({ msg: "This UserId is already in use" })
+    throw error
   }
 }
 
