@@ -208,9 +208,10 @@ import LoginButton from './LoginButton';
 import LogoutButton from './LogoutButton';
 import Profile from './Profile';
 import './popUp.css';
+import Loader from '../../PI Components/Loader/Loader';
 function Login() {
   const { isAuthenticated, isLoading } = useAuth0();
-  if (isLoading) return <h1>Loading...</h1>;
+  if (isLoading) return <Loader />;
   return <div>{isAuthenticated ? <Profile /> : <LoginButton />}</div>;
 }
 

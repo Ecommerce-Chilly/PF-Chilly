@@ -12,6 +12,14 @@ const getUser = async (email) => {
     throw error;
   }
 };
+const getAllUsers = async () => {
+  try {
+    const users = await User.findAll()
+    return users
+  } catch (error) {
+    throw error
+  }
+}
 
 
-module.exports = { getUser };
+module.exports = { getUser, getAllUsers };

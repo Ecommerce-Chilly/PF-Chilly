@@ -1,21 +1,25 @@
-import React, { useEffect, useState } from "react";
-import { useDispatch, useSelector } from "react-redux";
-import { Link } from "react-router-dom";
+import React, { useEffect, useState } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { Link } from 'react-router-dom';
 import {
   deleteP,
   clearCart,
   pay,
   clearPaylink,
-} from "../../../redux/actions/actions";
-import CartItem from "../CartItem/CartItem";
-import Swal from "sweetalert2";
+  addOrder,
+} from '../../../redux/actions/actions';
+import CartItem from '../CartItem/CartItem';
+import Swal from 'sweetalert2';
+import { useAuth0 } from '@auth0/auth0-react';
 
 function Cart() {
   const cart = useSelector((state) => state.cart);
   const paymentLink = useSelector((state) => state.paymentLink);
   const userUnique = useSelector((state) => state.userInfo);
-  const token = localStorage.getItem("token");
+  const token = localStorage.getItem('token');
   const dispatch = useDispatch();
+  const { loginWithRedirect } = useAuth0();
+
   let [variable, setVariable] = useState(0);
 
   let totalPrice = 0;
@@ -35,20 +39,24 @@ function Cart() {
   const changeVariable = (num) => {
     setVariable(num);
   };
-
+  const orderAdd = () => {
+    cart?.map((e) => {
+      dispatch(addOrder(userUnique.id, e.id, e.quantity, JSON.parse(token)));
+    });
+  };
   const confirmClearCart = () => {
     Swal.fire({
-      icon: "question",
-      text: "Are you sure you want to clear your cart?",
-      confirmButtonText: "Yes",
-      showDenyButton: "true",
-      denyButtonText: "No",
+      icon: 'question',
+      text: 'Are you sure you want to clear your cart?',
+      confirmButtonText: 'Yes',
+      showDenyButton: 'true',
+      denyButtonText: 'No',
       customClass: {
-        container: "popup-container",
-        popup: "popup",
-        confirmButton: "confirm",
-        denyButton: "deny",
-        cancelButton: "cancel",
+        container: 'popup-container',
+        popup: 'popup',
+        confirmButton: 'confirm',
+        denyButton: 'deny',
+        cancelButton: 'cancel',
       },
     }).then((result) => {
       /* Read more about isConfirmed, isDenied below */
@@ -64,7 +72,7 @@ function Cart() {
       </h1>
       {cart.length > 0 ? (
         cart?.map((e) => (
-          <div className=" ">
+          <div key={e.name}>
             <CartItem
               image={e.image}
               name={e.name}
@@ -80,7 +88,6 @@ function Cart() {
           <svg
             version="1.1"
             id="Capa_1"
-            xmlns="http://www.w3.org/2000/svg"
             x="0px"
             y="0px"
             viewBox="0 0 58 58"
@@ -135,28 +142,40 @@ function Cart() {
               >
                 Clear Cart
               </button>
-              {!paymentLink ? (
-                <Link to="#" className="">
-                  <button
-                    onClick={() => {
-                      dispatch(
-                        pay(
-                          { email: userUnique.email, items: cart },
-                          JSON.parse(token)
-                        )
-                      );
-                    }}
-                    className=" flex font-semibold  text-white border-solid bg-main border-2 border-main py-2 px-6 focus:outline-none hover:bg-blue-600 rounded hover:border-blue-600"
-                  >
-                    Check Out
+              {userUnique.name ? (
+                !paymentLink ? (
+                  <Link to="#" className="">
+                    <button
+                      onClick={() => {
+                        dispatch(
+                          pay(
+                            { email: userUnique.email, items: cart },
+                            JSON.parse(token)
+                          )
+                        );
+                        orderAdd();
+                      }}
+                      className=" flex font-semibold  text-white border-solid bg-main border-2 border-main py-2 px-6 focus:outline-none hover:bg-blue-600 rounded hover:border-blue-600"
+                    >
+                      Check Out
+                    </button>
+                  </Link>
+                ) : (
+                  <a href={paymentLink} className="text-center">
+                    <button className=" flex font-semibold  text-white border-solid bg-main border-2 border-main py-2 px-12  focus:outline-none hover:bg-blue-600 rounded hover:border-blue-600 ">
+                      Pay!
+                    </button>
+                  </a>
+                )
+              ) : (
+                <Link
+                  onClick={() => loginWithRedirect()}
+                  className=" text-center"
+                >
+                  <button className=" w-36  font-semibold  text-white border-solid bg-main border-2 border-main py-2 px-6 focus:outline-none hover:bg-blue-600 rounded hover:border-blue-600">
+                    Sign in
                   </button>
                 </Link>
-              ) : (
-                <a href={paymentLink} className="text-center">
-                <button className=" flex font-semibold  text-white border-solid bg-main border-2 border-main py-2 px-12  focus:outline-none hover:bg-blue-600 rounded hover:border-blue-600 ">
-                  Pay!
-                </button>
-              </a>
               )}
             </div>
           </div>

@@ -5,8 +5,8 @@ function PagoPendiente() {
   return (
     <div>
       {' '}
-      <div class="h-full my-20 font-display ">
-        <div class="bg-white p-6  md:mx-auto">
+      <div className="h-full my-20 font-display ">
+        <div className="bg-white p-6  md:mx-auto">
           <div className="w-24 m-auto mb-9">
             <svg
               version="1.1"
@@ -29,20 +29,20 @@ function PagoPendiente() {
               </g>
             </svg>
           </div>
-          <div class="text-center">
-            <h3 class="mb-4 text-4xl font-bold tracking-tight leading-none text-gray-900 lg:mb-6 md:text-5xl xl:text-6xl">
+          <div className="text-center">
+            <h3 className="mb-4 text-4xl font-bold tracking-tight leading-none text-gray-900 lg:mb-6 md:text-5xl xl:text-6xl">
               Payment Pending!
             </h3>
-            <p class="font-light text-gray-500 md:text-lg xl:text-xl dark:text-gray-400">
+            <p className="font-light text-gray-500 md:text-lg xl:text-xl dark:text-gray-400">
               Your payment is still processing.
             </p>
             <p className="font-light mt-4 mb-9 text-gray-500 md:text-sm xl:text-xl dark:text-gray-400">
               Have a great day!
             </p>
-            <div class="py-10 text-center">
+            <div className="py-10 text-center">
               <Link
                 to="/"
-                class="cursor-pointer font-semibold  text-white border-solid bg-main border-2 border-main py-2 px-6 focus:outline-none hover:bg-blue-600 rounded hover:border-blue-600"
+                className="cursor-pointer font-semibold  text-white border-solid bg-main border-2 border-main py-2 px-6 focus:outline-none hover:bg-blue-600 rounded hover:border-blue-600"
               >
                 Back to Homepage!
               </Link>
