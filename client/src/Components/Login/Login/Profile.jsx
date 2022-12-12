@@ -11,7 +11,7 @@ import {
 } from "../../../redux/actions/actions";
 
 const Profile = () => {
-  const admin = useSelector((state) => state.admin);
+  const { admin, userInfo } = useSelector((state) => state);
   const dispatch = useDispatch();
   const { user, isAuthenticated, getAccessTokenSilently } = useAuth0();
   const [userMetadata, setUserMetadata] = useState(null);
@@ -47,12 +47,18 @@ const Profile = () => {
         const token = await getAccessTokenSilently();
         await dispatch(
           actions.createUser(
-            { email: user.email, img: user.picture, name: user.name },
+            {
+              id: user.id,
+              email: user.email,
+              img: user.picture,
+              name: user.name,
+            },
             token
           )
         );
         await dispatch(actions.userSpecific(user.email, token));
         await dispatch(actions.userAdmin(user.email, token));
+        await dispatch(actions.getCartFromBack(userInfo.id));
       }
       create();
     };
@@ -61,11 +67,10 @@ const Profile = () => {
 
   React.useEffect(() => {
     let cartLS = window.localStorage.getItem("cart");
-
     if (cartLS) {
       dispatch(localStorageToCart(JSON.parse(cartLS)));
       window.localStorage.removeItem("cart");
-      dispatch(updateCartQuantity());
+      dispatch(updateCartQuantity(userInfo.id));
     }
   }, []);
 

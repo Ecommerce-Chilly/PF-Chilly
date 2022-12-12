@@ -62,11 +62,12 @@ export const POST_DATA_USER = "POST_DATA_USER";
 export const ERROR_POST_DATA_USER = "ERROR_POST_DATA_USER";
 export const GET_DATA_USER = "GET_DATA_USER";
 export const ERROR_GET_DATA_USER = "ERROR_GET_DATA_USER";
-export const CREATE_CART_BACK = "CREATE_CART_BACK";
 export const ADD_TO_CART_BACK = "ADD_TO_CART_BACK";
 export const DELETE_FROM_CART_BACK = "DELETE_FROM_CART_BACK";
 export const CHANGE_QUANTITY_CART_BACK = "CHANGE_QUANTITY_CART_BACK";
 export const CLEAR_CART_BACK = "CLEAR_CART_BACK";
+export const GET_FROM_CART_BACK = "GET_FROM_CART_BACK";
+export const GET_FROM_CART_BACK_BY_ID = "GET_FROM_CART_BACK_BY_ID";
 
 //! PRODUCTS ACTIONS --------------------------------------------------------------------
 export const getProduct = () => {
@@ -644,26 +645,16 @@ export const getDataUser = (dUser) => {
 // export const CHANGE_QUANTITY_CART_BACK = "CHANGE_QUANTITY_CART_BACK";
 // export const CLEAR_CART_BACK = "CLEAR_CART_BACK";
 
-export const createCartBack = (userId) => {
-  return async function (dispatch) {
-    try {
-      let backCart = await axios.post("/cart", userId);
-      return dispatch({ type: CREATE_CART_BACK, payload: backCart.data });
-    } catch (error) {
-      console.log(error);
-    }
-  };
-};
-
 export const addToCartBack = (cartId, productId) => {
   return async function (dispatch) {
+    //HECHO LA RE CONCHA DE LA LORA VIEJO
     try {
       let backCart = await axios.post("/cartItems", {
         quantity: 1,
         cartId: cartId,
         productId: productId,
       });
-      return dispatch({ type: ADD_TO_CART_BACK, payload: "Added" });
+      return dispatch({ type: ADD_TO_CART_BACK, payload: backCart.data });
     } catch (error) {
       console.log(error);
     }
@@ -674,7 +665,19 @@ export const deleteFromCartBack = (cartId, productId) => {
   return async function (dispatch) {
     try {
       let backCart = await axios.delete(`/cartItems/${cartId}/${productId}`);
-      return dispatch({ type: DELETE_FROM_CART_BACK, payload: "Deleted" });
+      return dispatch({ type: DELETE_FROM_CART_BACK, payload: backCart.data });
+    } catch (error) {
+      console.log(error);
+    }
+  };
+};
+
+export const getCartFromBack = (cartId) => {
+  return async function (dispatch) {
+    try {
+      let getCart = await axios.get(`/cart/${cartId}`);
+      console.log(getCart.data);
+      return dispatch({ type: GET_FROM_CART_BACK, payload: getCart.data });
     } catch (error) {
       console.log(error);
     }

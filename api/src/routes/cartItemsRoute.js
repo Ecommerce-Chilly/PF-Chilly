@@ -25,12 +25,11 @@ cartItemsRoute.put("/", async (req, res) => {
   }
 });
 
-cartItemsRoute.delete("/:cartId/:productId", async (req, res) => {
+cartItemsRoute.delete("/", async (req, res) => {
   try {
-    const deleteCartItem = await deleteItem(req.params);
+    const deleteCartItem = await deleteItem(req);
     res.status(202).send(deleteCartItem);
   } catch (error) {
-    console.log(error);
     res.status(404).send(error);
   }
 });

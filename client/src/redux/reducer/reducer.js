@@ -61,6 +61,9 @@ import {
   ERROR_POST_DATA_USER,
   GET_DATA_USER,
   ERROR_GET_DATA_USER,
+  ADD_TO_CART_BACK,
+  DELETE_FROM_CART_BACK,
+  GET_FROM_CART_BACK,
 } from "../actions/actions.js";
 
 const initialState = {
@@ -93,6 +96,7 @@ const initialState = {
   userDataInCheckout: [],
   userNotInData: "",
   userDataMsg: "",
+  ostras: [],
 };
 
 const rootReducer = (state = initialState, action) => {
@@ -512,8 +516,21 @@ const rootReducer = (state = initialState, action) => {
     case ERROR_GET_DATA_USER:
       return {
         ...state,
-        userNotInData: action.payload
-      }
+        userNotInData: action.payload,
+      };
+    case DELETE_FROM_CART_BACK:
+      return {
+        ...state,
+      };
+    case ADD_TO_CART_BACK:
+      return {
+        ...state,
+      };
+    case GET_FROM_CART_BACK:
+      return {
+        ...state,
+        ostras: [action.payload],
+      };
     default:
       return state;
   }
