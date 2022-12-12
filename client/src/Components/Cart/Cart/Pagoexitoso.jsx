@@ -12,6 +12,7 @@ function PagoExitoso() {
     user_id: "9Ttq_y5p96nZfIkib",
     template_params: {
       email: user.email,
+      name: user.name,
     },
   };
 
