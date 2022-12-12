@@ -6,7 +6,7 @@ const getCart = async ({ id }) => {
         const CartById = await Cart.findByPk(id, {
             include: {
                 model: Cart_items,
-                attributes: ["cartId", "productId", "quantity"]
+                attributes: ["cartId", "productId", "productName", "quantity"]
             }
         })
         return CartById
