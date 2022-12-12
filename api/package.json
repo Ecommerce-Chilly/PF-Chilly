@@ -4,7 +4,7 @@
   "description": "ecommerce",
   "main": "index.js",
   "scripts": {
-    "start": "nodemon -L",
+    "start": "node index.js",
     "test": "mocha"
   },
   "author": "team-gorditos-developers",
