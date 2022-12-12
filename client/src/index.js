@@ -10,12 +10,12 @@ import reportWebVitals from './reportWebVitals';
 
 import axios from 'axios';
 // axios.defaults.baseURL = 'http://localhost:3001';
-axios.defaults.baseURL = 'https://pf-chilly-production.up.railway.app/'; 
+axios.defaults.baseURL = 'https://pf-chilly-production-376e.up.railway.app/'; 
 
 ReactDOM.render(
   <Provider store={store}>
     <BrowserRouter>
-      <Auth0Provider domain='dev-r6cdo8stlhgup2wx.us.auth0.com' clientId='B25HIG5uEk2dTfKdwH4AnevOmXrXLHp6' redirectUri={'https://chilly-pf.up.railway.app/user/info'} audience="https://chillydev-arg/api/v1/" scope='admin:ReAdminPa update:current_user_metadata '>
+      <Auth0Provider domain='dev-r6cdo8stlhgup2wx.us.auth0.com' clientId='B25HIG5uEk2dTfKdwH4AnevOmXrXLHp6' redirectUri={'https://chilly-pf-production.up.railway.app/user/info'} audience="https://chillydev-arg/api/v1/" scope='admin:ReAdminPa update:current_user_metadata '>
         <App />
       </Auth0Provider>
     </BrowserRouter>
