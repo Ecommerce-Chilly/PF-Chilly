@@ -1,8 +1,19 @@
 import React from 'react';
 import Slider from '../Slider/Sldier';
 import ArticleCard from '../Articles/ArticleCard/ArticleCard';
+import { useEffect } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+// import { allCategories } from '../../../redux/actions/actions';
 
 function Home() {
+  const dispatch = useDispatch();
+  const categories = useSelector((state) => state.category);
+
+  useEffect(() => {
+    console.log(categories.length);
+
+    //;
+  }, [dispatch]);
   return (
     <div>
       <Slider></Slider>

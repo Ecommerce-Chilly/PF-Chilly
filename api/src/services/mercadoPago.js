@@ -1,8 +1,8 @@
-const axios = require("axios");
+const axios = require('axios');
 
 class PaymentService {
   async createPayment(variable) {
-    const url = "https://api.mercadopago.com/checkout/preferences";
+    const url = 'https://api.mercadopago.com/checkout/preferences';
     // [
     //   {
     //     title: "Dummy Title",
@@ -17,14 +17,14 @@ class PaymentService {
       payer_email: variable.email,
       items: variable.items,
       back_urls: {
-        failure: "localhost:3000/paymentfailure",
-        pending: "localhost:3000/paymentpending",
-        success: "localhost:3000/paymentsuccess",
+        failure: 'localhost:3000/paymentfailure',
+        pending: 'localhost:3000/paymentpending',
+        success: 'localhost:3000/paymentsuccess',
       },
     };
     const payment = await axios.post(url, body, {
       headers: {
-        "Content-Type": "application/json",
+        'Content-Type': 'application/json',
         Authorization: `Bearer ${process.env.ACCESS_TOKEN}`,
       },
     });

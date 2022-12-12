@@ -1,13 +1,14 @@
-import React, { useEffect } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
-import { getProduct } from '../../../redux/actions/actions.js';
-import Filters from '../../PI Components/Filters/Filters';
-import Paginate2 from '../../PI Components/Paginate/PaginateToStore';
-import '../../PI Components/Paginate/Paginate.css';
+import React, { useEffect, useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { getProduct } from "../../../redux/actions/actions.js";
+import Filters from "../../PI Components/Filters/Filters";
+import Paginate2 from "../../PI Components/Paginate/PaginateToStore";
+import "../../PI Components/Paginate/Paginate.css";
 
 function Store() {
   const dispatch = useDispatch();
   const products = useSelector((state) => state.product);
+  const [pageNumber, setPageNumber] = useState(1);
 
   useEffect(() => {
     dispatch(getProduct());
@@ -16,10 +17,14 @@ function Store() {
   return (
     <div className="flex ">
       <div>
-        <Filters />
+        <Filters setPageNumber={setPageNumber} />
       </div>
       <div className="w-full text-center flex mt-20">
-        <Paginate2 products={products} />
+        <Paginate2
+          products={products}
+          pageNumber={pageNumber}
+          setPageNumber={setPageNumber}
+        />
       </div>
 
       {/* <div>
