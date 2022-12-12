@@ -1,9 +1,9 @@
-import React, { useEffect, useState } from 'react';
-import { useSelector } from 'react-redux';
-import { Link } from 'react-router-dom';
-import SearchBar from '../SearchBar/SearchBar';
-import AdminNavbar from './AdminNavbar';
-import { useAuth0 } from '@auth0/auth0-react';
+import React, { useEffect, useState } from "react";
+import { useSelector } from "react-redux";
+import { Link } from "react-router-dom";
+import SearchBar from "../SearchBar/SearchBar";
+import AdminNavbar from "./AdminNavbar";
+import { useAuth0 } from "@auth0/auth0-react";
 
 function Navbar() {
   let cart = useSelector((state) => state.cart);
@@ -85,7 +85,10 @@ function Navbar() {
             ) : (
               <Link
                 className="inline-block mx-4"
-                onClick={() => loginWithRedirect()}
+                onClick={() => {
+                  window.localStorage.setItem("cart", JSON.stringify(cart));
+                  loginWithRedirect();
+                }}
               >
                 <svg
                   xmlns="http://www.w3.org/2000/svg"

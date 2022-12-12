@@ -1,21 +1,22 @@
-import React from 'react';
-import { useDispatch, useSelector } from 'react-redux';
-import { Link } from 'react-router-dom';
+import React from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { Link } from "react-router-dom";
 import {
   getFavorites,
   clearFavMsg,
   userSpecific,
-} from '../../../redux/actions/actions';
+} from "../../../redux/actions/actions";
 
-import FavCards from './FavCards';
-import { useAuth0 } from '@auth0/auth0-react';
+import FavCards from "./FavCards";
+import { useAuth0 } from "@auth0/auth0-react";
 
 function Fav() {
   let dispatch = useDispatch();
   const userInfo = useSelector((state) => state.userInfo);
+  const cart = useSelector((state) => state.cart);
   const favorites = useSelector((state) => state.favorites);
   const favoriteMsg = useSelector((state) => state.favoriteMsg);
-  let token = localStorage.getItem('token');
+  let token = localStorage.getItem("token");
   token = JSON.parse(token);
   React.useEffect(() => {
     dispatch(getFavorites(userInfo.id, token));
@@ -70,7 +71,10 @@ function Fav() {
             Please sign in to view your favourites!
           </h2>
           <Link
-            onClick={() => loginWithRedirect()}
+            onClick={() => {
+              window.localStorage.setItem("cart", JSON.stringify(cart));
+              loginWithRedirect();
+            }}
             className=" pt-9 font-semibold text-main py-2 px-6  hover:underline"
           >
             Sign in
