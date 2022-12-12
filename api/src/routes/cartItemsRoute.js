@@ -16,24 +16,20 @@ cartItemsRoute.post('/', async (req, res) => {
 
 cartItemsRoute.put('/', async (req, res) => {
     try {
-        const id = req.body.id
-        const quantity = req.body.quantity
-        const updateQuantity = await modifyQuantity(id, quantity)
-        res.status(202).send(updateQuantity)
+        const { cartId, productId, quantity } = req.body;
+        const modifying = await modifyQuantity(cartId, productId, quantity);
+        res.status(200).send(modifying);
     } catch (error) {
-        res.status(304).send({ msg: "not modified" }, error)
-
+        res.status(404).send(error);
     }
-})
+});
 
-cartItemsRoute.delete('/:id', async (req, res) => {
+cartItemsRoute.delete('/:cartId/:productId', async (req, res) => {
     try {
-        console.log("la concha de mi abuela estoy entrando la puta que te parió")
-        const deleteCartItem = await deleteItem(req.params.id);
+        const deleteCartItem = await deleteItem(req.params);
         res.status(202).send(deleteCartItem)
-        console.log("tomaaa la concha de su madre todo está ok")
     } catch (error) {
-        console.log("tus rutas y funciones son una verga amigo", error)
+        console.log(error)
         res.status(404).send(error)
     }
 })
