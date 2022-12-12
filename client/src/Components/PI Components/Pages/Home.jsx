@@ -3,7 +3,7 @@ import Slider from '../Slider/Sldier';
 import ArticleCard from '../Articles/ArticleCard/ArticleCard';
 import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { allCategories } from '../../../redux/actions/actions';
+// import { allCategories } from '../../../redux/actions/actions';
 
 function Home() {
   const dispatch = useDispatch();

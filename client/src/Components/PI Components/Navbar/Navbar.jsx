@@ -13,13 +13,8 @@ function Navbar() {
   const { loginWithRedirect } = useAuth0();
   const { isAuthenticated, isLoading } = useAuth0();
   return (
-<<<<<<< HEAD
-    <>
-      <nav class="bg-main	 border-gray-200 px-2  py-5  static">
-=======
     <div className="borde">
       <nav class=" border-gray-200 px-2  py-5 bg-main static">
->>>>>>> 53c8d54d3c0b14b9e7fb50a8094473e741832e5c
         <div class="container flex flex-wrap items-center justify-between mx-auto">
           <Link to="/" class="flex items-center">
             <span class="self-center text-4xl font-semibold whitespace-nowrap text-white font-sans">

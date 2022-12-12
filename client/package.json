@@ -17,10 +17,7 @@
     "react-responsive-carousel": "^3.2.23",
     "react-router-dom": "^5.2.0",
     "react-scripts": "^5.0.1",
-<<<<<<< HEAD
-=======
     "react-tooltip": "^4.5.1",
->>>>>>> 53c8d54d3c0b14b9e7fb50a8094473e741832e5c
     "reactstrap": "^9.1.5",
     "redux": "^4.0.5",
     "redux-thunk": "^2.3.0",

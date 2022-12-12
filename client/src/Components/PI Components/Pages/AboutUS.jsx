@@ -1,7 +1,7 @@
 import React from "react";
 import Accordeon from "./Accordeon";
 import AboutCard from "./AboutCard";
-import Mailer from "../../Mailer/Mailer";
+// import Mailer from "../../Mailer/Mailer";
 
 function AboutUS() {
   return (
@@ -21,7 +21,7 @@ function AboutUS() {
         <AboutCard name={"Juan Noya"} />
       </div>
       <Accordeon />
-      <Mailer />
+      {/* <Mailer /> */}
     </div>
   );
 }
