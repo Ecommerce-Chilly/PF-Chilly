@@ -7,6 +7,8 @@ export const GET_PRODUCT_BY_NAME = 'GET_PRODUCT_BY_NAME';
 export const DELETE_PRODUCT = 'DELETE_PRODUCT';
 export const RESTORE_PRODUCT = 'RESTORE_PRODUCT';
 export const PRODUCTS_DELETED = 'PRODUCTS_DELETED';
+export const BRANDS = 'BRANDS';
+export const CATEGORIES = 'CATEGORIES';
 export const CREATE_DISCOUNT = 'CREATE_DISCOUNT';
 export const PUT_DISCOUNT = 'PUT_DISCOUNT';
 export const PUT_INVENTORY = 'PUT_INVENTORY';
@@ -42,6 +44,19 @@ export const ERROR_CREATE_USER = 'ERROR_CREATE_USER';
 export const PAY = 'PAY';
 export const CLEAR_PAYLINK = 'CLEAR_PAYLINK';
 export const USER_ADMIN = 'USER_ADMIN';
+export const DELETE_USER = 'DELETE_USER';
+export const ADD_ORDER = 'ADD_ORDER';
+export const ALL_ORDERS = 'ALL_ORDERS';
+export const ITEM_BUYED = 'ITEM_BUYED';
+export const DELETE_ORDER_ITEM = 'DELETE_ORDER_ITEM';
+export const ADD_TO_BUILD = 'ADD_TO_BUILD';
+export const DELETE_FROM_BUILD = 'DELETE_FROM_BUILD';
+export const BYO_TO_CART = 'BYO_TO_CART';
+export const CLEAR_BYO = 'CLEAR_BYO';
+export const CLEAR_MSG = 'CLEAR_MSG';
+export const NO_FOOTER = 'NO_FOOTER';
+export const HIDE_FOOTER = 'HIDE_FOOTER';
+export const CLEAR_MSG_ORDER_ITEM = 'CLEAR_MSG_ORDER_ITEM';
 
 //! PRODUCTS ACTIONS --------------------------------------------------------------------
 export const getProduct = () => {
@@ -65,15 +80,11 @@ export const getProductById = (id) => {
 export const createProduct = (product, token) => {
   return async function (dispatch) {
     try {
-      const createProdu = await axios.post(
-        '/product',
-        product,
-        {
-          headers: {
-            authorization: `Bearer ${token}`,
-          },
-        }
-      );
+      const createProdu = await axios.post('/product', product, {
+        headers: {
+          authorization: `Bearer ${token}`,
+        },
+      });
       return dispatch({ type: CREATE_PRODUCT, payload: createProdu.data });
     } catch (error) {
       return dispatch({ type: FAIL_CREATED_MSG, payload: error.response.data });
@@ -87,9 +98,7 @@ export const getProductByName = (name) => {
       return dispatch({ type: ERROR_MSSG });
     }
     try {
-      let productByName = await axios.get(
-        `/product?name=${name}`
-      );
+      let productByName = await axios.get(`/product?name=${name}`);
 
       return dispatch({
         type: GET_PRODUCT_BY_NAME,
@@ -104,15 +113,11 @@ export const getProductByName = (name) => {
 export const putProductById = (id, product, token) => {
   return async function (dispatch) {
     try {
-      const putProduct = await axios.put(
-        `/product/${id}`,
-        product,
-        {
-          headers: {
-            authorization: `Bearer ${token}`,
-          },
-        }
-      );
+      const putProduct = await axios.put(`/product/${id}`, product, {
+        headers: {
+          authorization: `Bearer ${token}`,
+        },
+      });
       return dispatch({ type: PUT_PRODUCT, payload: putProduct.data });
     } catch (error) {
       return dispatch({
@@ -125,14 +130,11 @@ export const putProductById = (id, product, token) => {
 
 export const deleteProdut = (id, token) => {
   return async function (dispatch) {
-    const deleteProduct = await axios.delete(
-      `/product/${id}`,
-      {
-        headers: {
-          authorization: `Bearer ${token}`,
-        },
-      }
-    );
+    const deleteProduct = await axios.delete(`/product/${id}`, {
+      headers: {
+        authorization: `Bearer ${token}`,
+      },
+    });
     return dispatch({ type: DELETE_PRODUCT, payload: deleteProduct.data });
   };
 };
@@ -155,14 +157,11 @@ export const restoreProduct = (id, token) => {
 export const getProductDeleted = (token) => {
   return async function (dispatch) {
     try {
-      const allProductDelete = await axios.get(
-        '/product/deleted',
-        {
-          headers: {
-            authorization: `Bearer ${token}`,
-          },
-        }
-      );
+      const allProductDelete = await axios.get('/product/deleted', {
+        headers: {
+          authorization: `Bearer ${token}`,
+        },
+      });
       return dispatch({
         type: PRODUCTS_DELETED,
         payload: allProductDelete.data,
@@ -176,19 +175,29 @@ export const getProductDeleted = (token) => {
   };
 };
 
+export const allBrands = (payload) => {
+  return {
+    type: BRANDS,
+    payload: payload,
+  };
+};
+
+export const allCategories = (payload) => {
+  return {
+    type: CATEGORIES,
+    payload: payload,
+  };
+};
+
 //!DISCOUNTS ACTIONS --------------------------------------------------------------------
 export const createDiscount = (product, token) => {
   return async function (dispatch) {
     try {
-      const createDiscount = await axios.post(
-        '/discount',
-        product,
-        {
-          headers: {
-            authorization: `Bearer ${token}`,
-          },
-        }
-      );
+      const createDiscount = await axios.post('/discount', product, {
+        headers: {
+          authorization: `Bearer ${token}`,
+        },
+      });
       return dispatch({ type: CREATE_DISCOUNT, payload: createDiscount.data });
     } catch (error) {
       return dispatch({
@@ -201,15 +210,11 @@ export const createDiscount = (product, token) => {
 
 export const putDiscount = (product, token) => {
   return async function (dispatch) {
-    const putInventory = await axios.put(
-      '/discount/',
-      product,
-      {
-        headers: {
-          authorization: `Bearer ${token}`,
-        },
-      }
-    );
+    const putInventory = await axios.put('/discount/', product, {
+      headers: {
+        authorization: `Bearer ${token}`,
+      },
+    });
     return dispatch({ type: PUT_DISCOUNT, payload: putInventory.data });
   };
 };
@@ -217,15 +222,11 @@ export const putDiscount = (product, token) => {
 //!INVENTORY ACTIONS --------------------------------------------------------------------
 export const putInventory = (id, product, token) => {
   return async function (dispatch) {
-    const putInventory = await axios.put(
-      `/inventory/${id}`,
-      product,
-      {
-        headers: {
-          authorization: `Bearer ${token}`,
-        },
-      }
-    );
+    const putInventory = await axios.put(`/inventory/${id}`, product, {
+      headers: {
+        authorization: `Bearer ${token}`,
+      },
+    });
     return dispatch({ type: PUT_INVENTORY, payload: putInventory.data });
   };
 };
@@ -233,9 +234,7 @@ export const putInventory = (id, product, token) => {
 //! PRODUCT CATEGORY DETAILS && FILTERS ACTIONS -----------------------------------------
 export const getCategoryDetails = (category) => {
   return async function (dispatch) {
-    const categoryDetails = await axios.get(
-      `/categoryDetails/${category}`
-    );
+    const categoryDetails = await axios.get(`/categoryDetails/${category}`);
     return dispatch({
       type: GET_CATEGORY_DETAILS,
       payload: categoryDetails.data,
@@ -308,7 +307,7 @@ export function orderByPrice(payload) {
 //! USERS ACTIONS --------------------------------------------------------------------
 export const getAllUsers = (token) => {
   return async function (dispatch) {
-    let allUsers = await axios.get('/user', {
+    let allUsers = await axios.get('/user/all', {
       headers: {
         authorization: `Bearer ${token}`,
       },
@@ -316,7 +315,23 @@ export const getAllUsers = (token) => {
     return dispatch({ type: ALL_USERS, payload: allUsers.data });
   };
 };
-
+export const deleteUser = (token, id) => {
+  return async function (dispatch) {
+    try {
+      let msg = await axios.delete(`/user/${id}`, {
+        headers: {
+          authorization: `Bearer ${token}`,
+        },
+      });
+      return dispatch({ type: DELETE_USER, payload: msg.data });
+    } catch (error) {
+      return dispatch({
+        type: USER_NOT_FOUND,
+        payload: error.response.data.error,
+      });
+    }
+  };
+};
 export const createUser = (newUser, token) => {
   return async function (dispatch) {
     try {
@@ -338,14 +353,11 @@ export const createUser = (newUser, token) => {
 export const userSpecific = (userFound, token) => {
   return async function (dispatch) {
     try {
-      let userSpeci = await axios.get(
-        `/user?email=${userFound}`,
-        {
-          headers: {
-            authorization: `Bearer ${token}`,
-          },
-        }
-      );
+      let userSpeci = await axios.get(`/user?email=${userFound}`, {
+        headers: {
+          authorization: `Bearer ${token}`,
+        },
+      });
       return dispatch({ type: USER_SPECIFIC, payload: userSpeci.data });
     } catch (error) {
       return dispatch({
@@ -382,6 +394,12 @@ export const userAdmin = (user, token) => {
       });
   };
 };
+export const clearMsg = () => {
+  return {
+    type: CLEAR_MSG,
+  };
+};
+
 //! FAVOURITES ACTIONS --------------------------------------------------------------------
 export const addFavorite = (ids, token) => {
   return async function (dispatch) {
@@ -404,14 +422,11 @@ export const addFavorite = (ids, token) => {
 export const getFavorites = (userId, token) => {
   return async function (dispatch) {
     try {
-      let favorites = await axios.get(
-        `/favorite/${userId}`,
-        {
-          headers: {
-            authorization: `Bearer ${token}`,
-          },
-        }
-      );
+      let favorites = await axios.get(`/favorite/${userId}`, {
+        headers: {
+          authorization: `Bearer ${token}`,
+        },
+      });
       return dispatch({ type: GET_FAVORITES, payload: favorites.data });
     } catch (error) {
       return dispatch({
@@ -470,15 +485,11 @@ export const clearDeleted = (payload) => {
 export const pay = (payData, token) => {
   return async function (dispatch) {
     try {
-      let payLink = await axios.post(
-        '/payment/',
-        payData,
-        {
-          headers: {
-            authorization: `Bearer ${token}`,
-          },
-        }
-      );
+      let payLink = await axios.post('/payment/', payData, {
+        headers: {
+          authorization: `Bearer ${token}`,
+        },
+      });
       return dispatch({ type: PAY, payload: payLink.data });
     } catch (error) {
       console.log(error);
@@ -489,5 +500,95 @@ export const pay = (payData, token) => {
 export const clearPaylink = () => {
   return {
     type: CLEAR_PAYLINK,
+  };
+};
+export const clearOrderMsg = () => {
+  return {
+    type: CLEAR_MSG_ORDER_ITEM,
+  };
+};
+
+//! ORDER ITEMS ----------------------------------------------------------------------------
+export const deletOrderItem = (id, token) => {
+  return async function (dispatch) {
+    let deleteOrder = await axios.delete(`/orderItems/${id}`, {
+      headers: {
+        authorization: `Bearer ${token}`,
+      },
+    });
+    return dispatch({ type: DELETE_ORDER_ITEM, payload: deleteOrder.data });
+  };
+};
+
+export const addOrder = (userId, productId, quantity, token) => {
+  return async function (dispatch) {
+    let msg = await axios.post(
+      '/orderItems',
+      { userId, productId, quantity },
+      {
+        headers: {
+          authorization: `Bearer ${token}`,
+        },
+      }
+    );
+    return dispatch({ type: ADD_ORDER, payload: msg.data });
+  };
+};
+
+export const getAllOrders = (token) => {
+  return async function (dispatch) {
+    let ordersItems = await axios.get('/orderItems', {
+      headers: {
+        authorization: `Bearer ${token}`,
+      },
+    });
+    return dispatch({ type: ALL_ORDERS, payload: ordersItems.data });
+  };
+};
+
+export const getOrderById = (id, token) => {
+  return async function (dispatch) {
+    let ordersItem = await axios.get(`/orderItems/${id}`, {
+      headers: {
+        authorization: `Bearer ${token}`,
+      },
+    });
+    return dispatch({ type: ITEM_BUYED, payload: ordersItem.data });
+  };
+};
+
+export const addToBuild = (payload) => {
+  return {
+    type: ADD_TO_BUILD,
+    payload: payload,
+  };
+};
+
+export const deleteFromBuild = () => {
+  return {
+    type: DELETE_FROM_BUILD,
+  };
+};
+
+export const byoToCart = (byo) => {
+  return {
+    type: BYO_TO_CART,
+    payload: byo,
+  };
+};
+
+export const clearBYO = () => {
+  return {
+    type: CLEAR_BYO,
+  };
+};
+export const noFooter = () => {
+  return {
+    type: NO_FOOTER,
+  };
+};
+export const hideFooter = () => {
+  return {
+    type: HIDE_FOOTER,
   };
 };

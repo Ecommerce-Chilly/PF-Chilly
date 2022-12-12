@@ -41,6 +41,7 @@ sequelize.models = Object.fromEntries(capsEntries);
 
 const {
   Product,
+  Article,
   Administrator,
   Inventory,
   Discount,
@@ -66,29 +67,29 @@ Product.belongsTo(Discount);
 Product.hasOne(Inventory);
 Inventory.hasOne(Product);
 
-Administrator.hasOne(Clients);
-Clients.hasOne(Administrator);
+// Administrator.hasOne(Clients);
+// Clients.hasOne(Administrator);
 
-Administrator.hasOne(User_role);
-User_role.hasMany(Administrator);
+// Administrator.hasOne(User_role);
+// User_role.hasMany(Administrator);
 
-User.hasMany(User_role);
-User_role.belongsTo(User);
+// User.hasMany(User_role);
+// User_role.belongsTo(User);
 
 User.hasOne(Data_user);
-Data_user.belongsTo(User);
+Data_user.hasOne(User);
 
 User.hasOne(Shopping_session);
-Shopping_session.belongsTo(User);
+Shopping_session.hasOne(User);
 
-User.hasMany(Payment_user);
-Payment_user.belongsTo(User);
+// User.hasMany(Payment_user);
+// Payment_user.belongsTo(User);
 
 Shopping_session.hasMany(Cart_item);
 Cart_item.hasOne(Shopping_session);
 
-Payment_details.hasOne(Order_details);
-Order_details.hasOne(Payment_details);
+// Payment_details.hasOne(Order_details);
+// Order_details.hasOne(Payment_details);
 
 Product.hasOne(Order_items);
 Order_items.belongsTo(Product);

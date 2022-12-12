@@ -7,6 +7,8 @@ import {
   PRODUCTS_DELETED,
   GET_PRODUCT_BY_NAME,
   RESTORE_PRODUCT,
+  BRANDS,
+  CATEGORIES,
   CREATE_DISCOUNT,
   PUT_DISCOUNT,
   PUT_INVENTORY,
@@ -41,28 +43,48 @@ import {
   USER_ADMIN,
   PAY,
   CLEAR_PAYLINK,
-} from "../actions/actions.js";
+  DELETE_USER,
+  ADD_ORDER,
+  ALL_ORDERS,
+  ITEM_BUYED,
+  DELETE_ORDER_ITEM,
+  ADD_TO_BUILD,
+  DELETE_FROM_BUILD,
+  BYO_TO_CART,
+  CLEAR_BYO,
+  CLEAR_MSG,
+  NO_FOOTER,
+  HIDE_FOOTER,
+  CLEAR_MSG_ORDER_ITEM,
+} from '../actions/actions.js';
 
 const initialState = {
   product: [],
   allProduct: [],
+  brands: [],
+  category: [],
   productDetail: [],
   productsDeleted: [],
-  createProductMsg: "",
-  productChangedMsg: "",
-  searchProductMsg: "",
+  createProductMsg: '',
+  productChangedMsg: '',
+  searchProductMsg: '',
   categoryDetails: [],
   cart: [],
   users: [],
   userInfo: {},
-  userNotFound: "",
-  createUserMsg: "",
+  userNotFound: '',
+  createUserMsg: '',
   quantity: 0,
   favorites: [],
-  favoriteMsg: "",
-  msgProductDeleted: "",
+  favoriteMsg: '',
   admin: false,
-  paymentLink: "",
+  paymentLink: '',
+  msg: '',
+  allOrders: '',
+  orderItem: '',
+  build: [],
+  footer: 0,
+  msgOrderItem: '',
 };
 
 const rootReducer = (state = initialState, action) => {
@@ -74,9 +96,9 @@ const rootReducer = (state = initialState, action) => {
         product: action.payload,
         allProduct: action.payload,
         productDetail: [],
-        createProductMsg: "",
-        searchProductMsg: "",
-        productChangedMsg: "",
+        createProductMsg: '',
+        searchProductMsg: '',
+        productChangedMsg: '',
       };
     case GET_PRODUCT_BY_ID:
       return {
@@ -87,7 +109,7 @@ const rootReducer = (state = initialState, action) => {
       return {
         ...state,
         product: action.payload,
-        searchProductMsg: "",
+        searchProductMsg: '',
       };
 
     case CREATE_PRODUCT:
@@ -123,6 +145,20 @@ const rootReducer = (state = initialState, action) => {
         ...state,
         productsDeleted: detedProduct,
       };
+    case BRANDS:
+      const allBrands = state.allProduct.map((e) => e.brand);
+      const allBrands2 = [...new Set(allBrands)];
+      return {
+        ...state,
+        brands: allBrands2,
+      };
+    case CATEGORIES:
+      const allCategory = state.allProduct.map((e) => e.categoryName);
+      const allCategory2 = [...new Set(allCategory)];
+      return {
+        ...state,
+        category: allCategory2,
+      };
     //!DISCOUNTS REDUCER
     case CREATE_DISCOUNT:
       return {
@@ -147,12 +183,12 @@ const rootReducer = (state = initialState, action) => {
       let temporal = state.allProduct;
       let filtered = temporal.filter((e) => e.categoryName === action.payload);
 
-      if (action.payload === "") {
+      if (action.payload === '') {
         filtered = state.allProduct;
       }
       return {
         ...state,
-        searchProductMsg: "",
+        searchProductMsg: '',
         product: filtered,
       };
     case FILTER_BY_DETAILS:
@@ -162,7 +198,7 @@ const rootReducer = (state = initialState, action) => {
         (e) => e.categoryName === action.payload[0]
       );
 
-      if (action.payload[0] === "") {
+      if (action.payload[0] === '') {
         filtered2 = state.allProduct;
       }
 
@@ -173,24 +209,27 @@ const rootReducer = (state = initialState, action) => {
       }
       return {
         ...state,
-        searchProductMsg: "",
+        searchProductMsg: '',
         product: filtered2,
       };
     case ORDER_BY_PRICE:
       const orderByPrice =
-        action.payload === "Asc"
+        action.payload === 'Asc'
           ? state.product.sort((a, b) => {
               if (a.price - b.price < 0) return 1;
               else return -1;
             })
-          : action.payload === "Dsc"
+          : action.payload === 'Dsc'
           ? state.product.sort((a, b) => {
               if (a.price - b.price > 0) return 1;
               else return -1;
             })
-          : action.payload === "default"
-          ? state.allProduct
-          : "joder";
+          : action.payload === 'default'
+          ? state.product.sort((a, b) => {
+              if (a.id - b.id > 0) return 1;
+              else return -1;
+            })
+          : 'joder';
       return {
         ...state,
         state: orderByPrice,
@@ -254,17 +293,22 @@ const rootReducer = (state = initialState, action) => {
         quantity: cartQuantity1,
       };
     //! USERS REDUCERS
+    case DELETE_USER:
+      return {
+        ...state,
+        msg: action.payload,
+      };
     case ALL_USERS:
       return {
         ...state,
         users: action.payload,
-        createUserMsg: "",
+        createUserMsg: '',
       };
     case USER_SPECIFIC:
       return {
         ...state,
         userInfo: action.payload,
-        createUserMsg: "",
+        createUserMsg: '',
       };
     case USER_ADMIN:
       return {
@@ -275,7 +319,7 @@ const rootReducer = (state = initialState, action) => {
       return {
         ...state,
         createUserMsg: action.payload,
-        userNotFound: "",
+        userNotFound: '',
       };
     case LOGOUT:
       return {
@@ -343,23 +387,98 @@ const rootReducer = (state = initialState, action) => {
     case CLEAR_PROD_MSG:
       return {
         ...state,
-        createProductMsg: "",
-        productChangedMsg: "",
+        createProductMsg: '',
+        productChangedMsg: '',
       };
     case CLEAR_FAV_MSG:
       return {
         ...state,
-        favoriteMsg: "",
+        favoriteMsg: '',
       };
     case PAY:
       return {
         ...state,
-        paymentLink: action.payload["init_point"],
+        paymentLink: action.payload['init_point'],
       };
     case CLEAR_PAYLINK:
       return {
         ...state,
-        paymentLink: "",
+        paymentLink: '',
+      };
+    case CLEAR_MSG:
+      return {
+        ...state,
+        msg: '',
+      };
+    //! ORDER ITEMS
+    case ADD_ORDER:
+      return {
+        ...state,
+        msg: action.payload,
+      };
+    case ALL_ORDERS:
+      return {
+        ...state,
+        allOrders: action.payload,
+      };
+    case ITEM_BUYED:
+      return {
+        ...state,
+        orderItem: action.payload,
+      };
+    case DELETE_ORDER_ITEM:
+      return {
+        ...state,
+        msgOrderItem: action.payload,
+      };
+    case CLEAR_MSG_ORDER_ITEM:
+      return {
+        ...state,
+        msgOrderItem: '',
+      };
+    case ADD_TO_BUILD:
+      let toAdd = {};
+      if (typeof action.payload === 'number') {
+        toAdd = state.allProduct.find((e) => e.id === action.payload);
+        toAdd.quantity = 1;
+      } else {
+        toAdd['name'] = action.payload;
+      }
+      return {
+        ...state,
+        build: [...state.build, toAdd],
+      };
+    case DELETE_FROM_BUILD:
+      console.log(state.build);
+      let temporal5 = state.build;
+      temporal5.pop();
+
+      return {
+        ...state,
+        build: temporal5,
+      };
+    case BYO_TO_CART:
+      let temporal6 = action.payload;
+      temporal6.shift();
+      temporal6 = temporal6.filter((e) => e.id);
+      return {
+        ...state,
+        cart: [...state.cart, ...temporal6],
+      };
+    case CLEAR_BYO:
+      return {
+        ...state,
+        build: [],
+      };
+    case NO_FOOTER:
+      return {
+        ...state,
+        footer: 1,
+      };
+    case HIDE_FOOTER:
+      return {
+        ...state,
+        footer: 0,
       };
     default:
       return state;

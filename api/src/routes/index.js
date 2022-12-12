@@ -8,6 +8,8 @@ const orderItemsRoute = require("./orderItemsRoute");
 const userRoute = require("./userRoute");
 const mercadoPago = require("./mercadoPago");
 const favoriteRoute = require("./favoriteRoute");
+const dataUserRoute =require("./dataUserRoute");
+const articleRoute = require("./articleRoute");
 const router = Router();
 
 // router.use("/Guillo", async (req, res, next) => {
@@ -25,5 +27,7 @@ router.use("/user", userRoute);
 router.use("/favorite", favoriteRoute);
 router.use("/payment", mercadoPago);
 router.use("/orderItems", orderItemsRoute);
+router.use("/datauser", dataUserRoute); 
+router.use("/article", articleRoute), 
 
 module.exports = router;

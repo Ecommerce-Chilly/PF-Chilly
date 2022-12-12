@@ -10,29 +10,33 @@ module.exports = (sequelize) => {
             allowNull: false,
             unique: true,
          },
-         direction: {
+         firstname: {
             type: DataTypes.STRING,
-            validate: { isAlphanumeric: true },
+            allowNull: false,
          },
-         dni: {
+         lastname: {
             type: DataTypes.STRING,
-            validate: { isAlphanumeric: true },
+            allowNull: false,
          },
-         zip: {
-            type: DataTypes.INTEGER,
-            validate: { isAlphanumeric: true },
+         address: {
+            type: DataTypes.STRING,
+            allowNull: false,
          },
          country: {
-            type: DataTypes.STRING,
-            validate: { isAlpha: true },
-         },
-         dep_prov: {
             type: DataTypes.STRING,
             validate: { isAlpha: true },
          },
          city: {
             type: DataTypes.STRING,
             validate: { isAlpha: true },
+         },
+         postalcode: {
+            type: DataTypes.INTEGER,
+            validate: {  isNumeric: true, len: [1,6]},
+         },
+         mobile: {
+            type: DataTypes.INTEGER,
+            validate: {  isNumeric: true, len: [1,11]},
          },
       },
       {
