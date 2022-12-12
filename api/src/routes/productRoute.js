@@ -10,7 +10,7 @@ const { restoreProduct } = require('../controllers/product/restoreProduct');
 const productRoute = Router();
 const { checkJwt, checkScopes } = require('../middleware/oAuth');
 
-productRoute.post('/', checkJwt, checkScopes, async (req, res) => {
+productRoute.post('/', async (req, res) => {
   try {
     const productCreate = await postProduct(req.body);
     res.status(201).send(productCreate);
@@ -19,7 +19,7 @@ productRoute.post('/', checkJwt, checkScopes, async (req, res) => {
   }
 });
 
-productRoute.delete('/:id', checkJwt, checkScopes, async (req, res) => {
+productRoute.delete('/:id', async (req, res) => {
   try {
     let { id } = req.params;
     id = Number(id);
@@ -44,7 +44,7 @@ productRoute.get('/', async (req, res) => {
   }
 });
 
-productRoute.get('/deleted', checkJwt, checkScopes, async (req, res) => {
+productRoute.get('/deleted', async (req, res) => {
   try {
     const products = await getProductsDeleted();
     res.send(products);
@@ -65,7 +65,7 @@ productRoute.get('/:id', async (req, res) => {
   }
 });
 
-productRoute.put('/:id', checkJwt, checkScopes, async (req, res) => {
+productRoute.put('/:id', async (req, res) => {
   try {
     let { id } = req.params;
     id = Number(id);
@@ -77,7 +77,7 @@ productRoute.put('/:id', checkJwt, checkScopes, async (req, res) => {
   }
 });
 
-productRoute.put('/restore/:id', checkJwt, checkScopes, async (req, res) => {
+productRoute.put('/restore/:id', async (req, res) => {
   try {
     let { id } = req.params;
     id = Number(id);

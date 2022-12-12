@@ -1,13 +1,17 @@
 const { User } = require("../../db");
+const cartItemsRoute = require("../../routes/cartItemsRoute");
 
 const postUser = async ({
-  email, name, img
+  id, email, name, img
 }) => {
   try {
     if (!email) throw "You need to fill all fields";
-    const findUser = await User.findOne({ where: { email: email } })
+    const findUser = await User.findOne({
+      where: { email: email },
+
+    })
     if (findUser) throw `The user with the email ${email} exist`
-    await User.create({ email, name, img })
+    await User.create({ id, email, name, img })
     return `the user was created`
   } catch (error) {
     throw (error)
