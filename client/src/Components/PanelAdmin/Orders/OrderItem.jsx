@@ -1,13 +1,13 @@
-import React, { useState } from 'react';
-import { useDispatch } from 'react-redux';
-import { Link } from 'react-router-dom';
-import { deletOrderItem, clearOrderMsg } from '../../../redux/actions/actions';
-import Swal from 'sweetalert2';
+import React, { useState } from "react";
+import { useDispatch } from "react-redux";
+import { Link } from "react-router-dom";
+import { deletOrderItem, clearOrderMsg } from "../../../redux/actions/actions";
+import Swal from "sweetalert2";
 
 function OrderItem(props) {
   const [open, setOpen] = useState(false);
   const dispatch = useDispatch();
-  let token = localStorage.getItem('token');
+  let token = localStorage.getItem("token");
   token = JSON.parse(token);
   function dispatchToDeleteOrderItem(id) {
     dispatch(deletOrderItem(id, token));
@@ -17,17 +17,17 @@ function OrderItem(props) {
 
   const confirmDeleteOrder = (id) => {
     Swal.fire({
-      icon: 'question',
-      text: 'Are you sure you want to delete this order?',
-      confirmButtonText: 'Yes',
-      showDenyButton: 'true',
-      denyButtonText: 'No',
+      icon: "question",
+      text: "Are you sure you want to delete this order?",
+      confirmButtonText: "Yes",
+      showDenyButton: "true",
+      denyButtonText: "No",
       customClass: {
-        container: 'popup-container',
-        popup: 'popup',
-        confirmButton: 'confirm',
-        denyButton: 'deny',
-        cancelButton: 'cancel',
+        container: "popup-container",
+        popup: "popup",
+        confirmButton: "confirm",
+        denyButton: "deny",
+        cancelButton: "cancel",
       },
     }).then((result) => {
       /* Read more about isConfirmed, isDenied below */
@@ -40,7 +40,7 @@ function OrderItem(props) {
   return (
     <div
       className={`${
-        open && 'joder'
+        open && "joder"
       } bg-white rounded-xl shadow-xl border  m-2  flex mx-auto justify-between h-40 w-1/2 mb-9`}
     >
       <Link

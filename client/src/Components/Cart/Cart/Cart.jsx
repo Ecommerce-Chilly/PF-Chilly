@@ -7,15 +7,17 @@ import {
   pay,
   clearPaylink,
   addOrder,
+  getDataUser,
 } from "../../../redux/actions/actions";
 import CartItem from "../CartItem/CartItem";
 import Swal from "sweetalert2";
 import { useAuth0 } from "@auth0/auth0-react";
+import { useHistory } from "react-router-dom";
 
 function Cart() {
-  const cart = useSelector((state) => state.cart);
-  const paymentLink = useSelector((state) => state.paymentLink);
+  const { cart, userDataInCheckout, paymentLink } = useSelector((state) => state);
   const userUnique = useSelector((state) => state.userInfo);
+  const history = useHistory();
   const token = localStorage.getItem("token");
   const dispatch = useDispatch();
   const { loginWithRedirect } = useAuth0();
@@ -30,6 +32,7 @@ function Cart() {
 
   React.useEffect(() => {
     dispatch(clearPaylink());
+    dispatch(getDataUser());
   }, [cart, variable]);
 
   const deleteProduct = (id) => {
@@ -143,7 +146,7 @@ function Cart() {
                 Clear Cart
               </button>
               {userUnique.name ? (
-                !paymentLink ? (
+                !paymentLink && !userDataInCheckout.length ? (
                   <Link to="#" className="">
                     <button
                       onClick={() => {
@@ -152,6 +155,10 @@ function Cart() {
                             { email: userUnique.email, items: cart },
                             JSON.parse(token)
                           )
+                        );
+                        setTimeout(
+                          () => history.push("/checkout+data+user"),
+                          2000
                         );
                         orderAdd();
                       }}

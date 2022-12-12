@@ -58,6 +58,10 @@ export const NO_FOOTER = "NO_FOOTER";
 export const HIDE_FOOTER = "HIDE_FOOTER";
 export const CLEAR_MSG_ORDER_ITEM = "CLEAR_MSG_ORDER_ITEM";
 export const LS_TO_CART = "LS_TO_CART";
+export const POST_DATA_USER = "POST_DATA_USER";
+export const ERROR_POST_DATA_USER = "ERROR_POST_DATA_USER";
+export const GET_DATA_USER = "GET_DATA_USER"
+export const ERROR_GET_DATA_USER = "ERROR_GET_DATA_USER"
 
 //! PRODUCTS ACTIONS --------------------------------------------------------------------
 export const getProduct = () => {
@@ -598,5 +602,33 @@ export const localStorageToCart = (payload) => {
   return {
     type: LS_TO_CART,
     payload: payload,
+  };
+};
+
+export const postDataUser = (dataUser) => {
+  return async function (dispatch) {
+    try {
+      let infoCheckout = await axios.post("/datauser", dataUser);
+      return dispatch({ type: POST_DATA_USER, payload: infoCheckout.data });
+    } catch (error) {
+      return dispatch({
+        type: ERROR_POST_DATA_USER,
+        payload: error.response.data.error,
+      });
+    }
+  };
+};
+
+export const getDataUser = (dUser) => {
+  return async function (dispatch) {
+    try {
+      let dataUser = await axios.get("/datauser", dUser);
+      return dispatch({ type: GET_DATA_USER, payload: dataUser.data });
+    } catch (error) {
+      return dispatch({
+        type: ERROR_GET_DATA_USER,
+        payload: error.response.data.error,
+      });
+    }
   };
 };

@@ -27,6 +27,8 @@ import { userSpecific } from "../../../redux/actions/actions";
 import { useDispatch } from "react-redux";
 import PanelAdmin from "../../PanelAdmin/PanelAdmin";
 import Users from "../../PanelAdmin/Users/Users";
+import CheckoutDataUser from "../../Cart/Cart/CheckoutDataUser";
+import DataUsers from "../../PanelAdmin/Users/DataUsers";
 import PageNotFound from "../Pages/PageNotFound";
 
 function MainRoute() {
@@ -51,6 +53,12 @@ function MainRoute() {
           <Route exact path="/user/info" component={UserInfo} />
           <Route exact path="/" component={Home} />
           <Route exact path="/store" component={Store} />
+          <Route
+            exact
+            path="/checkout+data+user"
+            component={CheckoutDataUser}
+          />
+          <Route exact path="/data+orders" component={DataUsers} />
           <Route exact path="/build+your+own" component={BuildYourOwn} />
           <Route exact path="/special+offers" component={SpecialOffers} />
           <Route exact path="/blog" component={Blog} />

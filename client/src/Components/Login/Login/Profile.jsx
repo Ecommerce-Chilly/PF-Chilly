@@ -110,9 +110,18 @@ const Profile = () => {
                     <Link to="/panel+admin" className="text-main">
                       Panel Admin
                     </Link>
+                    <p>★ ORDERS ★ </p>
+                    <Link to="/data+orders" className="text-main">
+                      My Orders
+                    </Link>
                   </>
                 ) : (
-                  <></>
+                  <>
+                    <p>★ ORDERS ★ </p>
+                    <Link to="/data+orders" className="text-main">
+                      My Orders
+                    </Link>
+                  </>
                 )}
               </div>
             </div>

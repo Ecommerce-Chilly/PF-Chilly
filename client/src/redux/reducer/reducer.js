@@ -57,6 +57,10 @@ import {
   HIDE_FOOTER,
   CLEAR_MSG_ORDER_ITEM,
   LS_TO_CART,
+  POST_DATA_USER,
+  ERROR_POST_DATA_USER,
+  GET_DATA_USER,
+  ERROR_GET_DATA_USER,
 } from "../actions/actions.js";
 
 const initialState = {
@@ -86,6 +90,9 @@ const initialState = {
   build: [],
   footer: 0,
   msgOrderItem: "",
+  userDataInCheckout: [],
+  userNotInData: "",
+  userDataMsg: "",
 };
 
 const rootReducer = (state = initialState, action) => {
@@ -390,6 +397,7 @@ const rootReducer = (state = initialState, action) => {
         ...state,
         createProductMsg: "",
         productChangedMsg: "",
+        userDataMsg: "",
       };
     case CLEAR_FAV_MSG:
       return {
@@ -486,6 +494,26 @@ const rootReducer = (state = initialState, action) => {
         ...state,
         cart: action.payload,
       };
+    case POST_DATA_USER:
+      return {
+        ...state,
+        userDataMsg: action.payload,
+      };
+    case ERROR_POST_DATA_USER:
+      return {
+        ...state,
+        userDataMsg: action.payload,
+      };
+    case GET_DATA_USER:
+      return {
+        ...state,
+        userDataInCheckout: action.payload,
+      };
+    case ERROR_GET_DATA_USER:
+      return {
+        ...state,
+        userNotInData: action.payload
+      }
     default:
       return state;
   }
