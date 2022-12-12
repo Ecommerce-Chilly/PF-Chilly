@@ -55,10 +55,11 @@ const {
   Clients,
   Data_user,
   Order_details,
-  Order_items,
+  Ordered_items,
   Payment_details,
   Payment_user,
   Shopping_session,
+  User_orders,
   User_role,
   User,
 } = sequelize.models;
@@ -90,11 +91,11 @@ Shopping_session.hasOne(User);
 Payment_details.hasOne(Order_details);
 Order_details.hasOne(Payment_details);
 
-Product.hasOne(Order_items);
-Order_items.belongsTo(Product);
+Product.hasOne(Ordered_items);
+Ordered_items.belongsTo(Product);
 
-Order_items.belongsTo(User);
-User.hasMany(Order_items);
+User_orders.hasMany(Ordered_items)
+Ordered_items.belongsTo(User_orders)
 
 User.hasOne(Cart);
 Cart.belongsTo(User, { foreignKey: 'userId' });
