@@ -5,8 +5,7 @@ const getCart = async ({ id }) => {
         if (!id) throw "no Id found"
         const CartById = await Cart.findByPk(id, {
             include: {
-                model: Cart_items,
-                attributes: ["cartId", "productId", "productName", "quantity"]
+                model: Cart_items
             }
         })
         return CartById
