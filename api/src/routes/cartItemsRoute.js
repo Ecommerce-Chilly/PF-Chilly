@@ -1,7 +1,7 @@
 const { Router } = require("express")
 const { postCartItems } = require("../controllers/cart_items/postCartItems")
 const { modifyQuantity } = require("../controllers/cart_items/modifyCartItems")
-
+const { deleteItem } = require("../controllers/cart_items/deleteCartItem")
 
 const cartItemsRoute = Router()
 
@@ -23,6 +23,18 @@ cartItemsRoute.put('/', async (req, res) => {
     } catch (error) {
         res.status(304).send({ msg: "not modified" }, error)
 
+    }
+})
+
+cartItemsRoute.delete('/:id', async (req, res) => {
+    try {
+        console.log("la concha de mi abuela estoy entrando la puta que te parió")
+        const deleteCartItem = await deleteItem(req.params.id);
+        res.status(202).send(deleteCartItem)
+        console.log("tomaaa la concha de su madre todo está ok")
+    } catch (error) {
+        console.log("tus rutas y funciones son una verga amigo", error)
+        res.status(404).send(error)
     }
 })
 
