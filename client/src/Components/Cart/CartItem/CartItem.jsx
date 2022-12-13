@@ -5,14 +5,22 @@ import {
   increaseProductQuantity,
   decreaseProductQuantity,
   updateCartQuantity,
+  deleteFromCartBack,
+  getCartFromBack,
+  putCartFromBack,
 } from "../../../redux/actions/actions";
 
 function CartItem({ name, quantity, price, image, id, changeVariable }) {
   const dispatch = useDispatch();
   let storeQuantity = useSelector((state) => state.quantity);
+  let { userInfo, ostras } = useSelector((state) => state);
   const deleteProduct = (id) => {
     dispatch(deleteP(id));
     dispatch(updateCartQuantity());
+    dispatch(deleteFromCartBack(ostras[0].id, id));
+    setTimeout(() => {
+      dispatch(getCartFromBack(userInfo.id));
+    }, 2000);
   };
 
   React.useEffect(() => {
@@ -36,6 +44,10 @@ function CartItem({ name, quantity, price, image, id, changeVariable }) {
             <span
               onClick={() => {
                 dispatch(decreaseProductQuantity(id));
+                dispatch(putCartFromBack(ostras[0].id, id, quantity));
+                setTimeout(() => {
+                  dispatch(getCartFromBack(userInfo.id));
+                }, 2000);
               }}
               className="font-semibold w-9 rounded  text-center cursor-pointer text-lg hover:bg-main hover:text-white"
             >
@@ -50,6 +62,10 @@ function CartItem({ name, quantity, price, image, id, changeVariable }) {
             <span
               onClick={() => {
                 dispatch(increaseProductQuantity(id));
+                dispatch(putCartFromBack(ostras[0].id, id, quantity));
+                setTimeout(() => {
+                  dispatch(getCartFromBack(userInfo.id));
+                }, 2000);
               }}
               className="font-semibold w-9 rounded  text-center cursor-pointer text-lg hover:bg-main hover:text-white"
             >

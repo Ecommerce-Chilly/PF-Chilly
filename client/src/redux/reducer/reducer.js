@@ -64,6 +64,9 @@ import {
   ADD_TO_CART_BACK,
   DELETE_FROM_CART_BACK,
   GET_FROM_CART_BACK,
+  PUT_FROM_CART_BACK,
+  GET_FROM_CART_BACK2,
+  CLEAR_CART_FROM_BACK,
 } from "../actions/actions.js";
 
 const initialState = {
@@ -530,6 +533,29 @@ const rootReducer = (state = initialState, action) => {
       return {
         ...state,
         ostras: [action.payload],
+      };
+    case PUT_FROM_CART_BACK:
+      return {
+        ...state,
+      };
+    case GET_FROM_CART_BACK2:
+      let newArr = [];
+      const carItem = action.payload.cart_items;
+      for (let i = 0; i < carItem.length; i++) {
+        newArr.push(
+          state.allProduct.find((e) => e.id === carItem[i].productId)
+        );
+      }
+      for (let j = 0; j < newArr.length; j++) {
+        newArr[j].quantity = action.payload.cart_items[j].quantity;
+      }
+      return {
+        ...state,
+        cart: newArr,
+      };
+    case CLEAR_CART_FROM_BACK:
+      return {
+        ...state,
       };
     default:
       return state;

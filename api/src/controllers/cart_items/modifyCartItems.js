@@ -1,15 +1,18 @@
 const { Cart_items } = require("../../db");
 
-const modifyQuantity = async (id, quantity) => {
+const modifyQuantity = async (cartId, productId, quantity) => {
   try {
-    if (!id) throw "no id found";
-    const cartItems = await Cart_items.findByPk(id);
-    if (!cartItems) throw "no cart_items found";
-    if (cartItems) cartItems.quantity = quantity;
-    await cartItems.save();
-    return cartItems;
+    if (!cartId || !productId) {
+      throw "no cartId or productId found";
+    }
+
+    await Cart_items.update(
+      { quantity: quantity },
+      { where: { cartId: cartId, productId: productId } }
+    );
+    return "Quantity updated";
   } catch (error) {
-    throw error;
+    console.log(error);
   }
 };
 

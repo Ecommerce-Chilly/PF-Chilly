@@ -14,6 +14,7 @@ const Profile = () => {
   const { admin, userInfo } = useSelector((state) => state);
   const dispatch = useDispatch();
   const { user, isAuthenticated, getAccessTokenSilently } = useAuth0();
+  
   const [userMetadata, setUserMetadata] = useState(null);
 
   useEffect(() => {
@@ -58,7 +59,6 @@ const Profile = () => {
         );
         await dispatch(actions.userSpecific(user.email, token));
         await dispatch(actions.userAdmin(user.email, token));
-        await dispatch(actions.getCartFromBack(userInfo.id));
       }
       create();
     };
@@ -66,6 +66,7 @@ const Profile = () => {
   }, [getAccessTokenSilently, user?.sub]);
 
   React.useEffect(() => {
+    dispatch(actions.getCartFromBack(userInfo.id));
     let cartLS = window.localStorage.getItem("cart");
     if (cartLS) {
       dispatch(localStorageToCart(JSON.parse(cartLS)));

@@ -8,6 +8,7 @@ import {
   clearPaylink,
   addOrder,
   getDataUser,
+  clearCartFromBack,
 } from "../../../redux/actions/actions";
 import CartItem from "../CartItem/CartItem";
 import Swal from "sweetalert2";
@@ -15,7 +16,9 @@ import { useAuth0 } from "@auth0/auth0-react";
 import { useHistory } from "react-router-dom";
 
 function Cart() {
-  const { cart, userDataInCheckout, paymentLink } = useSelector((state) => state);
+  const { cart, userDataInCheckout, paymentLink, ostras } = useSelector(
+    (state) => state
+  );
   const userUnique = useSelector((state) => state.userInfo);
   const history = useHistory();
   const token = localStorage.getItem("token");
@@ -65,6 +68,7 @@ function Cart() {
       /* Read more about isConfirmed, isDenied below */
       if (result.isConfirmed) {
         dispatch(clearCart());
+        dispatch(clearCartFromBack(ostras[0].userId));
       }
     });
   };

@@ -9,7 +9,7 @@ const postCartItems = async ({ quantity, cartId, productId }) => {
     const cart_items = await Cart_items.create({ quantity });
     await cart_items.setProduct(foundProduct);
     await cart_items.setCart(foundCart);
-    return cart_items;
+    return "Item added";
   } catch (error) {
     if (UniqueConstraintError)
       throw { msg: "items in the cart, to update use Put" };

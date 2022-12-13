@@ -65,9 +65,11 @@ export const ERROR_GET_DATA_USER = "ERROR_GET_DATA_USER";
 export const ADD_TO_CART_BACK = "ADD_TO_CART_BACK";
 export const DELETE_FROM_CART_BACK = "DELETE_FROM_CART_BACK";
 export const CHANGE_QUANTITY_CART_BACK = "CHANGE_QUANTITY_CART_BACK";
-export const CLEAR_CART_BACK = "CLEAR_CART_BACK";
+export const CLEAR_CART_FROM_BACK = "CLEAR_CART_FROM_BACK";
 export const GET_FROM_CART_BACK = "GET_FROM_CART_BACK";
 export const GET_FROM_CART_BACK_BY_ID = "GET_FROM_CART_BACK_BY_ID";
+export const PUT_FROM_CART_BACK = "PUT_FROM_CART_BACK";
+export const GET_FROM_CART_BACK2 = "GET_FROM_CART_BACK2";
 
 //! PRODUCTS ACTIONS --------------------------------------------------------------------
 export const getProduct = () => {
@@ -676,8 +678,44 @@ export const getCartFromBack = (cartId) => {
   return async function (dispatch) {
     try {
       let getCart = await axios.get(`/cart/${cartId}`);
-      console.log(getCart.data);
       return dispatch({ type: GET_FROM_CART_BACK, payload: getCart.data });
+    } catch (error) {
+      console.log(error);
+    }
+  };
+};
+
+export const getCartFromBack2 = (cartId) => {
+  return async function (dispatch) {
+    try {
+      let getCart = await axios.get(`/cart/${cartId}`);
+      return dispatch({ type: GET_FROM_CART_BACK2, payload: getCart.data });
+    } catch (error) {
+      console.log(error);
+    }
+  };
+};
+
+export const putCartFromBack = (cartId, productId, quantity) => {
+  return async function (dispatch) {
+    try {
+      let getCart = await axios.put("/cartItems", {
+        cartId,
+        productId,
+        quantity,
+      });
+      return dispatch({ type: PUT_FROM_CART_BACK, payload: getCart.data });
+    } catch (error) {
+      console.log(error);
+    }
+  };
+};
+
+export const clearCartFromBack = (cartId) => {
+  return async function (dispatch) {
+    try {
+      let clearCart = await axios.post(`/user/cleanCart/${cartId}`);
+      return dispatch({ type: CLEAR_CART_FROM_BACK, payload: clearCart.data });
     } catch (error) {
       console.log(error);
     }
