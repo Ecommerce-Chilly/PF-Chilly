@@ -11,24 +11,25 @@ import {
 } from "../../../redux/actions/actions";
 
 function Navbar() {
-  let cart = useSelector((state) => state.cart);
   const dispatch = useDispatch();
-  const { user } = useAuth0();
-  let { admin, userInfo, quantity } = useSelector((state) => state);
+  const userEmail = localStorage.getItem("email");
+  let { admin, userInfo, quantity, product, cart } = useSelector(
+    (state) => state
+  );
   const { loginWithRedirect } = useAuth0();
   let token = localStorage.getItem("token");
   const { isAuthenticated, isLoading } = useAuth0();
 
   useEffect(() => {
     dispatch(getProduct());
-    dispatch(userSpecific("josema.soyhenry@gmail.com", JSON.parse(token)));
+    dispatch(userSpecific(JSON.parse(userEmail), JSON.parse(token)));
     if (userInfo.id) {
       dispatch(getCartFromBack2(userInfo.id));
     }
     setTimeout(() => {
       dispatch(updateCartQuantity());
     }, 2000);
-  }, [dispatch, user?.email]);
+  }, [dispatch, userEmail]);
 
   return (
     <div className="borde">

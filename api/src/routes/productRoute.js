@@ -1,16 +1,16 @@
-const { Router } = require('express');
-const { postProduct } = require('../controllers/product/postProduct');
+const { Router } = require("express");
+const { postProduct } = require("../controllers/product/postProduct");
 const {
   getProducts,
   getProductsDeleted,
-} = require('../controllers/product/getProducts');
-const { putProducts } = require('../controllers/product/putProducts');
-const { deleteProduct } = require('../controllers/product/deleteProduct');
-const { restoreProduct } = require('../controllers/product/restoreProduct');
+} = require("../controllers/product/getProducts");
+const { putProducts } = require("../controllers/product/putProducts");
+const { deleteProduct } = require("../controllers/product/deleteProduct");
+const { restoreProduct } = require("../controllers/product/restoreProduct");
 const productRoute = Router();
-const { checkJwt, checkScopes } = require('../middleware/oAuth');
+const { checkJwt, checkScopes } = require("../middleware/oAuth");
 
-productRoute.post('/', async (req, res) => {
+productRoute.post("/", checkJwt, checkScopes, async (req, res) => {
   try {
     const productCreate = await postProduct(req.body);
     res.status(201).send(productCreate);
@@ -19,14 +19,14 @@ productRoute.post('/', async (req, res) => {
   }
 });
 
-productRoute.delete('/:id', async (req, res) => {
+productRoute.delete("/:id", checkJwt, checkScopes, async (req, res) => {
   try {
     let { id } = req.params;
     id = Number(id);
     if (isNaN(id))
       return res
         .status(406)
-        .send({ error: 'Not Acceptable, id is not a number' });
+        .send({ error: "Not Acceptable, id is not a number" });
     const message = await deleteProduct(id);
     res.send({ message });
   } catch (error) {
@@ -34,7 +34,7 @@ productRoute.delete('/:id', async (req, res) => {
   }
 });
 
-productRoute.get('/', async (req, res) => {
+productRoute.get("/", async (req, res) => {
   try {
     const { category, name } = req.query;
     const product = await getProducts(category, null, name);
@@ -44,7 +44,7 @@ productRoute.get('/', async (req, res) => {
   }
 });
 
-productRoute.get('/deleted', async (req, res) => {
+productRoute.get("/deleted", checkJwt, checkScopes, async (req, res) => {
   try {
     const products = await getProductsDeleted();
     res.send(products);
@@ -53,11 +53,11 @@ productRoute.get('/deleted', async (req, res) => {
   }
 });
 
-productRoute.get('/:id', async (req, res) => {
+productRoute.get("/:id", async (req, res) => {
   try {
     let { id } = req.params;
     id = Number(id);
-    if (isNaN(id)) return res.status(404).send({ error: 'Send a number id' });
+    if (isNaN(id)) return res.status(404).send({ error: "Send a number id" });
     const product = await getProducts(null, id);
     res.send(product);
   } catch (error) {
@@ -65,7 +65,7 @@ productRoute.get('/:id', async (req, res) => {
   }
 });
 
-productRoute.put('/:id', async (req, res) => {
+productRoute.put("/:id", checkJwt, checkScopes, async (req, res) => {
   try {
     let { id } = req.params;
     id = Number(id);
@@ -77,7 +77,7 @@ productRoute.put('/:id', async (req, res) => {
   }
 });
 
-productRoute.put('/restore/:id', async (req, res) => {
+productRoute.put("/restore/:id", checkJwt, checkScopes, async (req, res) => {
   try {
     let { id } = req.params;
     id = Number(id);
