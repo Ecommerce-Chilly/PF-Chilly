@@ -1,8 +1,7 @@
 const { User } = require("../../db");
-const cartItemsRoute = require("../../routes/cartItemsRoute");
-
+const { addCart } = require('../cart/addCart')
 const postUser = async ({
-  id, email, name, img
+  email, name, img
 }) => {
   try {
     if (!email) throw "You need to fill all fields";
@@ -11,7 +10,8 @@ const postUser = async ({
 
     })
     if (findUser) throw `The user with the email ${email} exist`
-    await User.create({ id, email, name, img })
+    await User.create({ email, name, img })
+    // await addCart({ userId: id })
     return `the user was created`
   } catch (error) {
     throw (error)

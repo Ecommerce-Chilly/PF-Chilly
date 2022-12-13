@@ -78,8 +78,6 @@ userRoute.delete('/:id', checkJwt, checkScopes, async (req, res) => {
 
 userRoute.post('/', checkJwt, async (req, res) => {
   try {
-    const { email } = req.body
-    console.log(email);
     const userCreate = await postUser(req.body);
     res.status(201).send(userCreate);
   } catch (error) {
