@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { Link } from "react-router-dom";
+import { Link, useHistory } from "react-router-dom";
 import {
   deleteP,
   clearCart,
@@ -8,20 +8,21 @@ import {
   clearPaylink,
   addOrder,
   getDataUser,
+  clearCartFromBack,
 } from "../../../redux/actions/actions";
 import CartItem from "../CartItem/CartItem";
 import Swal from "sweetalert2";
 import { useAuth0 } from "@auth0/auth0-react";
-import { useHistory } from "react-router-dom";
 
 function Cart() {
-  const { cart, userDataInCheckout, paymentLink } = useSelector((state) => state);
+  const { cart, userDataInCheckout, paymentLink, ostras } = useSelector(
+    (state) => state
+  );
   const userUnique = useSelector((state) => state.userInfo);
   const history = useHistory();
   const token = localStorage.getItem("token");
   const dispatch = useDispatch();
   const { loginWithRedirect } = useAuth0();
-
   let [variable, setVariable] = useState(0);
 
   let totalPrice = 0;
@@ -64,6 +65,7 @@ function Cart() {
     }).then((result) => {
       /* Read more about isConfirmed, isDenied below */
       if (result.isConfirmed) {
+        dispatch(clearCartFromBack(ostras[0].userId));
         dispatch(clearCart());
       }
     });
@@ -155,6 +157,10 @@ function Cart() {
                             { email: userUnique.email, items: cart },
                             JSON.parse(token)
                           )
+                        );
+                        setTimeout(
+                          () => history.push("/checkout+data+user"),
+                          2000
                         );
                         setTimeout(
                           () => history.push("/checkout+data+user"),

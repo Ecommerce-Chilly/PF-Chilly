@@ -65,7 +65,6 @@ function CheckoutDataUser() {
       });
     }
   };
-
   return (
     <div>
       <form

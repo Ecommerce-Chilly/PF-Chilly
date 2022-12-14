@@ -16,21 +16,20 @@ cartItemsRoute.post("/", async (req, res) => {
 
 cartItemsRoute.put("/", async (req, res) => {
   try {
-    const id = req.body.id;
-    const quantity = req.body.quantity;
-    const updateQuantity = await modifyQuantity(id, quantity);
-    res.status(202).send(updateQuantity);
+    const { cartId, productId, quantity } = req.body;
+    const modifying = await modifyQuantity(cartId, productId, quantity);
+    res.status(200).send(modifying);
   } catch (error) {
-    res.status(304).send({ msg: "not modified" }, error);
+    res.status(404).send(error);
   }
 });
 
 cartItemsRoute.delete("/:cartId/:productId", async (req, res) => {
+  console.log(req.params);
   try {
-    const deleteCartItem = await deleteItem(req.params);
+    const deleteCartItem = await deleteItem(req);
     res.status(202).send(deleteCartItem);
   } catch (error) {
-    console.log(error);
     res.status(404).send(error);
   }
 });

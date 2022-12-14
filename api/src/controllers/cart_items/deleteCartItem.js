@@ -1,15 +1,19 @@
 const { Cart_items, Cart, Product } = require("../../db");
 
-const deleteItem = async ({ cartId, productId }) => {
+const deleteItem = async (req) => {
   try {
+    const { cartId, productId } = req.params;
+
     const foundCartId = await Cart.findByPk(cartId);
-    if (!foundCartId) throw `the item with the id ${id} doesn't exist`;
+    if (!foundCartId) {
+      throw `The item with the id ${id} doesn't exist`;
+    }
     await Cart_items.destroy({
       where: { cartId: cartId, productId: productId },
     });
-    return "item deleted";
+    return "Item deleted";
   } catch (error) {
-    console.log(error);
+    throw error;
   }
 };
 

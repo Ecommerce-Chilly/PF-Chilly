@@ -5,15 +5,43 @@ import {
   increaseProductQuantity,
   decreaseProductQuantity,
   updateCartQuantity,
+  deleteFromCartBack,
+  getCartFromBack,
+  putCartFromBack,
 } from "../../../redux/actions/actions";
+import store from "../../../redux/store/store";
 
 function CartItem({ name, quantity, price, image, id, changeVariable }) {
   const dispatch = useDispatch();
   let storeQuantity = useSelector((state) => state.quantity);
+  let { userInfo, ostras } = useSelector((state) => state);
+  const msgPuto = useSelector((state) => state.msgPuto);
   const deleteProduct = (id) => {
     dispatch(deleteP(id));
     dispatch(updateCartQuantity());
+    dispatch(deleteFromCartBack(ostras[0].id, id));
+    setTimeout(() => {
+      dispatch(getCartFromBack(userInfo.id));
+    }, 2000);
   };
+  const changeModify = async (e) => {
+    if (e.target.value === "-") {
+      dispatch(decreaseProductQuantity(id));
+      let quantity = store.getState().quantity;
+      console.log(quantity);
+      await dispatch(putCartFromBack(ostras[0].id, id, quantity));
+      await dispatch(getCartFromBack(userInfo.id));
+    }
+    if (e.target.value === "+") {
+      dispatch(increaseProductQuantity(id));
+      let quantity = store.getState().quantity;
+      await dispatch(putCartFromBack(ostras[0].id, id, quantity));
+      await dispatch(getCartFromBack(userInfo.id));
+    }
+  };
+  React.useEffect(() => {
+    console.log("hola");
+  }, [msgPuto]);
 
   React.useEffect(() => {
     changeVariable(storeQuantity);
@@ -33,28 +61,26 @@ function CartItem({ name, quantity, price, image, id, changeVariable }) {
 
         <div className="flex justify-between  items-center   w-60">
           <div className="  flex text-base flex-row items-center ">
-            <span
-              onClick={() => {
-                dispatch(decreaseProductQuantity(id));
-              }}
+            <button
+              value="-"
+              onClick={changeModify}
               className="font-semibold w-9 rounded  text-center cursor-pointer text-lg hover:bg-main hover:text-white"
             >
               -
-            </span>
+            </button>
             <input
               type="text"
               className="focus:outline-none bg-gray-100  h-6 w-10  rounded text-center  px-2 mx-2 text-lg"
               value={quantity}
               disabled
             />
-            <span
-              onClick={() => {
-                dispatch(increaseProductQuantity(id));
-              }}
+            <button
+              value="+"
+              onClick={changeModify}
               className="font-semibold w-9 rounded  text-center cursor-pointer text-lg hover:bg-main hover:text-white"
             >
               +
-            </span>
+            </button>
           </div>
           <div className="flex items-center justify-between ">
             <div className="mr-10 w-16    ml-6">

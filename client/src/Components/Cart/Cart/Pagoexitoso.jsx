@@ -1,7 +1,7 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import axios from "axios";
 import { useSelector } from "react-redux";
+import axios from "axios";
 
 function PagoExitoso() {
   let user = useSelector((state) => state.userInfo);
@@ -12,7 +12,7 @@ function PagoExitoso() {
     user_id: "9Ttq_y5p96nZfIkib",
     template_params: {
       email: user.email,
-      name: user.name
+      name: user.name,
     },
   };
 

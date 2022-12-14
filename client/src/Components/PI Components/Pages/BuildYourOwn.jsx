@@ -64,7 +64,6 @@ function BuildYourOwn() {
     }
     console.log(firstLetter);
   }, [i]);
-
   return (
     <div className="mb-48">
       {i < 0 ? (

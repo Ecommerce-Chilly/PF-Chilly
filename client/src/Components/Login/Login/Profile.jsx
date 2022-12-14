@@ -5,6 +5,7 @@ import * as actions from "../../../redux/actions/actions";
 import { useDispatch, useSelector } from "react-redux";
 import LogoutButton from "./LogoutButton";
 import { Link } from "react-router-dom";
+
 import {
   localStorageToCart,
   updateCartQuantity,
@@ -13,6 +14,8 @@ import {
 const Profile = () => {
   const admin = useSelector((state) => state.admin);
   const dispatch = useDispatch();
+  const userInfo = useSelector((state) => state.userInfo);
+
   const { user, isAuthenticated, getAccessTokenSilently } = useAuth0();
   const [userMetadata, setUserMetadata] = useState(null);
 
@@ -38,6 +41,7 @@ const Profile = () => {
         console.log(e.message);
       }
     };
+
     const postDb = async () => {
       await getUserMetadata();
       localStorage.setItem("email", JSON.stringify(user.email));
@@ -60,12 +64,13 @@ const Profile = () => {
   }, [getAccessTokenSilently, user?.sub]);
 
   React.useEffect(() => {
-    let cartLS = window.localStorage.getItem("cart");
+    dispatch(actions.getCartFromBack(userInfo.id));
 
+    let cartLS = window.localStorage.getItem("cart");
     if (cartLS) {
       dispatch(localStorageToCart(JSON.parse(cartLS)));
       window.localStorage.removeItem("cart");
-      dispatch(updateCartQuantity());
+      dispatch(updateCartQuantity(userInfo.id));
     }
   }, []);
 
