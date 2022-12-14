@@ -1,15 +1,15 @@
-import React, { useEffect, useState } from 'react';
-import axios from 'axios';
-import { LocalStorageCache, useAuth0 } from '@auth0/auth0-react';
-import * as actions from '../../../redux/actions/actions';
-import { useDispatch, useSelector } from 'react-redux';
-import LogoutButton from './LogoutButton';
-import { Link } from 'react-router-dom';
+import React, { useEffect, useState } from "react";
+import axios from "axios";
+import { LocalStorageCache, useAuth0 } from "@auth0/auth0-react";
+import * as actions from "../../../redux/actions/actions";
+import { useDispatch, useSelector } from "react-redux";
+import LogoutButton from "./LogoutButton";
+import { Link } from "react-router-dom";
 
 import {
   localStorageToCart,
   updateCartQuantity,
-} from '../../../redux/actions/actions';
+} from "../../../redux/actions/actions";
 
 const Profile = () => {
   const admin = useSelector((state) => state.admin);
@@ -21,12 +21,12 @@ const Profile = () => {
 
   useEffect(() => {
     const getUserMetadata = async () => {
-      const domain = 'dev-r6cdo8stlhgup2wx.us.auth0.com';
+      const domain = "dev-r6cdo8stlhgup2wx.us.auth0.com";
 
       try {
         const accessToken = await getAccessTokenSilently({
           audience: `https://${domain}/api/v1/`,
-          scope: 'read:client_grants',
+          scope: "read:client_grants",
         });
         const userDetailsByIdUrl = `https://${domain}/api/v1/users/${user.sub}`;
         const metadataResponse = await fetch(userDetailsByIdUrl, {
@@ -44,9 +44,9 @@ const Profile = () => {
 
     const postDb = async () => {
       await getUserMetadata();
-      localStorage.setItem('email', JSON.stringify(user.email));
+      localStorage.setItem("email", JSON.stringify(user.email));
       const token = await getAccessTokenSilently();
-      localStorage.setItem('token', JSON.stringify(token));
+      localStorage.setItem("token", JSON.stringify(token));
       async function create() {
         const token = await getAccessTokenSilently();
         await dispatch(
@@ -66,10 +66,10 @@ const Profile = () => {
   React.useEffect(() => {
     dispatch(actions.getCartFromBack(userInfo.id));
 
-    let cartLS = window.localStorage.getItem('cart');
+    let cartLS = window.localStorage.getItem("cart");
     if (cartLS) {
       dispatch(localStorageToCart(JSON.parse(cartLS)));
-      window.localStorage.removeItem('cart');
+      window.localStorage.removeItem("cart");
       dispatch(updateCartQuantity(userInfo.id));
     }
   }, []);

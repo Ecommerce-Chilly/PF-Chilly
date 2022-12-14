@@ -641,12 +641,13 @@ export const getDataUser = (dUser) => {
   };
 };
 
-export const addToCartBack = (cartId, productId) => {
+export const addToCartBack = (cartId, productId, quantity) => {
   return async function (dispatch) {
     //HECHO LA RE CONCHA DE LA LORA VIEJO
+    if(quantity === undefined) quantity = 1 
     try {
       let backCart = await axios.post('/cartItems', {
-        quantity: 1,
+        quantity: quantity,
         cartId: cartId,
         productId: productId,
       });

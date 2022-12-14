@@ -27,10 +27,11 @@ function CartItem({ name, quantity, price, image, id, changeVariable }) {
   const changeModify = async (e) => {
     if (e.target.value === "-") {
       dispatch(decreaseProductQuantity(id));
-      let quantity = store.getState().quantity;
-      console.log(quantity);
-      await dispatch(putCartFromBack(ostras[0].id, id, quantity));
-      await dispatch(getCartFromBack(userInfo.id));
+      if (userInfo.id) {
+        let quantity = store.getState().quantity;
+        await dispatch(putCartFromBack(ostras[0].id, id, quantity));
+        await dispatch(getCartFromBack(userInfo.id));
+      }
     }
     if (e.target.value === "+") {
       dispatch(increaseProductQuantity(id));
@@ -39,9 +40,6 @@ function CartItem({ name, quantity, price, image, id, changeVariable }) {
       await dispatch(getCartFromBack(userInfo.id));
     }
   };
-  React.useEffect(() => {
-    console.log("hola");
-  }, [msgPuto]);
 
   React.useEffect(() => {
     changeVariable(storeQuantity);
