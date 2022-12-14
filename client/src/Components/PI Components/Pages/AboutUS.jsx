@@ -51,16 +51,6 @@ function AboutUS() {
       </h2>
 
       <div class="flex w-11/12 flex-wrap justify-evenly mb-10 mx-auto">
-<<<<<<< HEAD
-        <AboutCard name={"Jose Maria Ceballos"} />
-        <AboutCard name={"Guillermo Duran"} />
-        <AboutCard name={"Jesus Torrecilla"} />
-        <AboutCard name={"Esteban Wonder"} />
-        <AboutCard name={"Cinthia Maldonado"} />
-        <AboutCard name={"Maximiliano Costilla"} />
-        <AboutCard name={"Dante Erio Donalicio"} />
-        <AboutCard name={"Juan Noya"} />
-=======
         <AboutCard
           name={'Jose Maria Ceballos'}
           info={infoJose.text}
@@ -109,7 +99,6 @@ function AboutUS() {
           img={infoCoco.img}
           url={infoCoco.url}
         />
->>>>>>> 8a61313b7088d797a06bf4a942bd8cf3f0cabbb8
       </div>
       <Accordeon />
       {/* <Mailer /> */}
