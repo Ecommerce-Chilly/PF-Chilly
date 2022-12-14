@@ -65,6 +65,7 @@ function Cart() {
     }).then((result) => {
       /* Read more about isConfirmed, isDenied below */
       if (result.isConfirmed) {
+        console.log(ostras[0].userId);
         dispatch(clearCartFromBack(ostras[0].userId));
         dispatch(clearCart());
       }
@@ -148,7 +149,7 @@ function Cart() {
                 Clear Cart
               </button>
               {userUnique.name ? (
-                !paymentLink && !userDataInCheckout.length ? (
+                !paymentLink ? (
                   <Link to="#" className="">
                     <button
                       onClick={() => {
@@ -158,10 +159,10 @@ function Cart() {
                             JSON.parse(token)
                           )
                         );
-                        setTimeout(
-                          () => history.push('/checkout+data+user'),
-                          2000
-                        );
+                        // setTimeout(
+                        //   () => history.push('/checkout+data+user'),
+                        //   2000
+                        // );
                         orderAdd();
                       }}
                       className=" flex font-semibold  text-white border-solid bg-main border-2 border-main py-2 px-6 focus:outline-none hover:bg-blue-600 rounded hover:border-blue-600"
@@ -171,7 +172,12 @@ function Cart() {
                   </Link>
                 ) : (
                   <a href={paymentLink} className="text-center">
-                    <button className=" flex font-semibold  text-white border-solid bg-main border-2 border-main py-2 px-12  focus:outline-none hover:bg-blue-600 rounded hover:border-blue-600 ">
+                    <button
+                      className=" flex font-semibold  text-white border-solid bg-main border-2 border-main py-2 px-12  focus:outline-none hover:bg-blue-600 rounded hover:border-blue-600 "
+                      onClick={() =>
+                        dispatch(clearCartFromBack(ostras[0].userId))
+                      }
+                    >
                       Pay!
                     </button>
                   </a>

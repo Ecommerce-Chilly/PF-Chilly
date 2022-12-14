@@ -68,6 +68,7 @@ import {
   PUT_FROM_CART_BACK,
   GET_FROM_CART_BACK2,
   CLEAR_CART_FROM_BACK,
+  JODER,
 } from '../actions/actions.js';
 
 const initialState = {
@@ -406,6 +407,7 @@ const rootReducer = (state = initialState, action) => {
         ...state,
         createProductMsg: '',
         productChangedMsg: '',
+        userDataMsg: '',
       };
     case CLEAR_FAV_MSG:
       return {
@@ -558,6 +560,10 @@ const rootReducer = (state = initialState, action) => {
         cart: newArr,
       };
     case CLEAR_CART_FROM_BACK:
+      return {
+        ...state,
+      };
+    case JODER:
       return {
         ...state,
       };

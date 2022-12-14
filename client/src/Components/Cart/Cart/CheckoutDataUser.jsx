@@ -43,7 +43,11 @@ function CheckoutDataUser() {
           cancelButton: 'cancel',
         },
       }).then((r) => {
-        dispatch(clearProdMsg());
+        {
+          if (r.isConfirmed) {
+            dispatch(clearProdMsg());
+          }
+        }
       });
     } else if (userDataMsg === 'Information completed! :D') {
       Swal.fire({

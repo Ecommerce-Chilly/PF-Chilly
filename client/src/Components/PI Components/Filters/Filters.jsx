@@ -17,14 +17,10 @@ function Filters({ setPageNumber }) {
   let [filterPrice, setFilterPrice] = useState('');
   let dispatch = useDispatch();
   let { categoryDetails } = useSelector((state) => state);
-  let anyMoreCategory = useSelector((state) => state.category);
 
   useEffect(() => {
     dispatch(filterbyDetails(category, details));
   }, [details, category]);
-  useEffect(() => {
-    dispatch(allCategories());
-  }, []);
 
   let dispatchCategory = (e) => {
     setInputs([]);
@@ -33,7 +29,7 @@ function Filters({ setPageNumber }) {
       await dispatch(getCategoryDetails(e.target.value));
       let categoryDetail = store.getState().categoryDetails;
       for (const element in categoryDetail) {
-        if (element !== "name") {
+        if (element !== 'name') {
           setInputs((oldArray) => [...oldArray, element]);
         }
       }
@@ -84,7 +80,7 @@ function Filters({ setPageNumber }) {
               handleClearFilters(event);
               setCategory('');
               setInputs([]);
-              setFilterPrice("");
+              setFilterPrice('');
               setPageNumber(1);
             }}
             className=" absolute left-40 ml-1 top-44 z-10 border-solid border-main rounded border-2 px-2.5"
@@ -103,11 +99,18 @@ function Filters({ setPageNumber }) {
             setCategory(e.target.value);
           }}
         >
-          {anyMoreCategory?.map((e) => (
-            <option key={e} value={e}>
-              {e[0].toUpperCase() + e.substring(1)}
-            </option>
-          ))}
+          <option value="">All</option>
+          <option value="cases">Cases</option>
+          <option value="motherboards">Motherboards</option>
+          <option value="case_fan">Case Fan</option>
+          <option value="cpu_fan">CPU Fan</option>
+          <option value="gpus">GPUs</option>
+          <option value="keyboards">Keyboards</option>
+          <option value="mouses">Mouses</option>
+          <option value="processors">Processors</option>
+          <option value="power_supply">Power Supply</option>
+          <option value="ram">RAM</option>
+          <option value="storage">Storage</option>
         </select>
         {inputs.length > 0 &&
           inputs?.map((e) => {

@@ -71,6 +71,7 @@ export const GET_FROM_CART_BACK = 'GET_FROM_CART_BACK';
 export const GET_FROM_CART_BACK_BY_ID = 'GET_FROM_CART_BACK_BY_ID';
 export const PUT_FROM_CART_BACK = 'PUT_FROM_CART_BACK';
 export const GET_FROM_CART_BACK2 = 'GET_FROM_CART_BACK2';
+export const JODER = 'JODER';
 //! PRODUCTS ACTIONS --------------------------------------------------------------------
 export const getProduct = () => {
   return async function (dispatch) {
@@ -644,7 +645,7 @@ export const getDataUser = (dUser) => {
 export const addToCartBack = (cartId, productId, quantity) => {
   return async function (dispatch) {
     //HECHO LA RE CONCHA DE LA LORA VIEJO
-    if(quantity === undefined) quantity = 1 
+    if (quantity === undefined) quantity = 1;
     try {
       let backCart = await axios.post('/cartItems', {
         quantity: quantity,
@@ -713,6 +714,20 @@ export const clearCartFromBack = (cartId) => {
     try {
       let clearCart = await axios.post(`/user/cleanCart/${cartId}`);
       return dispatch({ type: CLEAR_CART_FROM_BACK, payload: clearCart.data });
+    } catch (error) {
+      console.log(error);
+    }
+  };
+};
+
+export const emailjs = (data) => {
+  return async function (dispatch) {
+    try {
+      let emailToUser = await axios.post(
+        'https://api.emailjs.com/api/v1.0/email/send',
+        data
+      );
+      return dispatch({ type: JODER, payload: emailToUser.data });
     } catch (error) {
       console.log(error);
     }

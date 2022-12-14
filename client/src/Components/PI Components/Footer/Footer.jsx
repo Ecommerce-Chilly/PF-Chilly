@@ -53,7 +53,7 @@ function Footer() {
             </div>
           </div>
           <div className="w-1/2 inline-block">
-            <ul className="flex justify-between uppercase font-sans font-light underline-offset-4">
+            <ul className="flex justify-between max-w-2xl uppercase font-sans font-light underline-offset-4">
               <li className="hover:underline ">
                 <Link to="/">Home</Link>
               </li>
@@ -63,12 +63,12 @@ function Footer() {
               <li className="hover:underline">
                 <Link to="/build+your+own">Build</Link>
               </li>
-              <li className="hover:underline">
+              {/* <li className="hover:underline">
                 <Link to="/special+offers">Special Offers</Link>
               </li>
               <li className="hover:underline">
                 <Link to="/blog">Blog</Link>
-              </li>
+              </li> */}
               <li className="hover:underline">
                 <Link to="/about+us">About Us</Link>
               </li>

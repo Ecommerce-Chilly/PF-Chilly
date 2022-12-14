@@ -22,7 +22,8 @@ function ProductDetail() {
   const favoriteMsg = useSelector((state) => state.favoriteMsg);
   const userInfo = useSelector((state) => state.userInfo);
   const favs = useSelector((state) => state.favorites);
-
+  const [itemQuantity, setItemQuantity] = useState(1);
+  let cart = useSelector((state) => state.cart);
   useEffect(() => {
     if (userInfo) {
       dispatch(getFavorites(userInfo.id, token));
@@ -39,9 +40,12 @@ function ProductDetail() {
   }, []);
 
   function addCart(id) {
-    dispatch(addToCart(id));
+    for (let index = 0; index < itemQuantity; index++) {
+      dispatch(addToCart(id));
+    }
+
     dispatch(updateCartQuantity());
-    dispatch(addToCartBack(userInfo.id, id));
+    dispatch(addToCartBack(userInfo.id, id, itemQuantity));
   }
 
   return (
@@ -83,19 +87,58 @@ function ProductDetail() {
                           aperiam et voluptas officiis omnis.
                         </p>
 
-                        <div className="flex">
+                        <div className="flex justify-between relative">
                           <span className="title-font font-medium text-4xl text-gray-900">
                             ${' '}
                             {produDetail[0].price == 0
                               ? 50
                               : produDetail[0].price}
                           </span>
-                          <button
-                            className="flex ml-auto font-semibold text-white bg-main border-0 py-2 px-6 focus:outline-none hover:bg-blue-600 rounded"
-                            onClick={() => addCart(produDetail[0].id)}
-                          >
-                            Add to cart
-                          </button>
+                          <div className="flex absolute right-14">
+                            <div className=" flex text-base flex-row items-center mr-9  ">
+                              <button
+                                value="-"
+                                onClick={() =>
+                                  itemQuantity > 1
+                                    ? setItemQuantity(itemQuantity - 1)
+                                    : null
+                                }
+                                className="font-semibold w-9 rounded  text-center cursor-pointer text-lg hover:bg-main hover:text-white"
+                              >
+                                -
+                              </button>
+                              <input
+                                type="text"
+                                className="focus:outline-none bg-gray-100  h-6 w-10  rounded text-center  px-2 mx-2 text-lg"
+                                value={itemQuantity}
+                                disabled
+                              />
+                              <button
+                                value="+"
+                                onClick={() =>
+                                  setItemQuantity(itemQuantity + 1)
+                                }
+                                className="font-semibold w-9 rounded  text-center cursor-pointer text-lg hover:bg-main hover:text-white"
+                              >
+                                +
+                              </button>
+                            </div>
+                            {cart.find((e) => e.id === produDetail[0].id) ? (
+                              <button
+                                disabled
+                                className="flex ml-auto font-semibold text-white bg-main border-0 py-2 px-6 focus:outline-none rounded"
+                              >
+                                Already in cart
+                              </button>
+                            ) : (
+                              <button
+                                className="flex ml-auto font-semibold text-white bg-main border-0 py-2 px-6 focus:outline-none hover:bg-blue-600 rounded"
+                                onClick={() => addCart(produDetail[0].id)}
+                              >
+                                Add to cart
+                              </button>
+                            )}
+                          </div>
 
                           {userInfo.name ? (
                             favs.find((el) => el.id === produDetail[0].id) ? (

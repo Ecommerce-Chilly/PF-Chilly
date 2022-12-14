@@ -128,7 +128,7 @@ function Navbar() {
           </div>
         </div>
         <div class="container flex w-2/3 mx-auto mt-6">
-          <ul class="flex justify-between w-5/6 mx-auto uppercase font-sans underline-offset-4  font-light text-white">
+          <ul class="flex justify-between max-w-2xl w-5/6 mx-auto uppercase font-sans underline-offset-4  font-light text-white">
             <li>
               <Link to="/" className="hover:underline">
                 Home
@@ -144,7 +144,7 @@ function Navbar() {
                 Build Your Own
               </Link>
             </li>
-            <li>
+            {/* <li>
               <Link to="/special+offers" className="hover:underline">
                 Special Offers
               </Link>
@@ -153,7 +153,7 @@ function Navbar() {
               <Link to="/blog" className="hover:underline">
                 Blog
               </Link>
-            </li>
+            </li> */}
             <li>
               <Link to="/about+us" className="hover:underline">
                 About Us

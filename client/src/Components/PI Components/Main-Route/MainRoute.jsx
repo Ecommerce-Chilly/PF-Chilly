@@ -8,6 +8,7 @@ import CreateComponent from '../../PanelAdmin/CreateComponent/CreateComponent';
 import ChangeComponent from '../../PanelAdmin/ChangeComponent/ChangeComponent';
 import ProductsDeleted from '../../PanelAdmin/Products/ProductsDeleted';
 import Orders from '../../PanelAdmin/Orders/Orders';
+import OrderDetailUser from '../../PanelAdmin/Orders/OrderDetailUser';
 import OrderDetail from '../../PanelAdmin/Orders/OrderDetail';
 import Products from '../../PanelAdmin/Products/Products';
 import ProductDetail from '../../PanelAdmin/Products/ProductDetail';
@@ -71,6 +72,7 @@ function MainRoute() {
           <Route exact path="/panel+admin/users" component={Users} />
           <Route exact path="/panel+admin/orders" component={Orders} />
           <Route exact path="/panel+admin/orders/:id" component={OrderDetail} />
+          <Route exact path="/orders/:id" component={OrderDetailUser} />
           <Route
             exact
             path="/panel+admin/products/:id"

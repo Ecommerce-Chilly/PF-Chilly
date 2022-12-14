@@ -1,7 +1,29 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import axios from 'axios';
+import { useSelector, useDispatch } from 'react-redux';
 
+import { userSpecific, emailjs } from '../../../redux/actions/actions';
 function PagoExitoso() {
+  let user = useSelector((state) => state.userInfo);
+  const dispatch = useDispatch();
+  let token = localStorage.getItem('token');
+  const email = localStorage.getItem('email');
+
+  let data = {
+    service_id: 'service_movy3fh',
+    template_id: 'template_bwd3tub',
+    user_id: '9Ttq_y5p96nZfIkib',
+    template_params: {
+      email: user.email,
+      name: user.name,
+    },
+  };
+
+  React.useEffect(async () => {
+    await dispatch(userSpecific(JSON.parse(email), JSON.parse(token)));
+    await dispatch(emailjs(data));
+  }, []);
   return (
     <div>
       <div class="h-full my-20 font-display ">
