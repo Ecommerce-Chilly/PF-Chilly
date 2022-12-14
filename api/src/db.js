@@ -77,7 +77,7 @@ Inventory.hasOne(Product);
 // User_role.belongsTo(User);
 
 User.hasOne(Data_user);
-Data_user.belongsTo(User);
+Data_user.hasOne(User);
 
 User.hasOne(Shopping_session);
 Shopping_session.hasOne(User);
