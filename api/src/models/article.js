@@ -1,7 +1,7 @@
 const { DataTypes } = require('sequelize');
 module.exports = (sequelize) => {
   sequelize.define(
-    'cart_items',
+    'article',
     {
       id: {
         type: DataTypes.INTEGER,
@@ -9,20 +9,23 @@ module.exports = (sequelize) => {
         primaryKey: true,
         allowNull: false,
       },
-      quantity: {
-        type: DataTypes.INTEGER,
+      title: {
+        type: DataTypes.STRING,
+        allowNull: false,
+      },
+      image: {
+        type: DataTypes.STRING,
+        defaultValue:
+          'https://www.rastanley.com.au/img/products/NoImageLarge.png',
+      },
+      description: {
+        type: DataTypes.TEXT,
         allowNull: false,
       },
     },
     {
+      paranoid: true,
       timestamps: true,
-      paranoid: false,
-      indexes: [
-        {
-          unique: true,
-          fields: ['cartId', 'productId'],
-        },
-      ],
     }
   );
 };

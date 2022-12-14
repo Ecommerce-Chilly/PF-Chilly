@@ -1,19 +1,31 @@
-import React from "react";
-import { useDispatch, useSelector } from "react-redux";
+import React from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 import {
   deleteP,
   increaseProductQuantity,
   decreaseProductQuantity,
   updateCartQuantity,
-} from "../../../redux/actions/actions";
+  deleteFromCartBack,
+  getCartFromBack,
+  putCartFromBack,
+} from '../../../redux/actions/actions';
 
 function CartItem({ name, quantity, price, image, id, changeVariable }) {
   const dispatch = useDispatch();
   let storeQuantity = useSelector((state) => state.quantity);
+  let { userInfo, ostras } = useSelector((state) => state);
+  const msgPuto = useSelector((state) => state.msgPuto);
   const deleteProduct = (id) => {
     dispatch(deleteP(id));
     dispatch(updateCartQuantity());
+    dispatch(deleteFromCartBack(ostras[0].id, id));
+    setTimeout(() => {
+      dispatch(getCartFromBack(userInfo.id));
+    }, 2000);
   };
+  React.useEffect(() => {
+    console.log('hola');
+  }, [msgPuto]);
 
   React.useEffect(() => {
     changeVariable(storeQuantity);
@@ -24,7 +36,7 @@ function CartItem({ name, quantity, price, image, id, changeVariable }) {
       <div className="flex justify-between items-center h-52 w-full">
         <div className="flex  items-center   h-full w-3/4  mr-4 ">
           <div className="h-full w-60 ">
-            <img src={image.replace("SL75", "SL500")} class=" h-full m-auto" />
+            <img src={image.replace('SL75', 'SL500')} class=" h-full m-auto" />
           </div>
           <div className="flex flex-col ml-3 w-3/5">
             <span className="md:text-md font-medium">{name}</span>
@@ -36,6 +48,10 @@ function CartItem({ name, quantity, price, image, id, changeVariable }) {
             <span
               onClick={() => {
                 dispatch(decreaseProductQuantity(id));
+                dispatch(putCartFromBack(ostras[0].id, id, quantity));
+                setTimeout(() => {
+                  dispatch(getCartFromBack(userInfo.id));
+                }, 10000);
               }}
               className="font-semibold w-9 rounded  text-center cursor-pointer text-lg hover:bg-main hover:text-white"
             >
@@ -50,6 +66,10 @@ function CartItem({ name, quantity, price, image, id, changeVariable }) {
             <span
               onClick={() => {
                 dispatch(increaseProductQuantity(id));
+                dispatch(putCartFromBack(ostras[0].id, id, quantity));
+                setTimeout(() => {
+                  dispatch(getCartFromBack(userInfo.id));
+                }, 10000);
               }}
               className="font-semibold w-9 rounded  text-center cursor-pointer text-lg hover:bg-main hover:text-white"
             >

@@ -8,6 +8,7 @@ import {
   getFavorites,
   deleteFavorite,
   clearFavMsg,
+  addToCartBack,
 } from '../../../redux/actions/actions.js';
 import { useDispatch, useSelector } from 'react-redux';
 import ReactTooltip from 'react-tooltip';
@@ -40,6 +41,7 @@ function ProductDetail() {
   function addCart(id) {
     dispatch(addToCart(id));
     dispatch(updateCartQuantity());
+    dispatch(addToCartBack(userInfo.id, id));
   }
 
   return (

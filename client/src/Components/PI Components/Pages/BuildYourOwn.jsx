@@ -37,6 +37,7 @@ function BuildYourOwn() {
     'keyboards',
   ];
   let totalPrice = 0;
+  let [firstLetter, setFirstLetter] = useState('');
 
   for (let i = 1; i < byo.length; i++) {
     byo[i].price ? (totalPrice = totalPrice + byo[i].price) : null;
@@ -54,8 +55,15 @@ function BuildYourOwn() {
   useEffect(() => {
     console.log(i);
     console.log(categories[i]);
+    if (byo[0]) {
+      if (byo[0].name === 'amd') {
+        setFirstLetter('A');
+      } else {
+        setFirstLetter('L');
+      }
+    }
+    console.log(firstLetter);
   }, [i]);
-
   return (
     <div className="mb-48">
       {i < 0 ? (
@@ -2392,7 +2400,25 @@ function BuildYourOwn() {
 
         {byo[0]
           ? products
-              .filter((e) => e.categoryName === categories[i])
+              .filter((e) => {
+                if (i === 0) {
+                  return (
+                    e.categoryName === categories[i] &&
+                    e.details[0].socketType[0] === firstLetter
+                  );
+                }
+
+                if (byo[1].id) {
+                  if (i === 1) {
+                    return (
+                      e.categoryName === categories[i] &&
+                      e.details[0].socketType === byo[1].details[0].socketType
+                    );
+                  }
+                }
+
+                return e.categoryName === categories[i];
+              })
               .map((component) => (
                 <div
                   key={component.id}

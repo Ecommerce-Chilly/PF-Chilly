@@ -1,7 +1,25 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import { useSelector } from 'react-redux';
+import axios from 'axios';
 
 function PagoExitoso() {
+  let user = useSelector((state) => state.userInfo);
+
+  let data = {
+    service_id: 'service_movy3fh',
+    template_id: 'template_bwd3tub',
+    user_id: '9Ttq_y5p96nZfIkib',
+    template_params: {
+      email: user.email,
+      name: user.name,
+    },
+  };
+
+  React.useEffect(async () => {
+    await axios.post('https://api.emailjs.com/api/v1.0/email/send', data);
+  }, []);
+
   return (
     <div>
       <div class="h-full my-20 font-display ">

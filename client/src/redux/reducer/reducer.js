@@ -56,6 +56,18 @@ import {
   NO_FOOTER,
   HIDE_FOOTER,
   CLEAR_MSG_ORDER_ITEM,
+  // josema me paso todo esto
+  LS_TO_CART,
+  POST_DATA_USER,
+  ERROR_POST_DATA_USER,
+  GET_DATA_USER,
+  ERROR_GET_DATA_USER,
+  ADD_TO_CART_BACK,
+  DELETE_FROM_CART_BACK,
+  GET_FROM_CART_BACK,
+  PUT_FROM_CART_BACK,
+  GET_FROM_CART_BACK2,
+  CLEAR_CART_FROM_BACK,
 } from '../actions/actions.js';
 
 const initialState = {
@@ -85,6 +97,12 @@ const initialState = {
   build: [],
   footer: 0,
   msgOrderItem: '',
+  // josema me paso de abajo
+  userDataInCheckout: [],
+  userNotInData: '',
+  userDataMsg: '',
+  ostras: [],
+  msgPuto: '',
 };
 
 const rootReducer = (state = initialState, action) => {
@@ -111,7 +129,6 @@ const rootReducer = (state = initialState, action) => {
         product: action.payload,
         searchProductMsg: '',
       };
-
     case CREATE_PRODUCT:
       return {
         ...state,
@@ -479,6 +496,70 @@ const rootReducer = (state = initialState, action) => {
       return {
         ...state,
         footer: 0,
+      };
+    //josema me paso de aca para abajo
+    case LS_TO_CART:
+      return {
+        ...state,
+        cart: action.payload,
+      };
+    case POST_DATA_USER:
+      return {
+        ...state,
+        userDataMsg: action.payload,
+      };
+    case ERROR_POST_DATA_USER:
+      return {
+        ...state,
+        userDataMsg: action.payload,
+      };
+    case GET_DATA_USER:
+      return {
+        ...state,
+        userDataInCheckout: action.payload,
+      };
+    case ERROR_GET_DATA_USER:
+      return {
+        ...state,
+        userNotInData: action.payload,
+      };
+    case DELETE_FROM_CART_BACK:
+      return {
+        ...state,
+      };
+    case ADD_TO_CART_BACK:
+      return {
+        ...state,
+      };
+    case GET_FROM_CART_BACK:
+      return {
+        ...state,
+        ostras: [action.payload],
+        msgPuto: '',
+      };
+    case PUT_FROM_CART_BACK:
+      return {
+        ...state,
+        msgPuto: action.payload,
+      };
+    case GET_FROM_CART_BACK2:
+      let newArr = [];
+      const carItem = action.payload.cart_items;
+      for (let i = 0; i < carItem.length; i++) {
+        newArr.push(
+          state.allProduct.find((e) => e.id === carItem[i].productId)
+        );
+      }
+      for (let j = 0; j < newArr.length; j++) {
+        newArr[j].quantity = action.payload.cart_items[j].quantity;
+      }
+      return {
+        ...state,
+        cart: newArr,
+      };
+    case CLEAR_CART_FROM_BACK:
+      return {
+        ...state,
       };
     default:
       return state;

@@ -1,16 +1,38 @@
 import React, { useEffect, useState } from 'react';
-import { useSelector } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
 import { Link } from 'react-router-dom';
 import SearchBar from '../SearchBar/SearchBar';
-import AdminNavbar from './AdminNavbar';
 import { useAuth0 } from '@auth0/auth0-react';
+import {
+  getProduct,
+  getCartFromBack2,
+  getCartFromBack,
+  userSpecific,
+  updateCartQuantity,
+} from '../../../redux/actions/actions';
 
 function Navbar() {
-  let cart = useSelector((state) => state.cart);
-  let quantity = useSelector((state) => state.quantity);
   let admin = useSelector((state) => state.admin);
+
+  const dispatch = useDispatch();
+  let { userInfo, quantity, cart } = useSelector((state) => state);
   const { loginWithRedirect } = useAuth0();
+  let token = localStorage.getItem('token');
   const { isAuthenticated, isLoading } = useAuth0();
+
+  useEffect(() => {
+    dispatch(getProduct());
+    dispatch(userSpecific(userInfo.email, JSON.parse(token)));
+    if (userInfo.id) {
+      dispatch(getCartFromBack2(userInfo.id));
+      dispatch(getCartFromBack(userInfo.id));
+    }
+    dispatch(getProduct());
+    setTimeout(() => {
+      dispatch(updateCartQuantity());
+    }, 2000);
+  }, [dispatch, userInfo?.email]);
+
   return (
     <div className="borde">
       <nav class=" border-gray-200 px-2  py-5 bg-main static">
