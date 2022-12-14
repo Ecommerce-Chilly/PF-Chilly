@@ -5,9 +5,17 @@ import * as actions from '../../../redux/actions/actions';
 import { useDispatch, useSelector } from 'react-redux';
 import LogoutButton from './LogoutButton';
 import { Link } from 'react-router-dom';
+
+import {
+  localStorageToCart,
+  updateCartQuantity,
+} from '../../../redux/actions/actions';
+
 const Profile = () => {
   const admin = useSelector((state) => state.admin);
   const dispatch = useDispatch();
+  const userInfo = useSelector((state) => state.userInfo);
+
   const { user, isAuthenticated, getAccessTokenSilently } = useAuth0();
   const [userMetadata, setUserMetadata] = useState(null);
 
@@ -33,6 +41,7 @@ const Profile = () => {
         console.log(e.message);
       }
     };
+
     const postDb = async () => {
       await getUserMetadata();
       localStorage.setItem('email', JSON.stringify(user.email));
@@ -53,6 +62,17 @@ const Profile = () => {
     };
     postDb();
   }, [getAccessTokenSilently, user?.sub]);
+
+  React.useEffect(() => {
+    dispatch(actions.getCartFromBack(userInfo.id));
+
+    let cartLS = window.localStorage.getItem('cart');
+    if (cartLS) {
+      dispatch(localStorageToCart(JSON.parse(cartLS)));
+      window.localStorage.removeItem('cart');
+      dispatch(updateCartQuantity(userInfo.id));
+    }
+  }, []);
 
   return (
     isAuthenticated && (
@@ -95,9 +115,18 @@ const Profile = () => {
                     <Link to="/panel+admin" className="text-main">
                       Panel Admin
                     </Link>
+                    <p>★ ORDERS ★ </p>
+                    <Link to="/data+orders" className="text-main">
+                      My Orders
+                    </Link>
                   </>
                 ) : (
-                  <></>
+                  <>
+                    <p>★ ORDERS ★ </p>
+                    <Link to="/data+orders" className="text-main">
+                      My Orders
+                    </Link>
+                  </>
                 )}
               </div>
             </div>
