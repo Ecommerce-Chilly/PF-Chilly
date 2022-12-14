@@ -60,7 +60,7 @@ function OrderDetail() {
                 key={productDetail[0].id}
                 className="bg-white rounded-xl shadow-xl border  m-2  flex mx-auto justify-between h-60 w-1/2 mb-9 "
               >
-                <div className="flex ml-6">
+                <div className="flex w-full ml-6 justify-between">
                   <div className="  w-2/3 p-4">
                     <h2 className="text-slate-800  font-display font-semibold mb-2 ">
                       Product:

@@ -10,6 +10,8 @@ import {
   noFooter,
   hideFooter,
   getProduct,
+  addToCart,
+  addToCartBack,
 } from '../../../redux/actions/actions';
 
 import { useState } from 'react';
@@ -19,6 +21,7 @@ import ReactTooltip from 'react-tooltip';
 function BuildYourOwn() {
   let history = useHistory();
   let byo = useSelector((state) => state.build);
+  let userInfo = useSelector((state) => state.userInfo);
   console.log(byo);
   let products = useSelector((state) => state.allProduct);
   let dispatch = useDispatch();
@@ -37,6 +40,7 @@ function BuildYourOwn() {
     'keyboards',
   ];
   let totalPrice = 0;
+  let [firstLetter, setFirstLetter] = useState('');
 
   for (let i = 1; i < byo.length; i++) {
     byo[i].price ? (totalPrice = totalPrice + byo[i].price) : null;
@@ -51,11 +55,28 @@ function BuildYourOwn() {
     };
   }, []);
 
+  function addCart() {
+    if (userInfo.id) {
+      for (let index = 0; index < byo.length; index++) {
+        byo[index].id
+          ? dispatch(addToCartBack(userInfo.id, byo[index].id, 1))
+          : null;
+      }
+    }
+  }
+
   useEffect(() => {
     console.log(i);
     console.log(categories[i]);
+    if (byo[0]) {
+      if (byo[0].name === 'amd') {
+        setFirstLetter('A');
+      } else {
+        setFirstLetter('L');
+      }
+    }
+    console.log(firstLetter);
   }, [i]);
-
   return (
     <div className="mb-48">
       {i < 0 ? (
@@ -104,14 +125,35 @@ function BuildYourOwn() {
             <button
               onClick={() => {
                 dispatch(byoToCart(byo));
+                addCart();
                 dispatch(updateCartQuantity());
                 dispatch(clearBYO());
                 setI(-1);
                 history.push('/cart');
               }}
-              className="w-2/5 h-12 bg-main border-l-2 rounded border-white hover:bg-blue-700"
+              className="w-2/5 h-12 bg-main border-l-2 rounded border-white hover:bg-blue-700 relative"
             >
-              Add to Cart
+              Add to Cart{' '}
+              <div className="w-20 absolute right-1/2 -top-20">
+                <svg
+                  version="1.1"
+                  x="0px"
+                  y="0px"
+                  viewBox="0 0 392.652 392.652"
+                  fill="rgb(48, 63, 159)"
+                  stroke-linecap="round"
+                >
+                  <g>
+                    <path
+                      stroke-width="1"
+                      stroke-linecap="round"
+                      d="M371.439,243.7l-35.961,35.961c11.209-92.047-39.457-184.193-129.211-221.371c-34.202-14.167-71.578-19.149-108.094-14.425
+	C62.773,48.452,28.825,62.018,0,83.1l17.709,24.215c51.74-37.839,117.938-45.807,177.078-21.308
+	c85.411,35.379,129.596,128.751,105.878,215.706L242.652,243.7l-21.213,21.213l85.606,85.606l85.606-85.606L371.439,243.7z"
+                    />
+                  </g>
+                </svg>
+              </div>
             </button>
           ) : null}
         </div>
@@ -2392,7 +2434,25 @@ function BuildYourOwn() {
 
         {byo[0]
           ? products
-              .filter((e) => e.categoryName === categories[i])
+              .filter((e) => {
+                if (i === 0) {
+                  return (
+                    e.categoryName === categories[i] &&
+                    e.details[0].socketType[0] === firstLetter
+                  );
+                }
+
+                if (byo[1].id) {
+                  if (i === 1) {
+                    return (
+                      e.categoryName === categories[i] &&
+                      e.details[0].socketType === byo[1].details[0].socketType
+                    );
+                  }
+                }
+
+                return e.categoryName === categories[i];
+              })
               .map((component) => (
                 <div
                   key={component.id}
@@ -2444,26 +2504,6 @@ function BuildYourOwn() {
                 You can now proceed and add your custom build to your Cart,
                 enjoy!
               </p>
-              <div className="w-20 absolute  right-96 -top-2">
-                <svg
-                  version="1.1"
-                  x="0px"
-                  y="0px"
-                  viewBox="0 0 392.652 392.652"
-                  fill="rgb(48, 63, 159)"
-                  stroke-linecap="round"
-                >
-                  <g>
-                    <path
-                      stroke-width="1"
-                      stroke-linecap="round"
-                      d="M371.439,243.7l-35.961,35.961c11.209-92.047-39.457-184.193-129.211-221.371c-34.202-14.167-71.578-19.149-108.094-14.425
-	C62.773,48.452,28.825,62.018,0,83.1l17.709,24.215c51.74-37.839,117.938-45.807,177.078-21.308
-	c85.411,35.379,129.596,128.751,105.878,215.706L242.652,243.7l-21.213,21.213l85.606,85.606l85.606-85.606L371.439,243.7z"
-                    />
-                  </g>
-                </svg>
-              </div>
             </div>
           </div>
         </div>

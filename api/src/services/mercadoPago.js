@@ -17,9 +17,9 @@ class PaymentService {
       payer_email: variable.email,
       items: variable.items,
       back_urls: {
-        failure: 'localhost:3000/paymentfailure',
-        pending: 'localhost:3000/paymentpending',
-        success: 'localhost:3000/paymentsuccess',
+        failure: 'https://chilly-production.up.railway.app/paymentfailure',
+        pending: 'https://chilly-production.up.railway.app/paymentpending',
+        success: 'https://chilly-production.up.railway.app/paymentsuccess',
       },
     };
     const payment = await axios.post(url, body, {

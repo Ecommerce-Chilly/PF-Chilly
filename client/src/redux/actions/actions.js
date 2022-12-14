@@ -57,7 +57,21 @@ export const CLEAR_MSG = 'CLEAR_MSG';
 export const NO_FOOTER = 'NO_FOOTER';
 export const HIDE_FOOTER = 'HIDE_FOOTER';
 export const CLEAR_MSG_ORDER_ITEM = 'CLEAR_MSG_ORDER_ITEM';
-
+// josema me paso de aca para abajo
+export const LS_TO_CART = 'LS_TO_CART';
+export const POST_DATA_USER = 'POST_DATA_USER';
+export const ERROR_POST_DATA_USER = 'ERROR_POST_DATA_USER';
+export const GET_DATA_USER = 'GET_DATA_USER';
+export const ERROR_GET_DATA_USER = 'ERROR_GET_DATA_USER';
+export const ADD_TO_CART_BACK = 'ADD_TO_CART_BACK';
+export const DELETE_FROM_CART_BACK = 'DELETE_FROM_CART_BACK';
+export const CHANGE_QUANTITY_CART_BACK = 'CHANGE_QUANTITY_CART_BACK';
+export const CLEAR_CART_FROM_BACK = 'CLEAR_CART_FROM_BACK';
+export const GET_FROM_CART_BACK = 'GET_FROM_CART_BACK';
+export const GET_FROM_CART_BACK_BY_ID = 'GET_FROM_CART_BACK_BY_ID';
+export const PUT_FROM_CART_BACK = 'PUT_FROM_CART_BACK';
+export const GET_FROM_CART_BACK2 = 'GET_FROM_CART_BACK2';
+export const JODER = 'JODER';
 //! PRODUCTS ACTIONS --------------------------------------------------------------------
 export const getProduct = () => {
   return async function (dispatch) {
@@ -590,5 +604,132 @@ export const noFooter = () => {
 export const hideFooter = () => {
   return {
     type: HIDE_FOOTER,
+  };
+};
+//josema me paso hasta aca
+export const localStorageToCart = (payload) => {
+  return {
+    type: LS_TO_CART,
+    payload: payload,
+  };
+};
+
+export const postDataUser = (dataUser) => {
+  return async function (dispatch) {
+    try {
+      let infoCheckout = await axios.post('/datauser', dataUser);
+      return dispatch({ type: POST_DATA_USER, payload: infoCheckout.data });
+    } catch (error) {
+      return dispatch({
+        type: ERROR_POST_DATA_USER,
+        payload: error.response.data.error,
+      });
+    }
+  };
+};
+
+export const getDataUser = (dUser) => {
+  return async function (dispatch) {
+    try {
+      let dataUser = await axios.get('/datauser', dUser);
+      return dispatch({ type: GET_DATA_USER, payload: dataUser.data });
+    } catch (error) {
+      return dispatch({
+        type: ERROR_GET_DATA_USER,
+        payload: error.response.data.error,
+      });
+    }
+  };
+};
+
+export const addToCartBack = (cartId, productId, quantity) => {
+  return async function (dispatch) {
+    //HECHO LA RE CONCHA DE LA LORA VIEJO
+    if (quantity === undefined) quantity = 1;
+    try {
+      let backCart = await axios.post('/cartItems', {
+        quantity: quantity,
+        cartId: cartId,
+        productId: productId,
+      });
+      return dispatch({ type: ADD_TO_CART_BACK, payload: backCart.data });
+    } catch (error) {
+      console.log(error);
+    }
+  };
+};
+
+export const deleteFromCartBack = (cartId, productId) => {
+  return async function (dispatch) {
+    try {
+      let backCart = await axios.delete(`/cartItems/${cartId}/${productId}`);
+      return dispatch({ type: DELETE_FROM_CART_BACK, payload: backCart.data });
+    } catch (error) {
+      console.log(error);
+    }
+  };
+};
+
+export const getCartFromBack = (cartId) => {
+  return async function (dispatch) {
+    try {
+      let getCart = await axios.get(`/cart/${cartId}`);
+      return dispatch({ type: GET_FROM_CART_BACK, payload: getCart.data });
+    } catch (error) {
+      console.log(error);
+    }
+  };
+};
+
+export const getCartFromBack2 = (cartId) => {
+  return async function (dispatch) {
+    try {
+      let getCart = await axios.get(`/cart/${cartId}`);
+      return dispatch({ type: GET_FROM_CART_BACK2, payload: getCart.data });
+    } catch (error) {
+      console.log(error);
+    }
+  };
+};
+
+export const putCartFromBack = (cartId, productId, quantity) => {
+  return async function (dispatch) {
+    try {
+      console.log(cartId, productId, quantity);
+      let getCart = await axios.put('/cartItems', {
+        cartId,
+        productId,
+        quantity,
+      });
+      console.log(getCart.data);
+      return dispatch({ type: PUT_FROM_CART_BACK, payload: getCart.data });
+    } catch (error) {
+      console.log(error);
+    }
+  };
+};
+
+export const clearCartFromBack = (cartId) => {
+  return async function (dispatch) {
+    try {
+      let clearCart = await axios.post(`/user/cleanCart/${cartId}`);
+      return dispatch({ type: CLEAR_CART_FROM_BACK, payload: clearCart.data });
+    } catch (error) {
+      console.log(error);
+    }
+  };
+};
+
+export const emailjs = (data) => {
+  return async function (dispatch) {
+    try {
+      let emailToUser = await axios.post(
+        'https://api.emailjs.com/api/v1.0/email/send',
+        data
+      );
+      return dispatch({ type: JODER, payload: emailToUser.data });
+    } catch (error) {
+      console.log(error);
+    }
   };
 };
