@@ -19,9 +19,9 @@ function AboutUS() {
     url: 'https://www.linkedin.com/in/cinthia-maldonado-rafael-902233211/',
   };
   let infoMaxi = {
-    text: "Hello, i'm from Argentina. I prefer working in front, but i also know backend. I'm good working with people and i like to learn everything i can. Feel free to contact me!",
-    img: 'https://media.licdn.com/dms/image/D4D35AQH1zzneub_IYQ/profile-framedphoto-shrink_800_800/0/1649440217896?e=1671652800&v=beta&t=DdddytnlSy1Vht2KZixS4HjCFetqh5Gu3SI_6H7m3Gs',
-    url: 'https://www.linkedin.com/in/jes%C3%BAs-torrecilla-4324b9214/',
+    text: "Hi, I'm from Tucumán Argentina, I like achilatas and milanesa sandwiches.",
+    img: 'https://media.licdn.com/dms/image/D4D35AQFQwuWgC1hs4Q/profile-framedphoto-shrink_800_800/0/1660833220208?e=1671652800&v=beta&t=loXECtO39qqiABWI4S0_mkSQUrKJbqI7uRqs53lrUuw',
+    url: 'https://www.linkedin.com/in/maximiliano-costilla-1805b4213/',
   };
   let infoDante = {
     text: "This dev student is a coding wizard with 8 magical cats. They're unstoppable when it comes to tackling tough projects and defeating evil videogame bosses.",
@@ -105,3 +105,4 @@ function AboutUS() {
 }
 
 export default AboutUS;
+
