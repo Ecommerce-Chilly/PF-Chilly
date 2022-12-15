@@ -16,15 +16,14 @@ function PagoExitoso() {
     template_id: 'template_bwd3tub',
     user_id: '9Ttq_y5p96nZfIkib',
     template_params: {
-      email: email1,
+      'email': email1,
     },
   };
 
   React.useEffect(async () => {
-     await dispatch(userSpecific(JSON.parse(email), JSON.parse(token)));    
+     await dispatch(userSpecific(email1, JSON.parse(token)));    
     // await dispatch(emailjs(data));
      await axios.post('https://api.emailjs.com/api/v1.0/email/send',data)
-    console.log('hola')
     
   }, []);
   return (
