@@ -8,26 +8,22 @@ function PagoExitoso() {
   let user = useSelector((state) => state.userInfo);
   const dispatch = useDispatch();
   let token = localStorage.getItem('token');
-  const email = localStorage.getItem('email');
+  const email1 = localStorage.getItem('email');
 
+  email1=JSON.parse(email1)
   let data = {
     service_id: 'service_movy3fh',
     template_id: 'template_bwd3tub',
     user_id: '9Ttq_y5p96nZfIkib',
     template_params: {
-      email: user.email,
-      name: user.name,
+      email: email1,
     },
   };
 
   React.useEffect(async () => {
      await dispatch(userSpecific(JSON.parse(email), JSON.parse(token)));    
     // await dispatch(emailjs(data));
-    
-    setTimeout(async() => {
-      console.log(user);
-      await axios.post('https://api.emailjs.com/api/v1.0/email/send',data)
-    }, 3000);
+     await axios.post('https://api.emailjs.com/api/v1.0/email/send',data)
     
   }, []);
   return (
