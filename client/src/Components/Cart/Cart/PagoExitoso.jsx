@@ -21,10 +21,14 @@ function PagoExitoso() {
   };
 
   React.useEffect(async () => {
-    await dispatch(userSpecific(JSON.parse(email), JSON.parse(token)));
-    console.log(user);
+     await dispatch(userSpecific(JSON.parse(email), JSON.parse(token)));    
     // await dispatch(emailjs(data));
-    await axios.post('https://api.emailjs.com/api/v1.0/email/send',data)
+    
+    setTimeout(async() => {
+      console.log(user);
+      await axios.post('https://api.emailjs.com/api/v1.0/email/send',data)
+    }, 3000);
+    
   }, []);
   return (
     <div>
