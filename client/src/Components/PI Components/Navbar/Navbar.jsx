@@ -28,7 +28,6 @@ function Navbar() {
       dispatch(getCartFromBack2(userInfo.id));
       dispatch(getCartFromBack(userInfo.id));
     }
-    dispatch(getProduct());
     setTimeout(() => {
       dispatch(updateCartQuantity());
     }, 2000);
