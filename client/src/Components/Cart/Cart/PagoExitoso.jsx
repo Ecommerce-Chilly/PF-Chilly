@@ -8,7 +8,7 @@ function PagoExitoso() {
   let user = useSelector((state) => state.userInfo);
   const dispatch = useDispatch();
   let token = localStorage.getItem('token');
-  const email1 = localStorage.getItem('email');
+  let email1 = localStorage.getItem('email');
 
   email1=JSON.parse(email1)
   let data = {
