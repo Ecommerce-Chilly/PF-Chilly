@@ -2,6 +2,7 @@ import React, { useEffect } from "react";
 import { Link, useParams } from "react-router-dom";
 import { getProductById } from "../../../redux/actions/actions.js";
 import { useDispatch, useSelector } from "react-redux";
+import Loader from "../../PI Components/Loader/Loader.jsx";
 
 function ProductDetail() {
   const { id } = useParams();
@@ -104,7 +105,7 @@ function ProductDetail() {
           </div>
         )
       ) : !produDetail.length ? (
-        <p>{failMsg}</p>
+        <Loader/>
       ) : (
         <></>
       )}

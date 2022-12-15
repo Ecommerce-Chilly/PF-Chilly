@@ -12,6 +12,8 @@ import {
 } from '../../../redux/actions/actions.js';
 import { useDispatch, useSelector } from 'react-redux';
 import ReactTooltip from 'react-tooltip';
+import Loader from '../../PI Components/Loader/Loader';
+
 function ProductDetail() {
   const { id } = useParams();
   const dispatch = useDispatch();
@@ -233,7 +235,7 @@ function ProductDetail() {
           </div>
         )
       ) : !produDetail.length ? (
-        <p>{failMsg}</p>
+        <Loader/>
       ) : (
         <></>
       )}
