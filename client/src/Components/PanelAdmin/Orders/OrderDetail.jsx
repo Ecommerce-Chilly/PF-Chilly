@@ -44,8 +44,8 @@ function OrderDetail() {
                 <div>Date of purchase: {orderItem.createdAt} </div>
                 <div>Id of purchase: {orderItem.id}</div>
                 <div>User id: {orderItem.userId}</div>
-                <div>User name: {userInfo.name} </div>
-                <div>User e-mail: {userInfo.email} </div>
+                  <div>User name: {orderItem.user.name} </div>
+                <div>User e-mail: {orderItem.user.email} </div>
 
                 <div>Product id: {orderItem.productId}</div>
                 <div>Quantity: {orderItem.quantity}</div>
