@@ -557,7 +557,7 @@ const rootReducer = (state = initialState, action) => {
       }
       return {
         ...state,
-        cart: newArr,
+        cart: state.cart.concat(newArr),
       };
     case CLEAR_CART_FROM_BACK:
       return {
