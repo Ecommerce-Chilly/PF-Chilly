@@ -4,6 +4,7 @@ import { useParams } from 'react-router-dom';
 import { getOrderById, getProductById } from '../../../redux/actions/actions';
 import ForbiddenAccess from '../ForbiddenAccess';
 import { Link } from 'react-router-dom';
+import Loader from '../../PI Components/Loader/Loader';
 
 function OrderDetail() {
   const { id } = useParams();
@@ -89,7 +90,7 @@ function OrderDetail() {
             </div>
           )
         ) : !productDetail.length ? (
-          <p>{searchProductMsg}</p>
+          <Loader />
         ) : (
           <></>
         )}

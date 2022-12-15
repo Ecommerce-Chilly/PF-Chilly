@@ -65,9 +65,8 @@ function Cart() {
     }).then((result) => {
       /* Read more about isConfirmed, isDenied below */
       if (result.isConfirmed) {
-        console.log(ostras[0].userId);
-        dispatch(clearCartFromBack(ostras[0].userId));
         dispatch(clearCart());
+        dispatch(clearCartFromBack(ostras[0].userId));
       }
     });
   };
