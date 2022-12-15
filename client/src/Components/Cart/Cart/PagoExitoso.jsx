@@ -24,6 +24,7 @@ function PagoExitoso() {
      await dispatch(userSpecific(JSON.parse(email), JSON.parse(token)));    
     // await dispatch(emailjs(data));
      await axios.post('https://api.emailjs.com/api/v1.0/email/send',data)
+    console.log('hola')
     
   }, []);
   return (
