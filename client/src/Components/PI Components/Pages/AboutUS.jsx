@@ -37,7 +37,7 @@ function AboutUS() {
   let infoEsteban = {
     text: "Hey, I'm from Colombia and I'm the backend guy, I really like to solve logic problems and work with friends because it's a lot of fun.",
     img: 'https://cdn.discordapp.com/attachments/1016546130877763624/1052673237689049178/6d91dc6f-81f1-4658-b07d-f0b6e508e7a0.jpg',
-    url: 'https://www.linkedin.com/in/esteban-fabian-cardona-sarria-7695041a8/',
+    url: 'https://www.linkedin.com/in/estebancardonasarria/',
   };
   let infoCoco = {
     text: 'Coco likes to code very much so wow!',
