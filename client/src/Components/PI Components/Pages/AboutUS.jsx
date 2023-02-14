@@ -6,7 +6,7 @@ import AboutCard from "./AboutCard";
 function AboutUS() {
   let infoShino = {
     text: "Hello, i'm from Argentina. I prefer working in front, but i also know backend. I'm good working with people and i like to learn everything i can. Feel free to contact me!",
-    img: 'https://media.licdn.com/dms/image/D4D35AQH1zzneub_IYQ/profile-framedphoto-shrink_800_800/0/1649440217896?e=1671652800&v=beta&t=DdddytnlSy1Vht2KZixS4HjCFetqh5Gu3SI_6H7m3Gs',
+    img: 'https://media.licdn.com/dms/image/D4D35AQHd1uduTJKPbA/profile-framedphoto-shrink_800_800/0/1672345454131?e=1676959200&v=beta&t=xoQWKszs1YH7grkC3jNuInBEFnaUjvZR1hmPEXQLhAQ',
     url: 'https://www.linkedin.com/in/jes%C3%BAs-torrecilla-4324b9214/',
   };
   let infoJose = {
@@ -16,22 +16,22 @@ function AboutUS() {
   };
   let infoCinthia = {
     text: "Hello! my name is Cinthia Maldonado. I enjoy working in a team, collaborating and bringing value. I'm dedicated, proactive and positive. ",
-    img: 'https://media.licdn.com/dms/image/C4E03AQHtqmdlbfwrHA/profile-displayphoto-shrink_800_800/0/1619871246775?e=1676505600&v=beta&t=5ggKTniva8XlAc7wRyjygJUzV5hXw5ofcJYsNcdjOQk',
-    url: 'https://www.linkedin.com/in/cinthia-maldonado-rafael-902233211/',
+    img: 'https://media.licdn.com/dms/image/D4E03AQGGkAkZSZuWvA/profile-displayphoto-shrink_800_800/0/1672883835627?e=1681948800&v=beta&t=0hjqAGLgMYE5BX8euMWn9LFFLvgotf2k6xhhasoekcQ',
+    url: 'https://www.linkedin.com/in/cinthia-maldonado-rafael/',
   };
   let infoMaxi = {
     text: "Hi, I'm from Tucumán Argentina, I like achilatas and milanesa sandwiches.",
-    img: 'https://media.licdn.com/dms/image/D4D35AQFQwuWgC1hs4Q/profile-framedphoto-shrink_800_800/0/1660833220208?e=1671652800&v=beta&t=loXECtO39qqiABWI4S0_mkSQUrKJbqI7uRqs53lrUuw',
+    img: 'https://media.licdn.com/dms/image/D4D35AQHnwQa3EUCaQw/profile-framedphoto-shrink_800_800/0/1672188839498?e=1676959200&v=beta&t=-uTzdbK5ITkWowfJRL1_9Vm-AMguASenpK5iMKbRPps',
     url: 'https://www.linkedin.com/in/maximiliano-costilla-1805b4213/',
   };
   let infoDante = {
     text: "This dev student is a coding wizard with 8 magical cats. They're unstoppable when it comes to tackling tough projects and defeating evil videogame bosses.",
-    img: 'https://media.licdn.com/dms/image/D4D35AQGH4DdhV2bXGA/profile-framedphoto-shrink_800_800/0/1633987157969?e=1671652800&v=beta&t=ExDUGTW2zErht7_4Dcs4-Cq244k9pUg1SnAgDgWcqxA',
+    img: 'https://media.licdn.com/dms/image/D4D35AQGH4DdhV2bXGA/profile-framedphoto-shrink_800_800/0/1633987157969?e=1676959200&v=beta&t=2v_Y7XZts4s49laIp5LoGYmTiYPJZTkPD-HZ28-1-IM',
     url: 'https://www.linkedin.com/in/erio-donalicio-gimenez/',
   };
   let infoGuillo = {
     text: 'I was born in Salta, Argentina. I really enjoy learning new stuff and working with people where I can push my limits!',
-    img: 'https://media.licdn.com/dms/image/C5603AQHQjd2gydVgiA/profile-displayphoto-shrink_800_800/0/1662999915693?e=1676505600&v=beta&t=rWxuVwMQmhNW3i_gcZPty15BVMY6wTvq_lI8tG1f20Y',
+    img: 'https://media.licdn.com/dms/image/D4D35AQFT2HJtlWIE0Q/profile-framedphoto-shrink_800_800/0/1672837963371?e=1676959200&v=beta&t=9fwNcrsD_3S-q7Ldq87_yIezvjEEaR7CJiK2xhLaUeo',
     url: 'https://www.linkedin.com/in/guillermo-duran-6a0ba023a/',
   };
   let infoEsteban = {
