@@ -1,25 +1,25 @@
 {
   "files": {
-    "main.css": "/PF-Chilly/static/css/main.35ad4185.css",
-    "main.js": "/PF-Chilly/static/js/main.d8df8fdc.js",
-    "static/js/787.c4e7f8f9.chunk.js": "/PF-Chilly/static/js/787.c4e7f8f9.chunk.js",
-    "static/media/banner2.jpeg": "/PF-Chilly/static/media/banner2.14834f408690d6670e08.jpeg",
-    "static/media/intel.png": "/PF-Chilly/static/media/intel.fe3b0663dd0130833834.png",
-    "static/media/banner1.jpeg": "/PF-Chilly/static/media/banner1.db066bae5898bf60cda1.jpeg",
-    "static/media/brands.png": "/PF-Chilly/static/media/brands.facfe63dcff1cc242e9f.png",
-    "static/media/banner3.jpeg": "/PF-Chilly/static/media/banner3.997964967c8d30bfb0ee.jpeg",
-    "static/media/amd.webp": "/PF-Chilly/static/media/amd.b571a603333cbac4f418.webp",
-    "static/media/gui.jpeg": "/PF-Chilly/static/media/gui.c09baf2dddbb9c85d708.jpeg",
-    "static/media/max.jpeg": "/PF-Chilly/static/media/max.f756eb8c3f49698cce19.jpeg",
-    "static/media/est.jpeg": "/PF-Chilly/static/media/est.7bac7fca82a3fe15abe3.jpeg",
-    "static/media/jes.jpeg": "/PF-Chilly/static/media/jes.a6ad60b76362016e6833.jpeg",
-    "index.html": "/PF-Chilly/index.html",
-    "main.35ad4185.css.map": "/PF-Chilly/static/css/main.35ad4185.css.map",
-    "main.d8df8fdc.js.map": "/PF-Chilly/static/js/main.d8df8fdc.js.map",
-    "787.c4e7f8f9.chunk.js.map": "/PF-Chilly/static/js/787.c4e7f8f9.chunk.js.map"
+    "main.css": "/static/css/main.35ad4185.css",
+    "main.js": "/static/js/main.8c13853e.js",
+    "static/js/787.c4e7f8f9.chunk.js": "/static/js/787.c4e7f8f9.chunk.js",
+    "static/media/banner2.jpeg": "/static/media/banner2.14834f408690d6670e08.jpeg",
+    "static/media/intel.png": "/static/media/intel.fe3b0663dd0130833834.png",
+    "static/media/banner1.jpeg": "/static/media/banner1.db066bae5898bf60cda1.jpeg",
+    "static/media/brands.png": "/static/media/brands.facfe63dcff1cc242e9f.png",
+    "static/media/banner3.jpeg": "/static/media/banner3.997964967c8d30bfb0ee.jpeg",
+    "static/media/amd.webp": "/static/media/amd.b571a603333cbac4f418.webp",
+    "static/media/gui.jpeg": "/static/media/gui.c09baf2dddbb9c85d708.jpeg",
+    "static/media/max.jpeg": "/static/media/max.f756eb8c3f49698cce19.jpeg",
+    "static/media/est.jpeg": "/static/media/est.7bac7fca82a3fe15abe3.jpeg",
+    "static/media/jes.jpeg": "/static/media/jes.a6ad60b76362016e6833.jpeg",
+    "index.html": "/index.html",
+    "main.35ad4185.css.map": "/static/css/main.35ad4185.css.map",
+    "main.8c13853e.js.map": "/static/js/main.8c13853e.js.map",
+    "787.c4e7f8f9.chunk.js.map": "/static/js/787.c4e7f8f9.chunk.js.map"
   },
   "entrypoints": [
     "static/css/main.35ad4185.css",
-    "static/js/main.d8df8fdc.js"
+    "static/js/main.8c13853e.js"
   ]
 }
