@@ -2,12 +2,14 @@
   "name": "client",
   "version": "0.1.0",
   "private": true,
+  "homepage": "https://Ecommerce-Chilly.github.io/PF-Chilly",  
   "dependencies": {
     "@auth0/auth0-react": "^1.12.0",
     "@emailjs/browser": "^3.10.0",
     "autoprefixer": "^9.8.8",
     "axios": "^1.1.3",
     "bootstrap": "^5.2.3",
+    "gh-pages": "^6.0.0",
     "postcss-cli": "^10.0.0",
     "react": "^17.0.2",
     "react-dom": "^17.0.2",
@@ -26,6 +28,8 @@
     "web-vitals": "^2.1.4"
   },
   "scripts": {
+    "predeploy": "npm run build",
+    "deploy": "gh-pages -d build",
     "start": "react-scripts start",
     "dev": "run-p watch:tailwind start",
     "build": "react-scripts build && npm run build:css",
@@ -36,7 +40,7 @@
   },
   "browserslist": {
     "production": [
-      ">1%",
+      ">0.2%",
       "not dead",
       "not op_mini all"
     ],
