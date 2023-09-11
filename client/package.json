@@ -2,7 +2,7 @@
   "name": "client",
   "version": "0.1.0",
   "private": true,
-  "homepage": "http://Ecommerce-Chilly.github.io/PF-Chilly/",  
+  "homepage": "https://Ecommerce-Chilly.github.io/",  
   "dependencies": {
     "@auth0/auth0-react": "^1.12.0",
     "@emailjs/browser": "^3.10.0",
