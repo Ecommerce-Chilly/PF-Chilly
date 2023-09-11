@@ -8,14 +8,16 @@ import { BrowserRouter } from 'react-router-dom';
 import { Auth0Provider } from '@auth0/auth0-react';
 import reportWebVitals from './reportWebVitals';
 
+import dotenv from 'dotenv';
+dotenv.config();
+
 import axios from 'axios';
-// axios.defaults.baseURL = 'http://localhost:3001';
-axios.defaults.baseURL = 'https://pf-chilly-back-production.up.railway.app/'; 
+axios.defaults.baseURL = process.env.REACT_APP_API_BASE_URL;
 
 ReactDOM.render(
   <Provider store={store}>
     <BrowserRouter>
-      <Auth0Provider domain='dev-r6cdo8stlhgup2wx.us.auth0.com' clientId='B25HIG5uEk2dTfKdwH4AnevOmXrXLHp6' redirectUri={'http://localhost:3000/user/info'} audience="https://chillydev-arg/api/v1/" scope='admin:ReAdminPa update:current_user_metadata '>
+    <Auth0Provider domain={process.env.REACT_APP_AUTH0_DOMAIN} clientId={process.env.REACT_APP_AUTH0_CLIENT_ID} redirectUri={process.env.REACT_APP_AUTH0_REDIRECT_URI} audience={process.env.REACT_APP_AUTH0_AUDIENCE} scope={process.env.REACT_APP_AUTH0_SCOPE}>
         <App />
       </Auth0Provider>
     </BrowserRouter>
