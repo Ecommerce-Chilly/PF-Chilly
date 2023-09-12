@@ -9,7 +9,6 @@ import { Auth0Provider } from '@auth0/auth0-react';
 import reportWebVitals from './reportWebVitals';
 
 import axios from 'axios';
-// axios.defaults.baseURL = 'http://localhost:3001';
 axios.defaults.baseURL = 'https://pf-chilly-back-production.up.railway.app/'; 
 
 ReactDOM.render(
