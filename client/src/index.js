@@ -15,7 +15,7 @@ axios.defaults.baseURL = 'https://pf-chilly-back-production.up.railway.app/';
 ReactDOM.render(
   <Provider store={store}>
     <BrowserRouter basename="/PF-Chilly/">
-      <Auth0Provider domain='dev-r6cdo8stlhgup2wx.us.auth0.com' clientId='B25HIG5uEk2dTfKdwH4AnevOmXrXLHp6' redirectUri={'https://ecommerce-chilly.github.io/PF-Chilly/user/info'} audience="https://chillydev-arg/api/v1/" scope='admin:ReAdminPa update:current_user_metadata '>
+      <Auth0Provider domain='dev-r6cdo8stlhgup2wx.us.auth0.com' clientId='B25HIG5uEk2dTfKdwH4AnevOmXrXLHp6' redirectUri={'https://Ecommerce-Chilly.github.io/PF-Chilly/user/info'} audience="https://chillydev-arg/api/v1/" scope='admin:ReAdminPa update:current_user_metadata '>
         <App />
       </Auth0Provider>
     </BrowserRouter>
