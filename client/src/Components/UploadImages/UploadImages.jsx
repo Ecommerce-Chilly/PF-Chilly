@@ -20,7 +20,6 @@ const UploadImages = ({catchImage}) => {
             }
         )
         const file = await res.json();
-        console.log(res)
         catchImage(file.secure_url)
         setLoading(false)
     }

@@ -30,7 +30,7 @@ import {
   ADD_FAVORITE,
   DELETE_FAVORITE,
   ERROR_MSSG,
-  EUSEBIO,
+  PRODUCT_REQUEST_ERROR,
   ERROR_PUT_PRODUCT,
   ERROR_CREATE_USER,
   USER_NOT_FOUND,
@@ -68,7 +68,7 @@ import {
   PUT_FROM_CART_BACK,
   GET_FROM_CART_BACK2,
   CLEAR_CART_FROM_BACK,
-  JODER,
+  EMAIL_SENT,
 } from '../actions/actions.js';
 
 const initialState = {
@@ -102,8 +102,8 @@ const initialState = {
   userDataInCheckout: [],
   userNotInData: '',
   userDataMsg: '',
-  ostras: [],
-  msgPuto: '',
+  backendCart: [],
+  cartMessage: '',
 };
 
 const rootReducer = (state = initialState, action) => {
@@ -230,28 +230,22 @@ const rootReducer = (state = initialState, action) => {
         searchProductMsg: '',
         product: filtered2,
       };
-    case ORDER_BY_PRICE:
-      const orderByPrice =
-        action.payload === 'Asc'
-          ? state.product.sort((a, b) => {
-              if (a.price - b.price < 0) return 1;
-              else return -1;
-            })
-          : action.payload === 'Dsc'
-          ? state.product.sort((a, b) => {
-              if (a.price - b.price > 0) return 1;
-              else return -1;
-            })
-          : action.payload === 'default'
-          ? state.product.sort((a, b) => {
-              if (a.id - b.id > 0) return 1;
-              else return -1;
-            })
-          : 'joder';
+    case ORDER_BY_PRICE: {
+      const products = [...state.product];
+
+      if (action.payload === 'Asc') {
+        products.sort((a, b) => b.price - a.price);
+      } else if (action.payload === 'Dsc') {
+        products.sort((a, b) => a.price - b.price);
+      } else if (action.payload === 'default') {
+        products.sort((a, b) => a.id - b.id);
+      }
+
       return {
         ...state,
-        state: orderByPrice,
+        product: products,
       };
+    }
     //! CART ACTIONS
     case ADD_TO_CART:
       let prod = state.allProduct.find((e) => e.id === action.payload);
@@ -381,7 +375,7 @@ const rootReducer = (state = initialState, action) => {
         ...state,
         productChangedMsg: action.payload,
       };
-    case EUSEBIO:
+    case PRODUCT_REQUEST_ERROR:
       return {
         ...state,
         searchProductMsg: action.payload,
@@ -468,7 +462,6 @@ const rootReducer = (state = initialState, action) => {
         build: [...state.build, toAdd],
       };
     case DELETE_FROM_BUILD:
-      console.log(state.build);
       let temporal5 = state.build;
       temporal5.pop();
 
@@ -536,13 +529,13 @@ const rootReducer = (state = initialState, action) => {
     case GET_FROM_CART_BACK:
       return {
         ...state,
-        ostras: [action.payload],
-        msgPuto: '',
+        backendCart: [action.payload],
+        cartMessage: '',
       };
     case PUT_FROM_CART_BACK:
       return {
         ...state,
-        msgPuto: action.payload,
+        cartMessage: action.payload,
       };
     case GET_FROM_CART_BACK2:
       let newArr = [];
@@ -563,7 +556,7 @@ const rootReducer = (state = initialState, action) => {
       return {
         ...state,
       };
-    case JODER:
+    case EMAIL_SENT:
       return {
         ...state,
       };

@@ -330,7 +330,6 @@ function CreateComponent() {
                 type="submit"
                 disabled
                 className=" font-semibold  text-white border-solid bg-blue-900 border-2 border-blue-900 py-2 px-6 focus:outline-none  rounded "
-                onClick={creationStatus()}
               ></input>
             ) : errors.name ||
               errors.price ||
@@ -341,13 +340,12 @@ function CreateComponent() {
                 type="submit"
                 disabled
                 className=" font-semibold  text-white border-solid bg-blue-900 border-2 border-blue-900 py-2 px-6 focus:outline-none  rounded "
-                onClick={creationStatus()}
               ></input>
             ) : (
               <input
                 type="submit"
                 className="cursor-pointer font-semibold  text-white border-solid bg-main border-2 border-main py-2 px-6 focus:outline-none hover:bg-blue-600 rounded hover:border-blue-600"
-                onClick={creationStatus()}
+                onClick={creationStatus}
               ></input>
             )}
           </div>

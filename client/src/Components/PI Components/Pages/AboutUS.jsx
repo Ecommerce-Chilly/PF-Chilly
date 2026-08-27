@@ -57,7 +57,7 @@ function AboutUS() {
         About us:
       </h2>
 
-      <div class="flex w-11/12 flex-wrap justify-evenly mb-10 mx-auto">
+      <div className="flex w-11/12 flex-wrap justify-evenly mb-10 mx-auto">
         <AboutCard
           name={'Jose Maria Ceballos'}
           info={infoJose.text}

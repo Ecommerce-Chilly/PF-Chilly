@@ -1,6 +1,10 @@
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { getProduct } from "../../../redux/actions/actions.js";
+import { useLocation } from "react-router-dom";
+import {
+  getProduct,
+  getProductByName,
+} from "../../../redux/actions/actions.js";
 import Filters from "../../PI Components/Filters/Filters";
 import Paginate2 from "../../PI Components/Paginate/PaginateToStore";
 import "../../PI Components/Paginate/Paginate.css";
@@ -9,10 +13,14 @@ function Store() {
   const dispatch = useDispatch();
   const products = useSelector((state) => state.product);
   const [pageNumber, setPageNumber] = useState(1);
+  const location = useLocation();
 
   useEffect(() => {
-    dispatch(getProduct());
-  }, [dispatch]);
+    const name = new URLSearchParams(location.search).get("name")?.trim();
+
+    setPageNumber(1);
+    dispatch(name ? getProductByName(name) : getProduct());
+  }, [dispatch, location.search]);
 
   return (
     <div className="flex ">

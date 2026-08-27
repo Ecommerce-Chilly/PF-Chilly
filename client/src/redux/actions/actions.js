@@ -1,4 +1,5 @@
 import axios from 'axios';
+import { getErrorPayload } from '../../utils/errors';
 export const GET_ALL_PRODUCTS = 'GET_ALL_PRODUCTS';
 export const GET_PRODUCT_BY_ID = 'GET_PRODUCT_BY_ID';
 export const CREATE_PRODUCT = 'CREATE_PRODUCT';
@@ -38,7 +39,7 @@ export const MSG_NOT_PRODUCT_DELETED = 'MSG_NOT_PRODUCT_DELETED';
 export const CLEAR_DELETED_PRODUCTS = 'CLEAR_DELETED_PRODUCTS';
 export const FAIL_CREATED_MSG = 'FAIL_CREATED_MSG';
 export const ERROR_MSSG = 'ERROR_MSSG';
-export const EUSEBIO = 'EUSEBIO';
+export const PRODUCT_REQUEST_ERROR = 'PRODUCT_REQUEST_ERROR';
 export const ERROR_PUT_PRODUCT = 'ERROR_PUT_PRODUCT';
 export const ERROR_CREATE_USER = 'ERROR_CREATE_USER';
 export const PAY = 'PAY';
@@ -71,12 +72,16 @@ export const GET_FROM_CART_BACK = 'GET_FROM_CART_BACK';
 export const GET_FROM_CART_BACK_BY_ID = 'GET_FROM_CART_BACK_BY_ID';
 export const PUT_FROM_CART_BACK = 'PUT_FROM_CART_BACK';
 export const GET_FROM_CART_BACK2 = 'GET_FROM_CART_BACK2';
-export const JODER = 'JODER';
+export const EMAIL_SENT = 'EMAIL_SENT';
 //! PRODUCTS ACTIONS --------------------------------------------------------------------
 export const getProduct = () => {
   return async function (dispatch) {
-    let product = await axios.get('/product');
-    return dispatch({ type: GET_ALL_PRODUCTS, payload: product.data });
+    try {
+      const product = await axios.get('/product');
+      return dispatch({ type: GET_ALL_PRODUCTS, payload: product.data });
+    } catch (error) {
+      return dispatch({ type: ERROR_MSSG, payload: getErrorPayload(error) });
+    }
   };
 };
 
@@ -86,7 +91,10 @@ export const getProductById = (id) => {
       let productById = await axios.get(`/product/${id}`);
       return dispatch({ type: GET_PRODUCT_BY_ID, payload: productById.data });
     } catch (error) {
-      return dispatch({ type: EUSEBIO, payload: error.response.data.error });
+      return dispatch({
+        type: PRODUCT_REQUEST_ERROR,
+        payload: getErrorPayload(error),
+      });
     }
   };
 };
@@ -101,7 +109,7 @@ export const createProduct = (product, token) => {
       });
       return dispatch({ type: CREATE_PRODUCT, payload: createProdu.data });
     } catch (error) {
-      return dispatch({ type: FAIL_CREATED_MSG, payload: error.response.data });
+      return dispatch({ type: FAIL_CREATED_MSG, payload: getErrorPayload(error) });
     }
   };
 };
@@ -119,7 +127,7 @@ export const getProductByName = (name) => {
         payload: productByName.data,
       });
     } catch (error) {
-      return dispatch({ type: ERROR_MSSG, payload: error.response.data });
+      return dispatch({ type: ERROR_MSSG, payload: getErrorPayload(error) });
     }
   };
 };
@@ -136,7 +144,7 @@ export const putProductById = (id, product, token) => {
     } catch (error) {
       return dispatch({
         type: ERROR_PUT_PRODUCT,
-        payload: error.response.data,
+        payload: getErrorPayload(error),
       });
     }
   };
@@ -183,7 +191,7 @@ export const getProductDeleted = (token) => {
     } catch (error) {
       return dispatch({
         type: MSG_NOT_PRODUCT_DELETED,
-        payload: error.response.data,
+        payload: getErrorPayload(error),
       });
     }
   };
@@ -216,7 +224,7 @@ export const createDiscount = (product, token) => {
     } catch (error) {
       return dispatch({
         type: FAIL_CREATED_MSG,
-        payload: error.response.error.data,
+        payload: getErrorPayload(error),
       });
     }
   };
@@ -341,7 +349,7 @@ export const deleteUser = (token, id) => {
     } catch (error) {
       return dispatch({
         type: USER_NOT_FOUND,
-        payload: error.response.data.error,
+        payload: getErrorPayload(error),
       });
     }
   };
@@ -358,7 +366,7 @@ export const createUser = (newUser, token) => {
     } catch (error) {
       return dispatch({
         type: ERROR_CREATE_USER,
-        payload: error.response.data.error,
+        payload: getErrorPayload(error),
       });
     }
   };
@@ -366,6 +374,8 @@ export const createUser = (newUser, token) => {
 
 export const userSpecific = (userFound, token) => {
   return async function (dispatch) {
+    if (!userFound || !token) return;
+
     try {
       let userSpeci = await axios.get(`/user?email=${userFound}`, {
         headers: {
@@ -376,7 +386,7 @@ export const userSpecific = (userFound, token) => {
     } catch (error) {
       return dispatch({
         type: USER_NOT_FOUND,
-        payload: error.response.data.error,
+        payload: getErrorPayload(error),
       });
     }
   };
@@ -389,23 +399,25 @@ export const logoutUser = () => {
 };
 export const userAdmin = (user, token) => {
   return async function (dispatch) {
-    axios
-      .get(`/user/admin?email=${user}`, {
+    if (!user || !token) return;
+
+    try {
+      const response = await axios.get(`/user/admin?email=${user}`, {
         headers: {
           authorization: `Bearer ${token}`,
         },
-      })
-      .then((data) => {
-        return dispatch({
-          type: USER_ADMIN,
-          payload: data.data,
-        }).catch((error) => {
-          return dispatch({
-            type: USER_NOT_FOUND,
-            payload: error.response.data.error,
-          });
-        });
       });
+
+      return dispatch({
+        type: USER_ADMIN,
+        payload: response.data,
+      });
+    } catch (error) {
+      return dispatch({
+        type: USER_NOT_FOUND,
+        payload: getErrorPayload(error),
+      });
+    }
   };
 };
 export const clearMsg = () => {
@@ -427,7 +439,7 @@ export const addFavorite = (ids, token) => {
     } catch (error) {
       return dispatch({
         type: FAVORITE_MSG,
-        payload: error.response.data.error,
+        payload: getErrorPayload(error),
       });
     }
   };
@@ -435,6 +447,8 @@ export const addFavorite = (ids, token) => {
 
 export const getFavorites = (userId, token) => {
   return async function (dispatch) {
+    if (!userId || !token) return;
+
     try {
       let favorites = await axios.get(`/favorite/${userId}`, {
         headers: {
@@ -445,7 +459,7 @@ export const getFavorites = (userId, token) => {
     } catch (error) {
       return dispatch({
         type: FAVORITE_MSG,
-        payload: error.response.data.error,
+        payload: getErrorPayload(error),
       });
     }
   };
@@ -466,7 +480,7 @@ export const deleteFavorite = (ids, token) => {
     } catch (error) {
       return dispatch({
         type: FAVORITE_MSG,
-        payload: error.response.data.error,
+        payload: getErrorPayload(error),
       });
     }
   };
@@ -506,7 +520,7 @@ export const pay = (payData, token) => {
       });
       return dispatch({ type: PAY, payload: payLink.data });
     } catch (error) {
-      console.log(error);
+      return getErrorPayload(error);
     }
   };
 };
@@ -622,7 +636,7 @@ export const postDataUser = (dataUser) => {
     } catch (error) {
       return dispatch({
         type: ERROR_POST_DATA_USER,
-        payload: error.response.data.error,
+        payload: getErrorPayload(error),
       });
     }
   };
@@ -636,7 +650,7 @@ export const getDataUser = (dUser) => {
     } catch (error) {
       return dispatch({
         type: ERROR_GET_DATA_USER,
-        payload: error.response.data.error,
+        payload: getErrorPayload(error),
       });
     }
   };
@@ -644,7 +658,8 @@ export const getDataUser = (dUser) => {
 
 export const addToCartBack = (cartId, productId, quantity) => {
   return async function (dispatch) {
-    //HECHO LA RE CONCHA DE LA LORA VIEJO
+    if (!cartId || !productId) return;
+
     if (quantity === undefined) quantity = 1;
     try {
       let backCart = await axios.post('/cartItems', {
@@ -654,68 +669,76 @@ export const addToCartBack = (cartId, productId, quantity) => {
       });
       return dispatch({ type: ADD_TO_CART_BACK, payload: backCart.data });
     } catch (error) {
-      console.log(error);
+      return getErrorPayload(error);
     }
   };
 };
 
 export const deleteFromCartBack = (cartId, productId) => {
   return async function (dispatch) {
+    if (!cartId || !productId) return;
+
     try {
       let backCart = await axios.delete(`/cartItems/${cartId}/${productId}`);
       return dispatch({ type: DELETE_FROM_CART_BACK, payload: backCart.data });
     } catch (error) {
-      console.log(error);
+      return getErrorPayload(error);
     }
   };
 };
 
 export const getCartFromBack = (cartId) => {
   return async function (dispatch) {
+    if (!cartId) return;
+
     try {
       let getCart = await axios.get(`/cart/${cartId}`);
       return dispatch({ type: GET_FROM_CART_BACK, payload: getCart.data });
     } catch (error) {
-      console.log(error);
+      return getErrorPayload(error);
     }
   };
 };
 
 export const getCartFromBack2 = (cartId) => {
   return async function (dispatch) {
+    if (!cartId) return;
+
     try {
       let getCart = await axios.get(`/cart/${cartId}`);
       return dispatch({ type: GET_FROM_CART_BACK2, payload: getCart.data });
     } catch (error) {
-      console.log(error);
+      return getErrorPayload(error);
     }
   };
 };
 
 export const putCartFromBack = (cartId, productId, quantity) => {
   return async function (dispatch) {
+    if (!cartId || !productId) return;
+
     try {
-      console.log(cartId, productId, quantity);
       let getCart = await axios.put('/cartItems', {
         cartId,
         productId,
         quantity,
       });
-      console.log(getCart.data);
       return dispatch({ type: PUT_FROM_CART_BACK, payload: getCart.data });
     } catch (error) {
-      console.log(error);
+      return getErrorPayload(error);
     }
   };
 };
 
 export const clearCartFromBack = (cartId) => {
   return async function (dispatch) {
+    if (!cartId) return;
+
     try {
       let clearCart = await axios.post(`/user/cleanCart/${cartId}`);
       return dispatch({ type: CLEAR_CART_FROM_BACK, payload: clearCart.data });
     } catch (error) {
-      console.log(error);
+      return getErrorPayload(error);
     }
   };
 };
@@ -727,9 +750,9 @@ export const emailjs = (data) => {
         'https://api.emailjs.com/api/v1.0/email/send',
         data
       );
-      return dispatch({ type: JODER, payload: emailToUser.data });
+      return dispatch({ type: EMAIL_SENT, payload: emailToUser.data });
     } catch (error) {
-      console.log(error);
+      return getErrorPayload(error);
     }
   };
 };

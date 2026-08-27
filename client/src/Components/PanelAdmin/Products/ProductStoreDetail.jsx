@@ -27,7 +27,7 @@ function ProductDetail() {
   const [itemQuantity, setItemQuantity] = useState(1);
   let cart = useSelector((state) => state.cart);
   useEffect(() => {
-    if (userInfo) {
+    if (userInfo.id && token) {
       dispatch(getFavorites(userInfo.id, token));
     }
   }, [favoriteMsg]);
@@ -47,7 +47,9 @@ function ProductDetail() {
     }
 
     dispatch(updateCartQuantity());
-    dispatch(addToCartBack(userInfo.id, id, itemQuantity));
+    if (userInfo.id) {
+      dispatch(addToCartBack(userInfo.id, id, itemQuantity));
+    }
   }
 
   return (
@@ -160,9 +162,9 @@ function ProductDetail() {
                               >
                                 <svg
                                   fill="tomato"
-                                  stroke-linecap="round"
-                                  stroke-linejoin="round"
-                                  stroke-width="2"
+                                  strokeLinecap="round"
+                                  strokeLinejoin="round"
+                                  strokeWidth="2"
                                   className="w-5 h-5"
                                   viewBox="0 0 24 24"
                                 >
@@ -186,9 +188,9 @@ function ProductDetail() {
                               >
                                 <svg
                                   fill="currentColor"
-                                  stroke-linecap="round"
-                                  stroke-linejoin="round"
-                                  stroke-width="2"
+                                  strokeLinecap="round"
+                                  strokeLinejoin="round"
+                                  strokeWidth="2"
                                   className="w-5 h-5"
                                   viewBox="0 0 24 24"
                                 >
@@ -205,9 +207,9 @@ function ProductDetail() {
                               >
                                 <svg
                                   fill="gray"
-                                  stroke-linecap="round"
-                                  stroke-linejoin="round"
-                                  stroke-width="2"
+                                  strokeLinecap="round"
+                                  strokeLinejoin="round"
+                                  strokeWidth="2"
                                   className="w-5 h-5"
                                   viewBox="0 0 24 24"
                                 >
