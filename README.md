@@ -43,31 +43,43 @@ PF-Chilly/
 `-- docs/      Baseline y plan de recuperacion
 ```
 
-## Ejecución original
+## Ejecución local legacy
 
-Los siguientes comandos pertenecen al proyecto original. Todavía no han sido validados en el entorno moderno y pueden fallar hasta completar la primera fase de recuperación.
+La aplicación original fue validada con Node.js `22.14.0`, npm `10.9.2` y PostgreSQL 16. Esta forma de ejecución es temporal y se simplificará durante las siguientes fases.
+
+Antes de arrancar, debe existir una base PostgreSQL accesible y deben crearse los archivos locales a partir de los ejemplos:
+
+```bash
+cd api
+cp .env.example .env
+
+cd ../client
+cp .env.example .env
+```
 
 ### Backend
 
 ```bash
 cd api
-npm install
+npm install --package-lock=false
 npm start
 ```
 
-El backend necesita un archivo `api/.env`. Las variables conocidas están documentadas en `api/.env.example`.
+El backend escucha en `http://localhost:3001` por defecto. En el modo legacy recrea y vuelve a sembrar la base de datos en cada arranque.
 
 ### Frontend
 
 ```bash
 cd client
-npm install
+npm install --package-lock=false
 npm start
 ```
 
+El frontend queda disponible en `http://localhost:3000/PF-Chilly/`. El resultado completo de la primera ejecución está registrado en [docs/LEGACY-RUN.md](docs/LEGACY-RUN.md).
+
 ## Estado de la recuperación
 
-El punto de partida técnico está registrado en [docs/BASELINE.md](docs/BASELINE.md) y el plan de trabajo en [docs/ROADMAP.md](docs/ROADMAP.md). La separación prevista entre entornos está descrita en [docs/ENVIRONMENTS.md](docs/ENVIRONMENTS.md).
+El punto de partida técnico está registrado en [docs/BASELINE.md](docs/BASELINE.md), el primer arranque en [docs/LEGACY-RUN.md](docs/LEGACY-RUN.md) y el plan de trabajo en [docs/ROADMAP.md](docs/ROADMAP.md). La separación prevista entre entornos está descrita en [docs/ENVIRONMENTS.md](docs/ENVIRONMENTS.md).
 
 ## Equipo original
 
