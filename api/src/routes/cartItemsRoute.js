@@ -25,7 +25,6 @@ cartItemsRoute.put('/', async (req, res) => {
 });
 
 cartItemsRoute.delete('/:cartId/:productId', async (req, res) => {
-  console.log(req.params);
   try {
     const deleteCartItem = await deleteItem(req);
     res.status(202).send(deleteCartItem);

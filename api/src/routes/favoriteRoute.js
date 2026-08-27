@@ -29,7 +29,6 @@ favoriteRoute.delete("/:userId/:productId", checkJwt, async (req, res) => {
   try {
     const { userId, productId } = req.params;
 
-    console.log(userId, productId);
     const msg = await removeFavorites(userId, productId);
     res.send(msg);
   } catch (error) {

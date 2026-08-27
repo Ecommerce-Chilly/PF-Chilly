@@ -5,7 +5,9 @@
   "main": "index.js",
   "scripts": {
     "start": "node ./index.js",
-    "test": "mocha"
+    "dev": "nodemon ./index.js",
+    "test": "mocha \"test/**/*.test.js\"",
+    "smoke": "node ./scripts/smoke.js"
   },
   "author": "team-gorditos-developers",
   "license": "ISC",

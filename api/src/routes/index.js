@@ -14,7 +14,17 @@ const cartRoutes = require('./cartRoutes');
 const cartItemsRoute = require('./cartItemsRoute');
 const dataUserRoute = require('./dataUserRoute');
 const articleRoute = require('./articleRoute');
+const { conn } = require('../db');
 // termnina lo de josema
+
+router.get('/health', async (req, res, next) => {
+  try {
+    await conn.authenticate();
+    res.status(200).send({ status: 'ok', database: 'connected' });
+  } catch (error) {
+    next(error);
+  }
+});
 
 // router.use("/Guillo", async (req, res, next) => {
 //   // await defaultDiscount()

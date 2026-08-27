@@ -5,8 +5,8 @@ const postUser = async ({ email, name, img, id }) => {
     if (!email) throw 'You need to fill all fields';
     const findUser = await User.findOne({ where: { email: email } });
     if (findUser) throw `The user with the email ${email} exist`;
-    const ostras = await User.create({ id, email, name, img });
-    await addCart(ostras.id);
+    const createdUser = await User.create({ id, email, name, img });
+    await addCart(createdUser.id);
     return `the user was created`;
   } catch (error) {
     throw error;

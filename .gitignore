@@ -1,9 +1,9 @@
-# package-lock.json
-api/package-lock.json
-client/package-lock.json
-
 #Dependency directories
 node_modules/
+
+# Generated frontend artifacts
+client/build/
+client/src/assets/main.css
 
 # dotenv environment variables file
 .env

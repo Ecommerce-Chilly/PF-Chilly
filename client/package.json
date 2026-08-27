@@ -30,13 +30,25 @@
   "scripts": {
     "predeploy": "npm run build",
     "deploy": "gh-pages -d build",
-    "start": "react-scripts start",
-    "dev": "run-p watch:tailwind start",
-    "build": "react-scripts build && npm run build:css",
+    "start": "npm run build:css && react-scripts start",
+    "predev": "npm run build:css",
+    "dev": "run-p --race watch:css start:react",
+    "start:react": "react-scripts start",
+    "build": "npm run build:css && react-scripts build",
+    "lint": "eslint src --ext .js,.jsx",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
     "build:css": "postcss src/assets/tailwind.css -o src/assets/main.css",
     "watch:css": "postcss src/assets/tailwind.css -o src/assets/main.css --watch"
+  },
+  "devDependencies": {
+    "npm-run-all": "^4.1.5"
+  },
+  "eslintConfig": {
+    "extends": [
+      "react-app",
+      "react-app/jest"
+    ]
   },
   "browserslist": {
     "production": [
