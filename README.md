@@ -39,13 +39,13 @@ El repositorio se encuentra actualmente en un proceso de recuperación y moderni
 ```text
 PF-Chilly/
 |-- api/       API, modelos, controladores, rutas y datos iniciales
-|-- client/    Aplicacion React y build historico
+|-- client/    Aplicación React
 `-- docs/      Baseline y plan de recuperacion
 ```
 
-## Ejecución local legacy
+## Ejecución local
 
-La aplicación original fue validada con Node.js `22.14.0`, npm `10.9.2` y PostgreSQL 16. Esta forma de ejecución es temporal y se simplificará durante las siguientes fases.
+La aplicación está validada con Node.js `22.14.0`, npm `10.9.2` y PostgreSQL 16.
 
 Antes de arrancar, debe existir una base PostgreSQL accesible y deben crearse los archivos locales a partir de los ejemplos:
 
@@ -57,29 +57,45 @@ cd ../client
 cp .env.example .env
 ```
 
-### Backend
+Instala las dependencias fijadas por los lockfiles desde la raíz:
 
 ```bash
-cd api
-npm install --package-lock=false
-npm start
+npm ci
+npm --prefix api ci
+npm --prefix client ci
 ```
 
-El backend escucha en `http://localhost:3001` por defecto. En el modo legacy recrea y vuelve a sembrar la base de datos en cada arranque.
-
-### Frontend
+Con PostgreSQL disponible, frontend y backend se levantan juntos mediante:
 
 ```bash
-cd client
-npm install --package-lock=false
-npm start
+npm run dev
 ```
 
-El frontend queda disponible en `http://localhost:3000/PF-Chilly/`. El resultado completo de la primera ejecución está registrado en [docs/LEGACY-RUN.md](docs/LEGACY-RUN.md).
+El backend escucha en `http://localhost:3001` y el frontend en `http://localhost:3000/PF-Chilly/`. El reseteo y seed de la base en cada arranque continúa siendo intencionado para el uso actual como demo.
+
+También pueden ejecutarse por separado:
+
+```bash
+npm --prefix api run dev
+npm --prefix client run dev
+```
+
+### Comprobaciones
+
+```bash
+npm test
+npm run lint
+npm run build
+npm run smoke:api
+```
+
+El smoke test requiere que el backend esté levantado. `client/build` y `client/src/assets/main.css` se generan mediante los scripts y no se versionan.
+
+La preparación detallada de PostgreSQL está en [docs/LEGACY-RUN.md](docs/LEGACY-RUN.md) y los cambios de estabilización en [docs/PHASE-2.md](docs/PHASE-2.md).
 
 ## Estado de la recuperación
 
-El punto de partida técnico está registrado en [docs/BASELINE.md](docs/BASELINE.md), el primer arranque en [docs/LEGACY-RUN.md](docs/LEGACY-RUN.md) y el plan de trabajo en [docs/ROADMAP.md](docs/ROADMAP.md). La separación prevista entre entornos está descrita en [docs/ENVIRONMENTS.md](docs/ENVIRONMENTS.md).
+El punto de partida técnico está registrado en [docs/BASELINE.md](docs/BASELINE.md), el primer arranque en [docs/LEGACY-RUN.md](docs/LEGACY-RUN.md), la estabilización en [docs/PHASE-2.md](docs/PHASE-2.md) y el plan de trabajo en [docs/ROADMAP.md](docs/ROADMAP.md). La separación prevista entre entornos está descrita en [docs/ENVIRONMENTS.md](docs/ENVIRONMENTS.md).
 
 ## Equipo original
 

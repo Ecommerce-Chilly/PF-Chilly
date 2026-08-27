@@ -25,6 +25,8 @@ Recuperar y modernizar Chilly para convertirlo en una demo pública segura y pre
 
 ## Fase 0 — Baseline y documentación
 
+**Estado:** completada.
+
 - Preservar el commit original mediante una etiqueta.
 - Crear la rama de recuperación.
 - Registrar arquitectura, dependencias y estado externo.
@@ -36,6 +38,8 @@ Recuperar y modernizar Chilly para convertirlo en una demo pública segura y pre
 
 ## Fase 1 — Levantar la aplicación legacy
 
+**Estado:** completada. Véase [LEGACY-RUN.md](LEGACY-RUN.md).
+
 - Instalar las dependencias sin migraciones tecnológicas deliberadas.
 - Crear una PostgreSQL local y configurar el backend.
 - Resolver únicamente bloqueos imprescindibles de instalación y arranque.
@@ -45,6 +49,8 @@ Recuperar y modernizar Chilly para convertirlo en una demo pública segura y pre
 **Salida:** versión legacy funcionando localmente o inventario reproducible de los bloqueos restantes.
 
 ## Fase 2 — Estructura, build y limpieza
+
+**Estado:** completada. Véase [PHASE-2.md](PHASE-2.md).
 
 - Crear scripts coherentes en la raíz del proyecto.
 - Incorporar lockfiles y builds reproducibles.
