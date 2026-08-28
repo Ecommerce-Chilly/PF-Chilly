@@ -10,19 +10,19 @@ import {
   noFooter,
   hideFooter,
   getProduct,
-  addToCart,
   addToCartBack,
 } from '../../../redux/actions/actions';
 
 import { useState } from 'react';
 import { useEffect } from 'react';
 import ReactTooltip from 'react-tooltip';
+import intelLogo from '../../../img/intel.png';
+import amdLogo from '../../../img/amd.webp';
 
 function BuildYourOwn() {
   let history = useHistory();
   let byo = useSelector((state) => state.build);
   let userInfo = useSelector((state) => state.userInfo);
-  console.log(byo);
   let products = useSelector((state) => state.allProduct);
   let dispatch = useDispatch();
   let [i, setI] = useState(-1);
@@ -43,7 +43,7 @@ function BuildYourOwn() {
   let [firstLetter, setFirstLetter] = useState('');
 
   for (let i = 1; i < byo.length; i++) {
-    byo[i].price ? (totalPrice = totalPrice + byo[i].price) : null;
+    if (byo[i].price) totalPrice += byo[i].price;
   }
 
   useEffect(() => {
@@ -58,16 +58,14 @@ function BuildYourOwn() {
   function addCart() {
     if (userInfo.id) {
       for (let index = 0; index < byo.length; index++) {
-        byo[index].id
-          ? dispatch(addToCartBack(userInfo.id, byo[index].id, 1))
-          : null;
+        if (byo[index].id) {
+          dispatch(addToCartBack(userInfo.id, byo[index].id, 1));
+        }
       }
     }
   }
 
   useEffect(() => {
-    console.log(i);
-    console.log(categories[i]);
     if (byo[0]) {
       if (byo[0].name === 'amd') {
         setFirstLetter('A');
@@ -75,7 +73,6 @@ function BuildYourOwn() {
         setFirstLetter('L');
       }
     }
-    console.log(firstLetter);
   }, [i]);
   return (
     <div className="mb-48">
@@ -141,12 +138,12 @@ function BuildYourOwn() {
                   y="0px"
                   viewBox="0 0 392.652 392.652"
                   fill="rgb(48, 63, 159)"
-                  stroke-linecap="round"
+                  strokeLinecap="round"
                 >
                   <g>
                     <path
-                      stroke-width="1"
-                      stroke-linecap="round"
+                      strokeWidth="1"
+                      strokeLinecap="round"
                       d="M371.439,243.7l-35.961,35.961c11.209-92.047-39.457-184.193-129.211-221.371c-34.202-14.167-71.578-19.149-108.094-14.425
 	C62.773,48.452,28.825,62.018,0,83.1l17.709,24.215c51.74-37.839,117.938-45.807,177.078-21.308
 	c85.411,35.379,129.596,128.751,105.878,215.706L242.652,243.7l-21.213,21.213l85.606,85.606l85.606-85.606L371.439,243.7z"
@@ -194,7 +191,7 @@ function BuildYourOwn() {
                   <g>
                     <g>
                       <path
-                        class="arma-item-fill"
+                        className="arma-item-fill"
                         d="M41.03,42.85h-9.69v-0.87c0-0.62-0.58-0.82-1.09-0.88v1.75H2.4c-1.33,0-2.4-1.08-2.4-2.4V2.4C0,1.08,1.08,0,2.4,0h38.62c1.33,0,2.4,1.08,2.4,2.4v38.04C43.43,41.77,42.35,42.85,41.03,42.85z M32.93,41.1h8.1c0.36,0,0.66-0.29,0.66-0.66V2.4c0-0.36-0.29-0.66-0.66-0.66H2.4c-0.36,0-0.66,0.29-0.66,0.66v38.04c0,0.36,0.29,0.66,0.66,0.66h26.09v-1.68l0.8-0.07c0.19-0.02,0.38-0.03,0.57-0.03C31.58,39.33,32.57,40.13,32.93,41.1z"
                       ></path>
                     </g>
@@ -203,7 +200,7 @@ function BuildYourOwn() {
                         <rect
                           x="5.17"
                           y="9.91"
-                          class="arma-item-fill"
+                          className="arma-item-fill"
                           width="3.46"
                           height="1.75"
                         ></rect>
@@ -212,7 +209,7 @@ function BuildYourOwn() {
                         <rect
                           x="5.17"
                           y="14.06"
-                          class="arma-item-fill"
+                          className="arma-item-fill"
                           width="3.46"
                           height="1.75"
                         ></rect>
@@ -221,7 +218,7 @@ function BuildYourOwn() {
                         <rect
                           x="5.17"
                           y="18.22"
-                          class="arma-item-fill"
+                          className="arma-item-fill"
                           width="3.46"
                           height="1.75"
                         ></rect>
@@ -230,7 +227,7 @@ function BuildYourOwn() {
                         <rect
                           x="5.17"
                           y="22.37"
-                          class="arma-item-fill"
+                          className="arma-item-fill"
                           width="3.46"
                           height="1.75"
                         ></rect>
@@ -239,7 +236,7 @@ function BuildYourOwn() {
                         <rect
                           x="5.17"
                           y="26.52"
-                          class="arma-item-fill"
+                          className="arma-item-fill"
                           width="3.46"
                           height="1.75"
                         ></rect>
@@ -248,7 +245,7 @@ function BuildYourOwn() {
                         <rect
                           x="5.17"
                           y="30.68"
-                          class="arma-item-fill"
+                          className="arma-item-fill"
                           width="3.46"
                           height="1.75"
                         ></rect>
@@ -259,7 +256,7 @@ function BuildYourOwn() {
                         <rect
                           x="34.8"
                           y="9.91"
-                          class="arma-item-fill"
+                          className="arma-item-fill"
                           width="3.46"
                           height="1.75"
                         ></rect>
@@ -268,7 +265,7 @@ function BuildYourOwn() {
                         <rect
                           x="34.8"
                           y="14.06"
-                          class="arma-item-fill"
+                          className="arma-item-fill"
                           width="3.46"
                           height="1.75"
                         ></rect>
@@ -277,7 +274,7 @@ function BuildYourOwn() {
                         <rect
                           x="34.8"
                           y="18.22"
-                          class="arma-item-fill"
+                          className="arma-item-fill"
                           width="3.46"
                           height="1.75"
                         ></rect>
@@ -286,7 +283,7 @@ function BuildYourOwn() {
                         <rect
                           x="34.8"
                           y="22.37"
-                          class="arma-item-fill"
+                          className="arma-item-fill"
                           width="3.46"
                           height="1.75"
                         ></rect>
@@ -295,7 +292,7 @@ function BuildYourOwn() {
                         <rect
                           x="34.8"
                           y="26.52"
-                          class="arma-item-fill"
+                          className="arma-item-fill"
                           width="3.46"
                           height="1.75"
                         ></rect>
@@ -304,7 +301,7 @@ function BuildYourOwn() {
                         <rect
                           x="34.8"
                           y="30.68"
-                          class="arma-item-fill"
+                          className="arma-item-fill"
                           width="3.46"
                           height="1.75"
                         ></rect>
@@ -312,20 +309,20 @@ function BuildYourOwn() {
                     </g>
                     <g>
                       <path
-                        class="arma-item-fill"
+                        className="arma-item-fill"
                         d="M18.64,26.44c-2.09-0.05-3.58-0.84-4.11-2.17c-0.48-1.2-0.09-2.6,1.1-3.96c1.05-1.2,2.63-2.26,4.46-2.99l0.65,1.63c-1.57,0.62-2.92,1.52-3.78,2.51c-0.72,0.83-1.01,1.62-0.79,2.17c0.25,0.63,1.2,1.03,2.53,1.06L18.64,26.44z"
                       ></path>
                     </g>
                     <g>
                       <path
-                        class="arma-item-fill"
+                        className="arma-item-fill"
                         d="M23.34,25.52L22.7,23.9c3.18-1.26,5.04-3.51,4.57-4.68c-0.25-0.63-1.19-1.03-2.52-1.06l0.04-1.75c2.08,0.05,3.58,0.84,4.11,2.17C29.81,20.87,27.37,23.92,23.34,25.52z"
                       ></path>
                     </g>
                     <g>
                       <g>
                         <path
-                          class="arma-item-fill"
+                          className="arma-item-fill"
                           d="M35.67,35.38H29.6l-0.28-1.2h-1.67l-0.28,1.2H7.76V7.47h6.07l0.28,1.2h1.67l0.28-1.2h19.62V35.38z M31,33.63h2.93V9.22H17.44l-0.28,1.2h-4.45l-0.28-1.2H9.51v24.41h16.48l0.28-1.2h4.45L31,33.63z"
                         ></path>
                       </g>
@@ -334,7 +331,7 @@ function BuildYourOwn() {
                       <rect
                         x="11.22"
                         y="34.5"
-                        class="arma-item-fill"
+                        className="arma-item-fill"
                         width="1.75"
                         height="1.93"
                       ></rect>
@@ -343,7 +340,7 @@ function BuildYourOwn() {
                       <rect
                         x="14.34"
                         y="34.5"
-                        class="arma-item-fill"
+                        className="arma-item-fill"
                         width="1.75"
                         height="1.93"
                       ></rect>
@@ -352,7 +349,7 @@ function BuildYourOwn() {
                       <rect
                         x="17.46"
                         y="34.5"
-                        class="arma-item-fill"
+                        className="arma-item-fill"
                         width="1.75"
                         height="1.93"
                       ></rect>
@@ -361,7 +358,7 @@ function BuildYourOwn() {
                       <rect
                         x="20.58"
                         y="34.5"
-                        class="arma-item-fill"
+                        className="arma-item-fill"
                         width="1.75"
                         height="1.93"
                       ></rect>
@@ -370,7 +367,7 @@ function BuildYourOwn() {
                       <rect
                         x="31.19"
                         y="6.41"
-                        class="arma-item-fill"
+                        className="arma-item-fill"
                         width="1.75"
                         height="1.93"
                       ></rect>
@@ -379,7 +376,7 @@ function BuildYourOwn() {
                       <rect
                         x="28.35"
                         y="6.41"
-                        class="arma-item-fill"
+                        className="arma-item-fill"
                         width="1.75"
                         height="1.93"
                       ></rect>
@@ -388,7 +385,7 @@ function BuildYourOwn() {
                       <rect
                         x="25.5"
                         y="6.41"
-                        class="arma-item-fill"
+                        className="arma-item-fill"
                         width="1.75"
                         height="1.93"
                       ></rect>
@@ -397,7 +394,7 @@ function BuildYourOwn() {
                       <rect
                         x="22.66"
                         y="6.41"
-                        class="arma-item-fill"
+                        className="arma-item-fill"
                         width="1.75"
                         height="1.93"
                       ></rect>
@@ -406,7 +403,7 @@ function BuildYourOwn() {
                       <rect
                         x="19.82"
                         y="6.41"
-                        class="arma-item-fill"
+                        className="arma-item-fill"
                         width="1.75"
                         height="1.93"
                       ></rect>
@@ -415,7 +412,7 @@ function BuildYourOwn() {
                       <rect
                         x="23.54"
                         y="10.78"
-                        class="arma-item-fill"
+                        className="arma-item-fill"
                         width="8.53"
                         height="1.75"
                       ></rect>
@@ -424,7 +421,7 @@ function BuildYourOwn() {
                       <rect
                         x="19.02"
                         y="10.78"
-                        class="arma-item-fill"
+                        className="arma-item-fill"
                         width="2.43"
                         height="1.75"
                       ></rect>
@@ -433,7 +430,7 @@ function BuildYourOwn() {
                       <rect
                         x="12.1"
                         y="29.88"
-                        class="arma-item-fill"
+                        className="arma-item-fill"
                         width="2.62"
                         height="1.75"
                       ></rect>
@@ -442,7 +439,7 @@ function BuildYourOwn() {
                       <rect
                         x="17.61"
                         y="29.88"
-                        class="arma-item-fill"
+                        className="arma-item-fill"
                         width="7.16"
                         height="1.75"
                       ></rect>
@@ -488,37 +485,37 @@ function BuildYourOwn() {
                     <g>
                       <g>
                         <path
-                          class="arma-item-fill"
+                          className="arma-item-fill"
                           d="M44,34.39H0V26.7h0.88v-1.72H0V2.49h44v5.15h-1.45v3.19H44V34.39z M1.69,32.7h40.62V12.53h-1.45V5.95h1.45V4.18H1.69v19.1h0.88v5.11H1.69V32.7z"
                         ></path>
                       </g>
                       <g>
                         <polygon
-                          class="arma-item-fill"
+                          className="arma-item-fill"
                           points="9.14,3.34 7.44,3.34 7.44,1.69 5.63,1.69 5.63,3.34 3.93,3.34 3.93,0 9.14,0 "
                         ></polygon>
                       </g>
                       <g>
                         <polygon
-                          class="arma-item-fill"
+                          className="arma-item-fill"
                           points="15.69,3.34 14,3.34 14,1.69 12.18,1.69 12.18,3.34 10.49,3.34 10.49,0 15.69,0 "
                         ></polygon>
                       </g>
                       <g>
                         <polygon
-                          class="arma-item-fill"
+                          className="arma-item-fill"
                           points="22.24,3.34 20.55,3.34 20.55,1.69 18.73,1.69 18.73,3.34 17.04,3.34 17.04,0 22.24,0 "
                         ></polygon>
                       </g>
                       <g>
                         <polygon
-                          class="arma-item-fill"
+                          className="arma-item-fill"
                           points="35.99,36.63 26.52,36.63 26.52,33.55 28.21,33.55 28.21,34.94 34.3,34.94 34.3,33.55 35.99,33.55 "
                         ></polygon>
                       </g>
                       <g>
                         <path
-                          class="arma-item-fill"
+                          className="arma-item-fill"
                           d="M36.48,29.62H26.02V19.16h10.46V29.62z M27.72,27.92h7.07v-7.07h-7.07V27.92z"
                         ></path>
                       </g>
@@ -527,7 +524,7 @@ function BuildYourOwn() {
                           <rect
                             x="27.18"
                             y="17.99"
-                            class="arma-item-fill"
+                            className="arma-item-fill"
                             width="1.69"
                             height="2.02"
                           ></rect>
@@ -536,7 +533,7 @@ function BuildYourOwn() {
                           <rect
                             x="30.41"
                             y="17.99"
-                            class="arma-item-fill"
+                            className="arma-item-fill"
                             width="1.69"
                             height="2.02"
                           ></rect>
@@ -545,7 +542,7 @@ function BuildYourOwn() {
                           <rect
                             x="33.63"
                             y="17.99"
-                            class="arma-item-fill"
+                            className="arma-item-fill"
                             width="1.69"
                             height="2.02"
                           ></rect>
@@ -556,7 +553,7 @@ function BuildYourOwn() {
                           <rect
                             x="35.64"
                             y="20.32"
-                            class="arma-item-fill"
+                            className="arma-item-fill"
                             width="2.02"
                             height="1.69"
                           ></rect>
@@ -565,7 +562,7 @@ function BuildYourOwn() {
                           <rect
                             x="35.64"
                             y="23.54"
-                            class="arma-item-fill"
+                            className="arma-item-fill"
                             width="2.02"
                             height="1.69"
                           ></rect>
@@ -574,7 +571,7 @@ function BuildYourOwn() {
                           <rect
                             x="35.64"
                             y="26.76"
-                            class="arma-item-fill"
+                            className="arma-item-fill"
                             width="2.02"
                             height="1.69"
                           ></rect>
@@ -585,7 +582,7 @@ function BuildYourOwn() {
                           <rect
                             x="33.63"
                             y="28.77"
-                            class="arma-item-fill"
+                            className="arma-item-fill"
                             width="1.69"
                             height="2.02"
                           ></rect>
@@ -594,7 +591,7 @@ function BuildYourOwn() {
                           <rect
                             x="30.41"
                             y="28.77"
-                            class="arma-item-fill"
+                            className="arma-item-fill"
                             width="1.69"
                             height="2.02"
                           ></rect>
@@ -603,7 +600,7 @@ function BuildYourOwn() {
                           <rect
                             x="27.18"
                             y="28.77"
-                            class="arma-item-fill"
+                            className="arma-item-fill"
                             width="1.69"
                             height="2.02"
                           ></rect>
@@ -614,7 +611,7 @@ function BuildYourOwn() {
                           <rect
                             x="24.85"
                             y="26.76"
-                            class="arma-item-fill"
+                            className="arma-item-fill"
                             width="2.02"
                             height="1.69"
                           ></rect>
@@ -623,7 +620,7 @@ function BuildYourOwn() {
                           <rect
                             x="24.85"
                             y="23.54"
-                            class="arma-item-fill"
+                            className="arma-item-fill"
                             width="2.02"
                             height="1.69"
                           ></rect>
@@ -632,7 +629,7 @@ function BuildYourOwn() {
                           <rect
                             x="24.85"
                             y="20.32"
-                            class="arma-item-fill"
+                            className="arma-item-fill"
                             width="2.02"
                             height="1.69"
                           ></rect>
@@ -640,7 +637,7 @@ function BuildYourOwn() {
                       </g>
                       <g>
                         <path
-                          class="arma-item-fill"
+                          className="arma-item-fill"
                           d="M22.6,15H4.54V6.68H22.6V15z M6.24,13.31h14.67V8.37H6.24V13.31z"
                         ></path>
                       </g>
@@ -648,20 +645,20 @@ function BuildYourOwn() {
                         <rect
                           x="5.39"
                           y="9.99"
-                          class="arma-item-fill"
+                          className="arma-item-fill"
                           width="16.36"
                           height="1.69"
                         ></rect>
                       </g>
                       <g>
                         <path
-                          class="arma-item-fill"
+                          className="arma-item-fill"
                           d="M26.72,10.98c-1.19,0-2.15-0.97-2.15-2.15c0-1.19,0.97-2.15,2.15-2.15c1.19,0,2.15,0.97,2.15,2.15C28.88,10.02,27.91,10.98,26.72,10.98z M26.72,8.37c-0.25,0-0.46,0.21-0.46,0.46c0,0.25,0.21,0.46,0.46,0.46c0.25,0,0.46-0.21,0.46-0.46C27.18,8.57,26.98,8.37,26.72,8.37z"
                         ></path>
                       </g>
                       <g>
                         <path
-                          class="arma-item-fill"
+                          className="arma-item-fill"
                           d="M36.65,15.89c-1.19,0-2.15-0.97-2.15-2.15s0.97-2.15,2.15-2.15c1.19,0,2.15,0.97,2.15,2.15S37.83,15.89,36.65,15.89z M36.65,13.28c-0.25,0-0.46,0.21-0.46,0.46s0.21,0.46,0.46,0.46c0.25,0,0.46-0.21,0.46-0.46S36.9,13.28,36.65,13.28z"
                         ></path>
                       </g>
@@ -669,7 +666,7 @@ function BuildYourOwn() {
                         <rect
                           x="20.48"
                           y="17.14"
-                          class="arma-item-fill"
+                          className="arma-item-fill"
                           width="1.83"
                           height="1.69"
                         ></rect>
@@ -678,7 +675,7 @@ function BuildYourOwn() {
                         <rect
                           x="25.42"
                           y="13.31"
-                          class="arma-item-fill"
+                          className="arma-item-fill"
                           width="1.83"
                           height="1.69"
                         ></rect>
@@ -687,7 +684,7 @@ function BuildYourOwn() {
                         <rect
                           x="29.94"
                           y="13.31"
-                          class="arma-item-fill"
+                          className="arma-item-fill"
                           width="1.83"
                           height="1.69"
                         ></rect>
@@ -696,7 +693,7 @@ function BuildYourOwn() {
                         <rect
                           x="30.34"
                           y="23.54"
-                          class="arma-item-fill"
+                          className="arma-item-fill"
                           width="1.83"
                           height="1.69"
                         ></rect>
@@ -705,7 +702,7 @@ function BuildYourOwn() {
                         <rect
                           x="16.97"
                           y="17.14"
-                          class="arma-item-fill"
+                          className="arma-item-fill"
                           width="1.83"
                           height="1.69"
                         ></rect>
@@ -714,7 +711,7 @@ function BuildYourOwn() {
                         <rect
                           x="20.48"
                           y="19.84"
-                          class="arma-item-fill"
+                          className="arma-item-fill"
                           width="1.83"
                           height="1.69"
                         ></rect>
@@ -723,7 +720,7 @@ function BuildYourOwn() {
                         <rect
                           x="16.97"
                           y="19.84"
-                          class="arma-item-fill"
+                          className="arma-item-fill"
                           width="1.83"
                           height="1.69"
                         ></rect>
@@ -732,7 +729,7 @@ function BuildYourOwn() {
                         <rect
                           x="20.48"
                           y="22.53"
-                          class="arma-item-fill"
+                          className="arma-item-fill"
                           width="1.83"
                           height="1.69"
                         ></rect>
@@ -741,21 +738,21 @@ function BuildYourOwn() {
                         <rect
                           x="16.97"
                           y="22.53"
-                          class="arma-item-fill"
+                          className="arma-item-fill"
                           width="1.83"
                           height="1.69"
                         ></rect>
                       </g>
                       <g>
                         <path
-                          class="arma-item-fill"
+                          className="arma-item-fill"
                           d="M39.19,10.98h-8.27V6.68h8.27V10.98z M32.61,9.29h4.89V8.37h-4.89V9.29z"
                         ></path>
                       </g>
                       <g>
                         <g>
                           <path
-                            class="arma-item-fill"
+                            className="arma-item-fill"
                             d="M8.83,30.61H4.32v-6.27h4.52V30.61z M6.01,28.91h1.13v-2.89H6.01V28.91z"
                           ></path>
                         </g>
@@ -763,7 +760,7 @@ function BuildYourOwn() {
                           <rect
                             x="5.73"
                             y="23.7"
-                            class="arma-item-fill"
+                            className="arma-item-fill"
                             width="1.69"
                             height="1.48"
                           ></rect>
@@ -772,7 +769,7 @@ function BuildYourOwn() {
                           <rect
                             x="5.73"
                             y="29.83"
-                            class="arma-item-fill"
+                            className="arma-item-fill"
                             width="1.69"
                             height="1.48"
                           ></rect>
@@ -781,7 +778,7 @@ function BuildYourOwn() {
                       <g>
                         <g>
                           <path
-                            class="arma-item-fill"
+                            className="arma-item-fill"
                             d="M15,30.57h-4.52V24.3H15V30.57z M12.18,28.88h1.13v-2.89h-1.13V28.88z"
                           ></path>
                         </g>
@@ -789,7 +786,7 @@ function BuildYourOwn() {
                           <rect
                             x="11.9"
                             y="23.66"
-                            class="arma-item-fill"
+                            className="arma-item-fill"
                             width="1.69"
                             height="1.48"
                           ></rect>
@@ -798,7 +795,7 @@ function BuildYourOwn() {
                           <rect
                             x="11.9"
                             y="29.8"
-                            class="arma-item-fill"
+                            className="arma-item-fill"
                             width="1.69"
                             height="1.48"
                           ></rect>
@@ -806,7 +803,7 @@ function BuildYourOwn() {
                       </g>
                       <g>
                         <path
-                          class="arma-item-fill"
+                          className="arma-item-fill"
                           d="M13.59,22.41H4.51V17.6h9.08V22.41z M6.21,20.72h5.69v-1.43H6.21V20.72z"
                         ></path>
                       </g>
@@ -814,7 +811,7 @@ function BuildYourOwn() {
                         <rect
                           x="16.97"
                           y="29.12"
-                          class="arma-item-fill"
+                          className="arma-item-fill"
                           width="5.34"
                           height="1.69"
                         ></rect>
@@ -824,7 +821,7 @@ function BuildYourOwn() {
                       <rect
                         x="20.55"
                         y="33.55"
-                        class="arma-item-fill"
+                        className="arma-item-fill"
                         width="1.69"
                         height="2.24"
                       ></rect>
@@ -833,7 +830,7 @@ function BuildYourOwn() {
                       <rect
                         x="17.04"
                         y="33.55"
-                        class="arma-item-fill"
+                        className="arma-item-fill"
                         width="1.69"
                         height="2.24"
                       ></rect>
@@ -842,7 +839,7 @@ function BuildYourOwn() {
                       <rect
                         x="13.53"
                         y="33.55"
-                        class="arma-item-fill"
+                        className="arma-item-fill"
                         width="1.69"
                         height="2.24"
                       ></rect>
@@ -925,50 +922,50 @@ function BuildYourOwn() {
                   <g>
                     <g>
                       <path
-                        class="arma-item-fill"
+                        className="arma-item-fill"
                         d="M50,20.6H25.26v-1.06c0-0.15-0.12-0.26-0.26-0.26c-0.15,0-0.26,0.12-0.26,0.26v1.06H0v-6.55h10.97v2.13H2.13v2.29h20.74c0.39-0.79,1.2-1.33,2.14-1.33c0.94,0,1.75,0.54,2.14,1.33h20.74v-2.29H14.46v-2.13H50V20.6z"
                       ></path>
                     </g>
                     <g>
                       <polygon
-                        class="arma-item-fill"
+                        className="arma-item-fill"
                         points="50,15.21 47.87,15.21 47.87,10.79 46.81,10.79 46.81,5.95 47.87,5.95 47.87,2.13 29.13,2.13 29.13,0 50,0 50,8.07 48.94,8.07 48.94,8.66 50,8.66 "
                       ></polygon>
                     </g>
                     <g>
                       <polygon
-                        class="arma-item-fill"
+                        className="arma-item-fill"
                         points="2.13,15.21 0,15.21 0,8.66 1.06,8.66 1.06,8.07 0,8.07 0,0 20.87,0 20.87,2.13 2.13,2.13 2.13,5.95 3.19,5.95 3.19,10.79 2.13,10.79 "
                       ></polygon>
                     </g>
                     <g>
                       <path
-                        class="arma-item-fill"
+                        className="arma-item-fill"
                         d="M12.82,12.73H7.12V3.63h5.71V12.73z M9.24,10.61h1.45V5.75H9.24V10.61z"
                       ></path>
                     </g>
                     <g>
                       <path
-                        class="arma-item-fill"
+                        className="arma-item-fill"
                         d="M22.73,12.73h-5.71V3.63h5.71V12.73z M19.15,10.61h1.45V5.75h-1.45V10.61z"
                       ></path>
                     </g>
                     <g>
                       <path
-                        class="arma-item-fill"
+                        className="arma-item-fill"
                         d="M32.63,12.73h-5.71V3.63h5.71V12.73z M29.05,10.61h1.45V5.75h-1.45V10.61z"
                       ></path>
                     </g>
                     <g>
                       <path
-                        class="arma-item-fill"
+                        className="arma-item-fill"
                         d="M42.53,12.73h-5.71V3.63h5.71V12.73z M38.95,10.61h1.45V5.75h-1.45V10.61z"
                       ></path>
                     </g>
                     <g>
                       <rect
                         x="22.68"
-                        class="arma-item-fill"
+                        className="arma-item-fill"
                         width="4.95"
                         height="2.13"
                       ></rect>
@@ -977,7 +974,7 @@ function BuildYourOwn() {
                       <rect
                         x="43.99"
                         y="17.33"
-                        class="arma-item-fill"
+                        className="arma-item-fill"
                         width="2.13"
                         height="2.21"
                       ></rect>
@@ -986,7 +983,7 @@ function BuildYourOwn() {
                       <rect
                         x="40.41"
                         y="17.33"
-                        class="arma-item-fill"
+                        className="arma-item-fill"
                         width="2.13"
                         height="2.21"
                       ></rect>
@@ -995,7 +992,7 @@ function BuildYourOwn() {
                       <rect
                         x="36.83"
                         y="17.33"
-                        class="arma-item-fill"
+                        className="arma-item-fill"
                         width="2.13"
                         height="2.21"
                       ></rect>
@@ -1004,7 +1001,7 @@ function BuildYourOwn() {
                       <rect
                         x="33.25"
                         y="17.33"
-                        class="arma-item-fill"
+                        className="arma-item-fill"
                         width="2.13"
                         height="2.21"
                       ></rect>
@@ -1013,7 +1010,7 @@ function BuildYourOwn() {
                       <rect
                         x="29.67"
                         y="17.33"
-                        class="arma-item-fill"
+                        className="arma-item-fill"
                         width="2.13"
                         height="2.21"
                       ></rect>
@@ -1022,7 +1019,7 @@ function BuildYourOwn() {
                       <rect
                         x="18.39"
                         y="17.33"
-                        class="arma-item-fill"
+                        className="arma-item-fill"
                         width="2.13"
                         height="2.21"
                       ></rect>
@@ -1031,7 +1028,7 @@ function BuildYourOwn() {
                       <rect
                         x="14.81"
                         y="17.33"
-                        class="arma-item-fill"
+                        className="arma-item-fill"
                         width="2.13"
                         height="2.21"
                       ></rect>
@@ -1040,7 +1037,7 @@ function BuildYourOwn() {
                       <rect
                         x="11.23"
                         y="17.33"
-                        class="arma-item-fill"
+                        className="arma-item-fill"
                         width="2.13"
                         height="2.21"
                       ></rect>
@@ -1049,7 +1046,7 @@ function BuildYourOwn() {
                       <rect
                         x="7.65"
                         y="17.33"
-                        class="arma-item-fill"
+                        className="arma-item-fill"
                         width="2.13"
                         height="2.21"
                       ></rect>
@@ -1058,7 +1055,7 @@ function BuildYourOwn() {
                       <rect
                         x="4.07"
                         y="17.33"
-                        class="arma-item-fill"
+                        className="arma-item-fill"
                         width="2.13"
                         height="2.21"
                       ></rect>
@@ -1103,19 +1100,19 @@ function BuildYourOwn() {
                   <g>
                     <g>
                       <polygon
-                        class="arma-item-fill"
+                        className="arma-item-fill"
                         points="13.95,32.18 5.26,32.18 5.26,30.4 13.65,30.4 16.63,28.11 39.06,28.11 41.85,26.03 41.85,8.59 39.06,6.51 16.63,6.51 13.65,4.22 5.26,4.22 5.26,2.44 14.25,2.44 17.23,4.74 39.65,4.74 43.62,7.7 43.62,26.92 39.65,29.88 17.23,29.88 14.25,32.18 "
                       ></polygon>
                     </g>
                     <g>
                       <path
-                        class="arma-item-fill"
+                        className="arma-item-fill"
                         d="M15.37,26.52c-5.08,0-9.21-4.13-9.21-9.21c0-5.08,4.13-9.21,9.21-9.21c5.08,0,9.21,4.13,9.21,9.21C24.58,22.39,20.45,26.52,15.37,26.52z M15.37,9.87c-4.1,0-7.44,3.34-7.44,7.44c0,4.1,3.34,7.44,7.44,7.44c4.1,0,7.44-3.34,7.44-7.44C22.8,13.21,19.47,9.87,15.37,9.87z"
                       ></path>
                     </g>
                     <g>
                       <path
-                        class="arma-item-fill"
+                        className="arma-item-fill"
                         d="M15.37,20.83c-1.94,0-3.52-1.58-3.52-3.52c0-1.94,1.58-3.52,3.52-3.52c1.94,0,3.52,1.58,3.52,3.52C18.89,19.25,17.31,20.83,15.37,20.83z M15.37,15.56c-0.96,0-1.75,0.78-1.75,1.75c0,0.96,0.78,1.75,1.75,1.75c0.96,0,1.75-0.78,1.75-1.75C17.11,16.35,16.33,15.56,15.37,15.56z"
                       ></path>
                     </g>
@@ -1124,7 +1121,7 @@ function BuildYourOwn() {
                         x="11.41"
                         y="11.67"
                         transform="matrix(0.5534 -0.8329 0.8329 0.5534 -3.6045 18.4032)"
-                        class="arma-item-fill"
+                        className="arma-item-fill"
                         width="7.9"
                         height="1.78"
                       ></rect>
@@ -1134,7 +1131,7 @@ function BuildYourOwn() {
                         x="18.66"
                         y="11.1"
                         transform="matrix(0.0927 -0.9957 0.9957 0.0927 2.7451 33.118)"
-                        class="arma-item-fill"
+                        className="arma-item-fill"
                         width="1.78"
                         height="7.9"
                       ></rect>
@@ -1144,7 +1141,7 @@ function BuildYourOwn() {
                         x="18.45"
                         y="15.97"
                         transform="matrix(0.9207 -0.3902 0.3902 0.9207 -6.2391 9.1225)"
-                        class="arma-item-fill"
+                        className="arma-item-fill"
                         width="1.78"
                         height="7.9"
                       ></rect>
@@ -1154,7 +1151,7 @@ function BuildYourOwn() {
                         x="11"
                         y="21.15"
                         transform="matrix(0.6259 -0.7799 0.7799 0.6259 -11.5951 19.903)"
-                        class="arma-item-fill"
+                        className="arma-item-fill"
                         width="7.9"
                         height="1.78"
                       ></rect>
@@ -1164,7 +1161,7 @@ function BuildYourOwn() {
                         x="10.12"
                         y="15.23"
                         transform="matrix(0.1818 -0.9833 0.9833 0.1818 -9.858 26.5188)"
-                        class="arma-item-fill"
+                        className="arma-item-fill"
                         width="1.78"
                         height="7.9"
                       ></rect>
@@ -1174,7 +1171,7 @@ function BuildYourOwn() {
                         x="10.76"
                         y="10.41"
                         transform="matrix(0.9521 -0.3059 0.3059 0.9521 -3.8325 4.2518)"
-                        class="arma-item-fill"
+                        className="arma-item-fill"
                         width="1.78"
                         height="7.9"
                       ></rect>
@@ -1182,7 +1179,7 @@ function BuildYourOwn() {
                     <g>
                       <g>
                         <polygon
-                          class="arma-item-fill"
+                          className="arma-item-fill"
                           points="42.73,12.08 36.43,12.08 34.9,10.11 24.23,10.11 24.23,8.33 35.77,8.33 37.3,10.3 42.73,10.3 "
                         ></polygon>
                       </g>
@@ -1190,14 +1187,14 @@ function BuildYourOwn() {
                         <rect
                           x="26.86"
                           y="13.04"
-                          class="arma-item-fill"
+                          className="arma-item-fill"
                           width="2.67"
                           height="1.78"
                         ></rect>
                       </g>
                       <g>
                         <polygon
-                          class="arma-item-fill"
+                          className="arma-item-fill"
                           points="42.72,16.82 39.06,16.77 37.53,14.81 31.82,14.81 31.82,13.04 38.4,13.04 39.94,15.01 42.75,15.05 "
                         ></polygon>
                       </g>
@@ -1205,7 +1202,7 @@ function BuildYourOwn() {
                     <g>
                       <g>
                         <polygon
-                          class="arma-item-fill"
+                          className="arma-item-fill"
                           points="35.77,26.29 24.23,26.29 24.23,24.51 34.9,24.51 36.43,22.54 42.73,22.54 42.73,24.32 37.3,24.32 "
                         ></polygon>
                       </g>
@@ -1213,14 +1210,14 @@ function BuildYourOwn() {
                         <rect
                           x="26.86"
                           y="19.81"
-                          class="arma-item-fill"
+                          className="arma-item-fill"
                           width="2.67"
                           height="1.78"
                         ></rect>
                       </g>
                       <g>
                         <polygon
-                          class="arma-item-fill"
+                          className="arma-item-fill"
                           points="38.4,21.58 31.82,21.58 31.82,19.81 37.53,19.81 39.06,17.85 42.72,17.8 42.75,19.57 39.94,19.61 "
                         ></polygon>
                       </g>
@@ -1229,7 +1226,7 @@ function BuildYourOwn() {
                       <rect
                         x="18.68"
                         y="29.18"
-                        class="arma-item-fill"
+                        className="arma-item-fill"
                         width="4.35"
                         height="1.78"
                       ></rect>
@@ -1238,7 +1235,7 @@ function BuildYourOwn() {
                       <rect
                         x="33.81"
                         y="29.56"
-                        class="arma-item-fill"
+                        className="arma-item-fill"
                         width="2.29"
                         height="1.78"
                       ></rect>
@@ -1247,33 +1244,33 @@ function BuildYourOwn() {
                       <rect
                         x="19.33"
                         y="3.36"
-                        class="arma-item-fill"
+                        className="arma-item-fill"
                         width="16.65"
                         height="1.78"
                       ></rect>
                     </g>
                     <g>
                       <polygon
-                        class="arma-item-fill"
+                        className="arma-item-fill"
                         points="43.28,26.1 42.19,24.7 44.22,23.12 44.22,11.5 42.19,9.92 43.28,8.52 46,10.63 46,23.99 "
                       ></polygon>
                     </g>
                     <g>
                       <path
-                        class="arma-item-fill"
+                        className="arma-item-fill"
                         d="M4.42,34.54H1.3V0H4.1l2.05,1.65v31.43L4.42,34.54z M3.08,32.77h0.69l0.61-0.51V2.5l-0.9-0.72h-0.4V32.77z"
                       ></path>
                     </g>
                     <g>
                       <polygon
-                        class="arma-item-fill"
+                        className="arma-item-fill"
                         points="2.19,32.18 0,32.18 0,26.34 1.94,25.78 2.44,27.48 1.78,27.68 1.78,30.4 2.19,30.4 "
                       ></polygon>
                     </g>
                     <g>
                       <rect
                         y="18.47"
-                        class="arma-item-fill"
+                        className="arma-item-fill"
                         width="1.78"
                         height="3.57"
                       ></rect>
@@ -1281,7 +1278,7 @@ function BuildYourOwn() {
                     <g>
                       <rect
                         y="13.27"
-                        class="arma-item-fill"
+                        className="arma-item-fill"
                         width="1.78"
                         height="3.57"
                       ></rect>
@@ -1289,7 +1286,7 @@ function BuildYourOwn() {
                     <g>
                       <rect
                         y="8.07"
-                        class="arma-item-fill"
+                        className="arma-item-fill"
                         width="1.78"
                         height="3.57"
                       ></rect>
@@ -1334,20 +1331,20 @@ function BuildYourOwn() {
                   <g>
                     <g>
                       <path
-                        class="arma-item-fill"
+                        className="arma-item-fill"
                         d="M29.07,42H1.22C0.55,42,0,41.45,0,40.78V3.5c0-0.67,0.55-1.22,1.22-1.22h27.84c0.67,0,1.22,0.55,1.22,1.22v37.27C30.29,41.45,29.74,42,29.07,42z M1.63,40.37h27.03V3.91H1.63V40.37z"
                       ></path>
                     </g>
                     <g>
                       <path
-                        class="arma-item-fill"
+                        className="arma-item-fill"
                         d="M29.92,41.66l-1.09-1.21l2.07-1.87c0.02-0.02,0.04-0.07,0.04-0.1V1.63H3.53C3.5,1.64,3.45,1.66,3.43,1.68L1.55,3.75l-1.21-1.1l1.89-2.09C2.53,0.23,3.06,0,3.52,0h27.84c0.67,0,1.22,0.55,1.22,1.22V38.5c0,0.45-0.24,0.98-0.57,1.29L29.92,41.66z"
                       ></path>
                     </g>
                     <g>
                       <g>
                         <polygon
-                          class="arma-item-fill"
+                          className="arma-item-fill"
                           points="4.54,11.58 2.91,11.58 2.91,9.69 7.36,4.84 11.42,4.84 11.42,6.47 8.07,6.47 4.54,10.33 "
                         ></polygon>
                       </g>
@@ -1355,7 +1352,7 @@ function BuildYourOwn() {
                         <rect
                           x="2.88"
                           y="5.24"
-                          class="arma-item-fill"
+                          className="arma-item-fill"
                           width="1.7"
                           height="1.63"
                         ></rect>
@@ -1365,14 +1362,14 @@ function BuildYourOwn() {
                       <rect
                         x="25.9"
                         y="5.24"
-                        class="arma-item-fill"
+                        className="arma-item-fill"
                         width="1.7"
                         height="1.63"
                       ></rect>
                     </g>
                     <g>
                       <polygon
-                        class="arma-item-fill"
+                        className="arma-item-fill"
                         points="27.57,11.58 25.94,11.58 25.94,10.36 22.38,6.47 20.84,6.47 20.84,4.84 23.1,4.84 27.57,9.73 "
                       ></polygon>
                     </g>
@@ -1380,7 +1377,7 @@ function BuildYourOwn() {
                       <rect
                         x="2.88"
                         y="32.68"
-                        class="arma-item-fill"
+                        className="arma-item-fill"
                         width="1.7"
                         height="1.63"
                       ></rect>
@@ -1389,22 +1386,22 @@ function BuildYourOwn() {
                       <rect
                         x="2.88"
                         y="37.62"
-                        class="arma-item-fill"
+                        className="arma-item-fill"
                         width="1.7"
                         height="1.63"
                       ></rect>
                     </g>
                     <g>
                       <path
-                        class="arma-item-fill"
+                        className="arma-item-fill"
                         d="M4.86,22.21c0,0.65,0.52,0.94,2.51,0.94c1.65,0,2.15-0.18,2.15-0.66c0-0.51-0.35-0.59-2.33-0.69c-2.66-0.12-3.72-0.54-3.72-1.91c0-1.34,1.37-1.77,3.66-1.77c2.3,0,3.7,0.58,3.7,2.08H9.26c0-0.67-0.67-0.84-2.3-0.84c-1.54,0-1.91,0.15-1.91,0.6c0,0.47,0.37,0.56,2.15,0.66c2.41,0.13,3.9,0.26,3.9,1.81c0,1.63-1.54,1.96-3.8,1.96c-2.5,0-4-0.43-4-2.19H4.86z"
                       ></path>
                       <path
-                        class="arma-item-fill"
+                        className="arma-item-fill"
                         d="M13.09,22.21c0,0.65,0.52,0.94,2.51,0.94c1.65,0,2.15-0.18,2.15-0.66c0-0.51-0.35-0.59-2.33-0.69c-2.66-0.12-3.72-0.54-3.72-1.91c0-1.34,1.37-1.77,3.66-1.77c2.3,0,3.7,0.58,3.7,2.08h-1.57c0-0.67-0.67-0.84-2.3-0.84c-1.54,0-1.91,0.15-1.91,0.6c0,0.47,0.37,0.56,2.15,0.66c2.41,0.13,3.9,0.26,3.9,1.81c0,1.63-1.54,1.96-3.8,1.96c-2.5,0-4-0.43-4-2.19H13.09z"
                       ></path>
                       <path
-                        class="arma-item-fill"
+                        className="arma-item-fill"
                         d="M27.29,21.26c0,2.08-1.39,3.05-2.97,3.05h-4.43v-6.11h4.43C25.9,18.21,27.29,19.19,27.29,21.26z M25.72,21.26c0-1.48-0.8-1.74-1.99-1.74h-2.27V23h2.27C24.92,23,25.72,22.74,25.72,21.26z"
                       ></path>
                     </g>
@@ -1448,19 +1445,19 @@ function BuildYourOwn() {
                   <g>
                     <g>
                       <path
-                        class="arma-item-fill"
+                        className="arma-item-fill"
                         d="M44.86,31.99H1.14C0.51,31.99,0,31.47,0,30.84V10.74C0,10.11,0.51,9.6,1.14,9.6h43.72c0.63,0,1.14,0.51,1.14,1.14v20.11C46,31.47,45.49,31.99,44.86,31.99z M1.83,30.16h42.34V11.42H1.83V30.16z"
                       ></path>
                     </g>
                     <g>
                       <path
-                        class="arma-item-fill"
+                        className="arma-item-fill"
                         d="M11.78,29.17c-4.62,0-8.38-3.76-8.38-8.38c0-4.62,3.76-8.38,8.38-8.38c4.62,0,8.38,3.76,8.38,8.38C20.16,25.41,16.4,29.17,11.78,29.17z M11.78,14.24c-3.61,0-6.55,2.94-6.55,6.55c0,3.61,2.94,6.55,6.55,6.55c3.61,0,6.55-2.94,6.55-6.55C18.33,17.18,15.39,14.24,11.78,14.24z"
                       ></path>
                     </g>
                     <g>
                       <path
-                        class="arma-item-fill"
+                        className="arma-item-fill"
                         d="M11.78,23.99c-1.76,0-3.2-1.43-3.2-3.2c0-1.76,1.43-3.2,3.2-3.2s3.2,1.43,3.2,3.2C14.98,22.55,13.54,23.99,11.78,23.99z M11.78,19.42c-0.76,0-1.37,0.61-1.37,1.37c0,0.76,0.61,1.37,1.37,1.37s1.37-0.61,1.37-1.37C13.15,20.03,12.54,19.42,11.78,19.42z"
                       ></path>
                     </g>
@@ -1469,7 +1466,7 @@ function BuildYourOwn() {
                         x="9.76"
                         y="15.74"
                         transform="matrix(0.7603 -0.6495 0.6495 0.7603 -7.6662 12.531)"
-                        class="arma-item-fill"
+                        className="arma-item-fill"
                         width="6.77"
                         height="1.83"
                       ></rect>
@@ -1479,7 +1476,7 @@ function BuildYourOwn() {
                         x="15.16"
                         y="16.65"
                         transform="matrix(0.3626 -0.9319 0.9319 0.3626 -8.4302 27.7499)"
-                        class="arma-item-fill"
+                        className="arma-item-fill"
                         width="1.83"
                         height="6.77"
                       ></rect>
@@ -1489,7 +1486,7 @@ function BuildYourOwn() {
                         x="13.56"
                         y="20.83"
                         transform="matrix(0.9926 -0.1215 0.1215 0.9926 -2.8344 1.9377)"
-                        class="arma-item-fill"
+                        className="arma-item-fill"
                         width="1.83"
                         height="6.77"
                       ></rect>
@@ -1499,7 +1496,7 @@ function BuildYourOwn() {
                         x="6.65"
                         y="23.87"
                         transform="matrix(0.817 -0.5766 0.5766 0.817 -12.4541 10.3242)"
-                        class="arma-item-fill"
+                        className="arma-item-fill"
                         width="6.77"
                         height="1.83"
                       ></rect>
@@ -1509,7 +1506,7 @@ function BuildYourOwn() {
                         x="6.53"
                         y="17.76"
                         transform="matrix(0.4469 -0.8946 0.8946 0.4469 -14.801 18.349)"
-                        class="arma-item-fill"
+                        className="arma-item-fill"
                         width="1.83"
                         height="6.77"
                       ></rect>
@@ -1519,14 +1516,14 @@ function BuildYourOwn() {
                         x="8.5"
                         y="13.75"
                         transform="matrix(0.9996 -0.0295 0.0295 0.9996 -0.5012 0.2851)"
-                        class="arma-item-fill"
+                        className="arma-item-fill"
                         width="1.83"
                         height="6.77"
                       ></rect>
                     </g>
                     <g>
                       <polygon
-                        class="arma-item-fill"
+                        className="arma-item-fill"
                         points="2.83,10.96 1.24,10.06 6.9,0 39.1,0 44.76,10.06 43.17,10.96 38.03,1.83 7.97,1.83 "
                       ></polygon>
                     </g>
@@ -1534,7 +1531,7 @@ function BuildYourOwn() {
                       <rect
                         x="9.03"
                         y="2.74"
-                        class="arma-item-fill"
+                        className="arma-item-fill"
                         width="1.83"
                         height="1.83"
                       ></rect>
@@ -1543,14 +1540,14 @@ function BuildYourOwn() {
                       <rect
                         x="35.3"
                         y="2.74"
-                        class="arma-item-fill"
+                        className="arma-item-fill"
                         width="1.83"
                         height="1.83"
                       ></rect>
                     </g>
                     <g>
                       <path
-                        class="arma-item-fill"
+                        className="arma-item-fill"
                         d="M38.43,19.77h-5.25l-2.29-2.25v-4.66h9.82v4.66L38.43,19.77z M33.93,17.94h3.75l1.21-1.19v-2.07h-6.17v2.07L33.93,17.94z"
                       ></path>
                     </g>
@@ -1558,7 +1555,7 @@ function BuildYourOwn() {
                       <rect
                         x="39.58"
                         y="21.86"
-                        class="arma-item-fill"
+                        className="arma-item-fill"
                         width="1.83"
                         height="6.4"
                       ></rect>
@@ -1567,7 +1564,7 @@ function BuildYourOwn() {
                       <rect
                         x="36.72"
                         y="21.86"
-                        class="arma-item-fill"
+                        className="arma-item-fill"
                         width="1.83"
                         height="6.4"
                       ></rect>
@@ -1576,7 +1573,7 @@ function BuildYourOwn() {
                       <rect
                         x="33.87"
                         y="21.86"
-                        class="arma-item-fill"
+                        className="arma-item-fill"
                         width="1.83"
                         height="6.4"
                       ></rect>
@@ -1585,7 +1582,7 @@ function BuildYourOwn() {
                       <rect
                         x="31.01"
                         y="21.86"
-                        class="arma-item-fill"
+                        className="arma-item-fill"
                         width="1.83"
                         height="6.4"
                       ></rect>
@@ -1594,7 +1591,7 @@ function BuildYourOwn() {
                       <rect
                         x="28.15"
                         y="21.86"
-                        class="arma-item-fill"
+                        className="arma-item-fill"
                         width="1.83"
                         height="6.4"
                       ></rect>
@@ -1603,7 +1600,7 @@ function BuildYourOwn() {
                       <rect
                         x="25.3"
                         y="21.86"
-                        class="arma-item-fill"
+                        className="arma-item-fill"
                         width="1.83"
                         height="6.4"
                       ></rect>
@@ -1612,14 +1609,14 @@ function BuildYourOwn() {
                       <rect
                         x="22.44"
                         y="21.86"
-                        class="arma-item-fill"
+                        className="arma-item-fill"
                         width="1.83"
                         height="6.4"
                       ></rect>
                     </g>
                     <g>
                       <path
-                        class="arma-item-fill"
+                        className="arma-item-fill"
                         d="M29.22,17.17h-7.13v-4.34h7.13V17.17z M23.91,15.35h3.48v-0.69h-3.48V15.35z"
                       ></path>
                     </g>
@@ -1664,7 +1661,7 @@ function BuildYourOwn() {
                     <g>
                       <rect
                         x="4.39"
-                        class="arma-item-fill"
+                        className="arma-item-fill"
                         width="19.17"
                         height="1.48"
                       ></rect>
@@ -1673,20 +1670,20 @@ function BuildYourOwn() {
                       <rect
                         x="4.39"
                         y="36.29"
-                        class="arma-item-fill"
+                        className="arma-item-fill"
                         width="19.17"
                         height="1.48"
                       ></rect>
                     </g>
                     <g>
                       <polygon
-                        class="arma-item-fill"
+                        className="arma-item-fill"
                         points="20.41,37.03 18.93,37.03 18.93,26.24 17.86,24.09 10.1,24.09 9.03,26.24 9.03,37.03 7.55,37.03 7.55,25.89 9.18,22.61 18.77,22.61 20.41,25.89 "
                       ></polygon>
                     </g>
                     <g>
                       <path
-                        class="arma-item-fill"
+                        className="arma-item-fill"
                         d="M13.98,32.07c-1.32,0-2.4-1.08-2.4-2.4c0-1.32,1.08-2.4,2.4-2.4s2.4,1.08,2.4,2.4C16.38,30.99,15.3,32.07,13.98,32.07z M13.98,28.74c-0.51,0-0.92,0.41-0.92,0.92c0,0.51,0.41,0.92,0.92,0.92c0.51,0,0.92-0.41,0.92-0.92C14.9,29.16,14.49,28.74,13.98,28.74z"
                       ></path>
                     </g>
@@ -1694,7 +1691,7 @@ function BuildYourOwn() {
                       <rect
                         x="8.29"
                         y="25.32"
-                        class="arma-item-fill"
+                        className="arma-item-fill"
                         width="9.24"
                         height="1.48"
                       ></rect>
@@ -1703,7 +1700,7 @@ function BuildYourOwn() {
                       <rect
                         x="8.29"
                         y="29.02"
-                        class="arma-item-fill"
+                        className="arma-item-fill"
                         width="4.25"
                         height="1.48"
                       ></rect>
@@ -1712,7 +1709,7 @@ function BuildYourOwn() {
                       <rect
                         x="8.29"
                         y="32.72"
-                        class="arma-item-fill"
+                        className="arma-item-fill"
                         width="9.61"
                         height="1.48"
                       ></rect>
@@ -1721,7 +1718,7 @@ function BuildYourOwn() {
                       <rect
                         x="15.42"
                         y="29.02"
-                        class="arma-item-fill"
+                        className="arma-item-fill"
                         width="2.48"
                         height="1.48"
                       ></rect>
@@ -1730,7 +1727,7 @@ function BuildYourOwn() {
                       <rect
                         x="4.39"
                         y="4.99"
-                        class="arma-item-fill"
+                        className="arma-item-fill"
                         width="16.66"
                         height="1.48"
                       ></rect>
@@ -1739,7 +1736,7 @@ function BuildYourOwn() {
                       <rect
                         x="4.39"
                         y="9.89"
-                        class="arma-item-fill"
+                        className="arma-item-fill"
                         width="16.66"
                         height="1.48"
                       ></rect>
@@ -1748,7 +1745,7 @@ function BuildYourOwn() {
                       <rect
                         x="4.39"
                         y="14.79"
-                        class="arma-item-fill"
+                        className="arma-item-fill"
                         width="16.66"
                         height="1.48"
                       ></rect>
@@ -1757,20 +1754,20 @@ function BuildYourOwn() {
                       <rect
                         x="6.75"
                         y="2.41"
-                        class="arma-item-fill"
+                        className="arma-item-fill"
                         width="1.76"
                         height="1.48"
                       ></rect>
                     </g>
                     <g>
                       <path
-                        class="arma-item-fill"
+                        className="arma-item-fill"
                         d="M26.34,37.76h-3.51V0h2.43l1.08,1.08V37.76z M24.3,36.29h0.55V1.69l-0.21-0.21H24.3V36.29z"
                       ></path>
                     </g>
                     <g>
                       <path
-                        class="arma-item-fill"
+                        className="arma-item-fill"
                         d="M5.13,37.76H1.62V1.08L2.7,0h2.43V37.76z M3.1,36.29h0.55V1.48H3.31L3.1,1.69V36.29z"
                       ></path>
                     </g>
@@ -1778,7 +1775,7 @@ function BuildYourOwn() {
                       <rect
                         x="6.75"
                         y="17.29"
-                        class="arma-item-fill"
+                        className="arma-item-fill"
                         width="2.49"
                         height="1.48"
                       ></rect>
@@ -1787,7 +1784,7 @@ function BuildYourOwn() {
                       <rect
                         x="10.65"
                         y="17.29"
-                        class="arma-item-fill"
+                        className="arma-item-fill"
                         width="1.48"
                         height="1.48"
                       ></rect>
@@ -1796,14 +1793,14 @@ function BuildYourOwn() {
                       <rect
                         x="13.61"
                         y="17.29"
-                        class="arma-item-fill"
+                        className="arma-item-fill"
                         width="1.48"
                         height="1.48"
                       ></rect>
                     </g>
                     <g>
                       <path
-                        class="arma-item-fill"
+                        className="arma-item-fill"
                         d="M27.26,39.93H0l0-3.64l0.74,0H28l0,3.64L27.26,39.93z M1.48,38.45h25.04v-0.68H1.48V38.45z"
                       ></path>
                     </g>
@@ -2069,7 +2066,7 @@ function BuildYourOwn() {
                   <g>
                     <g>
                       <path
-                        class="arma-item-fill"
+                        className="arma-item-fill"
                         d="M12.51,40.85l-5.92,0c-0.1,0-2.48-0.1-4.32-2.19c-1.65-1.88-2.32-4.7-1.97-8.38c0.67-7.11,0.32-9.45,0.08-10.99c-0.08-0.53-0.15-0.99-0.17-1.52c-0.01-0.24-0.05-0.54-0.08-0.86c-0.17-1.46-0.44-3.66,1.09-5.42c1.46-1.68,4.17-2.53,8.3-2.61l0.02,0l0.02,0c4.13,0.08,6.85,0.93,8.31,2.61c1.54,1.76,1.28,3.97,1.11,5.43c-0.04,0.32-0.07,0.61-0.08,0.85c-0.02,0.53-0.09,0.99-0.17,1.52c-0.24,1.55-0.59,3.89,0.08,10.99c0.35,3.68-0.31,6.5-1.97,8.38c-1.84,2.09-4.22,2.19-4.32,2.19L12.51,40.85z M6.64,39.23h5.84c0.17-0.01,1.84-0.14,3.16-1.66c1.33-1.53,1.85-3.92,1.55-7.12c-0.69-7.31-0.32-9.77-0.07-11.39c0.08-0.5,0.14-0.9,0.15-1.34c0.01-0.3,0.05-0.63,0.09-0.97c0.15-1.31,0.34-2.95-0.72-4.17c-1.13-1.29-3.52-1.99-7.1-2.06c-3.58,0.07-5.96,0.76-7.08,2.05c-1.06,1.21-0.86,2.85-0.71,4.16c0.04,0.35,0.08,0.69,0.09,0.99c0.02,0.44,0.08,0.84,0.15,1.34c0.25,1.63,0.62,4.09-0.07,11.39c-0.3,3.2,0.22,5.59,1.55,7.12C4.8,39.08,6.47,39.22,6.64,39.23z"
                       ></path>
                     </g>
@@ -2077,14 +2074,14 @@ function BuildYourOwn() {
                       <rect
                         x="8.73"
                         y="9.7"
-                        class="arma-item-fill"
+                        className="arma-item-fill"
                         width="1.63"
                         height="3.13"
                       ></rect>
                     </g>
                     <g>
                       <path
-                        class="arma-item-fill"
+                        className="arma-item-fill"
                         d="M9.59,21.94h-0.1c-1.35,0-2.44-1.1-2.44-2.44v-5.04c0-1.35,1.1-2.44,2.44-2.44h0.1c1.35,0,2.44,1.1,2.44,2.44v5.04C12.04,20.85,10.94,21.94,9.59,21.94z M9.49,13.64c-0.45,0-0.81,0.37-0.81,0.81v5.04c0,0.45,0.37,0.81,0.81,0.81h0.1c0.45,0,0.81-0.37,0.81-0.81v-5.04c0-0.45-0.37-0.81-0.81-0.81H9.49z"
                       ></path>
                     </g>
@@ -2093,14 +2090,14 @@ function BuildYourOwn() {
                         x="6.71"
                         y="22.89"
                         transform="matrix(2.687490e-03 -1 1 2.687490e-03 -14.1853 33.1913)"
-                        class="arma-item-fill"
+                        className="arma-item-fill"
                         width="5.67"
                         height="1.63"
                       ></rect>
                     </g>
                     <g>
                       <path
-                        class="arma-item-fill"
+                        className="arma-item-fill"
                         d="M11.67,10.15l-0.72-2.48H8.13l-0.72,2.48L5.85,9.69l0.78-2.67c0.16-0.57,0.71-0.98,1.3-0.98h3.22c0.59,0,1.14,0.41,1.3,0.98l0.78,2.67L11.67,10.15z"
                       ></path>
                     </g>
@@ -2108,7 +2105,7 @@ function BuildYourOwn() {
                       <rect
                         x="5.38"
                         y="35.09"
-                        class="arma-item-fill"
+                        className="arma-item-fill"
                         width="1.63"
                         height="1.63"
                       ></rect>
@@ -2117,7 +2114,7 @@ function BuildYourOwn() {
                       <rect
                         x="8.73"
                         y="35.09"
-                        class="arma-item-fill"
+                        className="arma-item-fill"
                         width="1.63"
                         height="1.63"
                       ></rect>
@@ -2126,7 +2123,7 @@ function BuildYourOwn() {
                       <rect
                         x="12.07"
                         y="35.09"
-                        class="arma-item-fill"
+                        className="arma-item-fill"
                         width="1.63"
                         height="1.63"
                       ></rect>
@@ -2135,21 +2132,21 @@ function BuildYourOwn() {
                       <rect
                         x="33.32"
                         y="18.72"
-                        class="arma-item-fill"
+                        className="arma-item-fill"
                         width="1.63"
                         height="3.41"
                       ></rect>
                     </g>
                     <g>
                       <path
-                        class="arma-item-fill"
+                        className="arma-item-fill"
                         d="M31.08,31.16h-2.65c-2.13,0-3.87-1.74-3.87-3.87V3.87c0-1.24-1-2.24-2.24-2.24h-9.73c-1.24,0-2.24,0.99-2.24,2.21v3.02H8.73V3.84C8.73,1.72,10.46,0,12.59,0h9.73c2.13,0,3.87,1.74,3.87,3.87v23.42c0,1.24,1,2.24,2.24,2.24h2.65c1.24,0,2.24-1,2.24-2.24v-2.1h1.63v2.1C34.95,29.42,33.21,31.16,31.08,31.16z"
                       ></path>
                     </g>
                     <g>
                       <g>
                         <path
-                          class="arma-item-fill"
+                          className="arma-item-fill"
                           d="M35.35,19.24h-2.44c-1.46,0-2.65-1.19-2.65-2.65V11.7H38v4.89C38,18.05,36.81,19.24,35.35,19.24z M31.89,13.33v3.26c0,0.56,0.46,1.02,1.02,1.02h2.44c0.56,0,1.02-0.46,1.02-1.02v-3.26H31.89z"
                         ></path>
                       </g>
@@ -2157,14 +2154,14 @@ function BuildYourOwn() {
                         <rect
                           x="31.08"
                           y="14.65"
-                          class="arma-item-fill"
+                          className="arma-item-fill"
                           width="3.05"
                           height="1.63"
                         ></rect>
                       </g>
                       <g>
                         <path
-                          class="arma-item-fill"
+                          className="arma-item-fill"
                           d="M37.12,12.52h-1.63V8.05h-2.44v4.46h-1.63V7.44c0-0.56,0.48-1.02,1.06-1.02h3.57c0.59,0,1.06,0.46,1.06,1.02V12.52z"
                         ></path>
                       </g>
@@ -2210,115 +2207,115 @@ function BuildYourOwn() {
                     <g>
                       <g>
                         <path
-                          class="arma-item-fill"
+                          className="arma-item-fill"
                           d="M40.87,38H1.01C0.45,38,0,37.55,0,36.99V19.22c0-0.55,0.45-1.01,1.01-1.01h39.86c0.55,0,1.01,0.45,1.01,1.01v17.78C41.87,37.55,41.42,38,40.87,38z M1.61,36.39h38.65V19.82H1.61V36.39z"
                         ></path>
                       </g>
                       <g>
                         <path
-                          class="arma-item-fill"
+                          className="arma-item-fill"
                           d="M33.36,35.62H8.34v-4.36h25.02V35.62z M9.95,34.01h21.8v-1.14H9.95V34.01z"
                         ></path>
                       </g>
                       <g>
                         <path
-                          class="arma-item-fill"
+                          className="arma-item-fill"
                           d="M7.06,35.62H2.84v-4.36h4.23V35.62z M4.45,34.01h1.01v-1.14H4.45V34.01z"
                         ></path>
                       </g>
                       <g>
                         <path
-                          class="arma-item-fill"
+                          className="arma-item-fill"
                           d="M7.06,30.29H2.84v-4.36h4.23V30.29z M4.45,28.68h1.01v-1.14H4.45V28.68z"
                         ></path>
                       </g>
                       <g>
                         <path
-                          class="arma-item-fill"
+                          className="arma-item-fill"
                           d="M7.06,24.92H2.84v-4.36h4.23V24.92z M4.45,23.31h1.01v-1.14H4.45V23.31z"
                         ></path>
                       </g>
                       <g>
                         <path
-                          class="arma-item-fill"
+                          className="arma-item-fill"
                           d="M12.56,24.92H8.34v-4.36h4.23V24.92z M9.95,23.31h1.01v-1.14H9.95V23.31z"
                         ></path>
                       </g>
                       <g>
                         <path
-                          class="arma-item-fill"
+                          className="arma-item-fill"
                           d="M18.06,24.92h-4.23v-4.36h4.23V24.92z M15.45,23.31h1.01v-1.14h-1.01V23.31z"
                         ></path>
                       </g>
                       <g>
                         <path
-                          class="arma-item-fill"
+                          className="arma-item-fill"
                           d="M23.56,24.92h-4.23v-4.36h4.23V24.92z M20.95,23.31h1.01v-1.14h-1.01V23.31z"
                         ></path>
                       </g>
                       <g>
                         <path
-                          class="arma-item-fill"
+                          className="arma-item-fill"
                           d="M29.06,24.92h-4.23v-4.36h4.23V24.92z M26.45,23.31h1.01v-1.14h-1.01V23.31z"
                         ></path>
                       </g>
                       <g>
                         <path
-                          class="arma-item-fill"
+                          className="arma-item-fill"
                           d="M34.57,24.92h-4.23v-4.36h4.23V24.92z M31.95,23.31h1.01v-1.14h-1.01V23.31z"
                         ></path>
                       </g>
                       <g>
                         <path
-                          class="arma-item-fill"
+                          className="arma-item-fill"
                           d="M38.79,30.29h-8.45v-4.36h8.45V30.29z M31.95,28.68h5.23v-1.14h-5.23V28.68z"
                         ></path>
                       </g>
                       <g>
                         <path
-                          class="arma-item-fill"
+                          className="arma-item-fill"
                           d="M12.56,30.29H8.34v-4.36h4.23V30.29z M9.95,28.68h1.01v-1.14H9.95V28.68z"
                         ></path>
                       </g>
                       <g>
                         <path
-                          class="arma-item-fill"
+                          className="arma-item-fill"
                           d="M18.06,30.29h-4.23v-4.36h4.23V30.29z M15.45,28.68h1.01v-1.14h-1.01V28.68z"
                         ></path>
                       </g>
                       <g>
                         <path
-                          class="arma-item-fill"
+                          className="arma-item-fill"
                           d="M23.56,30.29h-4.23v-4.36h4.23V30.29z M20.95,28.68h1.01v-1.14h-1.01V28.68z"
                         ></path>
                       </g>
                       <g>
                         <path
-                          class="arma-item-fill"
+                          className="arma-item-fill"
                           d="M29.06,30.29h-4.23v-4.36h4.23V30.29z M26.45,28.68h1.01v-1.14h-1.01V28.68z"
                         ></path>
                       </g>
                       <g>
                         <path
-                          class="arma-item-fill"
+                          className="arma-item-fill"
                           d="M38.79,35.62h-4.23v-4.36h4.23V35.62z M36.18,34.01h1.01v-1.14h-1.01V34.01z"
                         ></path>
                       </g>
                       <g>
                         <path
-                          class="arma-item-fill"
+                          className="arma-item-fill"
                           d="M11.26,19.02H9.65v-1.11H5.76v1.11H4.15v-1.71c0-0.55,0.45-1.01,1.01-1.01h5.1c0.55,0,1.01,0.45,1.01,1.01V19.02z"
                         ></path>
                       </g>
                       <g>
                         <path
-                          class="arma-item-fill"
+                          className="arma-item-fill"
                           d="M8.51,17.1H6.9v-1.54c0-1.29,1.08-2.35,2.41-2.35h23.65c0.44,0,0.8-0.36,0.8-0.8v-0.8c0-0.44-0.36-0.8-0.8-0.8h-11.2c-1.33,0-2.41-1.08-2.41-2.41V6.64h1.61v1.74c0,0.44,0.36,0.8,0.8,0.8h11.2c1.33,0,2.41,1.08,2.41,2.41v0.8c0,1.33-1.08,2.41-2.41,2.41H9.31c-0.44,0-0.8,0.34-0.8,0.74V17.1z"
                         ></path>
                       </g>
                       <g>
                         <path
-                          class="arma-item-fill"
+                          className="arma-item-fill"
                           d="M21.35,7.45h-2.41c-1.44,0-2.62-1.17-2.62-2.62V0h7.65v4.83C23.97,6.27,22.79,7.45,21.35,7.45z M17.93,1.61v3.22c0,0.55,0.45,1.01,1.01,1.01h2.41c0.55,0,1.01-0.45,1.01-1.01V1.61H17.93z"
                         ></path>
                       </g>
@@ -2327,7 +2324,7 @@ function BuildYourOwn() {
                       <rect
                         x="17.12"
                         y="2.92"
-                        class="arma-item-fill"
+                        className="arma-item-fill"
                         width="3.02"
                         height="1.61"
                       ></rect>
@@ -2412,7 +2409,7 @@ function BuildYourOwn() {
                 className="cursor-pointer mr-2 shadow-2xl  hover:scale-105 transition duration-300 ease-in-out"
               >
                 <img
-                  src={require('../../../img/intel.png')}
+                  src={intelLogo}
                   className="rounded"
                 />
               </div>
@@ -2424,7 +2421,7 @@ function BuildYourOwn() {
                 className="cursor-pointer ml-2 shadow-2xl  hover:scale-105 transition duration-300 ease-in-out"
               >
                 <img
-                  src={require('../../../img/amd.webp')}
+                  src={amdLogo}
                   className="rounded"
                 />
               </div>
@@ -2485,7 +2482,7 @@ function BuildYourOwn() {
       {i === categories.length ? (
         <div className="mt-24">
           <div className="w-24 m-auto mb-9">
-            <svg viewBox="0 0 24 24" classname="w-9 mx-auto my-6">
+            <svg viewBox="0 0 24 24" className="w-9 mx-auto my-6">
               <path
                 fill="green"
                 d="M12,0A12,12,0,1,0,24,12,12.014,12.014,0,0,0,12,0Zm6.927,8.2-6.845,9.289a1.011,1.011,0,0,1-1.43.188L5.764,13.769a1,1,0,1,1,1.25-1.562l4.076,3.261,6.227-8.451A1,1,0,1,1,18.927,8.2Z"
@@ -2493,7 +2490,7 @@ function BuildYourOwn() {
             </svg>
           </div>
           <div className="text-center mb-60">
-            <h3 class="mb-4 text-4xl font-bold tracking-tight leading-none text-gray-900 lg:mb-6 md:text-5xl xl:text-6xl">
+            <h3 className="mb-4 text-4xl font-bold tracking-tight leading-none text-gray-900 lg:mb-6 md:text-5xl xl:text-6xl">
               You're all set!
             </h3>
             <p className="font-medium text-xl mb-4">

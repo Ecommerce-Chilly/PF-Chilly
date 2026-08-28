@@ -15,7 +15,6 @@ function Paginate({ products, setPageNumber, pageNumber }) {
 
   const handlePageClick = (event) => {
     const newOffset = (event.selected * productsPerPage) % products.length;
-    console.log(newOffset);
     setProductOffset(newOffset);
   };
 

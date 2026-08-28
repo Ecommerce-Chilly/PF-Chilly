@@ -12,7 +12,7 @@ const modifyQuantity = async (cartId, productId, quantity) => {
     );
     return 'Quantity updated';
   } catch (error) {
-    console.log(error);
+    throw error;
   }
 };
 

@@ -42,7 +42,7 @@ function ProductCard(props) {
   return (
     <div
       className={`w-72 h-96 mb-11 bg-white rounded-xl shadow-xl border  m-2 relative flex flex-col justify-between ${
-        open && "joder"
+        open && "hidden-after-action"
       }`}
     >
       <div className="h-96 flex flex-col px-5 pt-5">

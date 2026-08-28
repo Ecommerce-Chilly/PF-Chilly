@@ -18,33 +18,35 @@ function Navbar() {
   const dispatch = useDispatch();
   let { userInfo, quantity, cart } = useSelector((state) => state);
   const { loginWithRedirect } = useAuth0();
-  let token = localStorage.getItem('token');
+  const token = JSON.parse(localStorage.getItem('token') || 'null');
   const { isAuthenticated, isLoading } = useAuth0();
 
   useEffect(() => {
     dispatch(getProduct());
-    dispatch(userSpecific(userInfo.email, JSON.parse(token)));
-    if (userInfo.id) {
+    if (userInfo.email && token) {
+      dispatch(userSpecific(userInfo.email, token));
+    }
+    if (userInfo.id && token) {
       dispatch(getCartFromBack2(userInfo.id));
       dispatch(getCartFromBack(userInfo.id));
     }
     setTimeout(() => {
       dispatch(updateCartQuantity());
     }, 2000);
-  }, [dispatch, userInfo?.email]);
+  }, [dispatch, userInfo?.email, userInfo?.id, token]);
 
   return (
     <div className="borde">
-      <nav class=" border-gray-200 px-2  py-5 bg-main static">
-        <div class="container flex flex-wrap items-center justify-between mx-auto">
-          <Link to="/" class="flex items-center">
-            <span class="self-center text-4xl font-semibold whitespace-nowrap text-white font-sans">
+      <nav className=" border-gray-200 px-2  py-5 bg-main static">
+        <div className="container flex flex-wrap items-center justify-between mx-auto">
+          <Link to="/" className="flex items-center">
+            <span className="self-center text-4xl font-semibold whitespace-nowrap text-white font-sans">
               Chilly
             </span>
           </Link>
           <SearchBar />
 
-          <div class="w-auto" id="navbar-default">
+          <div className="w-auto" id="navbar-default">
             <Link to="/user/favorites" className="inline-block mx-4">
               <svg
                 xmlns="http://www.w3.org/2000/svg"
@@ -105,9 +107,11 @@ function Navbar() {
                 </svg>
               </Link>
             ) : (
-              <Link
+              <button
+                type="button"
                 className="inline-block mx-4"
                 onClick={() => {loginWithRedirect(); window.localStorage.setItem('cart', JSON.stringify(cart));}}
+                aria-label="Sign in"
               >
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
@@ -123,12 +127,12 @@ function Navbar() {
                     d="M15.75 6a3.75 3.75 0 11-7.5 0 3.75 3.75 0 017.5 0zM4.501 20.118a7.5 7.5 0 0114.998 0A17.933 17.933 0 0112 21.75c-2.676 0-5.216-.584-7.499-1.632z"
                   />
                 </svg>
-              </Link>
+              </button>
             )}
           </div>
         </div>
-        <div class="container flex w-2/3 mx-auto mt-6">
-          <ul class="flex justify-between max-w-2xl w-5/6 mx-auto uppercase font-sans underline-offset-4  font-light text-white">
+        <div className="container flex w-2/3 mx-auto mt-6">
+          <ul className="flex justify-between max-w-2xl w-5/6 mx-auto uppercase font-sans underline-offset-4  font-light text-white">
             <li>
               
               <Link to="/" className="hover:underline">

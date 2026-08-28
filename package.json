@@ -1,0 +1,25 @@
+{
+  "name": "pf-chilly",
+  "version": "1.0.0",
+  "private": true,
+  "scripts": {
+    "start": "run-p --race start:api start:client",
+    "start:api": "npm --prefix api start",
+    "start:client": "npm --prefix client start",
+    "dev": "run-p --race dev:api dev:client",
+    "dev:api": "npm --prefix api run dev",
+    "dev:client": "npm --prefix client run dev",
+    "test": "run-s test:api test:client",
+    "test:api": "npm --prefix api test",
+    "test:client": "npm --prefix client test",
+    "lint": "npm --prefix client run lint",
+    "build": "npm --prefix client run build",
+    "smoke:api": "npm --prefix api run smoke"
+  },
+  "devDependencies": {
+    "npm-run-all": "^4.1.5"
+  },
+  "engines": {
+    "node": ">=22.14.0"
+  }
+}

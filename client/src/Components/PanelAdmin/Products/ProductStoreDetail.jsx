@@ -9,6 +9,7 @@ import {
   deleteFavorite,
   clearFavMsg,
   addToCartBack,
+  putCartFromBack,
 } from '../../../redux/actions/actions.js';
 import { useDispatch, useSelector } from 'react-redux';
 import ReactTooltip from 'react-tooltip';
@@ -23,11 +24,12 @@ function ProductDetail() {
   const failMsg = useSelector((state) => state.searchProductMsg);
   const favoriteMsg = useSelector((state) => state.favoriteMsg);
   const userInfo = useSelector((state) => state.userInfo);
+  const backendCart = useSelector((state) => state.backendCart);
   const favs = useSelector((state) => state.favorites);
   const [itemQuantity, setItemQuantity] = useState(1);
   let cart = useSelector((state) => state.cart);
   useEffect(() => {
-    if (userInfo) {
+    if (userInfo.id && token) {
       dispatch(getFavorites(userInfo.id, token));
     }
   }, [favoriteMsg]);
@@ -42,12 +44,22 @@ function ProductDetail() {
   }, []);
 
   function addCart(id) {
+    const productInCart = cart.find((product) => product.id === id);
+    const previousQuantity = productInCart?.quantity || 0;
+
     for (let index = 0; index < itemQuantity; index++) {
       dispatch(addToCart(id));
     }
 
     dispatch(updateCartQuantity());
-    dispatch(addToCartBack(userInfo.id, id, itemQuantity));
+    if (userInfo.id) {
+      const cartId = backendCart[0]?.id || userInfo.id;
+      const syncCart = productInCart
+        ? putCartFromBack(cartId, id, previousQuantity + itemQuantity)
+        : addToCartBack(cartId, id, itemQuantity);
+
+      dispatch(syncCart);
+    }
   }
 
   return (
@@ -125,21 +137,14 @@ function ProductDetail() {
                                 +
                               </button>
                             </div>
-                            {cart.find((e) => e.id === produDetail[0].id) ? (
-                              <button
-                                disabled
-                                className="flex ml-auto font-semibold text-white bg-main border-0 py-2 px-6 focus:outline-none rounded"
-                              >
-                                Already in cart
-                              </button>
-                            ) : (
-                              <button
-                                className="flex ml-auto font-semibold text-white bg-main border-0 py-2 px-6 focus:outline-none hover:bg-blue-600 rounded"
-                                onClick={() => addCart(produDetail[0].id)}
-                              >
-                                Add to cart
-                              </button>
-                            )}
+                            <button
+                              className="flex ml-auto font-semibold text-white bg-main border-0 py-2 px-6 focus:outline-none hover:bg-blue-600 rounded"
+                              onClick={() => addCart(produDetail[0].id)}
+                            >
+                              {cart.find((e) => e.id === produDetail[0].id)
+                                ? `Add ${itemQuantity} more`
+                                : 'Add to cart'}
+                            </button>
                           </div>
 
                           {userInfo.name ? (
@@ -160,9 +165,9 @@ function ProductDetail() {
                               >
                                 <svg
                                   fill="tomato"
-                                  stroke-linecap="round"
-                                  stroke-linejoin="round"
-                                  stroke-width="2"
+                                  strokeLinecap="round"
+                                  strokeLinejoin="round"
+                                  strokeWidth="2"
                                   className="w-5 h-5"
                                   viewBox="0 0 24 24"
                                 >
@@ -186,9 +191,9 @@ function ProductDetail() {
                               >
                                 <svg
                                   fill="currentColor"
-                                  stroke-linecap="round"
-                                  stroke-linejoin="round"
-                                  stroke-width="2"
+                                  strokeLinecap="round"
+                                  strokeLinejoin="round"
+                                  strokeWidth="2"
                                   className="w-5 h-5"
                                   viewBox="0 0 24 24"
                                 >
@@ -205,9 +210,9 @@ function ProductDetail() {
                               >
                                 <svg
                                   fill="gray"
-                                  stroke-linecap="round"
-                                  stroke-linejoin="round"
-                                  stroke-width="2"
+                                  strokeLinecap="round"
+                                  strokeLinejoin="round"
+                                  strokeWidth="2"
                                   className="w-5 h-5"
                                   viewBox="0 0 24 24"
                                 >

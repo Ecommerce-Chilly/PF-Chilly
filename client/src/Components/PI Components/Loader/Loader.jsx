@@ -6,7 +6,7 @@ function Loader() {
       <div role="status" className="text-center mx-auto  my-auto  ">
         <svg
           aria-hidden="true"
-          class="w-16 h-16 text-gray-200 animate-spin fill-blue-600"
+          className="w-16 h-16 text-gray-200 animate-spin fill-blue-600"
           viewBox="0 0 100 101"
           fill="none"
         >
@@ -19,7 +19,7 @@ function Loader() {
             fill="rgb(48, 63, 159)"
           />
         </svg>
-        <span class="sr-only">Loading...</span>
+        <span className="sr-only">Loading...</span>
       </div>
     </div>
   );

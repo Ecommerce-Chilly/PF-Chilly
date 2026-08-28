@@ -8,11 +8,11 @@ function AdminNavbar() {
         <h2 className="uppercase font-sans font-semibold text-lg mb-9 mt-2">
           Admin Tools
         </h2>
-        <div class=" ">
+        <div className=" ">
           <h3 className="uppercase font-sans font-medium text-base mb-2  mt-2">
             Products
           </h3>
-          <ul class=" justify-betweenmx-auto uppercase font-sans underline-offset-4  font-regular text-main ">
+          <ul className=" justify-betweenmx-auto uppercase font-sans underline-offset-4  font-regular text-main ">
             <li className="py-2">
               <Link to="/panel+admin/products" className="hover:underline">
                 Manage Products
@@ -33,11 +33,11 @@ function AdminNavbar() {
             </li>
           </ul>
         </div>
-        <div class=" ">
+        <div className=" ">
           <h3 className="uppercase font-sans font-medium text-base mb-2  mt-6">
             Users
           </h3>
-          <ul class=" justify-betweenmx-auto uppercase font-sans underline-offset-4  font-regular text-main ">
+          <ul className=" justify-betweenmx-auto uppercase font-sans underline-offset-4  font-regular text-main ">
             <li className="py-2">
               <Link to="/panel+admin/users" className="hover:underline">
                 Manage Users
@@ -45,11 +45,11 @@ function AdminNavbar() {
             </li>
           </ul>
         </div>
-        <div class=" ">
+        <div className=" ">
           <h3 className="uppercase font-sans font-medium text-base mb-2  mt-6">
             Orders
           </h3>
-          <ul class=" justify-betweenmx-auto uppercase font-sans underline-offset-4  font-regular text-main ">
+          <ul className=" justify-betweenmx-auto uppercase font-sans underline-offset-4  font-regular text-main ">
             <li className="py-2">
               <Link to="/panel+admin/orders" className="hover:underline">
                 Manage Orders

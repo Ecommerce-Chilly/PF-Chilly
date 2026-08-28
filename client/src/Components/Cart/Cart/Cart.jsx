@@ -15,7 +15,7 @@ import Swal from 'sweetalert2';
 import { useAuth0 } from '@auth0/auth0-react';
 
 function Cart() {
-  const { cart, userDataInCheckout, paymentLink, ostras } = useSelector(
+  const { cart, userDataInCheckout, paymentLink, backendCart } = useSelector(
     (state) => state
   );
   const userUnique = useSelector((state) => state.userInfo);
@@ -33,8 +33,10 @@ function Cart() {
 
   React.useEffect(() => {
     dispatch(clearPaylink());
-    dispatch(getDataUser());
-  }, [cart, variable]);
+    if (userUnique.id) {
+      dispatch(getDataUser());
+    }
+  }, [cart, dispatch, userUnique.id, variable]);
 
   const deleteProduct = (id) => {
     dispatch(deleteP(id));
@@ -66,7 +68,9 @@ function Cart() {
       /* Read more about isConfirmed, isDenied below */
       if (result.isConfirmed) {
         dispatch(clearCart());
-        dispatch(clearCartFromBack(ostras[0].userId));
+        if (backendCart[0]?.userId) {
+          dispatch(clearCartFromBack(backendCart[0].userId));
+        }
       }
     });
   };
@@ -174,7 +178,7 @@ function Cart() {
                     <button
                       className=" flex font-semibold  text-white border-solid bg-main border-2 border-main py-2 px-12  focus:outline-none hover:bg-blue-600 rounded hover:border-blue-600 "
                       onClick={() =>
-                        dispatch(clearCartFromBack(ostras[0].userId))
+                        dispatch(clearCartFromBack(backendCart[0].userId))
                       }
                     >
                       Pay!
@@ -182,17 +186,16 @@ function Cart() {
                   </a>
                 )
               ) : (
-                <Link
+                <button
+                  type="button"
                   onClick={() => {
                     loginWithRedirect();
                     window.localStorage.setItem('cart', JSON.stringify(cart));
                   }}
-                  className=" text-center"
+                  className="w-36 font-semibold text-white text-center border-solid bg-main border-2 border-main py-2 px-6 focus:outline-none hover:bg-blue-600 rounded hover:border-blue-600"
                 >
-                  <button className=" w-36  font-semibold  text-white border-solid bg-main border-2 border-main py-2 px-6 focus:outline-none hover:bg-blue-600 rounded hover:border-blue-600">
-                    Sign in
-                  </button>
-                </Link>
+                  Sign in
+                </button>
               )}
             </div>
           </div>

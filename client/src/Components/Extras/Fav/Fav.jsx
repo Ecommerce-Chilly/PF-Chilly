@@ -18,11 +18,13 @@ function Fav() {
   let token = localStorage.getItem('token');
   token = JSON.parse(token);
   React.useEffect(() => {
-    dispatch(getFavorites(userInfo.id, token));
+    if (userInfo.id && token) {
+      dispatch(getFavorites(userInfo.id, token));
+    }
     return () => {
       dispatch(clearFavMsg());
     };
-  }, [favoriteMsg]);
+  }, [dispatch, favoriteMsg, token, userInfo.id]);
   const { loginWithRedirect } = useAuth0();
   const { isAuthenticated, isLoading } = useAuth0();
 
@@ -69,12 +71,13 @@ function Fav() {
           <h2 className="font-display  text-2xl mb-9">
             Please sign in to view your favourites!
           </h2>
-          <Link
+          <button
+            type="button"
             onClick={() => loginWithRedirect()}
             className=" pt-9 font-semibold text-main py-2 px-6  hover:underline"
           >
             Sign in
-          </Link>
+          </button>
         </div>
       ) : (
         <div className="flex flex-wrap justify-evenly w-5/6 m-auto ml-auto">

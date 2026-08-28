@@ -38,7 +38,7 @@ const Profile = () => {
         const { user_metadata } = await metadataResponse.json();
         setUserMetadata(user_metadata);
       } catch (e) {
-        console.log(e.message);
+        setUserMetadata(null);
       }
     };
 
@@ -80,31 +80,31 @@ const Profile = () => {
         <h2 className="text-slate-800 text-3xl font-display font-semibold mt-12 ml-60 mb-9">
           User profile
         </h2>
-        <div class="flex min-h-screen -mt-36  items-center justify-center m-4">
-          <div class="w-full rounded-lg p-12 shadow-xl  md:w-8/12 lg:w-6/12 bg-white border">
-            <div class="grid grid-cols-1 gap-6 lg:grid-cols-12 relative">
-              <div class="grid-cols-1 lg:col-span-3">
-                <div class="mx-auto flex h-[90px]  items-center justify-center rounded-full p-4">
+        <div className="flex min-h-screen -mt-36  items-center justify-center m-4">
+          <div className="w-full rounded-lg p-12 shadow-xl  md:w-8/12 lg:w-6/12 bg-white border">
+            <div className="grid grid-cols-1 gap-6 lg:grid-cols-12 relative">
+              <div className="grid-cols-1 lg:col-span-3">
+                <div className="mx-auto flex h-[90px]  items-center justify-center rounded-full p-4">
                   <img
-                    class=" rounded-full"
+                    className=" rounded-full"
                     src={user.picture}
                     alt={user.name}
                   />
                 </div>
               </div>
 
-              <div class="col-span-1 lg:col-span-9 ">
-                <div class="text-center lg:text-left">
-                  <h2 class="text-2xl font-bold text-zinc-700">User info</h2>
-                  <p class="mt-2 font-semibold text-zinc-700">
+              <div className="col-span-1 lg:col-span-9 ">
+                <div className="text-center lg:text-left">
+                  <h2 className="text-2xl font-bold text-zinc-700">User info</h2>
+                  <p className="mt-2 font-semibold text-zinc-700">
                     Name: {user.name}
                   </p>
-                  <p class="mt-2 font-semibold text-zinc-700">
+                  <p className="mt-2 font-semibold text-zinc-700">
                     Email: {user.email}
                   </p>
                 </div>
 
-                <div class="w-1/2 mt-9 mx-5">
+                <div className="w-1/2 mt-9 mx-5">
                   <LogoutButton />
                 </div>
               </div>

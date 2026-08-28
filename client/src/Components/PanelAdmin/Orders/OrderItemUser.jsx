@@ -40,7 +40,7 @@ function OrderItem(props) {
   return (
     <div
       className={`${
-        open && 'joder'
+        open && 'hidden-after-action'
       } bg-white rounded-xl shadow-xl border  m-2  flex mx-auto justify-between h-40 w-1/2 mb-9`}
     >
       <Link to={`/orders/${props.id}`} className="my-auto ml-9 w-2/3">

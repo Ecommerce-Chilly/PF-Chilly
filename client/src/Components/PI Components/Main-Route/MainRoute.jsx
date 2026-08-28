@@ -37,11 +37,12 @@ function MainRoute() {
 
   React.useEffect(() => {
     const user = window.localStorage.getItem('user');
+    const token = JSON.parse(window.localStorage.getItem('token') || 'null');
 
-    if (user) {
-      dispatch(userSpecific(JSON.parse(user)));
+    if (user && token) {
+      dispatch(userSpecific(JSON.parse(user), token));
     }
-  }, []);
+  }, [dispatch]);
 
   return (
     <div>
@@ -67,7 +68,6 @@ function MainRoute() {
           <Route exact path="/panel+admin" component={PanelAdmin} />
           <Route exact path="/register" component={Register} />
 
-          <Route exact path="/panel+admin" component={PanelAdmin} />
           <Route exact path="/panel+admin/products" component={Products} />
           <Route exact path="/panel+admin/users" component={Users} />
           <Route exact path="/panel+admin/orders" component={Orders} />
