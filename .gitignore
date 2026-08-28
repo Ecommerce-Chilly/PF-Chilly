@@ -3,6 +3,7 @@ node_modules/
 
 # Generated frontend artifacts
 client/build/
+client/dist/
 client/src/assets/main.css
 
 # dotenv environment variables file

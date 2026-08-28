@@ -16,11 +16,11 @@ El repositorio se encuentra actualmente en un proceso de recuperación y moderni
 - Envío de correos mediante EmailJS.
 - Artículos, ofertas y páginas informativas.
 
-## Stack original
+## Stack actual
 
 ### Frontend
 
-- React 17 y Create React App.
+- React 17 y Vite 8.
 - Redux, Redux Thunk y React Redux.
 - React Router 5.
 - Tailwind CSS 3, Bootstrap y Reactstrap.
@@ -89,13 +89,13 @@ npm run build
 npm run smoke:api
 ```
 
-El smoke test requiere que el backend esté levantado. `client/build` y `client/src/assets/main.css` se generan mediante los scripts y no se versionan.
+El smoke test requiere que el backend esté levantado. Vite genera `client/dist` durante el build y esa carpeta no se versiona. Tailwind se procesa directamente durante desarrollo y compilación.
 
-La preparación detallada de PostgreSQL está en [docs/LEGACY-RUN.md](docs/LEGACY-RUN.md) y los cambios de estabilización en [docs/PHASE-2.md](docs/PHASE-2.md).
+La preparación detallada de PostgreSQL está en [docs/LEGACY-RUN.md](docs/LEGACY-RUN.md), los cambios de estabilización en [docs/PHASE-2.md](docs/PHASE-2.md) y la migración a Vite en [docs/PHASE-3A.md](docs/PHASE-3A.md).
 
 ## Estado de la recuperación
 
-El punto de partida técnico está registrado en [docs/BASELINE.md](docs/BASELINE.md), el primer arranque en [docs/LEGACY-RUN.md](docs/LEGACY-RUN.md), la estabilización en [docs/PHASE-2.md](docs/PHASE-2.md) y el plan de trabajo en [docs/ROADMAP.md](docs/ROADMAP.md). La separación prevista entre entornos está descrita en [docs/ENVIRONMENTS.md](docs/ENVIRONMENTS.md).
+El punto de partida técnico está registrado en [docs/BASELINE.md](docs/BASELINE.md), el primer arranque en [docs/LEGACY-RUN.md](docs/LEGACY-RUN.md), la estabilización en [docs/PHASE-2.md](docs/PHASE-2.md), la migración a Vite en [docs/PHASE-3A.md](docs/PHASE-3A.md) y el plan de trabajo en [docs/ROADMAP.md](docs/ROADMAP.md). La separación prevista entre entornos está descrita en [docs/ENVIRONMENTS.md](docs/ENVIRONMENTS.md).
 
 ## Equipo original
 

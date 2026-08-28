@@ -11,7 +11,7 @@
     "dev:client": "npm --prefix client run dev",
     "test": "run-s test:api test:client",
     "test:api": "npm --prefix api test",
-    "test:client": "npm --prefix client test -- --watchAll=false",
+    "test:client": "npm --prefix client test",
     "lint": "npm --prefix client run lint",
     "build": "npm --prefix client run build",
     "smoke:api": "npm --prefix api run smoke"

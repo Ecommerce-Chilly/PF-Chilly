@@ -1,4 +1,4 @@
-const validate = (newProduct) => {
+export const validate = (newProduct) => {
   let errors = {};
   if (!newProduct.name) {
     errors.name = "Please provide a name";
@@ -34,5 +34,3 @@ const validate = (newProduct) => {
   }
   return errors;
 };
-
-module.exports = { validate };

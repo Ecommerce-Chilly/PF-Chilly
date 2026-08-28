@@ -16,6 +16,8 @@ import {
 import { useState } from 'react';
 import { useEffect } from 'react';
 import ReactTooltip from 'react-tooltip';
+import intelLogo from '../../../img/intel.png';
+import amdLogo from '../../../img/amd.webp';
 
 function BuildYourOwn() {
   let history = useHistory();
@@ -2407,7 +2409,7 @@ function BuildYourOwn() {
                 className="cursor-pointer mr-2 shadow-2xl  hover:scale-105 transition duration-300 ease-in-out"
               >
                 <img
-                  src={require('../../../img/intel.png')}
+                  src={intelLogo}
                   className="rounded"
                 />
               </div>
@@ -2419,7 +2421,7 @@ function BuildYourOwn() {
                 className="cursor-pointer ml-2 shadow-2xl  hover:scale-105 transition duration-300 ease-in-out"
               >
                 <img
-                  src={require('../../../img/amd.webp')}
+                  src={amdLogo}
                   className="rounded"
                 />
               </div>

@@ -15,7 +15,7 @@ import Swal from "sweetalert2";
 import { Link } from "react-router-dom";
 import ForbiddenAccess from "../ForbiddenAccess.jsx";
 import UploadImages from "../../UploadImages/UploadImages.jsx";
-const { validate } = require("./utils");
+import { validate } from "./utils";
 
 function ChangeComponent() {
   const { admin, brands, category } = useSelector((state) => state);

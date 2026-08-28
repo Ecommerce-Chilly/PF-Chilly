@@ -3,6 +3,7 @@ import Slider from '../Slider/Sldier';
 import ArticleCard from '../Articles/ArticleCard/ArticleCard';
 import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
+import brandsImage from '../../../img/banners/brands.png';
 // import { allCategories } from '../../../redux/actions/actions';
 
 function Home() {
@@ -1703,7 +1704,7 @@ function Home() {
       <div className="mb-12">
         <img
           className="w-11/12 m-auto"
-          src={require('../../../img/banners/brands.png')}
+          src={brandsImage}
         />
       </div>
     </div>

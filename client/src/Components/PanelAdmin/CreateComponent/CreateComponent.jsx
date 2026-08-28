@@ -13,7 +13,7 @@ import { Link } from "react-router-dom";
 import ForbiddenAccess from "../ForbiddenAccess.jsx";
 import UploadImages from "../../UploadImages/UploadImages.jsx";
 
-const { validate } = require("../ChangeComponent/utils");
+import { validate } from "../ChangeComponent/utils";
 
 function CreateComponent() {
   const { admin, brands, category } = useSelector((state) => state);
