@@ -47,6 +47,7 @@ También se puede iniciar únicamente el frontend con `npm --prefix client run d
 - El build de producción se completa y genera rutas bajo `/PF-Chilly/`.
 - Se verificaron manualmente la portada y el catálogo contra la API local, sin errores en la consola del navegador.
 - El código fuente destinado al navegador ya no contiene módulos CommonJS.
+- El carrito se conserva al recargar y se reconcilia sin duplicados con el backend al restaurar una sesión.
 
 ## Pendientes conocidos
 

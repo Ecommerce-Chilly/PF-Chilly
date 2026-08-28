@@ -9,6 +9,7 @@ import {
   deleteFavorite,
   clearFavMsg,
   addToCartBack,
+  putCartFromBack,
 } from '../../../redux/actions/actions.js';
 import { useDispatch, useSelector } from 'react-redux';
 import ReactTooltip from 'react-tooltip';
@@ -23,6 +24,7 @@ function ProductDetail() {
   const failMsg = useSelector((state) => state.searchProductMsg);
   const favoriteMsg = useSelector((state) => state.favoriteMsg);
   const userInfo = useSelector((state) => state.userInfo);
+  const backendCart = useSelector((state) => state.backendCart);
   const favs = useSelector((state) => state.favorites);
   const [itemQuantity, setItemQuantity] = useState(1);
   let cart = useSelector((state) => state.cart);
@@ -42,13 +44,21 @@ function ProductDetail() {
   }, []);
 
   function addCart(id) {
+    const productInCart = cart.find((product) => product.id === id);
+    const previousQuantity = productInCart?.quantity || 0;
+
     for (let index = 0; index < itemQuantity; index++) {
       dispatch(addToCart(id));
     }
 
     dispatch(updateCartQuantity());
     if (userInfo.id) {
-      dispatch(addToCartBack(userInfo.id, id, itemQuantity));
+      const cartId = backendCart[0]?.id || userInfo.id;
+      const syncCart = productInCart
+        ? putCartFromBack(cartId, id, previousQuantity + itemQuantity)
+        : addToCartBack(cartId, id, itemQuantity);
+
+      dispatch(syncCart);
     }
   }
 
@@ -127,21 +137,14 @@ function ProductDetail() {
                                 +
                               </button>
                             </div>
-                            {cart.find((e) => e.id === produDetail[0].id) ? (
-                              <button
-                                disabled
-                                className="flex ml-auto font-semibold text-white bg-main border-0 py-2 px-6 focus:outline-none rounded"
-                              >
-                                Already in cart
-                              </button>
-                            ) : (
-                              <button
-                                className="flex ml-auto font-semibold text-white bg-main border-0 py-2 px-6 focus:outline-none hover:bg-blue-600 rounded"
-                                onClick={() => addCart(produDetail[0].id)}
-                              >
-                                Add to cart
-                              </button>
-                            )}
+                            <button
+                              className="flex ml-auto font-semibold text-white bg-main border-0 py-2 px-6 focus:outline-none hover:bg-blue-600 rounded"
+                              onClick={() => addCart(produDetail[0].id)}
+                            >
+                              {cart.find((e) => e.id === produDetail[0].id)
+                                ? `Add ${itemQuantity} more`
+                                : 'Add to cart'}
+                            </button>
                           </div>
 
                           {userInfo.name ? (

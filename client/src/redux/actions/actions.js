@@ -701,10 +701,13 @@ export const getCartFromBack = (cartId) => {
 };
 
 export const getCartFromBack2 = (cartId) => {
-  return async function (dispatch) {
+  return async function (dispatch, getState) {
     if (!cartId) return;
 
     try {
+      if (getState().allProduct.length === 0) {
+        await dispatch(getProduct());
+      }
       let getCart = await axios.get(`/cart/${cartId}`);
       return dispatch({ type: GET_FROM_CART_BACK2, payload: getCart.data });
     } catch (error) {

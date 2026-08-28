@@ -186,17 +186,16 @@ function Cart() {
                   </a>
                 )
               ) : (
-                <Link
+                <button
+                  type="button"
                   onClick={() => {
                     loginWithRedirect();
                     window.localStorage.setItem('cart', JSON.stringify(cart));
                   }}
-                  className=" text-center"
+                  className="w-36 font-semibold text-white text-center border-solid bg-main border-2 border-main py-2 px-6 focus:outline-none hover:bg-blue-600 rounded hover:border-blue-600"
                 >
-                  <button className=" w-36  font-semibold  text-white border-solid bg-main border-2 border-main py-2 px-6 focus:outline-none hover:bg-blue-600 rounded hover:border-blue-600">
-                    Sign in
-                  </button>
-                </Link>
+                  Sign in
+                </button>
               )}
             </div>
           </div>
