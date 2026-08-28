@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { Link, useHistory } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import {
   deleteP,
   clearCart,
@@ -22,7 +22,6 @@ function Cart() {
   const token = localStorage.getItem('token');
   const dispatch = useDispatch();
   const { loginWithRedirect } = useAuth0();
-  const history = useHistory();
   let [variable, setVariable] = useState(0);
 
   let totalPrice = 0;
@@ -162,10 +161,6 @@ function Cart() {
                             JSON.parse(token)
                           )
                         );
-                        // setTimeout(
-                        //   () => history.push('/checkout+data+user'),
-                        //   2000
-                        // );
                         orderAdd();
                       }}
                       className=" flex font-semibold  text-white border-solid bg-main border-2 border-main py-2 px-6 focus:outline-none hover:bg-blue-600 rounded hover:border-blue-600"

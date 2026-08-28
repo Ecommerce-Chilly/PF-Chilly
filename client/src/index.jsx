@@ -14,7 +14,10 @@ axios.defaults.baseURL =
 
 createRoot(document.getElementById('root')).render(
   <Provider store={store}>
-    <BrowserRouter basename="/PF-Chilly/">
+    <BrowserRouter
+      basename="/PF-Chilly/"
+      future={{ v7_startTransition: true, v7_relativeSplatPath: true }}
+    >
       <Auth0Provider domain='dev-r6cdo8stlhgup2wx.us.auth0.com' clientId='B25HIG5uEk2dTfKdwH4AnevOmXrXLHp6' redirectUri={'https://Ecommerce-Chilly.github.io/PF-Chilly/user/info'} audience="https://chillydev-arg/api/v1/" scope='admin:ReAdminPa update:current_user_metadata '>
         <App />
       </Auth0Provider>
