@@ -20,7 +20,7 @@ El repositorio se encuentra actualmente en un proceso de recuperación y moderni
 
 ### Frontend
 
-- React 17 y Vite 8.
+- React 18 y Vite 8.
 - Redux, Redux Thunk y React Redux.
 - React Router 5.
 - Tailwind CSS 3, Bootstrap y Reactstrap.
@@ -95,7 +95,7 @@ La preparación detallada de PostgreSQL está en [docs/LEGACY-RUN.md](docs/LEGAC
 
 ## Estado de la recuperación
 
-El punto de partida técnico está registrado en [docs/BASELINE.md](docs/BASELINE.md), el primer arranque en [docs/LEGACY-RUN.md](docs/LEGACY-RUN.md), la estabilización en [docs/PHASE-2.md](docs/PHASE-2.md), la migración a Vite en [docs/PHASE-3A.md](docs/PHASE-3A.md) y el plan de trabajo en [docs/ROADMAP.md](docs/ROADMAP.md). La separación prevista entre entornos está descrita en [docs/ENVIRONMENTS.md](docs/ENVIRONMENTS.md).
+El punto de partida técnico está registrado en [docs/BASELINE.md](docs/BASELINE.md), el primer arranque en [docs/LEGACY-RUN.md](docs/LEGACY-RUN.md), la estabilización en [docs/PHASE-2.md](docs/PHASE-2.md), la migración a Vite en [docs/PHASE-3A.md](docs/PHASE-3A.md), la actualización a React 18 en [docs/PHASE-3B.md](docs/PHASE-3B.md) y el plan de trabajo en [docs/ROADMAP.md](docs/ROADMAP.md). La separación prevista entre entornos está descrita en [docs/ENVIRONMENTS.md](docs/ENVIRONMENTS.md).
 
 ## Equipo original
 

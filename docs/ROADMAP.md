@@ -63,11 +63,11 @@ Recuperar y modernizar Chilly para convertirlo en una demo pública segura y pre
 
 ## Fase 3 — Modernización moderada
 
-**Estado:** en curso. La subfase 3A está completada; véase [PHASE-3A.md](PHASE-3A.md).
+**Estado:** en curso. Las subfases 3A y 3B están completadas; véanse [PHASE-3A.md](PHASE-3A.md) y [PHASE-3B.md](PHASE-3B.md).
 
 - [x] Migrar Create React App a Vite.
 - [x] Mover la configuración pública del frontend a variables `VITE_*`.
-- Migrar React 17 a React 18.
+- [x] Migrar React 17 a React 18.
 - Migrar React Router 5 a 6.
 - Actualizar Auth0 React y dependencias mantenidas.
 - Mantener inicialmente JavaScript, Redux clásico, Express 4, Sequelize 6 y Tailwind 3 si siguen siendo adecuados.
