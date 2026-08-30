@@ -108,6 +108,8 @@ Actualizar React Router 6 a una versión mantenida y corregida sin cambiar la ar
 - Conservación de las rutas, enlaces y hooks existentes, compatibles con React Router 7.
 - Retirada de las banderas transitorias `v7_startTransition` y `v7_relativeSplatPath`, cuyo comportamiento ya forma parte de la versión 7.
 - Conservación del `basename` histórico `/PF-Chilly/` para no alterar las rutas públicas previstas.
+- Sincronización de la sesión Auth0 en la raíz de la aplicación antes de renderizar las rutas. Esto permite reconstruir el usuario, el token y el permiso administrativo al refrescar directamente cualquier página protegida.
+- Restablecimiento explícito del estado administrativo de Redux al cerrar sesión.
 
 ### Verificación automática
 

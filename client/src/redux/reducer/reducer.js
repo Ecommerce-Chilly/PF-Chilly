@@ -338,6 +338,7 @@ const rootReducer = (state = initialState, action) => {
       return {
         ...state,
         userInfo: [],
+        admin: false,
       };
     //! FAVOURITES REDUCERS
     case GET_FAVORITES:
