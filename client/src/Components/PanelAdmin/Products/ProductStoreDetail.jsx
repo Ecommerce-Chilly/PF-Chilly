@@ -12,7 +12,7 @@ import {
   putCartFromBack,
 } from '../../../redux/actions/actions.js';
 import { useDispatch, useSelector } from 'react-redux';
-import ReactTooltip from 'react-tooltip';
+import { Tooltip } from 'react-tooltip';
 import Loader from '../../PI Components/Loader/Loader';
 
 function ProductDetail() {
@@ -204,8 +204,8 @@ function ProductDetail() {
                           ) : (
                             <>
                               <button
-                                data-tip="Sign in to add Favourites!"
-                                data-for="svgTooltip"
+                                data-tooltip-content="Sign in to add Favourites!"
+                                data-tooltip-id="svgTooltip"
                                 className="rounded-full w-10 h-10 bg-gray-200 p-0 border-0 inline-flex items-center justify-center text-gray-500 ml-4 cursor-default"
                               >
                                 <svg
@@ -219,14 +219,10 @@ function ProductDetail() {
                                   <path d="M20.84 4.61a5.5 5.5 0 00-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 00-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 000-7.78z"></path>
                                 </svg>
                               </button>
-                              <ReactTooltip
+                              <Tooltip
                                 id="svgTooltip"
                                 place="top"
-                                effect="solid"
-                                textColor="#000"
-                                backgroundColor="#ffffff"
-                                border
-                                borderColor="#303f9f"
+                                className="!text-black !bg-white !opacity-100 !border !border-[#303f9f]"
                               />
                             </>
                           )}

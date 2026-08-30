@@ -72,3 +72,26 @@ La clave `STRIPE_SECRET_KEY` permanece únicamente en `api/.env`. El frontend no
 - La confirmación postpago funciona mediante el retorno autenticado a la aplicación. Antes de exponer el proyecto públicamente se incorporará un webhook firmado de Stripe para confirmar también pagos cuyo comprador no regrese a la página de éxito.
 - La presentación actual del historial de pedidos es funcional pero muestra IDs internos y fechas sin formatear. Su mejora visual y de contenido queda separada de esta integración.
 - Los pagos reales permanecen fuera del alcance: la configuración solo admite claves `sk_test_`.
+
+## Subfase 3E.3 — React Tooltip 6
+
+### Objetivo
+
+Retirar React Tooltip 4 y su dependencia vulnerable de `uuid` mediante una migración aislada que conserve los tooltips existentes.
+
+### Cambios realizados
+
+- Actualización de `react-tooltip` 4.5 a 6.0.
+- Sustitución de la importación por defecto por el componente nombrado `Tooltip`.
+- Migración de `data-tip` a `data-tooltip-content` y de `data-for` a `data-tooltip-id`.
+- Sustitución de las propiedades visuales eliminadas por clases equivalentes.
+- Adaptación de los once tooltips del constructor de PC y del tooltip de favoritos en el detalle de producto.
+
+### Verificación automática
+
+- 16 pruebas de API y 6 pruebas de frontend superadas.
+- Lint sin errores y build de producción correcto.
+- Ningún uso restante de la API de React Tooltip 4.
+- La auditoría del cliente bajó de 4 a 2 avisos moderados. Ambos pertenecen ahora a React Router 6 y se abordarán por separado.
+
+La comprobación visual debe confirmar que el nombre de cada componente aparece al pasar el cursor sobre las piezas seleccionadas de **Build Your Own** y que el corazón de favoritos muestra el aviso de inicio de sesión cuando se visita un producto sin autenticar.
