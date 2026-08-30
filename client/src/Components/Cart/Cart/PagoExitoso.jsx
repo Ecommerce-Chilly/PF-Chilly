@@ -1,31 +1,66 @@
-import React from 'react';
-import { Link } from 'react-router-dom';
+import React, { useEffect, useState } from 'react';
+import { Link, useSearchParams } from 'react-router-dom';
 import axios from 'axios';
-import { useSelector, useDispatch } from 'react-redux';
+import { useDispatch } from 'react-redux';
+import { clearCart } from '../../../redux/actions/actions';
 
-import { userSpecific, emailjs } from '../../../redux/actions/actions';
 function PagoExitoso() {
-  let user = useSelector((state) => state.userInfo);
   const dispatch = useDispatch();
-  let token = localStorage.getItem('token');
-  let email1 = localStorage.getItem('email');
+  const [searchParams] = useSearchParams();
+  const [status, setStatus] = useState('confirming');
+  const sessionId = searchParams.get('session_id');
 
-  email1=JSON.parse(email1)
-  let data = {
-    service_id: 'service_movy3fh',
-    template_id: 'template_bwd3tub',
-    user_id: '9Ttq_y5p96nZfIkib',
-    template_params: {
-      'email': email1,
-    },
-  };
+  useEffect(() => {
+    let cancelled = false;
 
-  React.useEffect(async () => {
-     await dispatch(userSpecific(email1, JSON.parse(token)));    
-    // await dispatch(emailjs(data));
-     await axios.post('https://api.emailjs.com/api/v1.0/email/send',data)
-    
-  }, []);
+    const confirmPayment = async () => {
+      const token = JSON.parse(localStorage.getItem('token') || 'null');
+      if (!sessionId || !token) {
+        setStatus('error');
+        return;
+      }
+
+      try {
+        await axios.post(`/checkout/session/${encodeURIComponent(sessionId)}/confirm`, null, {
+          headers: { authorization: `Bearer ${token}` },
+        });
+        if (!cancelled) {
+          dispatch(clearCart());
+          setStatus('paid');
+        }
+      } catch {
+        if (!cancelled) setStatus('error');
+      }
+    };
+
+    confirmPayment();
+    return () => {
+      cancelled = true;
+    };
+  }, [dispatch, sessionId]);
+
+  if (status === 'confirming') {
+    return (
+      <div className="min-h-screen py-32 text-center text-xl">
+        Confirming payment with Stripe…
+      </div>
+    );
+  }
+
+  if (status === 'error') {
+    return (
+      <div className="min-h-screen py-32 text-center">
+        <h3 className="text-4xl font-bold text-slate-800">Payment not confirmed</h3>
+        <p className="my-6 text-gray-500">
+          We could not verify this payment. Your cart has not been cleared.
+        </p>
+        <Link to="/cart" className="font-semibold text-main hover:underline">
+          Return to cart
+        </Link>
+      </div>
+    );
+  }
+
   return (
     <div>
       <div className="h-full my-20 font-display ">

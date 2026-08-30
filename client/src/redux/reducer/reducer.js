@@ -412,7 +412,7 @@ const rootReducer = (state = initialState, action) => {
     case PAY:
       return {
         ...state,
-        paymentLink: action.payload['init_point'],
+        paymentLink: action.payload.url,
       };
     case CLEAR_PAYLINK:
       return {

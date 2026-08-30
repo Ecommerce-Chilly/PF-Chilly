@@ -49,7 +49,7 @@ La implementación futura deberá separar como mínimo:
 - Conexión a PostgreSQL.
 - Modo demo y política de reset.
 - Configuración de Auth0.
-- Credenciales sandbox de Mercado Pago.
+- Clave secreta de Stripe en modo de pruebas y URL pública del storefront.
 - Configuración pública de Cloudinary y EmailJS.
 
 Los archivos con valores reales no se versionarán. El repositorio conservará únicamente ejemplos sin secretos.

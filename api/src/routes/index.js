@@ -6,7 +6,7 @@ const detailsCategoryRoute = require('./detailsCategoryRoute');
 const orderItemsRoute = require('./orderItemsRoute');
 // const { hardCodeoInfo } = require("../controllers/hardCode");
 const userRoute = require('./userRoute');
-const mercadoPago = require('./mercadoPago');
+const checkoutRoute = require('./checkoutRoute');
 const favoriteRoute = require('./favoriteRoute');
 const router = Router();
 // josema me paso lo de abajo
@@ -42,7 +42,7 @@ router.use('/inventory', inventoryRoute);
 router.use('/categoryDetails', detailsCategoryRoute);
 router.use('/user', userRoute);
 router.use('/favorite', favoriteRoute);
-router.use('/payment', mercadoPago);
+router.use('/checkout', checkoutRoute);
 router.use('/orderItems', orderItemsRoute);
 
 module.exports = router;

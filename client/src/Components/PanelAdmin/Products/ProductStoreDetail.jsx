@@ -103,7 +103,7 @@ function ProductDetail() {
 
                         <div className="flex justify-between relative">
                           <span className="title-font font-medium text-4xl text-gray-900">
-                            ${' '}
+                            €{' '}
                             {produDetail[0].price == 0
                               ? 50
                               : produDetail[0].price}

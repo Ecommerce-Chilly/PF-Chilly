@@ -27,20 +27,20 @@ function PagoFallido() {
           </div>
           <div className="text-center">
             <h3 className="mb-4 text-4xl font-bold tracking-tight leading-none text-gray-900 lg:mb-6 md:text-5xl xl:text-6xl">
-              Payment Failed!
+              Payment Cancelled
             </h3>
             <p className="font-light text-gray-500 md:text-lg xl:text-xl dark:text-gray-400">
-              Please try again.
+              Nothing was charged and your cart is still available.
             </p>
             <p className="font-light mt-4 mb-9 text-gray-500 md:text-sm xl:text-xl dark:text-gray-400">
               Have a great day!
             </p>
             <div className="py-10 text-center">
               <Link
-                to="/"
+                to="/cart"
                 className="cursor-pointer font-semibold  text-white border-solid bg-main border-2 border-main py-2 px-6 focus:outline-none hover:bg-blue-600 rounded hover:border-blue-600"
               >
-                Back to Homepage!
+                Return to cart
               </Link>
             </div>
           </div>

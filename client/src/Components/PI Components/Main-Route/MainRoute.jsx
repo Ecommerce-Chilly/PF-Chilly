@@ -23,7 +23,6 @@ import Footer from '../Footer/Footer';
 import Register from '../../Login/Register/Register';
 import PagoExitoso from '../../Cart/Cart/PagoExitoso.jsx';
 import PagoFallido from '../../Cart/Cart/PagoFallido.jsx';
-import PagoPendiente from '../../Cart/Cart/PagoPendiente.jsx';
 import { userSpecific } from '../../../redux/actions/actions';
 import { useDispatch } from 'react-redux';
 import PanelAdmin from '../../PanelAdmin/PanelAdmin';
@@ -93,7 +92,6 @@ function MainRoute() {
             element={<ProductsDeleted />}
           />
           <Route path="/paymentsuccess" element={<PagoExitoso />} />
-          <Route path="/paymentpending" element={<PagoPendiente />} />
           <Route path="/paymentfailure" element={<PagoFallido />} />
           <Route path="*" element={<PageNotFound />} />
         </Routes>

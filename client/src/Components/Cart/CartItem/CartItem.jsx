@@ -90,7 +90,7 @@ function CartItem({ name, quantity, price, image, id, changeVariable }) {
           <div className="flex items-center justify-between ">
             <div className="mr-10 w-16    ml-6">
               <span className="   font-medium">
-                ${(price * quantity).toFixed(2)}
+                €{(price * quantity).toFixed(2)}
               </span>
             </div>
             <button

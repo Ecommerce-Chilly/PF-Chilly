@@ -5,6 +5,8 @@ const validEnvironment = {
   DB_DEPLOY: 'postgresql://local/chilly',
   AUTH0_AUDIENCE: 'https://chilly-api',
   AUTH0_ISSUER_BASE_URL: 'https://example.us.auth0.com',
+  STRIPE_SECRET_KEY: 'sk_test_example',
+  STOREFRONT_URL: 'http://localhost:3000/PF-Chilly/',
 };
 
 describe('API environment', () => {
@@ -37,5 +39,19 @@ describe('API environment', () => {
       'https://example.us.auth0.com/'
     );
     expect(config.auth0AdminScope).to.equal('admin:access');
+  });
+
+  it('requires a Stripe test key', () => {
+    expect(() =>
+      readEnvironment({ ...validEnvironment, STRIPE_SECRET_KEY: 'sk_live_nope' })
+    ).to.throw('Missing Stripe test configuration');
+  });
+
+  it('normalizes the storefront URL', () => {
+    const config = readEnvironment(validEnvironment);
+
+    expect(config.storefrontUrl).to.equal(
+      'http://localhost:3000/PF-Chilly/'
+    );
   });
 });

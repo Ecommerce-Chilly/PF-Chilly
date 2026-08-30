@@ -10,7 +10,7 @@ El repositorio se encuentra actualmente en un proceso de recuperación y moderni
 - Constructor de equipos por componentes.
 - Carrito y favoritos asociados al usuario.
 - Autenticación y autorización mediante Auth0.
-- Checkout e integración con Mercado Pago.
+- Checkout alojado mediante Stripe en modo de pruebas.
 - Panel para administrar productos, inventario, descuentos, usuarios y pedidos.
 - Carga de imágenes mediante Cloudinary.
 - Envío de correos mediante EmailJS.
@@ -32,7 +32,7 @@ El repositorio se encuentra actualmente en un proceso de recuperación y moderni
 - PostgreSQL.
 - Sequelize 6.
 - Auth0.
-- Mercado Pago.
+- Stripe Checkout.
 
 ## Estructura
 
@@ -57,7 +57,7 @@ cd ../client
 cp .env.example .env
 ```
 
-Los ejemplos documentan también la configuración pública de Auth0. El dominio, client ID, audience e issuer deben corresponder al mismo tenant y API; ningún Client Secret debe incluirse en el frontend. La guía completa está en [docs/PHASE-3D.md](docs/PHASE-3D.md).
+Los ejemplos documentan también la configuración pública de Auth0 y la configuración privada de Stripe. El dominio, client ID, audience e issuer deben corresponder al mismo tenant y API; ningún Client Secret ni clave de Stripe debe incluirse en el frontend. Stripe se configura únicamente con una clave `sk_test_` en `api/.env`. Las guías completas están en [docs/PHASE-3D.md](docs/PHASE-3D.md) y [docs/PHASE-3E.md](docs/PHASE-3E.md).
 
 Instala las dependencias fijadas por los lockfiles desde la raíz:
 

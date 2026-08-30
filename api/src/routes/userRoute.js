@@ -57,9 +57,9 @@ userRoute.delete('/:id', checkJwt, async (req, res) => {
   }
 });
 
-userRoute.post('/', async (req, res) => {
+userRoute.post('/', checkJwt, async (req, res) => {
   try {
-    const userCreate = await postUser(req.body);
+    const userCreate = await postUser(req.body, req.auth.payload.sub);
     res.status(201).send(userCreate);
   } catch (error) {
     res.status(404).send({ error: error });

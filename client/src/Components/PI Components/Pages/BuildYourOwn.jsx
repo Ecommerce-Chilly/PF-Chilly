@@ -104,7 +104,7 @@ function BuildYourOwn() {
           {i < categories.length + 1 && i > -1 ? (
             <div className="  w-2/5 h-12 bg-white border-2 rounded border-main flex">
               <p className="my-auto mx-auto text-center text-slate-900 font-display font-medium">
-                Total Price: ${totalPrice.toFixed(2)}
+                Total Price: €{totalPrice.toFixed(2)}
               </p>
             </div>
           ) : null}
@@ -2471,7 +2471,7 @@ function BuildYourOwn() {
                       alt={component.name}
                     />
                     <p className="text-2xl font-display text-slate-700">
-                      $ {component.price === 0 ? 50 : component.price}
+                      € {component.price === 0 ? 50 : component.price}
                     </p>
                   </div>
                 </div>

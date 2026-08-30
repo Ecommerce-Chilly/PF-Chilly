@@ -35,4 +35,40 @@ Resultado: 8 pruebas de API y 6 pruebas de frontend superadas, lint sin errores 
 
 ### Siguiente paso
 
-Sustituir el checkout de Mercado Pago por Stripe Checkout en modo de pruebas. Una vez verificado el flujo completo, se eliminarán el servicio, la ruta, las llamadas del frontend y las variables específicas de Mercado Pago.
+La sustitución del checkout se completó en la subfase 3E.2 descrita a continuación.
+
+## Subfase 3E.2 — Stripe Checkout en modo de pruebas
+
+### Objetivo
+
+Sustituir completamente la integración legacy de Mercado Pago por un checkout internacional mantenido, sin aceptar pagos reales y sin permitir que el navegador decida precios o confirme pedidos.
+
+### Cambios realizados
+
+- Instalación del SDK oficial de Stripe exclusivamente en la API.
+- Sustitución de la ruta de Mercado Pago por creación y confirmación de sesiones de Stripe Checkout.
+- Eliminación de los controladores, rutas, servicios, retornos y variables específicos de Mercado Pago.
+- Cálculo de importes en el backend a partir de los productos actuales de PostgreSQL; el cliente solamente envía IDs y cantidades.
+- Validación de productos, cantidades, precios e inventario antes de crear la sesión.
+- Uso exclusivo de euros y actualización de los indicadores de moneda visibles.
+- Redirección directa desde el carrito al checkout alojado por Stripe.
+- Confirmación del estado `paid` contra Stripe antes de crear pedidos.
+- Asociación de la sesión al sujeto autenticado de Auth0 y sincronización de ese identificador con el usuario local.
+- Creación idempotente básica de pedidos y limpieza del carrito únicamente después de confirmar el pago.
+- Conservación del carrito cuando el usuario cancela el checkout.
+
+La clave `STRIPE_SECRET_KEY` permanece únicamente en `api/.env`. El frontend no recibe la clave secreta ni necesita una clave publicable para este flujo alojado.
+
+### Verificación
+
+- Conexión comprobada con Stripe usando una clave de pruebas; `livemode` resultó `false`.
+- 16 pruebas de API y 6 de frontend superadas.
+- Lint sin errores y build de producción correcto.
+- Pago manual completado con una tarjeta oficial de pruebas.
+- Retorno correcto a la aplicación, carrito vaciado y pedido visible en el panel administrativo.
+
+### Limitaciones registradas
+
+- La confirmación postpago funciona mediante el retorno autenticado a la aplicación. Antes de exponer el proyecto públicamente se incorporará un webhook firmado de Stripe para confirmar también pagos cuyo comprador no regrese a la página de éxito.
+- La presentación actual del historial de pedidos es funcional pero muestra IDs internos y fechas sin formatear. Su mejora visual y de contenido queda separada de esta integración.
+- Los pagos reales permanecen fuera del alcance: la configuración solo admite claves `sk_test_`.

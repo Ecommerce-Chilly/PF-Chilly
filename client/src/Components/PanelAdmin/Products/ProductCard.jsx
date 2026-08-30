@@ -100,7 +100,7 @@ function ProductCard(props) {
               alt={props.name}
             />
             <p className="text-2xl font-display text-slate-700">
-              $ {props.price === 0 ? 50 : props.price}
+              € {props.price === 0 ? 50 : props.price}
             </p>
           </Link>
         </div>

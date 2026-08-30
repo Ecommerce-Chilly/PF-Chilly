@@ -513,14 +513,16 @@ export const clearDeleted = (payload) => {
 export const pay = (payData, token) => {
   return async function (dispatch) {
     try {
-      let payLink = await axios.post('/payment/', payData, {
+      const checkout = await axios.post('/checkout/session', payData, {
         headers: {
           authorization: `Bearer ${token}`,
         },
       });
-      return dispatch({ type: PAY, payload: payLink.data });
+      dispatch({ type: PAY, payload: checkout.data });
+      return checkout.data.url;
     } catch (error) {
-      return getErrorPayload(error);
+      console.error('Unable to create the checkout session:', getErrorPayload(error));
+      return null;
     }
   };
 };

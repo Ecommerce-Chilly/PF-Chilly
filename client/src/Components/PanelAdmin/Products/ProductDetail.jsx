@@ -75,7 +75,7 @@ function ProductDetail() {
 
                         <div className="flex">
                           <span className="title-font font-medium text-3xl text-gray-900">
-                            $
+                            €
                             {produDetail[0].price == 0
                               ? 50
                               : produDetail[0].price}

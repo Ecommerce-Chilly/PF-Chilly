@@ -30,12 +30,31 @@ function readEnvironment(environment = process.env) {
     throw new Error('PORT must be an integer between 1 and 65535.');
   }
 
+  const stripeSecretKey = environment.STRIPE_SECRET_KEY?.trim();
+  if (!stripeSecretKey?.startsWith('sk_test_')) {
+    throw new Error(
+      'Missing Stripe test configuration. Set STRIPE_SECRET_KEY to an sk_test_ key in api/.env.'
+    );
+  }
+
+  let storefrontUrl;
+  try {
+    storefrontUrl = new URL(
+      environment.STOREFRONT_URL?.trim() ||
+        'http://localhost:3000/PF-Chilly/'
+    ).toString();
+  } catch {
+    throw new Error('STOREFRONT_URL must be a valid absolute URL.');
+  }
+
   return {
     databaseUrl,
     port,
     auth0Audience,
     auth0IssuerBaseUrl: normalizedIssuerBaseUrl,
     auth0AdminScope: environment.AUTH0_ADMIN_SCOPE?.trim() || 'admin:access',
+    stripeSecretKey,
+    storefrontUrl,
   };
 }
 

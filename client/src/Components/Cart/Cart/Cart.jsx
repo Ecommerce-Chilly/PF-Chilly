@@ -1,12 +1,9 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
 import {
-  deleteP,
   clearCart,
   pay,
-  clearPaylink,
-  addOrder,
   getDataUser,
   clearCartFromBack,
 } from '../../../redux/actions/actions';
@@ -15,14 +12,13 @@ import Swal from 'sweetalert2';
 import { useAuth0 } from '@auth0/auth0-react';
 
 function Cart() {
-  const { cart, userDataInCheckout, paymentLink, backendCart } = useSelector(
-    (state) => state
-  );
+  const { cart, backendCart } = useSelector((state) => state);
   const userUnique = useSelector((state) => state.userInfo);
   const token = localStorage.getItem('token');
   const dispatch = useDispatch();
   const { loginWithRedirect } = useAuth0();
   let [variable, setVariable] = useState(0);
+  const [checkoutLoading, setCheckoutLoading] = useState(false);
 
   let totalPrice = 0;
 
@@ -31,22 +27,36 @@ function Cart() {
   }
 
   React.useEffect(() => {
-    dispatch(clearPaylink());
     if (userUnique.id) {
       dispatch(getDataUser());
     }
   }, [cart, dispatch, userUnique.id, variable]);
 
-  const deleteProduct = (id) => {
-    dispatch(deleteP(id));
-  };
-
   const changeVariable = (num) => {
     setVariable(num);
   };
-  const orderAdd = () => {
-    cart?.map((e) => {
-      dispatch(addOrder(userUnique.id, e.id, e.quantity, JSON.parse(token)));
+
+  const startCheckout = async () => {
+    setCheckoutLoading(true);
+    const checkoutUrl = await dispatch(
+      pay(
+        {
+          items: cart.map(({ id, quantity }) => ({ id, quantity })),
+        },
+        JSON.parse(token || 'null')
+      )
+    );
+
+    if (checkoutUrl) {
+      window.location.assign(checkoutUrl);
+      return;
+    }
+
+    setCheckoutLoading(false);
+    Swal.fire({
+      icon: 'error',
+      text: 'Unable to start checkout. Please try again.',
+      confirmButtonText: 'OK',
     });
   };
   const confirmClearCart = () => {
@@ -141,7 +151,7 @@ function Cart() {
         <>
           <div className=" w-2/3 px-7 text-right relative mb-20 m-auto border-solid border-slate-800 border-t-4 mt-8">
             <h1 className="text-slate-800 text-2xl my-9 text-display">
-              Total Price: $ {totalPrice.toFixed(2)}
+              Total Price: € {totalPrice.toFixed(2)}
             </h1>
             <div className="w-80 absolute right-0 flex ">
               <button
@@ -151,35 +161,14 @@ function Cart() {
                 Clear Cart
               </button>
               {userUnique.name ? (
-                !paymentLink ? (
-                  <Link to="#" className="">
-                    <button
-                      onClick={() => {
-                        dispatch(
-                          pay(
-                            { email: userUnique.email, items: cart },
-                            JSON.parse(token)
-                          )
-                        );
-                        orderAdd();
-                      }}
-                      className=" flex font-semibold  text-white border-solid bg-main border-2 border-main py-2 px-6 focus:outline-none hover:bg-blue-600 rounded hover:border-blue-600"
-                    >
-                      Check Out
-                    </button>
-                  </Link>
-                ) : (
-                  <a href={paymentLink} className="text-center">
-                    <button
-                      className=" flex font-semibold  text-white border-solid bg-main border-2 border-main py-2 px-12  focus:outline-none hover:bg-blue-600 rounded hover:border-blue-600 "
-                      onClick={() =>
-                        dispatch(clearCartFromBack(backendCart[0].userId))
-                      }
-                    >
-                      Pay!
-                    </button>
-                  </a>
-                )
+                <button
+                  type="button"
+                  disabled={checkoutLoading}
+                  onClick={startCheckout}
+                  className="flex font-semibold text-white border-solid bg-main border-2 border-main py-2 px-6 focus:outline-none hover:bg-blue-600 rounded hover:border-blue-600 disabled:opacity-60 disabled:cursor-wait"
+                >
+                  {checkoutLoading ? 'Opening…' : 'Check Out'}
+                </button>
               ) : (
                 <button
                   type="button"
