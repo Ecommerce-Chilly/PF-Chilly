@@ -3,6 +3,7 @@ import { useAuth0 } from '@auth0/auth0-react';
 import { useDispatch } from 'react-redux';
 import { logoutUser } from '../../../redux/actions/actions';
 import Swal from 'sweetalert2';
+import { getAuth0RuntimeUrls } from '../../../config/auth0';
 
 const LogoutButton = () => {
   const { logout } = useAuth0();
@@ -25,7 +26,9 @@ const LogoutButton = () => {
     }).then((result) => {
       /* Read more about isConfirmed, isDenied below */
       if (result.isConfirmed) {
-        logout({ returnTo: 'https://chilly-production.up.railway.app/' }); //http://localhost:3000/
+        logout({
+          logoutParams: { returnTo: getAuth0RuntimeUrls().logoutUri },
+        });
         dispatch(logoutUser());
         localStorage.removeItem('token');
         localStorage.removeItem('email');
