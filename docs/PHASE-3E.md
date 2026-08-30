@@ -94,4 +94,25 @@ Retirar React Tooltip 4 y su dependencia vulnerable de `uuid` mediante una migra
 - Ningún uso restante de la API de React Tooltip 4.
 - La auditoría del cliente bajó de 4 a 2 avisos moderados. Ambos pertenecen ahora a React Router 6 y se abordarán por separado.
 
-La comprobación visual debe confirmar que el nombre de cada componente aparece al pasar el cursor sobre las piezas seleccionadas de **Build Your Own** y que el corazón de favoritos muestra el aviso de inicio de sesión cuando se visita un producto sin autenticar.
+La comprobación visual confirmó que el nombre de cada componente aparece al pasar el cursor sobre las piezas seleccionadas de **Build Your Own** y que el corazón de favoritos muestra el aviso de inicio de sesión cuando se visita un producto sin autenticar.
+
+## Subfase 3E.4 — React Router 7
+
+### Objetivo
+
+Actualizar React Router 6 a una versión mantenida y corregida sin cambiar la arquitectura declarativa ni el comportamiento de navegación de la aplicación.
+
+### Cambios realizados
+
+- Actualización de `react-router-dom` 6.30 a 7.18.
+- Conservación de las rutas, enlaces y hooks existentes, compatibles con React Router 7.
+- Retirada de las banderas transitorias `v7_startTransition` y `v7_relativeSplatPath`, cuyo comportamiento ya forma parte de la versión 7.
+- Conservación del `basename` histórico `/PF-Chilly/` para no alterar las rutas públicas previstas.
+
+### Verificación automática
+
+- Pruebas de API y frontend superadas.
+- Lint sin errores y build de producción correcto.
+- Auditoría del cliente sin vulnerabilidades conocidas.
+
+La comprobación manual debe recorrer la navegación principal, abrir una ficha de producto, el constructor, carrito, perfil y administración, y refrescar una ruta interna para detectar cualquier regresión de navegación.

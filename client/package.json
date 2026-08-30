@@ -15,7 +15,7 @@
     "react-paginate": "^8.1.4",
     "react-redux": "^7.2.3",
     "react-responsive-carousel": "^3.2.23",
-    "react-router-dom": "^6.30.6",
+    "react-router-dom": "^7.18.3",
     "react-tooltip": "^6.0.8",
     "reactstrap": "^9.1.5",
     "redux": "^4.0.5",

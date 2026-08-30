@@ -63,7 +63,7 @@ Recuperar y modernizar Chilly para convertirlo en una demo pública segura y pre
 
 ## Fase 3 — Modernización moderada
 
-**Estado:** en curso. Las subfases 3A, 3B, 3C, 3D, 3E.1 y 3E.2 están completadas; 3E.3 está implementada y pendiente de comprobación visual. Véanse [PHASE-3A.md](PHASE-3A.md), [PHASE-3B.md](PHASE-3B.md), [PHASE-3C.md](PHASE-3C.md), [PHASE-3D.md](PHASE-3D.md) y [PHASE-3E.md](PHASE-3E.md).
+**Estado:** en curso. Las subfases 3A, 3B, 3C, 3D y 3E.1 a 3E.4 están completadas; React Router 7 queda pendiente únicamente de comprobación manual. Véanse [PHASE-3A.md](PHASE-3A.md), [PHASE-3B.md](PHASE-3B.md), [PHASE-3C.md](PHASE-3C.md), [PHASE-3D.md](PHASE-3D.md) y [PHASE-3E.md](PHASE-3E.md).
 
 - [x] Migrar Create React App a Vite.
 - [x] Mover la configuración pública del frontend a variables `VITE_*`.
@@ -72,7 +72,8 @@ Recuperar y modernizar Chilly para convertirlo en una demo pública segura y pre
 - [x] Actualizar Auth0 React, recuperar su configuración y retirar el acceso del navegador a Management API.
 - [x] Retirar dependencias sin uso y actualizar dependencias compatibles de bajo riesgo.
 - [x] Sustituir Mercado Pago por Stripe Checkout en modo de pruebas.
-- [ ] Verificar visualmente la migración de React Tooltip 4 a 6.
+- [x] Verificar visualmente la migración de React Tooltip 4 a 6.
+- [x] Migrar React Router 6 a 7 sin cambiar la arquitectura de rutas.
 - Migrar de forma aislada las dependencias que requieren cambios major.
 - Mantener inicialmente JavaScript, Redux clásico, Express 4, Sequelize 6 y Tailwind 3 si siguen siendo adecuados.
 
@@ -118,6 +119,7 @@ Recuperar y modernizar Chilly para convertirlo en una demo pública segura y pre
 
 - Ejecutar recorridos manuales completos como visitante, usuario y administrador.
 - Probar catálogo, filtros, carrito, favoritos, checkout, pedidos y administración.
+- Revisar el contenido y la presentación del panel de usuarios administrativos.
 - Añadir pruebas automatizadas pequeñas para health check, catálogo, autorización, propiedad de recursos y build.
 - Corregir regresiones y estados de carga o error importantes.
 

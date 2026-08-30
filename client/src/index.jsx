@@ -17,10 +17,7 @@ const { redirectUri } = getAuth0RuntimeUrls();
 
 createRoot(document.getElementById('root')).render(
   <Provider store={store}>
-    <BrowserRouter
-      basename="/PF-Chilly/"
-      future={{ v7_startTransition: true, v7_relativeSplatPath: true }}
-    >
+    <BrowserRouter basename="/PF-Chilly/">
       <Auth0Provider
         domain={auth0Config.domain}
         clientId={auth0Config.clientId}
