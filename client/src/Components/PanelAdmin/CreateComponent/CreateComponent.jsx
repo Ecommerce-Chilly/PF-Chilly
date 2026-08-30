@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { useHistory } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import {
   createProduct,
   createDiscount,
@@ -19,7 +19,7 @@ function CreateComponent() {
   const { admin, brands, category } = useSelector((state) => state);
   const dispatch = useDispatch();
   const msg = useSelector((state) => state.createProductMsg);
-  const history = useHistory();
+  const navigate = useNavigate();
   const [errors, setErrors] = useState({});
   useEffect(() => {
     dispatch(allBrands());
@@ -117,7 +117,7 @@ function CreateComponent() {
         },
       }).then((r) => {
         if (r.isConfirmed) {
-          history.push("/panel+admin/products");
+          navigate("/panel+admin/products");
         }
       });
     }

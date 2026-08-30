@@ -1,9 +1,9 @@
 import React, { useState } from "react";
-import { useHistory } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
 function SearchBar() {
   const [name, setName] = useState("");
-  const history = useHistory();
+  const navigate = useNavigate();
 
   function handleInput(event) {
     event.preventDefault();
@@ -15,7 +15,7 @@ function SearchBar() {
     const query = name.trim();
     if (!query) return;
 
-    history.push(`/store?name=${encodeURIComponent(query)}`);
+    navigate(`/store?name=${encodeURIComponent(query)}`);
     setName("");
   }
 

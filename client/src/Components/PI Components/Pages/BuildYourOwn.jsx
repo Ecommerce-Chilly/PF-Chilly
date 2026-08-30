@@ -1,6 +1,6 @@
 import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { useHistory } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import {
   addToBuild,
   deleteFromBuild,
@@ -20,7 +20,7 @@ import intelLogo from '../../../img/intel.png';
 import amdLogo from '../../../img/amd.webp';
 
 function BuildYourOwn() {
-  let history = useHistory();
+  const navigate = useNavigate();
   let byo = useSelector((state) => state.build);
   let userInfo = useSelector((state) => state.userInfo);
   let products = useSelector((state) => state.allProduct);
@@ -126,7 +126,7 @@ function BuildYourOwn() {
                 dispatch(updateCartQuantity());
                 dispatch(clearBYO());
                 setI(-1);
-                history.push('/cart');
+                navigate('/cart');
               }}
               className="w-2/5 h-12 bg-main border-l-2 rounded border-white hover:bg-blue-700 relative"
             >

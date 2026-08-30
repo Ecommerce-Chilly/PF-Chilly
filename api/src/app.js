@@ -5,16 +5,6 @@ const bodyParser = require('body-parser');
 const app = express();
 const routes = require('./routes/index.js');
 const cors = require('cors');
-// SDK de Mercado Pago
-const mercadopago = require('mercadopago');
-// Agrega credenciales
-const { ACCESS_TOKEN } = process.env;
-
-if (ACCESS_TOKEN) {
-  mercadopago.configure({
-    access_token: ACCESS_TOKEN,
-  });
-}
 
 app.use(cors());
 app.use(morgan('dev'));

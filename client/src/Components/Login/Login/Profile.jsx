@@ -1,6 +1,5 @@
-import React, { useEffect, useState } from 'react';
-import axios from 'axios';
-import { LocalStorageCache, useAuth0 } from '@auth0/auth0-react';
+import React, { useEffect } from 'react';
+import { useAuth0 } from '@auth0/auth0-react';
 import * as actions from '../../../redux/actions/actions';
 import { useDispatch, useSelector } from 'react-redux';
 import LogoutButton from './LogoutButton';
@@ -17,38 +16,17 @@ const Profile = () => {
   const userInfo = useSelector((state) => state.userInfo);
 
   const { user, isAuthenticated, getAccessTokenSilently } = useAuth0();
-  const [userMetadata, setUserMetadata] = useState(null);
-
   useEffect(() => {
-    const getUserMetadata = async () => {
-      const domain = 'dev-r6cdo8stlhgup2wx.us.auth0.com';
+    let cancelled = false;
 
+    const synchronizeUser = async () => {
       try {
-        const accessToken = await getAccessTokenSilently({
-          audience: `https://${domain}/api/v1/`,
-          scope: 'read:client_grants',
-        });
-        const userDetailsByIdUrl = `https://${domain}/api/v1/users/${user.sub}`;
-        const metadataResponse = await fetch(userDetailsByIdUrl, {
-          headers: {
-            Authorization: `Bearer ${accessToken}`,
-          },
-        });
-
-        const { user_metadata } = await metadataResponse.json();
-        setUserMetadata(user_metadata);
-      } catch (e) {
-        setUserMetadata(null);
-      }
-    };
-
-    const postDb = async () => {
-      await getUserMetadata();
-      localStorage.setItem('email', JSON.stringify(user.email));
-      const token = await getAccessTokenSilently();
-      localStorage.setItem('token', JSON.stringify(token));
-      async function create() {
         const token = await getAccessTokenSilently();
+
+        if (cancelled) return;
+
+        localStorage.setItem('email', JSON.stringify(user.email));
+        localStorage.setItem('token', JSON.stringify(token));
         await dispatch(
           actions.createUser(
             { email: user.email, img: user.picture, name: user.name },
@@ -57,13 +35,23 @@ const Profile = () => {
         );
         await dispatch(actions.userSpecific(user.email, token));
         await dispatch(actions.userAdmin(user.email, token));
+      } catch {
+        if (!cancelled) {
+          console.error('Unable to synchronize the authenticated user.');
+        }
       }
-      create();
     };
-    postDb();
-  }, [getAccessTokenSilently, user?.sub]);
+
+    if (isAuthenticated && user?.email) synchronizeUser();
+
+    return () => {
+      cancelled = true;
+    };
+  }, [dispatch, getAccessTokenSilently, isAuthenticated, user]);
 
   React.useEffect(() => {
+    if (!userInfo.id) return;
+
     dispatch(actions.getCartFromBack(userInfo.id));
 
     let cartLS = window.localStorage.getItem('cart');
@@ -72,7 +60,7 @@ const Profile = () => {
       window.localStorage.removeItem('cart');
       dispatch(updateCartQuantity(userInfo.id));
     }
-  }, []);
+  }, [dispatch, userInfo.id]);
 
   return (
     isAuthenticated && (

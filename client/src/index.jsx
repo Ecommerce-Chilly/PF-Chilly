@@ -1,24 +1,38 @@
 import React from 'react';
-import ReactDOM from 'react-dom';
+import { createRoot } from 'react-dom/client';
 import './assets/tailwind.css';
 import App from './App';
 import store from './redux/store/store';
 import { Provider } from 'react-redux';
 import { BrowserRouter } from 'react-router-dom';
 import { Auth0Provider } from '@auth0/auth0-react';
+import { auth0Config, getAuth0RuntimeUrls } from './config/auth0';
 
 import axios from 'axios';
 axios.defaults.baseURL =
   import.meta.env.VITE_API_URL ||
   'https://pf-chilly-back-production.up.railway.app/';
 
-ReactDOM.render(
+const { redirectUri } = getAuth0RuntimeUrls();
+
+createRoot(document.getElementById('root')).render(
   <Provider store={store}>
-    <BrowserRouter basename="/PF-Chilly/">
-      <Auth0Provider domain='dev-r6cdo8stlhgup2wx.us.auth0.com' clientId='B25HIG5uEk2dTfKdwH4AnevOmXrXLHp6' redirectUri={'https://Ecommerce-Chilly.github.io/PF-Chilly/user/info'} audience="https://chillydev-arg/api/v1/" scope='admin:ReAdminPa update:current_user_metadata '>
+    <BrowserRouter
+      basename="/PF-Chilly/"
+      future={{ v7_startTransition: true, v7_relativeSplatPath: true }}
+    >
+      <Auth0Provider
+        domain={auth0Config.domain}
+        clientId={auth0Config.clientId}
+        cacheLocation="localstorage"
+        authorizationParams={{
+          redirect_uri: redirectUri,
+          audience: auth0Config.audience,
+          scope: `openid profile email ${auth0Config.adminScope}`,
+        }}
+      >
         <App />
       </Auth0Provider>
     </BrowserRouter>
-  </Provider>,
-  document.getElementById('root')
+  </Provider>
 );

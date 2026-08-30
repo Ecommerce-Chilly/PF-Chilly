@@ -20,9 +20,9 @@ El repositorio se encuentra actualmente en un proceso de recuperación y moderni
 
 ### Frontend
 
-- React 17 y Vite 8.
+- React 18 y Vite 8.
 - Redux, Redux Thunk y React Redux.
-- React Router 5.
+- React Router 6.
 - Tailwind CSS 3, Bootstrap y Reactstrap.
 - Axios y Auth0 React.
 
@@ -56,6 +56,8 @@ cp .env.example .env
 cd ../client
 cp .env.example .env
 ```
+
+Los ejemplos documentan también la configuración pública de Auth0. El dominio, client ID, audience e issuer deben corresponder al mismo tenant y API; ningún Client Secret debe incluirse en el frontend. La guía completa está en [docs/PHASE-3D.md](docs/PHASE-3D.md).
 
 Instala las dependencias fijadas por los lockfiles desde la raíz:
 
@@ -91,11 +93,11 @@ npm run smoke:api
 
 El smoke test requiere que el backend esté levantado. Vite genera `client/dist` durante el build y esa carpeta no se versiona. Tailwind se procesa directamente durante desarrollo y compilación.
 
-La preparación detallada de PostgreSQL está en [docs/LEGACY-RUN.md](docs/LEGACY-RUN.md), los cambios de estabilización en [docs/PHASE-2.md](docs/PHASE-2.md) y la migración a Vite en [docs/PHASE-3A.md](docs/PHASE-3A.md).
+La preparación detallada de PostgreSQL está en [docs/LEGACY-RUN.md](docs/LEGACY-RUN.md), los cambios de estabilización en [docs/PHASE-2.md](docs/PHASE-2.md), la migración a Vite en [docs/PHASE-3A.md](docs/PHASE-3A.md), la configuración recuperada de Auth0 en [docs/PHASE-3D.md](docs/PHASE-3D.md) y la auditoría incremental de dependencias en [docs/PHASE-3E.md](docs/PHASE-3E.md).
 
 ## Estado de la recuperación
 
-El punto de partida técnico está registrado en [docs/BASELINE.md](docs/BASELINE.md), el primer arranque en [docs/LEGACY-RUN.md](docs/LEGACY-RUN.md), la estabilización en [docs/PHASE-2.md](docs/PHASE-2.md), la migración a Vite en [docs/PHASE-3A.md](docs/PHASE-3A.md) y el plan de trabajo en [docs/ROADMAP.md](docs/ROADMAP.md). La separación prevista entre entornos está descrita en [docs/ENVIRONMENTS.md](docs/ENVIRONMENTS.md).
+El punto de partida técnico está registrado en [docs/BASELINE.md](docs/BASELINE.md), el primer arranque en [docs/LEGACY-RUN.md](docs/LEGACY-RUN.md), la estabilización en [docs/PHASE-2.md](docs/PHASE-2.md), la migración a Vite en [docs/PHASE-3A.md](docs/PHASE-3A.md), la actualización a React 18 en [docs/PHASE-3B.md](docs/PHASE-3B.md), la migración a React Router 6 en [docs/PHASE-3C.md](docs/PHASE-3C.md), la recuperación de Auth0 en [docs/PHASE-3D.md](docs/PHASE-3D.md), la auditoría de dependencias en [docs/PHASE-3E.md](docs/PHASE-3E.md) y el plan de trabajo en [docs/ROADMAP.md](docs/ROADMAP.md). La separación prevista entre entornos está descrita en [docs/ENVIRONMENTS.md](docs/ENVIRONMENTS.md).
 
 ## Equipo original
 

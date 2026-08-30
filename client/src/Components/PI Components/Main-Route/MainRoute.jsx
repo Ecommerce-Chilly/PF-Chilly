@@ -1,5 +1,5 @@
-import React, { useEffect } from 'react';
-import { Route, Switch } from 'react-router-dom';
+import React from 'react';
+import { Route, Routes } from 'react-router-dom';
 import Cart from '../../Cart/Cart/Cart';
 import Navbar from '../Navbar/Navbar';
 import Fav from '../../Extras/Fav/Fav';
@@ -49,60 +49,54 @@ function MainRoute() {
       <Navbar />
 
       <div>
-        <Switch>
-          <Route exact path="/cart" component={Cart} />
-          <Route exact path="/user/favorites" component={Fav} />
-          <Route exact path="/user/info" component={UserInfo} />
-          <Route exact path="/" component={Home} />
-          <Route exact path="/store" component={Store} />
+        <Routes>
+          <Route path="/cart" element={<Cart />} />
+          <Route path="/user/favorites" element={<Fav />} />
+          <Route path="/user/info" element={<UserInfo />} />
+          <Route path="/" element={<Home />} />
+          <Route path="/store" element={<Store />} />
           <Route
-            exact
             path="/checkout+data+user"
-            component={CheckoutDataUser}
+            element={<CheckoutDataUser />}
           />
-          <Route exact path="/data+orders" component={DataUsers} />
-          <Route exact path="/build+your+own" component={BuildYourOwn} />
-          <Route exact path="/special+offers" component={SpecialOffers} />
-          <Route exact path="/blog" component={Blog} />
-          <Route exact path="/about+us" component={AboutUS} />
-          <Route exact path="/panel+admin" component={PanelAdmin} />
-          <Route exact path="/register" component={Register} />
+          <Route path="/data+orders" element={<DataUsers />} />
+          <Route path="/build+your+own" element={<BuildYourOwn />} />
+          <Route path="/special+offers" element={<SpecialOffers />} />
+          <Route path="/blog" element={<Blog />} />
+          <Route path="/about+us" element={<AboutUS />} />
+          <Route path="/panel+admin" element={<PanelAdmin />} />
+          <Route path="/register" element={<Register />} />
 
-          <Route exact path="/panel+admin/products" component={Products} />
-          <Route exact path="/panel+admin/users" component={Users} />
-          <Route exact path="/panel+admin/orders" component={Orders} />
-          <Route exact path="/panel+admin/orders/:id" component={OrderDetail} />
-          <Route exact path="/orders/:id" component={OrderDetailUser} />
+          <Route path="/panel+admin/products" element={<Products />} />
+          <Route path="/panel+admin/users" element={<Users />} />
+          <Route path="/panel+admin/orders" element={<Orders />} />
+          <Route path="/panel+admin/orders/:id" element={<OrderDetail />} />
+          <Route path="/orders/:id" element={<OrderDetailUser />} />
           <Route
-            exact
             path="/panel+admin/products/:id"
-            component={ProductDetail}
+            element={<ProductDetail />}
           />
           <Route
-            exact
             path="/store/products/:id"
-            component={ProductStoreDetail}
+            element={<ProductStoreDetail />}
           />
           <Route
-            exact
             path="/panel+admin/create/product"
-            component={CreateComponent}
+            element={<CreateComponent />}
           />
           <Route
-            exact
             path="/panel+admin/change/product/:id"
-            component={ChangeComponent}
+            element={<ChangeComponent />}
           />
           <Route
-            exact
             path="/panel+admin/deleted"
-            component={ProductsDeleted}
+            element={<ProductsDeleted />}
           />
-          <Route exact path="/paymentsuccess" component={PagoExitoso} />
-          <Route exact path="/paymentpending" component={PagoPendiente} />
-          <Route exact path="/paymentfailure" component={PagoFallido} />
-          <Route exact path="*" component={PageNotFound} />
-        </Switch>
+          <Route path="/paymentsuccess" element={<PagoExitoso />} />
+          <Route path="/paymentpending" element={<PagoPendiente />} />
+          <Route path="/paymentfailure" element={<PagoFallido />} />
+          <Route path="*" element={<PageNotFound />} />
+        </Routes>
       </div>
       <div>
         <Footer />

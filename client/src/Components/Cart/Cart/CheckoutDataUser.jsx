@@ -2,11 +2,11 @@ import React, { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { postDataUser, clearProdMsg } from '../../../redux/actions/actions';
 import Swal from 'sweetalert2';
-import { useHistory } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 
 function CheckoutDataUser() {
   const dispatch = useDispatch();
-  const history = useHistory();
+  const navigate = useNavigate();
   const { userDataMsg } = useSelector((state) => state);
   const [allDataUser, setAllDataUser] = useState({
     firstname: '',
@@ -64,7 +64,7 @@ function CheckoutDataUser() {
       }).then((r) => {
         if (r.isConfirmed) {
           dispatch(clearProdMsg());
-          history.push('/cart');
+          navigate('/cart');
         }
       });
     }

@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { useHistory } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import {
   putProductById,
   getProductById,
@@ -25,7 +25,7 @@ function ChangeComponent() {
   let token = localStorage.getItem("token");
   token = JSON.parse(token);
   const msg = useSelector((state) => state.productChangedMsg);
-  const history = useHistory();
+  const navigate = useNavigate();
 
   useEffect(() => {
     dispatch(getProductById(id));
@@ -133,7 +133,7 @@ function ChangeComponent() {
       }).then((r) => {
         if (r.isConfirmed) {
           dispatch(clearProdMsg());
-          history.push("/panel+admin/products");
+          navigate("/panel+admin/products");
         }
       });
     }
@@ -151,7 +151,6 @@ function ChangeComponent() {
                   newProduct,
                   discountt
                 );
-                //setTimeout(() => history.push('/panel+admin/products'), 3000);
               }}
               className="w-2/3 m-auto mt-9"
             >

@@ -63,13 +63,15 @@ Recuperar y modernizar Chilly para convertirlo en una demo pública segura y pre
 
 ## Fase 3 — Modernización moderada
 
-**Estado:** en curso. La subfase 3A está completada; véase [PHASE-3A.md](PHASE-3A.md).
+**Estado:** en curso. Las subfases 3A, 3B, 3C, 3D y 3E.1 están completadas; véanse [PHASE-3A.md](PHASE-3A.md), [PHASE-3B.md](PHASE-3B.md), [PHASE-3C.md](PHASE-3C.md), [PHASE-3D.md](PHASE-3D.md) y [PHASE-3E.md](PHASE-3E.md).
 
 - [x] Migrar Create React App a Vite.
 - [x] Mover la configuración pública del frontend a variables `VITE_*`.
-- Migrar React 17 a React 18.
-- Migrar React Router 5 a 6.
-- Actualizar Auth0 React y dependencias mantenidas.
+- [x] Migrar React 17 a React 18.
+- [x] Migrar React Router 5 a 6.
+- [x] Actualizar Auth0 React, recuperar su configuración y retirar el acceso del navegador a Management API.
+- [x] Retirar dependencias sin uso y actualizar dependencias compatibles de bajo riesgo.
+- Migrar de forma aislada las dependencias que requieren cambios major.
 - Mantener inicialmente JavaScript, Redux clásico, Express 4, Sequelize 6 y Tailwind 3 si siguen siendo adecuados.
 
 **Salida:** frontend mantenible sin alterar innecesariamente su arquitectura funcional.
@@ -100,9 +102,9 @@ Recuperar y modernizar Chilly para convertirlo en una demo pública segura y pre
 
 ## Fase 6 — Integraciones
 
-- Recuperar o recrear la configuración de Auth0.
-- Configurar Mercado Pago exclusivamente en sandbox.
-- Verificar retornos y confirmación de pagos.
+- [x] Recuperar o recrear la configuración base de Auth0.
+- Sustituir Mercado Pago por Stripe Checkout en modo de pruebas.
+- Verificar retornos, webhooks y confirmación de pagos sin confiar en datos del navegador.
 - Restringir carga y formato de imágenes en Cloudinary.
 - Evaluar si EmailJS y Cliengo aportan valor; recuperar, sustituir o eliminar cada integración de forma explícita.
 - Mantener todos los secretos fuera del repositorio.
