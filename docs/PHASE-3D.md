@@ -56,6 +56,8 @@ Allowed Web Origins:   http://localhost:3000
 
 La API utiliza el Identifier `https://chilly-api`, firma RS256 y RBAC. El permiso administrativo es `admin:access`, asignado mediante el rol `Admin`.
 
+La política de acceso de Auth0 Management API se configuró como **Per-app authorization** tanto para acceso delegado como para acceso de cliente. `Chilly portfolio` no tiene ningún grant para esa API del sistema: solo puede solicitar `admin:access` para `Chilly API`.
+
 Las URLs de producción se añadirán como valores separados cuando exista un despliegue definitivo; no deben sustituir a las locales durante el desarrollo.
 
 ## Alta del primer administrador
