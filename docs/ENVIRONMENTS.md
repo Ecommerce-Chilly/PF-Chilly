@@ -1,8 +1,8 @@
 # Entornos
 
 Este documento define el comportamiento objetivo de cada entorno. La separación
-del arranque y la protección básica del reset se implementaron en las fases 4A y
-4B; el seed restaurable e idempotente continúa pendiente de 4C.
+del arranque, la protección del reset y el mantenimiento restaurable de la demo
+se implementaron en las fases 4A, 4B y 4C.
 
 ## Local
 
@@ -63,5 +63,9 @@ Los archivos con valores reales no se versionarán. El repositorio conservará �
 - `RESET_DB_ON_START=true` requiere obligatoriamente `DEMO_MODE=true`.
 - Solo esa combinación ejecuta `sync({ force: true })` y el seed legacy.
 - Los demás modos usan `sync()` sin borrar ni sembrar datos.
+- `npm run demo:seed`, `demo:clean` y `demo:restore` requieren `DEMO_MODE=true`.
+- Las operaciones explícitas son transaccionales y están protegidas contra
+  ejecuciones concurrentes mediante un advisory lock de PostgreSQL.
 
-Véase [PHASE-4B.md](PHASE-4B.md) para la matriz y las verificaciones.
+Véanse [PHASE-4B.md](PHASE-4B.md) para la matriz de arranque y
+[PHASE-4C.md](PHASE-4C.md) para el mantenimiento explícito.

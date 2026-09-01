@@ -85,7 +85,7 @@ Recuperar y modernizar Chilly para convertirlo en una demo pública segura y pre
 
 - [x] 4A: separar preparación de tablas, seed y arranque sin cambiar el reset actual.
 - [x] 4B: controlar el reset mediante configuración y proteger entornos no demo.
-- [ ] 4C: hacer el seed repetible y permitir restaurar la demo de forma controlada.
+- [x] 4C: hacer el seed repetible y permitir restaurar la demo de forma controlada.
 - [ ] Separar la limpieza explícita de datos del arranque habitual.
 - [ ] Hacer el seed ordenado, idempotente y transaccional.
 - [x] Introducir `DEMO_MODE` y `RESET_DB_ON_START`.

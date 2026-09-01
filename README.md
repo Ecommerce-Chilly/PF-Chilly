@@ -78,7 +78,16 @@ El backend escucha en `http://localhost:3001` y el frontend en `http://localhost
 La preparación de tablas, la carga inicial y el arranque HTTP están separados
 internamente, y la política de reset se controla mediante las dos variables de
 entorno anteriores sin cambiar los comandos habituales.
-Véanse [docs/PHASE-4A.md](docs/PHASE-4A.md) y [docs/PHASE-4B.md](docs/PHASE-4B.md).
+Véanse [docs/PHASE-4A.md](docs/PHASE-4A.md), [docs/PHASE-4B.md](docs/PHASE-4B.md)
+y [docs/PHASE-4C.md](docs/PHASE-4C.md).
+
+Con `DEMO_MODE=true`, el mantenimiento explícito se ejecuta desde la raíz:
+
+```bash
+npm run demo:seed     # completa el catálogo sin duplicarlo
+npm run demo:clean    # limpia usuarios y pedidos, conserva el catálogo
+npm run demo:restore  # reconstruye toda la base de demo
+```
 
 También pueden ejecutarse por separado:
 

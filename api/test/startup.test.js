@@ -18,6 +18,18 @@ async function expectRejection(operation, expectedError) {
 }
 
 describe('Database preparation', () => {
+  function lockedConnection(sync) {
+    return {
+      sync,
+      transaction: async (operation) => operation('demo transaction'),
+      query: async () => [[{ acquired: true }]],
+      connectionManager: {
+        getConnection: async () => 'lock connection',
+        releaseConnection: () => {},
+      },
+    };
+  }
+
   it('preserves the intentional destructive demo schema reset', async () => {
     let receivedOptions;
     await resetDemoSchema({ sync: async (options) => { receivedOptions = options; } });
@@ -39,10 +51,10 @@ describe('Database preparation', () => {
   it('waits for reset, categories and catalog in that order', async () => {
     const steps = [];
     await prepareDatabase({
-      connection: { sync: async () => {
+      connection: lockedConnection(async () => {
         await Promise.resolve();
         steps.push('reset');
-      } },
+      }),
       loadCategories: async () => {
         await Promise.resolve();
         steps.push('categories');
@@ -110,7 +122,7 @@ describe('Database preparation', () => {
         if (name === failedStage) throw failure;
       };
       await expectRejection(() => prepareDatabase({
-        connection: { sync: stage('reset') },
+          connection: lockedConnection(stage('reset')),
         loadCategories: stage('categories'),
         loadCatalog: stage('catalog'),
         demoMode: true,
