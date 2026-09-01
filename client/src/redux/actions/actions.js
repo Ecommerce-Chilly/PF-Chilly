@@ -163,16 +163,26 @@ export const deleteProdut = (id, token) => {
 
 export const restoreProduct = (id, token) => {
   return async function (dispatch) {
-    let restoreProduct = await axios.put(
-      `/product/restore/${id}`,
-      {},
-      {
-        headers: {
-          authorization: `Bearer ${token}`,
-        },
-      }
-    );
-    return dispatch({ type: RESTORE_PRODUCT, payload: restoreProduct.data });
+    try {
+      const restoredProduct = await axios.put(
+        `/product/restore/${id}`,
+        {},
+        {
+          headers: {
+            authorization: `Bearer ${token}`,
+          },
+        }
+      );
+      return dispatch({
+        type: RESTORE_PRODUCT,
+        payload: restoredProduct.data,
+      });
+    } catch (error) {
+      return dispatch({
+        type: ERROR_PUT_PRODUCT,
+        payload: getErrorPayload(error),
+      });
+    }
   };
 };
 

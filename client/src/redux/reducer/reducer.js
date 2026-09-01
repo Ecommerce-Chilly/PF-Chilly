@@ -79,6 +79,8 @@ const initialState = {
   category: [],
   productDetail: [],
   productsDeleted: [],
+  msgProductDeleted: '',
+  productDeletedMsg: '',
   createProductMsg: '',
   productChangedMsg: '',
   searchProductMsg: '',
@@ -155,15 +157,17 @@ const rootReducer = (state = initialState, action) => {
       return {
         ...state,
         productsDeleted: action.payload,
+        msgProductDeleted: '',
       };
-    case CLEAR_DELETED_PRODUCTS:
-      let detedProduct = state.productsDeleted.filter(
+    case CLEAR_DELETED_PRODUCTS: {
+      const deletedProducts = state.productsDeleted.filter(
         (e) => e.id !== action.payload
       );
       return {
         ...state,
-        productsDeleted: detedProduct,
+        productsDeleted: deletedProducts,
       };
+    }
     case BRANDS:
       const allBrands = state.allProduct.map((e) => e.brand);
       const allBrands2 = [...new Set(allBrands)];

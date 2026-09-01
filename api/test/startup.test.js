@@ -48,8 +48,57 @@ describe('Database preparation', () => {
         steps.push('categories');
       },
       loadCatalog: async () => { steps.push('catalog'); },
+      demoMode: true,
+      resetDbOnStart: true,
     });
     expect(steps).to.deep.equal(['reset', 'categories', 'catalog']);
+  });
+
+  it('preserves tables and skips the legacy seed by default', async () => {
+    const steps = [];
+    const result = await prepareDatabase({
+      connection: { sync: async (options) => steps.push(['sync', options]) },
+      loadCategories: async () => steps.push(['categories']),
+      loadCatalog: async () => steps.push(['catalog']),
+    });
+
+    expect(steps).to.deep.equal([['sync', undefined]]);
+    expect(result).to.deep.equal({ reset: false, seeded: false });
+  });
+
+  it('preserves tables in demo mode when reset is disabled', async () => {
+    const steps = [];
+    await prepareDatabase({
+      connection: { sync: async (options) => steps.push(['sync', options]) },
+      loadCategories: async () => steps.push(['categories']),
+      loadCatalog: async () => steps.push(['catalog']),
+      demoMode: true,
+      resetDbOnStart: false,
+    });
+
+    expect(steps).to.deep.equal([['sync', undefined]]);
+  });
+
+  it('refuses a destructive reset outside demo mode before touching the database', async () => {
+    const steps = [];
+    const failure = await (async () => {
+      try {
+        await prepareDatabase({
+          connection: { sync: async () => steps.push('sync') },
+          loadCategories: async () => steps.push('categories'),
+          loadCatalog: async () => steps.push('catalog'),
+          demoMode: false,
+          resetDbOnStart: true,
+        });
+      } catch (error) {
+        return error;
+      }
+      return undefined;
+    })();
+
+    expect(failure).to.be.instanceOf(Error);
+    expect(failure.message).to.include('outside demo mode');
+    expect(steps).to.deep.equal([]);
   });
 
   for (const failedStage of ['reset', 'categories', 'catalog']) {
@@ -64,6 +113,8 @@ describe('Database preparation', () => {
         connection: { sync: stage('reset') },
         loadCategories: stage('categories'),
         loadCatalog: stage('catalog'),
+        demoMode: true,
+        resetDbOnStart: true,
       }), failure);
       const order = ['reset', 'categories', 'catalog'];
       expect(steps).to.deep.equal(order.slice(0, order.indexOf(failedStage) + 1));

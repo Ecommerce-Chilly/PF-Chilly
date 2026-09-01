@@ -81,17 +81,17 @@ Recuperar y modernizar Chilly para convertirlo en una demo pública segura y pre
 
 ## Fase 4 — Base de datos y modo demo
 
-**Estado:** en curso. 4A implementada y verificada con pruebas unitarias y un arranque en PostgreSQL aislado; pendiente de revisión manual del mantenedor. Véase [PHASE-4A.md](PHASE-4A.md).
+**Estado:** en curso. 4A está completada y 4B implementada con pruebas unitarias y PostgreSQL aislado; 4B queda pendiente de comprobación manual. Véanse [PHASE-4A.md](PHASE-4A.md) y [PHASE-4B.md](PHASE-4B.md).
 
 - [x] 4A: separar preparación de tablas, seed y arranque sin cambiar el reset actual.
-- [ ] 4B: controlar el reset mediante configuración y proteger entornos no demo.
+- [x] 4B: controlar el reset mediante configuración y proteger entornos no demo.
 - [ ] 4C: hacer el seed repetible y permitir restaurar la demo de forma controlada.
-- Separar la limpieza explícita de datos del arranque habitual.
-- Hacer el seed ordenado, idempotente y transaccional.
-- Introducir `DEMO_MODE` y `RESET_DB_ON_START`.
-- Desactivar el reset destructivo fuera del modo demo.
-- Permitir limpiar datos mutables sin reconstruir siempre el catálogo.
-- Evitar resets concurrentes entre instancias.
+- [ ] Separar la limpieza explícita de datos del arranque habitual.
+- [ ] Hacer el seed ordenado, idempotente y transaccional.
+- [x] Introducir `DEMO_MODE` y `RESET_DB_ON_START`.
+- [x] Desactivar el reset destructivo fuera del modo demo.
+- [ ] Permitir limpiar datos mutables sin reconstruir siempre el catálogo.
+- [ ] Evitar resets concurrentes entre instancias.
 
 **Salida:** estado de demo restaurable y comportamiento persistente seguro cuando corresponda.
 

@@ -1,6 +1,8 @@
 # Entornos
 
-Este documento define el comportamiento objetivo de cada entorno. La separación todavía no está implementada en el código del baseline.
+Este documento define el comportamiento objetivo de cada entorno. La separación
+del arranque y la protección básica del reset se implementaron en las fases 4A y
+4B; el seed restaurable e idempotente continúa pendiente de 4C.
 
 ## Local
 
@@ -53,3 +55,13 @@ La implementación futura deberá separar como mínimo:
 - Configuración pública de Cloudinary y EmailJS.
 
 Los archivos con valores reales no se versionarán. El repositorio conservará únicamente ejemplos sin secretos.
+
+## Política implementada de base de datos
+
+- `DEMO_MODE` y `RESET_DB_ON_START` admiten exclusivamente `true` o `false`.
+- La ausencia de cualquiera equivale a `false`.
+- `RESET_DB_ON_START=true` requiere obligatoriamente `DEMO_MODE=true`.
+- Solo esa combinación ejecuta `sync({ force: true })` y el seed legacy.
+- Los demás modos usan `sync()` sin borrar ni sembrar datos.
+
+Véase [PHASE-4B.md](PHASE-4B.md) para la matriz y las verificaciones.

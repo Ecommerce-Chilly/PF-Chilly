@@ -73,12 +73,12 @@ Con PostgreSQL disponible, frontend y backend se levantan juntos mediante:
 npm run dev
 ```
 
-El backend escucha en `http://localhost:3001` y el frontend en `http://localhost:3000/PF-Chilly/`. El reseteo y seed de la base en cada arranque continúa siendo intencionado para el uso actual como demo.
+El backend escucha en `http://localhost:3001` y el frontend en `http://localhost:3000/PF-Chilly/`. El arranque es no destructivo por defecto. El reset y seed automáticos solo se habilitan explícitamente con `DEMO_MODE=true` y `RESET_DB_ON_START=true`; cualquier intento de reset fuera del modo demo bloquea el arranque.
 
 La preparación de tablas, la carga inicial y el arranque HTTP están separados
-internamente, pero los comandos y la política de reset no cambian todavía.
-Véase [docs/PHASE-4A.md](docs/PHASE-4A.md). No apuntes esta versión a una base con
-datos que quieras conservar.
+internamente, y la política de reset se controla mediante las dos variables de
+entorno anteriores sin cambiar los comandos habituales.
+Véanse [docs/PHASE-4A.md](docs/PHASE-4A.md) y [docs/PHASE-4B.md](docs/PHASE-4B.md).
 
 También pueden ejecutarse por separado:
 

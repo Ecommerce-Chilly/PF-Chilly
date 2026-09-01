@@ -10,9 +10,36 @@ async function seedDatabase({ loadCategories, loadCatalog }) {
   await loadCatalog();
 }
 
-async function prepareDatabase({ connection, loadCategories, loadCatalog }) {
-  await resetDemoSchema(connection);
-  await seedDatabase({ loadCategories, loadCatalog });
+async function preserveSchema(connection) {
+  await connection.sync();
 }
 
-module.exports = { resetDemoSchema, seedDatabase, prepareDatabase };
+async function prepareDatabase({
+  connection,
+  loadCategories,
+  loadCatalog,
+  demoMode = false,
+  resetDbOnStart = false,
+}) {
+  if (resetDbOnStart && !demoMode) {
+    throw new Error(
+      'Refusing to reset the database outside demo mode.'
+    );
+  }
+
+  if (resetDbOnStart) {
+    await resetDemoSchema(connection);
+    await seedDatabase({ loadCategories, loadCatalog });
+    return { reset: true, seeded: true };
+  }
+
+  await preserveSchema(connection);
+  return { reset: false, seeded: false };
+}
+
+module.exports = {
+  preserveSchema,
+  resetDemoSchema,
+  seedDatabase,
+  prepareDatabase,
+};

@@ -1,5 +1,15 @@
 const DEFAULT_PORT = 3001;
 
+function readBoolean(environment, name, defaultValue = false) {
+  const value = environment[name]?.trim();
+
+  if (value === undefined || value === '') return defaultValue;
+  if (value === 'true') return true;
+  if (value === 'false') return false;
+
+  throw new Error(`${name} must be either true or false.`);
+}
+
 function readEnvironment(environment = process.env) {
   const databaseUrl = environment.DB_DEPLOY?.trim();
 
@@ -30,6 +40,15 @@ function readEnvironment(environment = process.env) {
     throw new Error('PORT must be an integer between 1 and 65535.');
   }
 
+  const demoMode = readBoolean(environment, 'DEMO_MODE');
+  const resetDbOnStart = readBoolean(environment, 'RESET_DB_ON_START');
+
+  if (resetDbOnStart && !demoMode) {
+    throw new Error(
+      'RESET_DB_ON_START=true is only allowed when DEMO_MODE=true.'
+    );
+  }
+
   const stripeSecretKey = environment.STRIPE_SECRET_KEY?.trim();
   if (!stripeSecretKey?.startsWith('sk_test_')) {
     throw new Error(
@@ -50,6 +69,8 @@ function readEnvironment(environment = process.env) {
   return {
     databaseUrl,
     port,
+    demoMode,
+    resetDbOnStart,
     auth0Audience,
     auth0IssuerBaseUrl: normalizedIssuerBaseUrl,
     auth0AdminScope: environment.AUTH0_ADMIN_SCOPE?.trim() || 'admin:access',
@@ -58,4 +79,4 @@ function readEnvironment(environment = process.env) {
   };
 }
 
-module.exports = { DEFAULT_PORT, readEnvironment };
+module.exports = { DEFAULT_PORT, readBoolean, readEnvironment };

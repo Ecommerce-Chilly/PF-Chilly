@@ -1,11 +1,13 @@
 import reducer from './redux/reducer/reducer';
 import {
   ADD_TO_CART,
+  CLEAR_DELETED_PRODUCTS,
   GET_ALL_PRODUCTS,
   GET_PRODUCT_BY_NAME,
   GET_FROM_CART_BACK2,
   LS_TO_CART,
   ORDER_BY_PRICE,
+  PRODUCTS_DELETED,
 } from './redux/actions/actions';
 import {
   loadCart,
@@ -126,4 +128,18 @@ test('adds more units of a product that is already in the cart', () => {
 
   expect(state.cart).toHaveLength(1);
   expect(state.cart[0].quantity).toBe(8);
+});
+
+test('shows an empty deleted-products state after restoring the last product', () => {
+  const deletedState = reducer(undefined, {
+    type: PRODUCTS_DELETED,
+    payload: [{ id: 42, name: 'Temporary product' }],
+  });
+  const restoredState = reducer(deletedState, {
+    type: CLEAR_DELETED_PRODUCTS,
+    payload: 42,
+  });
+
+  expect(restoredState.productsDeleted).toEqual([]);
+  expect(restoredState.msgProductDeleted).toBe('');
 });

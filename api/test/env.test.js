@@ -20,6 +20,40 @@ describe('API environment', () => {
     expect(config.port).to.equal(DEFAULT_PORT);
   });
 
+  it('uses a persistent non-destructive database policy by default', () => {
+    const config = readEnvironment(validEnvironment);
+
+    expect(config.demoMode).to.equal(false);
+    expect(config.resetDbOnStart).to.equal(false);
+  });
+
+  it('accepts an explicit destructive demo policy', () => {
+    const config = readEnvironment({
+      ...validEnvironment,
+      DEMO_MODE: 'true',
+      RESET_DB_ON_START: 'true',
+    });
+
+    expect(config.demoMode).to.equal(true);
+    expect(config.resetDbOnStart).to.equal(true);
+  });
+
+  it('rejects malformed boolean configuration', () => {
+    expect(() =>
+      readEnvironment({ ...validEnvironment, DEMO_MODE: 'yes' })
+    ).to.throw('DEMO_MODE must be either true or false');
+  });
+
+  it('rejects destructive reset outside demo mode', () => {
+    expect(() =>
+      readEnvironment({
+        ...validEnvironment,
+        DEMO_MODE: 'false',
+        RESET_DB_ON_START: 'true',
+      })
+    ).to.throw('only allowed when DEMO_MODE=true');
+  });
+
   it('rejects an invalid port', () => {
     expect(() =>
       readEnvironment({ ...validEnvironment, PORT: 'nope' })

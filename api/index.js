@@ -2,7 +2,7 @@ require('dotenv').config();
 
 const { readEnvironment } = require('./src/config/env');
 
-const { port } = readEnvironment();
+const { port, demoMode, resetDbOnStart } = readEnvironment();
 const app = require('./src/app.js');
 const { conn } = require('./src/db.js');
 const { getCategory } = require('./src/controllers/category/getCategory');
@@ -14,11 +14,21 @@ const { startServer, stopServer } = createServerLifecycle({
   app,
   port,
   connection: conn,
-  prepareDatabase: () => prepareDatabase({
-    connection: conn,
-    loadCategories: getCategory,
-    loadCatalog: hardCodeoInfo,
-  }),
+  prepareDatabase: async () => {
+    const result = await prepareDatabase({
+      connection: conn,
+      loadCategories: getCategory,
+      loadCatalog: hardCodeoInfo,
+      demoMode,
+      resetDbOnStart,
+    });
+
+    console.log(
+      result.reset
+        ? 'Database reset and demo seed completed.'
+        : 'Database schema synchronized without reset or seed.'
+    );
+  },
 });
 
 if (require.main === module) {
