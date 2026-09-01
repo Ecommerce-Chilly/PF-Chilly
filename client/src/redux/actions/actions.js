@@ -412,10 +412,10 @@ export const userAdmin = (user, token) => {
         type: USER_ADMIN,
         payload: response.data,
       });
-    } catch (error) {
+    } catch {
       return dispatch({
-        type: USER_NOT_FOUND,
-        payload: getErrorPayload(error),
+        type: USER_ADMIN,
+        payload: false,
       });
     }
   };

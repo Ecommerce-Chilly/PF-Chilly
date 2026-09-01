@@ -2,7 +2,8 @@ import { useEffect, useState } from 'react';
 import { useAuth0 } from '@auth0/auth0-react';
 import { useDispatch } from 'react-redux';
 import MainRoute from './Components/PI Components/Main-Route/MainRoute';
-import { createUser, userAdmin, userSpecific } from './redux/actions/actions';
+import * as actions from './redux/actions/actions';
+import { synchronizeAuthenticatedUser } from './auth/synchronizeSession';
 
 function App() {
   const dispatch = useDispatch();
@@ -24,21 +25,14 @@ function App() {
 
     const synchronizeSession = async () => {
       try {
-        const token = await getAccessTokenSilently();
-
-        if (cancelled) return;
-
-        localStorage.setItem('email', JSON.stringify(user.email));
-        localStorage.setItem('token', JSON.stringify(token));
-
-        await dispatch(
-          createUser(
-            { email: user.email, img: user.picture, name: user.name },
-            token
-          )
-        );
-        await dispatch(userSpecific(user.email, token));
-        await dispatch(userAdmin(user.email, token));
+        await synchronizeAuthenticatedUser({
+          dispatch,
+          getAccessToken: getAccessTokenSilently,
+          user,
+          storage: localStorage,
+          actions,
+          isCancelled: () => cancelled,
+        });
       } catch {
         if (!cancelled) {
           console.error('Unable to restore the authenticated session.');
@@ -58,9 +52,7 @@ function App() {
     getAccessTokenSilently,
     isAuthenticated,
     isLoading,
-    user?.email,
-    user?.name,
-    user?.picture,
+    user,
   ]);
 
   if (isLoading || !sessionReady) {

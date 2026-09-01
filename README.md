@@ -22,7 +22,7 @@ El repositorio se encuentra actualmente en un proceso de recuperación y moderni
 
 - React 18 y Vite 8.
 - Redux, Redux Thunk y React Redux.
-- React Router 6.
+- React Router 7.
 - Tailwind CSS 3, Bootstrap y Reactstrap.
 - Axios y Auth0 React.
 
@@ -74,6 +74,11 @@ npm run dev
 ```
 
 El backend escucha en `http://localhost:3001` y el frontend en `http://localhost:3000/PF-Chilly/`. El reseteo y seed de la base en cada arranque continúa siendo intencionado para el uso actual como demo.
+
+La preparación de tablas, la carga inicial y el arranque HTTP están separados
+internamente, pero los comandos y la política de reset no cambian todavía.
+Véase [docs/PHASE-4A.md](docs/PHASE-4A.md). No apuntes esta versión a una base con
+datos que quieras conservar.
 
 También pueden ejecutarse por separado:
 

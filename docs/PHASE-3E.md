@@ -117,4 +117,4 @@ Actualizar React Router 6 a una versión mantenida y corregida sin cambiar la ar
 - Lint sin errores y build de producción correcto.
 - Auditoría del cliente sin vulnerabilidades conocidas.
 
-La comprobación manual debe recorrer la navegación principal, abrir una ficha de producto, el constructor, carrito, perfil y administración, y refrescar una ruta interna para detectar cualquier regresión de navegación.
+La comprobación manual de la migración fue confirmada por el mantenedor, incluido el acceso administrativo después de refrescar la página con la corrección de restauración de sesión.

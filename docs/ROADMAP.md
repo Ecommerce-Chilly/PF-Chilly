@@ -63,7 +63,7 @@ Recuperar y modernizar Chilly para convertirlo en una demo pública segura y pre
 
 ## Fase 3 — Modernización moderada
 
-**Estado:** en curso. Las subfases 3A, 3B, 3C, 3D y 3E.1 a 3E.4 están completadas; React Router 7 queda pendiente únicamente de comprobación manual. Véanse [PHASE-3A.md](PHASE-3A.md), [PHASE-3B.md](PHASE-3B.md), [PHASE-3C.md](PHASE-3C.md), [PHASE-3D.md](PHASE-3D.md) y [PHASE-3E.md](PHASE-3E.md).
+**Estado:** modernización prevista completada. Las subfases 3A, 3B, 3C, 3D y 3E.1 a 3E.4 están completadas; React Router 7 y la restauración del acceso administrativo tras recargar fueron comprobados manualmente. La deuda restante de seguridad e integraciones se mantiene en sus fases respectivas. Véanse [PHASE-3A.md](PHASE-3A.md), [PHASE-3B.md](PHASE-3B.md), [PHASE-3C.md](PHASE-3C.md), [PHASE-3D.md](PHASE-3D.md) y [PHASE-3E.md](PHASE-3E.md).
 
 - [x] Migrar Create React App a Vite.
 - [x] Mover la configuración pública del frontend a variables `VITE_*`.
@@ -81,7 +81,12 @@ Recuperar y modernizar Chilly para convertirlo en una demo pública segura y pre
 
 ## Fase 4 — Base de datos y modo demo
 
-- Separar sincronización, seed, limpieza y arranque.
+**Estado:** en curso. 4A implementada y verificada con pruebas unitarias y un arranque en PostgreSQL aislado; pendiente de revisión manual del mantenedor. Véase [PHASE-4A.md](PHASE-4A.md).
+
+- [x] 4A: separar preparación de tablas, seed y arranque sin cambiar el reset actual.
+- [ ] 4B: controlar el reset mediante configuración y proteger entornos no demo.
+- [ ] 4C: hacer el seed repetible y permitir restaurar la demo de forma controlada.
+- Separar la limpieza explícita de datos del arranque habitual.
 - Hacer el seed ordenado, idempotente y transaccional.
 - Introducir `DEMO_MODE` y `RESET_DB_ON_START`.
 - Desactivar el reset destructivo fuera del modo demo.
