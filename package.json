@@ -14,7 +14,10 @@
     "test:client": "npm --prefix client test",
     "lint": "npm --prefix client run lint",
     "build": "npm --prefix client run build",
-    "smoke:api": "npm --prefix api run smoke"
+    "smoke:api": "npm --prefix api run smoke",
+    "demo:seed": "npm --prefix api run demo:seed",
+    "demo:clean": "npm --prefix api run demo:clean",
+    "demo:restore": "npm --prefix api run demo:restore"
   },
   "devDependencies": {
     "npm-run-all": "^4.1.5"

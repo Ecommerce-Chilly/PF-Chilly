@@ -1,11 +1,11 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import { useAuth0 } from '@auth0/auth0-react';
-import * as actions from '../../../redux/actions/actions';
 import { useDispatch, useSelector } from 'react-redux';
 import LogoutButton from './LogoutButton';
 import { Link } from 'react-router-dom';
 
 import {
+  getCartFromBack,
   localStorageToCart,
   updateCartQuantity,
 } from '../../../redux/actions/actions';
@@ -15,44 +15,12 @@ const Profile = () => {
   const dispatch = useDispatch();
   const userInfo = useSelector((state) => state.userInfo);
 
-  const { user, isAuthenticated, getAccessTokenSilently } = useAuth0();
-  useEffect(() => {
-    let cancelled = false;
-
-    const synchronizeUser = async () => {
-      try {
-        const token = await getAccessTokenSilently();
-
-        if (cancelled) return;
-
-        localStorage.setItem('email', JSON.stringify(user.email));
-        localStorage.setItem('token', JSON.stringify(token));
-        await dispatch(
-          actions.createUser(
-            { email: user.email, img: user.picture, name: user.name },
-            token
-          )
-        );
-        await dispatch(actions.userSpecific(user.email, token));
-        await dispatch(actions.userAdmin(user.email, token));
-      } catch {
-        if (!cancelled) {
-          console.error('Unable to synchronize the authenticated user.');
-        }
-      }
-    };
-
-    if (isAuthenticated && user?.email) synchronizeUser();
-
-    return () => {
-      cancelled = true;
-    };
-  }, [dispatch, getAccessTokenSilently, isAuthenticated, user]);
+  const { user, isAuthenticated } = useAuth0();
 
   React.useEffect(() => {
     if (!userInfo.id) return;
 
-    dispatch(actions.getCartFromBack(userInfo.id));
+    dispatch(getCartFromBack(userInfo.id));
 
     let cartLS = window.localStorage.getItem('cart');
     if (cartLS) {

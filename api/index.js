@@ -2,40 +2,34 @@ require('dotenv').config();
 
 const { readEnvironment } = require('./src/config/env');
 
-const { port } = readEnvironment();
+const { port, demoMode, resetDbOnStart } = readEnvironment();
 const app = require('./src/app.js');
 const { conn } = require('./src/db.js');
 const { getCategory } = require('./src/controllers/category/getCategory');
 const { hardCodeoInfo } = require('./src/controllers/hardCode');
+const { prepareDatabase } = require('./src/database/prepareDatabase');
+const { createServerLifecycle } = require('./src/server');
 
-let server;
-
-async function startServer() {
-  // Resetting the database is intentional while Chilly is used as a demo.
-  await conn.sync({ force: true });
-  await getCategory();
-  await hardCodeoInfo();
-
-  return new Promise((resolve, reject) => {
-    server = app.listen(port, () => {
-      console.log(`Server listening on port ${port}`);
-      resolve(server);
+const { startServer, stopServer } = createServerLifecycle({
+  app,
+  port,
+  connection: conn,
+  prepareDatabase: async () => {
+    const result = await prepareDatabase({
+      connection: conn,
+      loadCategories: getCategory,
+      loadCatalog: hardCodeoInfo,
+      demoMode,
+      resetDbOnStart,
     });
-    server.once('error', reject);
-  });
-}
 
-async function stopServer(signal) {
-  if (signal) console.log(`Received ${signal}. Closing server.`);
-
-  if (server) {
-    await new Promise((resolve, reject) => {
-      server.close((error) => (error ? reject(error) : resolve()));
-    });
-  }
-
-  await conn.close();
-}
+    console.log(
+      result.reset
+        ? 'Database reset and demo seed completed.'
+        : 'Database schema synchronized without reset or seed.'
+    );
+  },
+});
 
 if (require.main === module) {
   startServer().catch(async (error) => {

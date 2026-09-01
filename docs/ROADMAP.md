@@ -63,7 +63,7 @@ Recuperar y modernizar Chilly para convertirlo en una demo pública segura y pre
 
 ## Fase 3 — Modernización moderada
 
-**Estado:** en curso. Las subfases 3A, 3B, 3C, 3D y 3E.1 están completadas; véanse [PHASE-3A.md](PHASE-3A.md), [PHASE-3B.md](PHASE-3B.md), [PHASE-3C.md](PHASE-3C.md), [PHASE-3D.md](PHASE-3D.md) y [PHASE-3E.md](PHASE-3E.md).
+**Estado:** modernización prevista completada. Las subfases 3A, 3B, 3C, 3D y 3E.1 a 3E.4 están completadas; React Router 7 y la restauración del acceso administrativo tras recargar fueron comprobados manualmente. La deuda restante de seguridad e integraciones se mantiene en sus fases respectivas. Véanse [PHASE-3A.md](PHASE-3A.md), [PHASE-3B.md](PHASE-3B.md), [PHASE-3C.md](PHASE-3C.md), [PHASE-3D.md](PHASE-3D.md) y [PHASE-3E.md](PHASE-3E.md).
 
 - [x] Migrar Create React App a Vite.
 - [x] Mover la configuración pública del frontend a variables `VITE_*`.
@@ -71,6 +71,9 @@ Recuperar y modernizar Chilly para convertirlo en una demo pública segura y pre
 - [x] Migrar React Router 5 a 6.
 - [x] Actualizar Auth0 React, recuperar su configuración y retirar el acceso del navegador a Management API.
 - [x] Retirar dependencias sin uso y actualizar dependencias compatibles de bajo riesgo.
+- [x] Sustituir Mercado Pago por Stripe Checkout en modo de pruebas.
+- [x] Verificar visualmente la migración de React Tooltip 4 a 6.
+- [x] Migrar React Router 6 a 7 sin cambiar la arquitectura de rutas.
 - Migrar de forma aislada las dependencias que requieren cambios major.
 - Mantener inicialmente JavaScript, Redux clásico, Express 4, Sequelize 6 y Tailwind 3 si siguen siendo adecuados.
 
@@ -78,12 +81,17 @@ Recuperar y modernizar Chilly para convertirlo en una demo pública segura y pre
 
 ## Fase 4 — Base de datos y modo demo
 
-- Separar sincronización, seed, limpieza y arranque.
-- Hacer el seed ordenado, idempotente y transaccional.
-- Introducir `DEMO_MODE` y `RESET_DB_ON_START`.
-- Desactivar el reset destructivo fuera del modo demo.
-- Permitir limpiar datos mutables sin reconstruir siempre el catálogo.
-- Evitar resets concurrentes entre instancias.
+**Estado:** en curso. 4A está completada y 4B implementada con pruebas unitarias y PostgreSQL aislado; 4B queda pendiente de comprobación manual. Véanse [PHASE-4A.md](PHASE-4A.md) y [PHASE-4B.md](PHASE-4B.md).
+
+- [x] 4A: separar preparación de tablas, seed y arranque sin cambiar el reset actual.
+- [x] 4B: controlar el reset mediante configuración y proteger entornos no demo.
+- [x] 4C: hacer el seed repetible y permitir restaurar la demo de forma controlada.
+- [ ] Separar la limpieza explícita de datos del arranque habitual.
+- [ ] Hacer el seed ordenado, idempotente y transaccional.
+- [x] Introducir `DEMO_MODE` y `RESET_DB_ON_START`.
+- [x] Desactivar el reset destructivo fuera del modo demo.
+- [ ] Permitir limpiar datos mutables sin reconstruir siempre el catálogo.
+- [ ] Evitar resets concurrentes entre instancias.
 
 **Salida:** estado de demo restaurable y comportamiento persistente seguro cuando corresponda.
 
@@ -103,8 +111,9 @@ Recuperar y modernizar Chilly para convertirlo en una demo pública segura y pre
 ## Fase 6 — Integraciones
 
 - [x] Recuperar o recrear la configuración base de Auth0.
-- Sustituir Mercado Pago por Stripe Checkout en modo de pruebas.
-- Verificar retornos, webhooks y confirmación de pagos sin confiar en datos del navegador.
+- [x] Sustituir Mercado Pago por Stripe Checkout en modo de pruebas.
+- [x] Verificar el retorno y la confirmación del pago sin confiar en datos del navegador.
+- Añadir confirmación asíncrona mediante webhooks firmados de Stripe.
 - Restringir carga y formato de imágenes en Cloudinary.
 - Evaluar si EmailJS y Cliengo aportan valor; recuperar, sustituir o eliminar cada integración de forma explícita.
 - Mantener todos los secretos fuera del repositorio.
@@ -115,6 +124,7 @@ Recuperar y modernizar Chilly para convertirlo en una demo pública segura y pre
 
 - Ejecutar recorridos manuales completos como visitante, usuario y administrador.
 - Probar catálogo, filtros, carrito, favoritos, checkout, pedidos y administración.
+- Revisar el contenido y la presentación del panel de usuarios administrativos.
 - Añadir pruebas automatizadas pequeñas para health check, catálogo, autorización, propiedad de recursos y build.
 - Corregir regresiones y estados de carga o error importantes.
 

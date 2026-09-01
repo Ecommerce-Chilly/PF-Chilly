@@ -10,7 +10,7 @@ El repositorio se encuentra actualmente en un proceso de recuperación y moderni
 - Constructor de equipos por componentes.
 - Carrito y favoritos asociados al usuario.
 - Autenticación y autorización mediante Auth0.
-- Checkout e integración con Mercado Pago.
+- Checkout alojado mediante Stripe en modo de pruebas.
 - Panel para administrar productos, inventario, descuentos, usuarios y pedidos.
 - Carga de imágenes mediante Cloudinary.
 - Envío de correos mediante EmailJS.
@@ -22,7 +22,7 @@ El repositorio se encuentra actualmente en un proceso de recuperación y moderni
 
 - React 18 y Vite 8.
 - Redux, Redux Thunk y React Redux.
-- React Router 6.
+- React Router 7.
 - Tailwind CSS 3, Bootstrap y Reactstrap.
 - Axios y Auth0 React.
 
@@ -32,7 +32,7 @@ El repositorio se encuentra actualmente en un proceso de recuperación y moderni
 - PostgreSQL.
 - Sequelize 6.
 - Auth0.
-- Mercado Pago.
+- Stripe Checkout.
 
 ## Estructura
 
@@ -57,7 +57,7 @@ cd ../client
 cp .env.example .env
 ```
 
-Los ejemplos documentan también la configuración pública de Auth0. El dominio, client ID, audience e issuer deben corresponder al mismo tenant y API; ningún Client Secret debe incluirse en el frontend. La guía completa está en [docs/PHASE-3D.md](docs/PHASE-3D.md).
+Los ejemplos documentan también la configuración pública de Auth0 y la configuración privada de Stripe. El dominio, client ID, audience e issuer deben corresponder al mismo tenant y API; ningún Client Secret ni clave de Stripe debe incluirse en el frontend. Stripe se configura únicamente con una clave `sk_test_` en `api/.env`. Las guías completas están en [docs/PHASE-3D.md](docs/PHASE-3D.md) y [docs/PHASE-3E.md](docs/PHASE-3E.md).
 
 Instala las dependencias fijadas por los lockfiles desde la raíz:
 
@@ -73,7 +73,21 @@ Con PostgreSQL disponible, frontend y backend se levantan juntos mediante:
 npm run dev
 ```
 
-El backend escucha en `http://localhost:3001` y el frontend en `http://localhost:3000/PF-Chilly/`. El reseteo y seed de la base en cada arranque continúa siendo intencionado para el uso actual como demo.
+El backend escucha en `http://localhost:3001` y el frontend en `http://localhost:3000/PF-Chilly/`. El arranque es no destructivo por defecto. El reset y seed automáticos solo se habilitan explícitamente con `DEMO_MODE=true` y `RESET_DB_ON_START=true`; cualquier intento de reset fuera del modo demo bloquea el arranque.
+
+La preparación de tablas, la carga inicial y el arranque HTTP están separados
+internamente, y la política de reset se controla mediante las dos variables de
+entorno anteriores sin cambiar los comandos habituales.
+Véanse [docs/PHASE-4A.md](docs/PHASE-4A.md), [docs/PHASE-4B.md](docs/PHASE-4B.md)
+y [docs/PHASE-4C.md](docs/PHASE-4C.md).
+
+Con `DEMO_MODE=true`, el mantenimiento explícito se ejecuta desde la raíz:
+
+```bash
+npm run demo:seed     # completa el catálogo sin duplicarlo
+npm run demo:clean    # limpia usuarios y pedidos, conserva el catálogo
+npm run demo:restore  # reconstruye toda la base de demo
+```
 
 También pueden ejecutarse por separado:
 

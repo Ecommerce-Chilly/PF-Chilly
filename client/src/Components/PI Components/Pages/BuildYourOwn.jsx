@@ -15,7 +15,7 @@ import {
 
 import { useState } from 'react';
 import { useEffect } from 'react';
-import ReactTooltip from 'react-tooltip';
+import { Tooltip } from 'react-tooltip';
 import intelLogo from '../../../img/intel.png';
 import amdLogo from '../../../img/amd.webp';
 
@@ -104,7 +104,7 @@ function BuildYourOwn() {
           {i < categories.length + 1 && i > -1 ? (
             <div className="  w-2/5 h-12 bg-white border-2 rounded border-main flex">
               <p className="my-auto mx-auto text-center text-slate-900 font-display font-medium">
-                Total Price: ${totalPrice.toFixed(2)}
+                Total Price: €{totalPrice.toFixed(2)}
               </p>
             </div>
           ) : null}
@@ -160,20 +160,15 @@ function BuildYourOwn() {
               <>
                 <div
                   className=" m-auto flex"
-                  data-tip={byo[1].name}
-                  data-for="divTooltip1"
+                  data-tooltip-content={byo[1].name}
+                  data-tooltip-id="divTooltip1"
                 >
                   <img src={byo[1].image} alt="" />
                 </div>
-                <ReactTooltip
+                <Tooltip
                   id="divTooltip1"
                   place="top"
-                  effect="solid"
-                  textColor="#000"
-                  className="  !text-base !bg-white !opacity-100"
-                  backgroundColor="#ffffff"
-                  border
-                  borderColor="#303f9f"
+                  className="!text-base !text-black !bg-white !opacity-100 !border !border-[#303f9f]"
                 />
               </>
             ) : (
@@ -454,20 +449,15 @@ function BuildYourOwn() {
               <>
                 <div
                   className=" m-auto flex"
-                  data-tip={byo[2].name}
-                  data-for="divTooltip2"
+                  data-tooltip-content={byo[2].name}
+                  data-tooltip-id="divTooltip2"
                 >
                   <img src={byo[2].image} alt="" />
                 </div>
-                <ReactTooltip
+                <Tooltip
                   id="divTooltip2"
                   place="top"
-                  effect="solid"
-                  textColor="#000"
-                  className="  !text-base !bg-white !opacity-100"
-                  backgroundColor="#ffffff"
-                  border
-                  borderColor="#303f9f"
+                  className="!text-base !text-black !bg-white !opacity-100 !border !border-[#303f9f]"
                 />
               </>
             ) : (
@@ -854,20 +844,15 @@ function BuildYourOwn() {
               <>
                 <div
                   className=" m-auto flex"
-                  data-tip={byo[3].name}
-                  data-for="divTooltip3"
+                  data-tooltip-content={byo[3].name}
+                  data-tooltip-id="divTooltip3"
                 >
                   <img src={byo[3].image} alt="" />
                 </div>
-                <ReactTooltip
+                <Tooltip
                   id="divTooltip3"
                   place="top"
-                  effect="solid"
-                  textColor="#000"
-                  className="  !text-base !bg-white !opacity-100"
-                  backgroundColor="#ffffff"
-                  border
-                  borderColor="#303f9f"
+                  className="!text-base !text-black !bg-white !opacity-100 !border !border-[#303f9f]"
                 />
               </>
             ) : (
@@ -892,20 +877,15 @@ function BuildYourOwn() {
               <>
                 <div
                   className=" m-auto flex"
-                  data-tip={byo[4].name}
-                  data-for="divTooltip4"
+                  data-tooltip-content={byo[4].name}
+                  data-tooltip-id="divTooltip4"
                 >
                   <img src={byo[4].image} alt="" />
                 </div>
-                <ReactTooltip
+                <Tooltip
                   id="divTooltip4"
                   place="top"
-                  effect="solid"
-                  textColor="#000"
-                  className="  !text-base !bg-white !opacity-100"
-                  backgroundColor="#ffffff"
-                  border
-                  borderColor="#303f9f"
+                  className="!text-base !text-black !bg-white !opacity-100 !border !border-[#303f9f]"
                 />
               </>
             ) : (
@@ -1070,20 +1050,15 @@ function BuildYourOwn() {
               <>
                 <div
                   className=" m-auto flex"
-                  data-tip={byo[5].name}
-                  data-for="divTooltip5"
+                  data-tooltip-content={byo[5].name}
+                  data-tooltip-id="divTooltip5"
                 >
                   <img src={byo[5].image} alt="" />
                 </div>
-                <ReactTooltip
+                <Tooltip
                   id="divTooltip5"
                   place="top"
-                  effect="solid"
-                  textColor="#000"
-                  className="  !text-base !bg-white !opacity-100"
-                  backgroundColor="#ffffff"
-                  border
-                  borderColor="#303f9f"
+                  className="!text-base !text-black !bg-white !opacity-100 !border !border-[#303f9f]"
                 />
               </>
             ) : (
@@ -1301,20 +1276,15 @@ function BuildYourOwn() {
               <>
                 <div
                   className=" m-auto flex"
-                  data-tip={byo[6].name}
-                  data-for="divTooltip6"
+                  data-tooltip-content={byo[6].name}
+                  data-tooltip-id="divTooltip6"
                 >
                   <img src={byo[6].image} alt="" />
                 </div>
-                <ReactTooltip
+                <Tooltip
                   id="divTooltip6"
                   place="top"
-                  effect="solid"
-                  textColor="#000"
-                  className="  !text-base !bg-white !opacity-100"
-                  backgroundColor="#ffffff"
-                  border
-                  borderColor="#303f9f"
+                  className="!text-base !text-black !bg-white !opacity-100 !border !border-[#303f9f]"
                 />
               </>
             ) : (
@@ -1415,20 +1385,15 @@ function BuildYourOwn() {
               <>
                 <div
                   className=" m-auto flex"
-                  data-tip={byo[7].name}
-                  data-for="divTooltip7"
+                  data-tooltip-content={byo[7].name}
+                  data-tooltip-id="divTooltip7"
                 >
                   <img src={byo[7].image} alt="" />
                 </div>
-                <ReactTooltip
+                <Tooltip
                   id="divTooltip7"
                   place="top"
-                  effect="solid"
-                  textColor="#000"
-                  className="  !text-base !bg-white !opacity-100"
-                  backgroundColor="#ffffff"
-                  border
-                  borderColor="#303f9f"
+                  className="!text-base !text-black !bg-white !opacity-100 !border !border-[#303f9f]"
                 />
               </>
             ) : (
@@ -1630,20 +1595,15 @@ function BuildYourOwn() {
               <>
                 <div
                   className=" m-auto flex"
-                  data-tip={byo[8].name}
-                  data-for="divTooltip8"
+                  data-tooltip-content={byo[8].name}
+                  data-tooltip-id="divTooltip8"
                 >
                   <img src={byo[8].image} alt="" />
                 </div>
-                <ReactTooltip
+                <Tooltip
                   id="divTooltip8"
                   place="top"
-                  effect="solid"
-                  textColor="#000"
-                  className="  !text-base !bg-white !opacity-100"
-                  backgroundColor="#ffffff"
-                  border
-                  borderColor="#303f9f"
+                  className="!text-base !text-black !bg-white !opacity-100 !border !border-[#303f9f]"
                 />
               </>
             ) : (
@@ -1814,20 +1774,15 @@ function BuildYourOwn() {
               <>
                 <div
                   className=" m-auto flex"
-                  data-tip={byo[9].name}
-                  data-for="divTooltip9"
+                  data-tooltip-content={byo[9].name}
+                  data-tooltip-id="divTooltip9"
                 >
                   <img src={byo[9].image} alt="" />
                 </div>
-                <ReactTooltip
+                <Tooltip
                   id="divTooltip9"
                   place="top"
-                  effect="solid"
-                  textColor="#000"
-                  className="  !text-base !bg-white !opacity-100"
-                  backgroundColor="#ffffff"
-                  border
-                  borderColor="#303f9f"
+                  className="!text-base !text-black !bg-white !opacity-100 !border !border-[#303f9f]"
                 />
               </>
             ) : (
@@ -2036,20 +1991,15 @@ function BuildYourOwn() {
               <>
                 <div
                   className=" m-auto flex"
-                  data-tip={byo[10].name}
-                  data-for="divTooltip10"
+                  data-tooltip-content={byo[10].name}
+                  data-tooltip-id="divTooltip10"
                 >
                   <img src={byo[10].image} alt="" />
                 </div>
-                <ReactTooltip
+                <Tooltip
                   id="divTooltip10"
                   place="top"
-                  effect="solid"
-                  textColor="#000"
-                  className="  !text-base !bg-white !opacity-100"
-                  backgroundColor="#ffffff"
-                  border
-                  borderColor="#303f9f"
+                  className="!text-base !text-black !bg-white !opacity-100 !border !border-[#303f9f]"
                 />
               </>
             ) : (
@@ -2176,20 +2126,15 @@ function BuildYourOwn() {
               <>
                 <div
                   className=" m-auto flex"
-                  data-tip={byo[11].name}
-                  data-for="divTooltip11"
+                  data-tooltip-content={byo[11].name}
+                  data-tooltip-id="divTooltip11"
                 >
                   <img src={byo[11].image} alt="" />
                 </div>
-                <ReactTooltip
+                <Tooltip
                   id="divTooltip11"
                   place="top"
-                  effect="solid"
-                  textColor="#000"
-                  className="  !text-base !bg-white !opacity-100"
-                  backgroundColor="#ffffff"
-                  border
-                  borderColor="#303f9f"
+                  className="!text-base !text-black !bg-white !opacity-100 !border !border-[#303f9f]"
                 />
               </>
             ) : (
@@ -2471,7 +2416,7 @@ function BuildYourOwn() {
                       alt={component.name}
                     />
                     <p className="text-2xl font-display text-slate-700">
-                      $ {component.price === 0 ? 50 : component.price}
+                      € {component.price === 0 ? 50 : component.price}
                     </p>
                   </div>
                 </div>

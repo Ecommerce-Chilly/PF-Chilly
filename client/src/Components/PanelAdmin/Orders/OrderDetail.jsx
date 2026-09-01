@@ -72,11 +72,11 @@ function OrderDetail() {
                       {productDetail[0].brand}
                     </p>
                     <p className="mb-2">
-                      <span className="font-semibold">Unit price: </span>$
+                      <span className="font-semibold">Unit price: </span>€
                       {productDetail[0].price}
                     </p>
                     <p>
-                      <span className="font-semibold">Total price: </span>$
+                      <span className="font-semibold">Total price: </span>€
                       {productDetail[0].price * orderItem.quantity}
                     </p>
                   </div>

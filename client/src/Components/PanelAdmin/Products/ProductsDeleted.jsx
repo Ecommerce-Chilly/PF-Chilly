@@ -10,12 +10,14 @@ function ProductsDeleted() {
   let token = localStorage.getItem('token');
   token = JSON.parse(token);
   const productDeleted = useSelector((state) => state.productsDeleted);
-  const msgErrorDelet = useSelector((state) => state.msgProductDeleted);
+  const msgErrorDelet = useSelector(
+    (state) => state.msgProductDeleted || ''
+  );
   const admin = useSelector((state) => state.admin);
 
   useEffect(() => {
     dispatch(getProductDeleted(token));
-  }, [dispatch]);
+  }, [dispatch, token]);
 
   return (
     <div>

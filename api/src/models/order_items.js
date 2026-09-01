@@ -13,10 +13,18 @@ module.exports = (sequelize) => {
             type: DataTypes.INTEGER,
             allowNull: false,
          },
+         checkoutSessionId: {
+            type: DataTypes.STRING,
+         },
       },
       {
          timestamps: true,
          paranoid: true,
+         indexes: [
+            {
+               fields: ["checkoutSessionId"],
+            },
+         ],
       }
    );
 };

@@ -163,16 +163,26 @@ export const deleteProdut = (id, token) => {
 
 export const restoreProduct = (id, token) => {
   return async function (dispatch) {
-    let restoreProduct = await axios.put(
-      `/product/restore/${id}`,
-      {},
-      {
-        headers: {
-          authorization: `Bearer ${token}`,
-        },
-      }
-    );
-    return dispatch({ type: RESTORE_PRODUCT, payload: restoreProduct.data });
+    try {
+      const restoredProduct = await axios.put(
+        `/product/restore/${id}`,
+        {},
+        {
+          headers: {
+            authorization: `Bearer ${token}`,
+          },
+        }
+      );
+      return dispatch({
+        type: RESTORE_PRODUCT,
+        payload: restoredProduct.data,
+      });
+    } catch (error) {
+      return dispatch({
+        type: ERROR_PUT_PRODUCT,
+        payload: getErrorPayload(error),
+      });
+    }
   };
 };
 
@@ -412,10 +422,10 @@ export const userAdmin = (user, token) => {
         type: USER_ADMIN,
         payload: response.data,
       });
-    } catch (error) {
+    } catch {
       return dispatch({
-        type: USER_NOT_FOUND,
-        payload: getErrorPayload(error),
+        type: USER_ADMIN,
+        payload: false,
       });
     }
   };
@@ -513,14 +523,16 @@ export const clearDeleted = (payload) => {
 export const pay = (payData, token) => {
   return async function (dispatch) {
     try {
-      let payLink = await axios.post('/payment/', payData, {
+      const checkout = await axios.post('/checkout/session', payData, {
         headers: {
           authorization: `Bearer ${token}`,
         },
       });
-      return dispatch({ type: PAY, payload: payLink.data });
+      dispatch({ type: PAY, payload: checkout.data });
+      return checkout.data.url;
     } catch (error) {
-      return getErrorPayload(error);
+      console.error('Unable to create the checkout session:', getErrorPayload(error));
+      return null;
     }
   };
 };

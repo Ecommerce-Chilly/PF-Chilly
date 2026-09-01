@@ -16,6 +16,10 @@ module.exports = (sequelize) => {
           isEmail: true,
         },
       },
+      auth0Sub: {
+        type: DataTypes.STRING,
+        unique: true,
+      },
       name: {
         type: DataTypes.STRING
       },
