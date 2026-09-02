@@ -4,7 +4,9 @@ const { withDemoLock } = require('./demoMaintenance');
 // opening a database connection or deleting any real demo data.
 async function resetDemoSchema(connection, transaction) {
   // Intentional legacy demo policy. Environment guards belong to phase 4B.
-  const options = { force: true };
+  // `cascade` makes Sequelize drop models sequentially. Without it Sequelize 6
+  // sends concurrent DROP queries through the transaction's single pg client.
+  const options = { force: true, cascade: true };
   if (transaction) options.transaction = transaction;
   await connection.sync(options);
 }

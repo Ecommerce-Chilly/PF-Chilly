@@ -33,7 +33,7 @@ describe('Database preparation', () => {
   it('preserves the intentional destructive demo schema reset', async () => {
     let receivedOptions;
     await resetDemoSchema({ sync: async (options) => { receivedOptions = options; } });
-    expect(receivedOptions).to.deep.equal({ force: true });
+    expect(receivedOptions).to.deep.equal({ force: true, cascade: true });
   });
 
   it('waits for categories before loading the catalog without resetting tables', async () => {
