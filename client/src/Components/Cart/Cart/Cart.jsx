@@ -16,7 +16,7 @@ function Cart() {
   const userUnique = useSelector((state) => state.userInfo);
   const token = localStorage.getItem('token');
   const dispatch = useDispatch();
-  const { loginWithRedirect } = useAuth0();
+  const { isAuthenticated, loginWithRedirect } = useAuth0();
   let [variable, setVariable] = useState(0);
   const [checkoutLoading, setCheckoutLoading] = useState(false);
 
@@ -160,7 +160,7 @@ function Cart() {
               >
                 Clear Cart
               </button>
-              {userUnique.name ? (
+              {isAuthenticated && userUnique.id ? (
                 <button
                   type="button"
                   disabled={checkoutLoading}
@@ -172,13 +172,15 @@ function Cart() {
               ) : (
                 <button
                   type="button"
+                  disabled={isAuthenticated}
                   onClick={() => {
-                    loginWithRedirect();
+                    if (isAuthenticated) return;
                     window.localStorage.setItem('cart', JSON.stringify(cart));
+                    loginWithRedirect({ appState: { returnTo: '/cart' } });
                   }}
-                  className="w-36 font-semibold text-white text-center border-solid bg-main border-2 border-main py-2 px-6 focus:outline-none hover:bg-blue-600 rounded hover:border-blue-600"
+                  className="w-36 font-semibold text-white text-center border-solid bg-main border-2 border-main py-2 px-6 focus:outline-none hover:bg-blue-600 rounded hover:border-blue-600 disabled:cursor-wait disabled:opacity-60"
                 >
-                  Sign in
+                  {isAuthenticated ? 'Restoring account…' : 'Sign in'}
                 </button>
               )}
             </div>

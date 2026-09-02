@@ -1,9 +1,10 @@
 import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { getAllOrders, clearOrderMsg } from '../../../redux/actions/actions';
+import { getAllOrders } from '../../../redux/actions/actions';
 import OrderItem from './OrderItem';
 import { Link } from 'react-router-dom';
 import ForbiddenAccess from '../ForbiddenAccess';
+import { groupOrders } from '../../../utils/groupOrders';
 
 function Orders() {
   const dispatch = useDispatch();
@@ -11,10 +12,11 @@ function Orders() {
   const admin = useSelector((state) => state.admin);
   const token = localStorage.getItem('token');
   const msg = useSelector((state) => state.msgOrderItem);
+  const groupedOrders = groupOrders(orders || []);
 
   useEffect(() => {
     dispatch(getAllOrders(JSON.parse(token)));
-  }, [dispatch, msg]);
+  }, [dispatch, msg, token]);
 
   return (
     <div className="">
@@ -31,8 +33,10 @@ function Orders() {
               Back to Panel Admin
             </Link>
           </div>
-          {orders.length > 0 ? (
-            orders?.map((e) => <OrderItem key={e.id} {...e} />)
+          {groupedOrders.length > 0 ? (
+            groupedOrders.map((order) => (
+              <OrderItem key={order.id} {...order} />
+            ))
           ) : (
             <div className="w-72 m-auto">
               <svg

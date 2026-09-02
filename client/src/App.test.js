@@ -6,6 +6,7 @@ import {
   GET_PRODUCT_BY_NAME,
   GET_FROM_CART_BACK2,
   LS_TO_CART,
+  LOGOUT,
   ORDER_BY_PRICE,
   PRODUCTS_DELETED,
 } from './redux/actions/actions';
@@ -128,6 +129,28 @@ test('adds more units of a product that is already in the cart', () => {
 
   expect(state.cart).toHaveLength(1);
   expect(state.cart[0].quantity).toBe(8);
+});
+
+test('clears identity-bound state when the user logs out', () => {
+  const state = reducer(
+    {
+      ...reducer(undefined, { type: '@@INIT' }),
+      userInfo: { id: 1, email: 'first@example.com' },
+      admin: true,
+      cart: [{ id: 7, name: 'GPU', quantity: 1 }],
+      backendCart: [{ id: 3, userId: 1 }],
+      favorites: [{ id: 9 }],
+      quantity: 1,
+    },
+    { type: LOGOUT }
+  );
+
+  expect(state.userInfo).toEqual([]);
+  expect(state.admin).toBe(false);
+  expect(state.cart).toEqual([]);
+  expect(state.backendCart).toEqual([]);
+  expect(state.favorites).toEqual([]);
+  expect(state.quantity).toBe(0);
 });
 
 test('shows an empty deleted-products state after restoring the last product', () => {

@@ -26,12 +26,13 @@ const LogoutButton = () => {
     }).then((result) => {
       /* Read more about isConfirmed, isDenied below */
       if (result.isConfirmed) {
+        dispatch(logoutUser());
+        localStorage.removeItem('cart');
+        localStorage.removeItem('token');
+        localStorage.removeItem('email');
         logout({
           logoutParams: { returnTo: getAuth0RuntimeUrls().logoutUri },
         });
-        dispatch(logoutUser());
-        localStorage.removeItem('token');
-        localStorage.removeItem('email');
       }
     });
   };

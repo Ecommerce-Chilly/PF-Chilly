@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import { Link } from 'react-router-dom';
+import { Link, useLocation } from 'react-router-dom';
 import SearchBar from '../SearchBar/SearchBar';
 import { useAuth0 } from '@auth0/auth0-react';
 import {
@@ -16,6 +16,7 @@ function Navbar() {
   let admin = useSelector((state) => state.admin);
 
   const dispatch = useDispatch();
+  const location = useLocation();
   let { userInfo, quantity, cart } = useSelector((state) => state);
   const { loginWithRedirect } = useAuth0();
   const token = JSON.parse(localStorage.getItem('token') || 'null');
@@ -110,7 +111,14 @@ function Navbar() {
               <button
                 type="button"
                 className="inline-block mx-4"
-                onClick={() => {loginWithRedirect(); window.localStorage.setItem('cart', JSON.stringify(cart));}}
+                onClick={() => {
+                  window.localStorage.setItem('cart', JSON.stringify(cart));
+                  loginWithRedirect({
+                    appState: {
+                      returnTo: `${location.pathname}${location.search}`,
+                    },
+                  });
+                }}
                 aria-label="Sign in"
               >
                 <svg
