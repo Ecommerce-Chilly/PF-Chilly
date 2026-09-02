@@ -1,31 +1,37 @@
 import React, { useEffect, useState } from 'react';
 import { Link, useSearchParams } from 'react-router-dom';
 import axios from 'axios';
+import { useAuth0 } from '@auth0/auth0-react';
 import { useDispatch } from 'react-redux';
-import { clearCart } from '../../../redux/actions/actions';
+import {
+  clearCart,
+  userSpecific,
+} from '../../../redux/actions/actions';
 
 function PagoExitoso() {
   const dispatch = useDispatch();
   const [searchParams] = useSearchParams();
   const [status, setStatus] = useState('confirming');
   const sessionId = searchParams.get('session_id');
+  const { getAccessTokenSilently, user } = useAuth0();
 
   useEffect(() => {
     let cancelled = false;
 
     const confirmPayment = async () => {
-      const token = JSON.parse(localStorage.getItem('token') || 'null');
-      if (!sessionId || !token) {
+      if (!sessionId || !user?.email) {
         setStatus('error');
         return;
       }
 
       try {
+        const token = await getAccessTokenSilently();
         await axios.post(`/checkout/session/${encodeURIComponent(sessionId)}/confirm`, null, {
           headers: { authorization: `Bearer ${token}` },
         });
         if (!cancelled) {
           dispatch(clearCart());
+          await dispatch(userSpecific(user.email, token));
           setStatus('paid');
         }
       } catch {
@@ -37,7 +43,7 @@ function PagoExitoso() {
     return () => {
       cancelled = true;
     };
-  }, [dispatch, sessionId]);
+  }, [dispatch, getAccessTokenSilently, sessionId, user?.email]);
 
   if (status === 'confirming') {
     return (

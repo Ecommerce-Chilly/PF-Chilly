@@ -343,6 +343,10 @@ const rootReducer = (state = initialState, action) => {
         ...state,
         userInfo: [],
         admin: false,
+        cart: [],
+        backendCart: [],
+        favorites: [],
+        quantity: 0,
       };
     //! FAVOURITES REDUCERS
     case GET_FAVORITES:

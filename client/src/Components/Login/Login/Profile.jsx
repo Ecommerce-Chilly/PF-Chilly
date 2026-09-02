@@ -16,6 +16,11 @@ const Profile = () => {
   const userInfo = useSelector((state) => state.userInfo);
 
   const { user, isAuthenticated } = useAuth0();
+  const avatarUrl = user?.picture || userInfo?.img;
+  const userInitial = (user?.name || userInfo?.name || user?.email || '?')
+    .trim()
+    .charAt(0)
+    .toUpperCase();
 
   React.useEffect(() => {
     if (!userInfo.id) return;
@@ -40,12 +45,18 @@ const Profile = () => {
           <div className="w-full rounded-lg p-12 shadow-xl  md:w-8/12 lg:w-6/12 bg-white border">
             <div className="grid grid-cols-1 gap-6 lg:grid-cols-12 relative">
               <div className="grid-cols-1 lg:col-span-3">
-                <div className="mx-auto flex h-[90px]  items-center justify-center rounded-full p-4">
-                  <img
-                    className=" rounded-full"
-                    src={user.picture}
-                    alt={user.name}
-                  />
+                <div className="relative mx-auto flex h-[90px] w-[90px] items-center justify-center overflow-hidden rounded-full bg-violet-600 text-3xl font-semibold text-white">
+                  <span aria-hidden="true">{userInitial}</span>
+                  {avatarUrl && (
+                    <img
+                      className="absolute inset-0 h-full w-full rounded-full object-cover"
+                      src={avatarUrl}
+                      alt={user?.name || userInfo?.name || 'User avatar'}
+                      onError={(event) => {
+                        event.currentTarget.style.display = 'none';
+                      }}
+                    />
+                  )}
                 </div>
               </div>
 
@@ -53,10 +64,10 @@ const Profile = () => {
                 <div className="text-center lg:text-left">
                   <h2 className="text-2xl font-bold text-zinc-700">User info</h2>
                   <p className="mt-2 font-semibold text-zinc-700">
-                    Name: {user.name}
+                    Name: {user?.name || userInfo?.name}
                   </p>
                   <p className="mt-2 font-semibold text-zinc-700">
-                    Email: {user.email}
+                    Email: {user?.email || userInfo?.email}
                   </p>
                 </div>
 

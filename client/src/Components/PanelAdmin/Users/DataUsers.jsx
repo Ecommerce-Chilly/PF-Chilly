@@ -1,25 +1,21 @@
 import React, { useEffect } from 'react';
-import { getDataUser } from '../../../redux/actions/actions';
 import { useDispatch, useSelector } from 'react-redux';
-import TargetToDataUsers from './TargetToDataUsers';
-import OrderItemUser from '../Orders/OrderItemUser';
-import { getAllOrders } from '../../../redux/actions/actions';
+import { userSpecific } from '../../../redux/actions/actions';
 import { Link } from 'react-router-dom';
+import { groupOrders } from '../../../utils/groupOrders';
 
 function DataUsers() {
   let token = localStorage.getItem('token');
   token = JSON.parse(token);
   const dispatch = useDispatch();
-  const { userDataInCheckout, userNotInData, allOrders, userInfo } =
-    useSelector((state) => state);
-  useEffect(() => {
-    dispatch(getDataUser());
-    dispatch(getAllOrders(token));
-  }, [dispatch]);
+  const userInfo = useSelector((state) => state.userInfo);
+  const orders = groupOrders(userInfo?.order_items);
 
-  // let myOrders = allOrders?.filter((e) => {
-  //   e.id;
-  // });
+  useEffect(() => {
+    if (userInfo?.email && token) {
+      dispatch(userSpecific(userInfo.email, token));
+    }
+  }, [dispatch, token, userInfo?.email]);
 
   return (
     <div className="min-h-screen">
@@ -34,8 +30,37 @@ function DataUsers() {
           Back to Profile
         </Link>
       </div>
-      {userInfo.order_items.length > 0 ? (
-        userInfo.order_items.map((e) => <OrderItemUser key={e.id} {...e} />)
+      {orders.length > 0 ? (
+        orders.map((order) => (
+          <article
+            key={order.id}
+            className="mx-auto mb-9 w-1/2 rounded-xl border bg-white p-8 shadow-xl"
+          >
+            <p>
+              <span className="font-bold">Order: </span>
+              {order.id.startsWith('cs_') ? order.id.slice(-12) : order.id}
+            </p>
+            <p>
+              <span className="font-bold">Date of purchase: </span>
+              {new Date(order.createdAt).toLocaleString()}
+            </p>
+            <p className="mt-4 font-bold">
+              {order.items.length === 1 ? 'Product' : 'Products'}
+            </p>
+            <ul className="mt-2 space-y-2">
+              {order.items.map((item) => (
+                <li key={item.id}>
+                  <Link
+                    to={`/orders/${item.id}`}
+                    className="text-main hover:underline"
+                  >
+                    Product #{item.productId} · Quantity: {item.quantity}
+                  </Link>
+                </li>
+              ))}
+            </ul>
+          </article>
+        ))
       ) : (
         <div className="w-72 m-auto">
           <svg
@@ -74,11 +99,6 @@ function DataUsers() {
           </h1>
         </div>
       )}
-      {/* {userDataInCheckout.length > 0 ? (
-        userDataInCheckout?.map((e) => <TargetToDataUsers key={e.id} {...e} />)
-      ) : (
-        <p>{userNotInData} </p>
-      )} */}
     </div>
   );
 }
